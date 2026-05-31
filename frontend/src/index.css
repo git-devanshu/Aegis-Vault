@@ -1,0 +1,78 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    scrollbar-width: none;
+}
+
+html, body, #root{
+    width:100%;
+    min-height:100vh;
+}
+
+/* -------------------------------------------- */
+
+/* Auth Classes */
+
+.auth-page{
+    background-color: var(--bg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: var(--padding-l);
+}
+
+.auth-container{
+    width: 350px;
+}
+
+@media (max-width: 400px) {
+    .auth-page{
+        padding: var(--padding-s);
+    }
+}
+
+/* -------------------------------------------- */
+
+/* Common Classes */
+
+.common-page{
+    background-color: var(--bg);
+    min-height: 100vh;
+    padding: var(--padding-l);
+    scrollbar-width: none;
+}
+
+.common-container{
+    width: 350px;
+    margin: 0 auto;
+}
+
+.fullscreen-overlay{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--bg);
+    z-index: 999;
+    overflow-y: auto;
+}
+
+@media (max-width: 400px) {
+    .common-page{
+        padding: var(--padding-s);
+    }
+}
+
+/* -------------------------------------------- */
+
+@keyframes spin{
+    from{
+        transform:rotate(0deg);
+    }
+    to{
+        transform:rotate(360deg);
+    }
+}

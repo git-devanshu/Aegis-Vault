@@ -1,0 +1,632 @@
+{
+  "country": {
+    "IN": {
+      "countryName": "India",
+      "locale": "en-IN",
+      "currency": {
+        "code": "INR",
+        "symbol": "₹",
+        "name": "Indian Rupee"
+      }
+    },
+    "US": {
+      "countryName": "United States",
+      "locale": "en-US",
+      "currency": {
+        "code": "USD",
+        "symbol": "$",
+        "name": "US Dollar"
+      }
+    },
+    "UK": {
+      "countryName": "United Kingdom",
+      "locale": "en-GB",
+      "currency": {
+        "code": "GBP",
+        "symbol": "£",
+        "name": "British Pound Sterling"
+      }
+    },
+    "CA": {
+      "countryName": "Canada",
+      "locale": "en-CA",
+      "currency": {
+        "code": "CAD",
+        "symbol": "$",
+        "name": "Canadian Dollar"
+      }
+    },
+    "AU": {
+      "countryName": "Australia",
+      "locale": "en-AU",
+      "currency": {
+        "code": "AUD",
+        "symbol": "$",
+        "name": "Australian Dollar"
+      }
+    },
+    "SG": {
+      "countryName": "Singapore",
+      "locale": "en-SG",
+      "currency": {
+        "code": "SGD",
+        "symbol": "$",
+        "name": "Singapore Dollar"
+      }
+    },
+    "AE": {
+      "countryName": "United Arab Emirates",
+      "locale": "ar-AE",
+      "currency": {
+        "code": "AED",
+        "symbol": "د.إ",
+        "name": "UAE Dirham"
+      }
+    },
+    "DE": {
+      "countryName": "Germany",
+      "locale": "de-DE",
+      "currency": {
+        "code": "EUR",
+        "symbol": "€",
+        "name": "Euro"
+      }
+    },
+    "FR": {
+      "countryName": "France",
+      "locale": "fr-FR",
+      "currency": {
+        "code": "EUR",
+        "symbol": "€",
+        "name": "Euro"
+      }
+    },
+    "IT": {
+      "countryName": "Italy",
+      "locale": "it-IT",
+      "currency": {
+        "code": "EUR",
+        "symbol": "€",
+        "name": "Euro"
+      }
+    },
+    "JP": {
+      "countryName": "Japan",
+      "locale": "ja-JP",
+      "currency": {
+        "code": "JPY",
+        "symbol": "¥",
+        "name": "Japanese Yen"
+      }
+    },
+    "CN": {
+      "countryName": "China",
+      "locale": "zh-CN",
+      "currency": {
+        "code": "CNY",
+        "symbol": "¥",
+        "name": "Chinese Yuan"
+      }
+    },
+    "KR": {
+      "countryName": "South Korea",
+      "locale": "ko-KR",
+      "currency": {
+        "code": "KRW",
+        "symbol": "₩",
+        "name": "South Korean Won"
+      }
+    },
+    "BR": {
+      "countryName": "Brazil",
+      "locale": "pt-BR",
+      "currency": {
+        "code": "BRL",
+        "symbol": "R$",
+        "name": "Brazilian Real"
+      }
+    },
+    "ZA": {
+      "countryName": "South Africa",
+      "locale": "en-ZA",
+      "currency": {
+        "code": "ZAR",
+        "symbol": "R",
+        "name": "South African Rand"
+      }
+    },
+    "RU": {
+      "countryName": "Russia",
+      "locale": "ru-RU",
+      "currency": {
+        "code": "RUB",
+        "symbol": "₽",
+        "name": "Russian Ruble"
+      }
+    },
+    "CH": {
+      "countryName": "Switzerland",
+      "locale": "de-CH",
+      "currency": {
+        "code": "CHF",
+        "symbol": "CHF",
+        "name": "Swiss Franc"
+      }
+    },
+    "SE": {
+      "countryName": "Sweden",
+      "locale": "sv-SE",
+      "currency": {
+        "code": "SEK",
+        "symbol": "kr",
+        "name": "Swedish Krona"
+      }
+    },
+    "NO": {
+      "countryName": "Norway",
+      "locale": "nb-NO",
+      "currency": {
+        "code": "NOK",
+        "symbol": "kr",
+        "name": "Norwegian Krone"
+      }
+    },
+    "DK": {
+      "countryName": "Denmark",
+      "locale": "da-DK",
+      "currency": {
+        "code": "DKK",
+        "symbol": "kr",
+        "name": "Danish Krone"
+      }
+    },
+    "NZ": {
+      "countryName": "New Zealand",
+      "locale": "en-NZ",
+      "currency": {
+        "code": "NZD",
+        "symbol": "$",
+        "name": "New Zealand Dollar"
+      }
+    },
+    "MY": {
+      "countryName": "Malaysia",
+      "locale": "ms-MY",
+      "currency": {
+        "code": "MYR",
+        "symbol": "RM",
+        "name": "Malaysian Ringgit"
+      }
+    },
+    "TH": {
+      "countryName": "Thailand",
+      "locale": "th-TH",
+      "currency": {
+        "code": "THB",
+        "symbol": "฿",
+        "name": "Thai Baht"
+      }
+    },
+    "ID": {
+      "countryName": "Indonesia",
+      "locale": "id-ID",
+      "currency": {
+        "code": "IDR",
+        "symbol": "Rp",
+        "name": "Indonesian Rupiah"
+      }
+    },
+    "PH": {
+      "countryName": "Philippines",
+      "locale": "en-PH",
+      "currency": {
+        "code": "PHP",
+        "symbol": "₱",
+        "name": "Philippine Peso"
+      }
+    },
+    "VN": {
+      "countryName": "Vietnam",
+      "locale": "vi-VN",
+      "currency": {
+        "code": "VND",
+        "symbol": "₫",
+        "name": "Vietnamese Dong"
+      }
+    }
+  },
+
+  "banks": {
+    "airtel": {
+      "bankName": "Airtel Payments Bank",
+      "shortName": "Airtel",
+      "logo": "/src/assets/bank-logos/airtel.png",
+      "color": "#E60000",
+      "isActive": true
+    },
+  
+    "axis": {
+      "bankName": "Axis Bank",
+      "shortName": "Axis",
+      "logo": "/src/assets/bank-logos/axis.jpg",
+      "color": "#97144D",
+      "isActive": true
+    },
+  
+    "bandhan": {
+      "bankName": "Bandhan Bank",
+      "shortName": "Bandhan",
+      "logo": "/src/assets/bank-logos/bandhan.png",
+      "color": "#A50034",
+      "isActive": true
+    },
+  
+    "barclays": {
+      "bankName": "Barclays Bank",
+      "shortName": "Barclays",
+      "logo": "/src/assets/bank-logos/barclays.png",
+      "color": "#00AEEF",
+      "isActive": true
+    },
+  
+    "bnpp": {
+      "bankName": "BNP Paribas",
+      "shortName": "BNP",
+      "logo": "/src/assets/bank-logos/bnpp.png",
+      "color": "#00965E",
+      "isActive": true
+    },
+  
+    "bob": {
+      "bankName": "Bank of Baroda",
+      "shortName": "BOB",
+      "logo": "/src/assets/bank-logos/bob.png",
+      "color": "#F26522",
+      "isActive": true
+    },
+  
+    "boi": {
+      "bankName": "Bank of India",
+      "shortName": "BOI",
+      "logo": "/src/assets/bank-logos/boi.jpg",
+      "color": "#004C97",
+      "isActive": true
+    },
+  
+    "bom": {
+      "bankName": "Bank of Maharashtra",
+      "shortName": "BOM",
+      "logo": "/src/assets/bank-logos/bom.png",
+      "color": "#004990",
+      "isActive": true
+    },
+  
+    "canara": {
+      "bankName": "Canara Bank",
+      "shortName": "Canara",
+      "logo": "/src/assets/bank-logos/canara.jpg",
+      "color": "#00984A",
+      "isActive": true
+    },
+  
+    "central": {
+      "bankName": "Central Bank of India",
+      "shortName": "CBI",
+      "logo": "/src/assets/bank-logos/central.png",
+      "color": "#003DA5",
+      "isActive": true
+    },
+  
+    "citi": {
+      "bankName": "Citibank",
+      "shortName": "Citibank",
+      "logo": "/src/assets/bank-logos/citi.png",
+      "color": "#1F4E79",
+      "isActive": true
+    },
+  
+    "cityunion": {
+      "bankName": "City Union Bank",
+      "shortName": "CUB",
+      "logo": "/src/assets/bank-logos/cityunion.png",
+      "color": "#003DA5",
+      "isActive": true
+    },
+  
+    "cosmos": {
+      "bankName": "Cosmos Bank",
+      "shortName": "Cosmos",
+      "logo": "/src/assets/bank-logos/cosmos.png",
+      "color": "#7B1E3A",
+      "isActive": true
+    },
+  
+    "csb": {
+      "bankName": "CSB Bank",
+      "shortName": "CSB",
+      "logo": "/src/assets/bank-logos/csb.png",
+      "color": "#007A53",
+      "isActive": true
+    },
+  
+    "dbs": {
+      "bankName": "DBS Bank",
+      "shortName": "DBS",
+      "logo": "/src/assets/bank-logos/dbs.png",
+      "color": "#D50032",
+      "isActive": true
+    },
+  
+    "dcb": {
+      "bankName": "DCB Bank",
+      "shortName": "DCB",
+      "logo": "/src/assets/bank-logos/dcb.png",
+      "color": "#009639",
+      "isActive": true
+    },
+  
+    "deutsche": {
+      "bankName": "Deutsche Bank",
+      "shortName": "Deutsche",
+      "logo": "/src/assets/bank-logos/deutsche.png",
+      "color": "#0018A8",
+      "isActive": true
+    },
+  
+    "equitas": {
+      "bankName": "Equitas Small Finance Bank",
+      "shortName": "Equitas",
+      "logo": "/src/assets/bank-logos/equitas.png",
+      "color": "#E53935",
+      "isActive": true
+    },
+  
+    "esaf": {
+      "bankName": "ESAF Small Finance Bank",
+      "shortName": "ESAF",
+      "logo": "/src/assets/bank-logos/esaf.png",
+      "color": "#F57C00",
+      "isActive": true
+    },
+  
+    "federal": {
+      "bankName": "Federal Bank",
+      "shortName": "Federal",
+      "logo": "/src/assets/bank-logos/federal.jpg",
+      "color": "#FFD100",
+      "isActive": true
+    },
+  
+    "hdfc": {
+      "bankName": "HDFC Bank",
+      "shortName": "HDFC",
+      "logo": "/src/assets/bank-logos/hdfc.png",
+      "color": "#E31837",
+      "isActive": true
+    },
+  
+    "hsbc": {
+      "bankName": "HSBC",
+      "shortName": "HSBC",
+      "logo": "/src/assets/bank-logos/hsbc.png",
+      "color": "#DB0011",
+      "isActive": true
+    },
+  
+    "icici": {
+      "bankName": "ICICI Bank",
+      "shortName": "ICICI",
+      "logo": "/src/assets/bank-logos/icici.png",
+      "color": "#F58220",
+      "isActive": true
+    },
+  
+    "idbi": {
+      "bankName": "IDBI Bank",
+      "shortName": "IDBI",
+      "logo": "/src/assets/bank-logos/idbi.png",
+      "color": "#006747",
+      "isActive": true
+    },
+  
+    "idfc": {
+      "bankName": "IDFC FIRST Bank",
+      "shortName": "IDFC",
+      "logo": "/src/assets/bank-logos/idfc.png",
+      "color": "#9B1B30",
+      "isActive": true
+    },
+  
+    "indian": {
+      "bankName": "Indian Bank",
+      "shortName": "Indian Bank",
+      "logo": "/src/assets/bank-logos/indian.png",
+      "color": "#005BAC",
+      "isActive": true
+    },
+  
+    "indusind": {
+      "bankName": "IndusInd Bank",
+      "shortName": "IndusInd",
+      "logo": "/src/assets/bank-logos/indusind.jpg",
+      "color": "#9E1B32",
+      "isActive": true
+    },
+  
+    "iob": {
+      "bankName": "Indian Overseas Bank",
+      "shortName": "IOB",
+      "logo": "/src/assets/bank-logos/iob.jpg",
+      "color": "#004C97",
+      "isActive": true
+    },
+  
+    "ippb": {
+      "bankName": "India Post Payments Bank",
+      "shortName": "IPPB",
+      "logo": "/src/assets/bank-logos/ippb.jpg",
+      "color": "#FFCC00",
+      "isActive": true
+    },
+  
+    "jana": {
+      "bankName": "Jana Small Finance Bank",
+      "shortName": "Jana",
+      "logo": "/src/assets/bank-logos/jana.png",
+      "color": "#6A1B9A",
+      "isActive": true
+    },
+  
+    "jio": {
+      "bankName": "Jio Payments Bank",
+      "shortName": "Jio",
+      "logo": "/src/assets/bank-logos/jio.png",
+      "color": "#0F3CC9",
+      "isActive": true
+    },
+  
+    "karnataka": {
+      "bankName": "Karnataka Bank",
+      "shortName": "Karnataka",
+      "logo": "/src/assets/bank-logos/karnataka.jpg",
+      "color": "#C8102E",
+      "isActive": true
+    },
+  
+    "karur": {
+      "bankName": "Karur Vysya Bank",
+      "shortName": "KVB",
+      "logo": "/src/assets/bank-logos/karur.png",
+      "color": "#0033A0",
+      "isActive": true
+    },
+  
+    "kotak": {
+      "bankName": "Kotak Mahindra Bank",
+      "shortName": "Kotak",
+      "logo": "/src/assets/bank-logos/kotak.png",
+      "color": "#ED1C24",
+      "isActive": true
+    },
+  
+    "northEast": {
+      "bankName": "North East Small Finance Bank",
+      "shortName": "NESFB",
+      "logo": "/src/assets/bank-logos/northEast.png",
+      "color": "#1565C0",
+      "isActive": true
+    },
+  
+    "paytm": {
+      "bankName": "Paytm Payments Bank",
+      "shortName": "Paytm",
+      "logo": "/src/assets/bank-logos/paytm.png",
+      "color": "#00BAF2",
+      "isActive": true
+    },
+  
+    "pnb": {
+      "bankName": "Punjab National Bank",
+      "shortName": "PNB",
+      "logo": "/src/assets/bank-logos/pnb.png",
+      "color": "#A50034",
+      "isActive": true
+    },
+  
+    "rbl": {
+      "bankName": "RBL Bank",
+      "shortName": "RBL",
+      "logo": "/src/assets/bank-logos/rbl.png",
+      "color": "#003A70",
+      "isActive": true
+    },
+  
+    "saraswat": {
+      "bankName": "Saraswat Bank",
+      "shortName": "Saraswat",
+      "logo": "/src/assets/bank-logos/saraswat.png",
+      "color": "#004990",
+      "isActive": true
+    },
+  
+    "sbi": {
+      "bankName": "State Bank of India",
+      "shortName": "SBI",
+      "logo": "/src/assets/bank-logos/sbi.png",
+      "color": "#2F5DA9",
+      "isActive": true
+    },
+  
+    "scotia": {
+      "bankName": "Scotiabank",
+      "shortName": "Scotia",
+      "logo": "/src/assets/bank-logos/scotia.png",
+      "color": "#EC111A",
+      "isActive": true
+    },
+  
+    "southindian": {
+      "bankName": "South Indian Bank",
+      "shortName": "SIB",
+      "logo": "/src/assets/bank-logos/southindian.png",
+      "color": "#C8102E",
+      "isActive": true
+    },
+  
+    "standardchartered": {
+      "bankName": "Standard Chartered Bank",
+      "shortName": "SCB",
+      "logo": "/src/assets/bank-logos/standardchartered.png",
+      "color": "#0072CE",
+      "isActive": true
+    },
+  
+    "suryoday": {
+      "bankName": "Suryoday Small Finance Bank",
+      "shortName": "Suryoday",
+      "logo": "/src/assets/bank-logos/suryoday.png",
+      "color": "#EC407A",
+      "isActive": true
+    },
+  
+    "tmb": {
+      "bankName": "Tamilnad Mercantile Bank",
+      "shortName": "TMB",
+      "logo": "/src/assets/bank-logos/tmb.png",
+      "color": "#00539B",
+      "isActive": true
+    },
+  
+    "uco": {
+      "bankName": "UCO Bank",
+      "shortName": "UCO",
+      "logo": "/src/assets/bank-logos/uco.png",
+      "color": "#00529B",
+      "isActive": true
+    },
+  
+    "ujjivan": {
+      "bankName": "Ujjivan Small Finance Bank",
+      "shortName": "Ujjivan",
+      "logo": "/src/assets/bank-logos/ujjivan.png",
+      "color": "#005BAC",
+      "isActive": true
+    },
+  
+    "union": {
+      "bankName": "Union Bank of India",
+      "shortName": "Union",
+      "logo": "/src/assets/bank-logos/union.png",
+      "color": "#0072BC",
+      "isActive": true
+    },
+  
+    "yes": {
+      "bankName": "YES Bank",
+      "shortName": "YES",
+      "logo": "/src/assets/bank-logos/yes.png",
+      "color": "#003DA5",
+      "isActive": true
+    }
+  }
+}

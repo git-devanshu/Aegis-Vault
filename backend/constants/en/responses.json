@@ -1,0 +1,58 @@
+{
+    "COMMON": {
+        "SERVER_ERROR": "something went wrong",
+        "FIELD_REQUIRED": "enter all required fields",
+        "UNEXPECTED_ERROR": "an unexpected error has occurred",
+        "SUCCESS": "success"
+    },
+
+    "AUTH": {
+        "SESSION_EXPIRED": "your session has expired",
+        "UNAUTHORIZED": "this action is not allowed",
+        "EMAIL_EXISTS": "this email is already in use",
+        "SIGNUP_SUCCESS": "registration successful",
+        "LOGIN_SUCCESS": "login successful",
+        "USER_NOT_FOUND": "this user does not exists",
+        "ACCOUNT_DISABLED": "this user is blocked by admin",
+        "INVALID_CREDENTIALS": "provided credentials are invalid",
+        "PIN_VERIFIED": "security pin verification successful",
+        "SESSION_LIMIT_REACHED": "session creation limit reached",
+        "SESSION_NOT_FOUND": "session not found",
+        "LOGOUT_SUCCESSFUL": "device logged out successfully",
+        "ALL_SESSIONS_TERMINATED": "logged out of all other devices",
+        "NEW_PASSKEY_GENERATED": "new passkey generated successfully"
+    },
+    
+    "CONFIG": {
+        "SETTINGS_SAVED": "user settings saved successfully"
+    },
+
+    "PASSWORD_MANAGER": {
+        "NO_PASSWORD_ADDED": "no passwords are added under this label",
+        "PASSWORD_ADDED": "password added successfully",
+        "PASSWORD_UPDATED": "password updated successfully",
+        "PASSWORD_DELETED": "password deleted successfully",
+        "PASSWORD_NOT_FOUND": "password not found",
+        "LABELS_NOT_FOUND": "labels not found",
+        "LABELS_LIST_UPDATED": "labels list updated"
+    },
+
+    "ACCOUNTS_LAYER": {
+        "ACCOUNT_ADDED": "bank account added successfully",
+        "ACCOUNT_DELETED": "bank account deleted successfully",
+        "ACCOUNT_NOT_FOUND": "bank account not found",
+        "ERROR_UPDATING_BALANCE": "error updating account balance"
+    },
+
+    "EXPENSE_MANAGER": {
+        "NO_TRACKER_ADDED": "no income is added to this account",
+        "NO_EXPENSE_ADDED": "no expenses are added to this income",
+        "TRACKER_ADDED": "income added to account",
+        "EXPENSE_ADDED": "expense added successfully",
+        "TRACKER_NOT_FOUND": "the income was not found in this account",
+        "TRACKER_DELETED": "income and all its expenses deleted successfully",
+        "EXPENSE_DELETED": "expense deleted successfully",
+        "EXPENSES_TRANSFERRED": "all expenses transferred successfully",
+        "CANNOT_DELETE_TRACKER": "cannot remove this income"
+    }
+}

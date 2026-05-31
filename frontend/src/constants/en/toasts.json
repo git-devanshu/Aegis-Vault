@@ -1,0 +1,30 @@
+{
+    "COMMON": {
+        "UNKNOWN_ERROR": "an unknown error has occurred",
+        "SOMETHING_WENT_WRONG": "something went wrong!",
+        "LOADING": "loading, please wait...",
+        "SUCCESS": "success"
+    },
+    "AUTH": {
+        "CHECK_EMAIL_AVAL": "checking email availability, please wait...",
+        "EMAIL_AVAILABLE": "this email id is available",
+        "EMAIL_USED": "this email is is already in use",
+        "CREATING_USER": "creating new user, please wait...",
+        "TERMINATING_SESSION": "logging out of the device, please wait...",
+        "GENERATING_NEW_PASSKEY": "generating new passkey, please wait..."
+    },
+    "PASSWORD_MANAGER": {
+        "USERNAME_COPIED": "username copied",
+        "PASSWORD_COPIED": "password Copied",
+        "UPDATING_LABELS": "updating labels list, please wait...",
+        "CANNOT_CREATE_LABEL": "this label cannot be created",
+        "LABEL_ALREADY_EXISTS": "this label is already created"
+    },
+    "EXPENSE_MANAGER": {
+        "ADDING_ACCOUNT": "adding bank account, please wait..."
+    },
+    "QUICK_SAVE": {
+        "DATA_EXPORTED": "expenses exported successfully",
+        "DATA_IMPORTED": "exported expenses imported successfully"
+    }
+}

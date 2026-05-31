@@ -1,0 +1,76 @@
+{
+    "PASSWORD_LABELS": {
+        "OTHER": "default_other"
+    },
+
+    "DEFAULT_EXPENSE_CATEGORIES": [
+        {
+            "name": "Education",
+            "icon": "FaGraduationCap"
+        }, {
+            "name": "Food",
+            "icon": "FaUtensils"
+        }, {
+            "name": "Transport",
+            "icon": "FaBus"
+        }, {
+            "name": "Bills",
+            "icon": "FaFileInvoiceDollar"
+        }, {
+            "name": "Groceries",
+            "icon": "FaBasketShopping"
+        }, {
+            "name": "Fuel",
+            "icon": "FaGasPump"
+        }, {
+            "name": "Health",
+            "icon": "FaHeartPulse"
+        }, {
+            "name": "Shopping",
+            "icon": "FaBagShopping"
+        }, {
+            "name": "Investment",
+            "icon": "FaChartLine"
+        }, {
+            "name": "Entertainment",
+            "icon": "FaFilm"
+        }, {
+            "name": "Gifts",
+            "icon": "FaGift"
+        }, {
+            "name": "Lifestyle",
+            "icon": "FaSpa"
+        }, {
+            "name": "Other",
+            "icon": "FaFolderOpen"
+        }
+    ],
+
+    "SUPPORTED_LANGUAGES": [
+        {
+            "code": "en",
+            "name": "English"
+        }, {
+            "code": "hi",
+            "name": "हिन्दी"
+        }, {
+            "code": "ru",
+            "name": "Русский"
+        }, {
+            "code": "fr",
+            "name": "Français"
+        }, {
+            "code": "de",
+            "name": "Deutsch"
+        }, {
+            "code": "zh",
+            "name": "中文"
+        }, {
+            "code": "ja",
+            "name": "日本語"
+        }, {
+            "code": "es",
+            "name": "Español"
+        }
+    ]
+}
