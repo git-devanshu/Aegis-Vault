@@ -104,7 +104,8 @@ export default function ExpenseVault() {
                 },
                 onError: (err)=> {
                     setError(err);
-                }
+                },
+                defaultSuccessToast: false
             });
         }
         fetchAccountData();
@@ -140,7 +141,8 @@ export default function ExpenseVault() {
                 },
                 onError: (err)=> {
                     setError(err);
-                }
+                },
+                defaultSuccessToast: false
             });
         }
         fetchTrackerData();
@@ -169,7 +171,8 @@ export default function ExpenseVault() {
                 },
                 onError: (err)=> {
                     setError(err);
-                }
+                },
+                defaultSuccessToast: false
             });
         }
         fetchExpenseData();
@@ -193,7 +196,8 @@ export default function ExpenseVault() {
                 },
                 onError: (err)=> {
                     setError(err);
-                }
+                },
+                defaultSuccessToast: false
             });
         }
         fetchCategoryData();
@@ -282,7 +286,7 @@ export default function ExpenseVault() {
                         }
                         {/* Categories */}
                         {selectedTab === 2 && 
-                            <CategoryTab expenseData={expenseData} selectedTracker={selectedTracker} selectedAccount={selectedAccount} selectedTrackerIndex={selectedTrackerIndex} setSelectedTrackerIndex={setSelectedTrackerIndex} categoryData={categoryData} accountDataArray={accountData} setAccountData={setAccountData} refreshCategories={refreshCategories} setRefreshCategories={setRefreshCategories} trackerDataOptions={trackerDataOptions}/>
+                            <CategoryTab expenseData={expenseData} selectedTracker={selectedTracker} selectedAccount={selectedAccount} selectedTrackerIndex={selectedTrackerIndex} setSelectedTrackerIndex={setSelectedTrackerIndex} categoryData={categoryData} accountDataArray={accountData} setAccountData={setAccountData} refreshCategories={refreshCategories} setRefreshCategories={setRefreshCategories} trackerDataOptions={trackerDataOptions} refreshTrackers={refreshTrackers} setRefreshTrackers={setRefreshTrackers}/>
                         }
                     </div>
                 </Grid>
@@ -298,7 +302,7 @@ export default function ExpenseVault() {
             <AddExpensePopup isOpen={showAddExpensePopup} onClose={setShowAddExpensePopup} selectedAccount={selectedAccount} selectedTracker={selectedTracker} categoryData={categoryData} refreshExpenses={refreshExpenses} setRefreshExpenses={setRefreshExpenses} accountDataArray={accountData} setAccountData={setAccountData} />
 
             {/* Show Analytics Modal */}
-            {showExpenseAnalytics && <ExpenseAnalyticsModal onBack={()=> setShowExpenseAnalytics(false)} selectedAccount={selectedAccount} selectedTracker={selectedTracker} expenseData={expenseData} categoryData={categoryData} onDownloadReport={()=>{}} onDownloadStatement={()=>{}} />}
+            {showExpenseAnalytics && <ExpenseAnalyticsModal onBack={()=> setShowExpenseAnalytics(false)} selectedAccount={selectedAccount} selectedTracker={selectedTracker} expenseData={expenseData} categoryData={categoryData} selectedTrackerIndex={selectedTrackerIndex} setSelectedTrackerIndex={setSelectedTrackerIndex} trackerDataOptions={trackerDataOptions} trackerData={trackerData} setSelectedTab={setSelectedTab} />}
         </div>
     );
 }

@@ -44,7 +44,10 @@
         "SEARCH_INCOME": "Search Income",
         "FILL_DETAILS": "Fill Details",
         "IMPORT": "Import",
-        "SEARCH_EXPENSE": "Search Expense"
+        "SEARCH_EXPENSE": "Search Expense",
+        "CATEGORY_NAME": "Category Name",
+        "SELECT_ICON": "Select Icon",
+        "EXPENSE_ANALYTICS": "Expense Analytics"
     },
 
     "TEXT": {
@@ -139,7 +142,24 @@
         "CONFIRM_DELETE_EXPENSE": "Are you sure you want to delete this expense ?",
         "BUDGET": "Budget",
         "NO_BUDGET_SET": "No Budget Set",
-        "SET_BUDGET": "Set Budget"
+        "SET_BUDGET": "Set Budget",
+        "CREATE_CATEGORY":"Create Category",
+        "SPENDING": "Spending",
+        "TOTAL_BALANCE": "Total Balance",
+        "ACCOUNT_SNAPSHOT": "Account Snapshot",
+        "TOP_INCOME": "Highest Income",
+        "SELECTED_INCOME_OVERVIEW": "Selected Income Overview",
+        "PART_OF_TOTAL_INCOME": "part of total income",
+        "PART_OF_INCOME_AMOUNT": "part of income amount",
+        "INCOME_REMAINING": "Income Remaining",
+        "SAVINGS_RATE": "Savings Rate",
+        "TRANSACTIONS": "Transactions",
+        "AVERAGE_TRANSACTION": "Average Transaction",
+        "INCOME_AMOUNT": "Income Amount",
+        "TOTAL_SPENT": "Total Spent",
+        "CATEGORYWISE_DISTRIBUTION": "Categorywise Distribution",
+        "TOP_EXPENSES": "Top Expenses",
+        "LARGEST_EXPENSE": "Largest Expense"
     },
 
     "BUTTONS": {
@@ -175,7 +195,9 @@
         "IMPORT_FROM_QUICKSAVE": "Import From Quick Save",
         "UPLOAD_EXCEL": "Upload Excel Sheet",
         "CREATE_CATEGORY": "Create Category",
-        "SET_BUDGET": "Set Budget"
+        "SET_BUDGET": "Set Budget",
+        "SHOW_ALL_EXPENSES": "Show All Expenses",
+        "SHOW_ALL_INCOMES": "Show All Incomes"
     },
 
     "PASSWORD_LABELS": {
@@ -218,5 +240,16 @@
         "QUICK_SAVE": "Quick Save Expenses",
         "GROUP_BY_CATEGORY": "Group By Category",
         "SORT_BY_DATE": "Sort by Date Descending"
+    },
+
+    "ALERTS": {
+        "INSIGHTS_AND_ALERTS": "Insights & Alerts",
+        "BUDGET_EXCEEDED": "{category} exceeded budget by {amount}",
+        "BUDGET_UTILIZED": "{category} budget is {percentage}% utilized",
+        "HEALTHY_BUDGETS": "{healthy} of {total} budget categories remained within limits",
+        "LARGEST_EXPENSE": "{expense} consumed {percentage}% of this income",
+        "TOP_SPENDING_DAY": "{date} accounted for {percentage}% of all spending",
+        "TOP_CATEGORY_NO_BUDGET": "{category} is your highest spending category but has no budget",
+        "SAVINGS_RATE": "You retained {percentage}% of this income"
     }
 }

@@ -111,6 +111,17 @@ export function getContrastColor(hex){
 
 
 
+export const getCategoryMap = (categoryData) =>{
+    return Object.fromEntries(
+        categoryData.map(category => [
+            category.categoryIndex,
+            category
+        ])
+    );
+}
+
+
+
 //function to get the current date in different formats
 /*
 type values : 

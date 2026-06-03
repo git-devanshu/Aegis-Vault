@@ -24,6 +24,7 @@ import ActionButton from "../../common-components/form/ActionButton";
 import Popup from "../../common-components/popup/Popup";
 import CircleIconButton from "../../common-components/form/CircleIconButton";
 import Dropdown from "../../common-components/form/Dropdown";
+import { getCategoryMap } from "../../utility/helpers";
 
 
 export default function ExpenseTab({expenseData, trackerData, selectedAccount, selectedTrackerIndex, setSelectedTrackerIndex, categoryData, accountDataArray, setAccountData, refreshExpenses, setRefreshExpenses, trackerDataOptions}) {
@@ -51,10 +52,16 @@ export default function ExpenseTab({expenseData, trackerData, selectedAccount, s
             );
     }, [expenseData, searchQuery]);
 
+    const categoryMap = useMemo(
+        ()=> getCategoryMap(categoryData),
+        [categoryData]
+    );
+
     const groupedExpenses = useMemo(()=>{
         const grouped = {};
         filteredExpenses.forEach(expense =>{
-            const category = categoryData[expense.categoryIndex];
+            const category = categoryMap[expense.categoryIndex];
+            if(!category) return;
             if(!grouped[category.name]){
                 grouped[category.name] = {
                     category,
@@ -64,7 +71,7 @@ export default function ExpenseTab({expenseData, trackerData, selectedAccount, s
             grouped[category.name].expenses.push(expense);
         });
         return Object.values(grouped);
-    }, [filteredExpenses, categoryData]);
+    }, [filteredExpenses, categoryMap]);
 
     const getCategoryIcon = (category) =>{
         return CATEGORY_ICONS[category.icon];
@@ -123,7 +130,7 @@ export default function ExpenseTab({expenseData, trackerData, selectedAccount, s
     }
 
     const ExpenseCard = ({expense}) =>{
-        const category = categoryData[expense.categoryIndex];
+        const category = categoryMap[expense.categoryIndex];
         const Icon = getCategoryIcon(category);
         return (
             <div style={{ backgroundColor:theme.cardBg, border:`1px solid ${theme.border}`, borderRadius:`calc(${theme.radius} * 2)`, overflow:'hidden' }}>

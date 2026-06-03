@@ -10,23 +10,15 @@ import { createHash, createPassKey, decryptData, encryptData } from '../../utili
 import { validateAndStartLoading, apiRequest } from "../../utility/api";
 import useLanguage from "../../hooks/useLanguage";
 import useAppContext from "../../hooks/useAppContext";
-import useClearOnUnmount from '../../hooks/useClearOnUnmount';
-
-import { ArrowBackIcon, AddIcon, LockIcon, EditIcon, CloseIcon, DeleteIcon } from '@chakra-ui/icons';
-import { MdRefresh, MdAutoGraph, MdOutlineSettingsBackupRestore } from "react-icons/md";
-import { FaInfo } from "react-icons/fa";
-import { GiMoneyStack } from "react-icons/gi";
-import { PiChartDonut } from "react-icons/pi";
-import { TbMoneybagPlus } from "react-icons/tb";
 
 import InputBox from "../../common-components/form/InputBox";
 import ActionButton from "../../common-components/form/ActionButton";
 import Popup from "../../common-components/popup/Popup";
-import CircleIconButton from "../../common-components/form/CircleIconButton";
 import Dropdown from "../../common-components/form/Dropdown";
+import { getCategoryMap } from "../../utility/helpers";
 
 
-export default function CategoryTab({expenseData, selectedTracker, selectedAccount, selectedTrackerIndex, setSelectedTrackerIndex, categoryData, accountDataArray, setAccountData, refreshCategories, setRefreshCategories, trackerDataOptions}) {
+export default function CategoryTab({expenseData, selectedTracker, selectedAccount, selectedTrackerIndex, setSelectedTrackerIndex, categoryData, refreshCategories, setRefreshCategories, trackerDataOptions, refreshTrackers, setRefreshTrackers}) {
     if(!selectedAccount || !selectedTracker) return null;
 
     const {DISPLAY, TOASTS} = useLanguage();
@@ -38,7 +30,18 @@ export default function CategoryTab({expenseData, selectedTracker, selectedAccou
 
     const [showSetBudgetPopup, setShowSetBudgetPopup] = useState(false);
     const [showCreateCategoryPopup, setShowCreateCategoryPopup] = useState(false);
-    const [showDeleteCategoryPopup, setShowDeleteCategoryPopup] = useState(false);
+
+    const [newCategory, setNewCategory] = useState({
+        name: '',
+        icon: Object.keys(CATEGORY_ICONS)[0]
+    });
+
+    const [budgetData, setBudgetData] = useState([]);
+
+    const categoryMap = useMemo(
+        ()=> getCategoryMap(categoryData),
+        [categoryData]
+    );
 
     const categoryBudgetData = useMemo(()=>{
         const limitsMap = new Map(
@@ -48,18 +51,15 @@ export default function CategoryTab({expenseData, selectedTracker, selectedAccou
             ])
         );
     
-        return categoryData.map((category, index)=>{
-            const budgetLimit = limitsMap.get(index);
-            if(!budgetLimit){
-                return { hasBudget: false };
-            }
-    
+        return categoryData.map(category =>{
+            const budgetLimit = limitsMap.get(category.categoryIndex);
+            if(!budgetLimit) return { hasBudget: false };
+        
             const spentAmount = expenseData
-                .filter(expense => expense.categoryIndex === index)
+                .filter(expense => expense.categoryIndex === category.categoryIndex)
                 .reduce((sum, expense)=> sum + expense.amount, 0);
-    
+        
             const percentageUsed = Math.min((spentAmount / budgetLimit) * 100, 100);
-    
             return {
                 hasBudget: true,
                 budgetLimit,
@@ -73,6 +73,113 @@ export default function CategoryTab({expenseData, selectedTracker, selectedAccou
         return CATEGORY_ICONS[category.icon];
     }
 
+    const createNewCategory = async(e) =>{
+        if(categoryData.some(category => category.name.trim().toLowerCase() === newCategory.name.trim().toLowerCase())){
+            toast.error(TOASTS.EXPENSE_MANAGER.CATEGORY_ALREADY_EXISTS, {id: toastId});
+            return;
+        }
+        const toastId = validateAndStartLoading({
+            e,
+            setIsLoading,
+            loadingMessage: TOASTS.COMMON.LOADING
+        });
+        if(!toastId) return;
+        try{
+            const customCategories = categoryData.slice(SYSTEM_DATA.DEFAULT_EXPENSE_CATEGORIES.length);
+            const highestCategoryIndex = categoryData.at(-1)?.categoryIndex ?? SYSTEM_DATA.DEFAULT_EXPENSE_CATEGORIES.length - 1;
+            const updatedCategoryData = [
+                ...customCategories,
+                {
+                    name: newCategory.name.trim(),
+                    icon: newCategory.icon,
+                    categoryIndex: highestCategoryIndex + 1
+                }
+            ];
+            const {encryptedData: encryptedCategoryData, nonce} = await encryptData(JSON.stringify(updatedCategoryData), masterKey);
+            await apiRequest({
+                method: 'POST',
+                endpoint: '/api/em/categories',
+                data: { categoryData: encryptedCategoryData, nonce },
+                toastId,
+                setIsLoading,
+                onSuccess: () =>{
+                    setRefreshCategories(!refreshCategories);
+                    setNewCategory({
+                        name: '',
+                        icon: 'FaFolderOpen'
+                    });
+                    setShowCreateCategoryPopup(false);
+                },
+                onError: () =>{
+                    setShowCreateCategoryPopup(false);
+                }
+            });
+        }
+        catch(error){
+            console.log(error);
+            toast.error(TOASTS.COMMON.UNKNOWN_ERROR, {id: toastId});
+            setIsLoading(false);
+        }
+    }
+
+    const openBudgetPopup = () =>{
+        const limitsMap = new Map(
+            (selectedTracker?.limitsData || []).map(limit => [
+                limit.categoryIndex,
+                limit.limit
+            ])
+        );
+        setBudgetData(categoryData.map(category => ({
+                categoryIndex: category.categoryIndex,
+                limit: limitsMap.get(category.categoryIndex) || 0
+            }))
+        );
+        setShowSetBudgetPopup(true);
+    }
+
+    const updateTrackerBudget = async(e) =>{
+        const toastId = validateAndStartLoading({
+            e,
+            setIsLoading,
+            loadingMessage: TOASTS.COMMON.LOADING
+        });
+        if(!toastId) return;
+        try{
+            const updatedLimitsData = budgetData
+                .filter(item => Number(item.limit) > 0)
+                .map(item => ({
+                    categoryIndex: item.categoryIndex,
+                    limit: Number(item.limit)
+                }));
+    
+            const {encryptedData: limitsData, nonce: limitsDataNonce} = await encryptData(JSON.stringify(updatedLimitsData), masterKey);
+            await apiRequest({
+                method: 'POST',
+                endpoint: '/api/em/limits',
+                data: {
+                    accountIndex: selectedAccount.accountIndex,
+                    trackerIndex: selectedTracker.trackerIndex,
+                    limitsData,
+                    limitsDataNonce
+                },
+                toastId,
+                setIsLoading,
+                onSuccess: () =>{
+                    setRefreshTrackers(!refreshTrackers);
+                    setShowSetBudgetPopup(false);
+                },
+                onError: () =>{
+                    setShowSetBudgetPopup(false);
+                }
+            });
+        }
+        catch(error){
+            console.log(error);
+            toast.error(TOASTS.COMMON.UNKNOWN_ERROR, {id: toastId});
+            setIsLoading(false);
+        }
+    }
+
     return (
         <>
             <Grid templateColumns={{base: '1fr', md: '1fr 1fr'}} gap={theme.marginL} marginTop={theme.marginL} alignItems='center'>
@@ -81,26 +188,24 @@ export default function CategoryTab({expenseData, selectedTracker, selectedAccou
                 </div>
                 <div style={{ marginTop: '-10px'}}>
                     <ButtonGroup width='100%'>
-                        <ActionButton name={DISPLAY.BUTTONS.CREATE_CATEGORY} onClick={()=> {}} />
-                        <ActionButton name={DISPLAY.BUTTONS.SET_BUDGET} onClick={()=> { setShowSetBudgetPopup(true) }} actionType='primary' />
+                        <ActionButton name={DISPLAY.BUTTONS.CREATE_CATEGORY} onClick={()=> { setShowCreateCategoryPopup(true) }} />
+                        <ActionButton name={DISPLAY.BUTTONS.SET_BUDGET} onClick={openBudgetPopup} actionType='primary' />
                     </ButtonGroup>
                 </div>
             </Grid>
 
             <Grid templateColumns={{base: '1fr', md: '1fr 1fr'}} gap={theme.marginL} marginTop={theme.marginL}>
-                {categoryData.map((category, index) => {
+                {categoryData.map((category) => {
                     const Icon = getCategoryIcon(category);
                     return(
-                        <Flex backgroundColor={theme.cardBg} direction='column' padding={theme.paddingL} border={`1px solid ${theme.border}`} borderRadius={`calc(${theme.radius} * 2)`}>
-                            <Flex alignItems='center' height='40px'>
+                        <Flex key={category.categoryIndex} backgroundColor={theme.cardBg} direction='column' padding={theme.paddingL} border={`1px solid ${theme.border}`} borderRadius={`calc(${theme.radius} * 2)`}>
+                            <Flex alignItems='center'>
                                 <Icon color={theme.text} size='20px' style={{marginRight: theme.marginL, marginLeft: theme.marginS}}/>
                                 <Text color={theme.text} fontSize={theme.textSize}>{category.name}</Text>
-                                <Spacer/>
-                                {index >= SYSTEM_DATA.DEFAULT_EXPENSE_CATEGORIES.length && <CircleIconButton icon={<DeleteIcon />} onClick={()=> {}} tooltip={DISPLAY.TOOLTIPS.DELETE}/>}
                             </Flex>
                             <Flex direction='column' marginTop={theme.marginS}>
                                 {
-                                    categoryBudgetData[index]?.hasBudget ?
+                                    categoryBudgetData[category.categoryIndex]?.hasBudget ?
                                     <>
                                         <Flex justify='space-between' marginBottom={theme.marginS}>
                                             <Text color={theme.textSecondary} fontSize={theme.smallTextSize}>
@@ -108,17 +213,17 @@ export default function CategoryTab({expenseData, selectedTracker, selectedAccou
                                             </Text>
 
                                             <Text color={theme.textSecondary} fontSize={theme.smallTextSize}>
-                                                {country.currency.symbol} {categoryBudgetData[index].spentAmount} {" / "} {country.currency.symbol} {categoryBudgetData[index].budgetLimit}
+                                                {country.currency.symbol} {categoryBudgetData[category.categoryIndex].spentAmount} {" / "} {country.currency.symbol} {categoryBudgetData[category.categoryIndex].budgetLimit}
                                             </Text>
                                         </Flex>
 
                                         <div style={{ width:'100%', height:'8px', borderRadius:'999px', backgroundColor:theme.border, overflow:'hidden' }}>
-                                            <div style={{ width:`${categoryBudgetData[index].percentageUsed}%`, height:'100%', transition:'0.3s',
-                                                backgroundColor: categoryBudgetData[index].percentageUsed >= 100 ? theme.error : categoryBudgetData[index].percentageUsed >= 70 ? theme.warning : theme.primary,
+                                            <div style={{ width:`${categoryBudgetData[category.categoryIndex].percentageUsed}%`, height:'100%', transition:'0.3s',
+                                                backgroundColor: categoryBudgetData[category.categoryIndex].percentageUsed >= 100 ? theme.error : categoryBudgetData[category.categoryIndex].percentageUsed >= 70 ? theme.warning : theme.primary,
                                             }}/>
                                         </div>
                                     </> :
-                                    <Text color={theme.textSecondary} fontSize={theme.smallTextSize}>
+                                    <Text color={theme.textSecondary} fontSize={theme.smallTextSize} marginLeft={theme.marginS}>
                                         {DISPLAY.TEXT.NO_BUDGET_SET}
                                     </Text>
                                 }
@@ -126,17 +231,68 @@ export default function CategoryTab({expenseData, selectedTracker, selectedAccou
                         </Flex>
                     )}
                 )}
+                <div style={{height: '140px'}}></div>
             </Grid>
 
-            {/* Popup to Set Budget for the category */}
-            <Popup isOpen={showSetBudgetPopup} onClose={()=> setShowSetBudgetPopup(false)} title={DISPLAY.TEXT.SET_BUDGET} borderColor={theme.warning}>
+            {/* Popup for creating custom category */}
+            <Popup isOpen={showCreateCategoryPopup} onClose={()=> setShowCreateCategoryPopup(false)} title={DISPLAY.TEXT.CREATE_CATEGORY} borderColor={theme.success} bg={theme.bg}>
                 <form>
-
-                    <ActionButton name={DISPLAY.BUTTONS.SET_BUDGET} onClick={()=>{}} isLoading={isLoading} disabled={isLoading} actionType='primary' />
+                    <InputBox type='text' label={DISPLAY.LABELS.CATEGORY_NAME} value={newCategory.name} onChange={(e)=> setNewCategory({...newCategory, name: e.target.value})} maxLen={30} required />
+                    <Text color={theme.text} fontSize={theme.textSize} marginBottom={theme.marginL}>
+                        {DISPLAY.LABELS.SELECT_ICON}
+                    </Text>
+                    <Grid templateColumns='repeat(5, 1fr)' gap={theme.marginS} marginBottom={theme.spacing} height='280px' overflowY='scroll' style={{scrollbarWidth: "none"}}>
+                        {
+                            Object.entries(CATEGORY_ICONS).map(([iconName, Icon])=>(
+                                <Flex key={iconName} align='center' justify='center' cursor='pointer' height='52px' 
+                                    border={`1px solid ${newCategory.icon === iconName ? theme.primary : theme.border}`}
+                                    borderRadius={`calc(${theme.radius} * 2)`}
+                                    backgroundColor={newCategory.icon === iconName ? theme.hoverBg : theme.cardBg}
+                                    transition='0.2s'
+                                    _hover={{backgroundColor: theme.hoverBg}}
+                                    onClick={()=> setNewCategory({...newCategory, icon: iconName})}
+                                >
+                                    <Icon size={20} color={newCategory.icon === iconName ? theme.primary : theme.text}/>
+                                </Flex>
+                            ))
+                        }
+                    </Grid>
+                    <ActionButton name={DISPLAY.BUTTONS.CREATE_CATEGORY} onClick={createNewCategory} isLoading={isLoading} disabled={isLoading || newCategory.name.trim().length === 0} actionType='primary' customStyle={{marginBottom: theme.marginL}} />
                 </form>
             </Popup>
 
-            {/* Popup to delete custom category */}
+            {/* Popup to Set Budget for the category */}
+            <Popup isOpen={showSetBudgetPopup} onClose={()=> setShowSetBudgetPopup(false)} title={DISPLAY.TEXT.SET_BUDGET} borderColor={theme.success} bg={theme.bg}>
+                <form>
+                    <InputBox type='text' label={DISPLAY.LABELS.INCOME_SOURCE} value={selectedTracker?.name} readOnly={true} />
+                    <div style={{height: '300px', overflowY: 'scroll', scrollbarWidth: 'none'}}>
+                        {
+                            categoryData.map((category, index)=>{
+                                const Icon = CATEGORY_ICONS[category.icon];
+                                return(
+                                    <Grid key={category.categoryIndex} templateColumns='1fr 1fr' marginBottom='-10px' marginTop='-10px'>
+                                        <Flex align='center'>
+                                            <Icon color={theme.text} size='18px' style={{marginRight: theme.marginL}}/>
+                                            <Text color={theme.text}>
+                                                {category.name}
+                                            </Text>
+                                        </Flex>
+                                        <InputBox type='number' value={budgetData[index]?.limit || ''} 
+                                            onChange={(e)=>{
+                                                const updatedData = [...budgetData];
+                                                updatedData[index].limit = Number(e.target.value) || 0;
+                                                setBudgetData(updatedData);
+                                            }}
+                                            customStyle={{marginTop: '-10px', marginBottom: '-10px'}}
+                                        />
+                                    </Grid>
+                                );
+                            })
+                        }
+                    </div>
+                    <ActionButton name={DISPLAY.BUTTONS.SET_BUDGET} onClick={updateTrackerBudget} isLoading={isLoading} disabled={isLoading} actionType='primary' customStyle={{marginBottom: theme.marginL}} />
+                </form>
+            </Popup>
         </>
     );
 }

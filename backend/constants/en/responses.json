@@ -53,6 +53,8 @@
         "TRACKER_DELETED": "income and all its expenses deleted successfully",
         "EXPENSE_DELETED": "expense deleted successfully",
         "EXPENSES_TRANSFERRED": "all expenses transferred successfully",
-        "CANNOT_DELETE_TRACKER": "cannot remove this income"
+        "CANNOT_DELETE_TRACKER": "cannot remove this income",
+        "CATEGORIES_UPDATED": "category list updated successfully",
+        "LIMITS_UPDATED": "budget updated for these categories"
     }
 }

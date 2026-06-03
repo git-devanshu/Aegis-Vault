@@ -6,43 +6,56 @@
     "DEFAULT_EXPENSE_CATEGORIES": [
         {
             "name": "Education",
-            "icon": "FaGraduationCap"
+            "icon": "FaGraduationCap",
+            "categoryIndex": 0
         }, {
             "name": "Food",
-            "icon": "FaUtensils"
+            "icon": "FaUtensils",
+            "categoryIndex": 1
         }, {
             "name": "Transport",
-            "icon": "FaBus"
+            "icon": "FaBus",
+            "categoryIndex": 2
         }, {
             "name": "Bills",
-            "icon": "FaFileInvoiceDollar"
+            "icon": "FaFileInvoiceDollar",
+            "categoryIndex": 3
         }, {
             "name": "Groceries",
-            "icon": "FaBasketShopping"
+            "icon": "FaBasketShopping",
+            "categoryIndex": 4
         }, {
             "name": "Fuel",
-            "icon": "FaGasPump"
+            "icon": "FaGasPump",
+            "categoryIndex": 5
         }, {
             "name": "Health",
-            "icon": "FaHeartPulse"
+            "icon": "FaHeartPulse",
+            "categoryIndex": 6
         }, {
             "name": "Shopping",
-            "icon": "FaBagShopping"
+            "icon": "FaBagShopping",
+            "categoryIndex": 7
         }, {
             "name": "Investment",
-            "icon": "FaChartLine"
+            "icon": "FaChartLine",
+            "categoryIndex": 8
         }, {
             "name": "Entertainment",
-            "icon": "FaFilm"
+            "icon": "FaFilm",
+            "categoryIndex": 9
         }, {
             "name": "Gifts",
-            "icon": "FaGift"
+            "icon": "FaGift",
+            "categoryIndex": 10
         }, {
             "name": "Lifestyle",
-            "icon": "FaSpa"
+            "icon": "FaSpa",
+            "categoryIndex": 11
         }, {
             "name": "Other",
-            "icon": "FaFolderOpen"
+            "icon": "FaFolderOpen",
+            "categoryIndex": 12
         }
     ],
 

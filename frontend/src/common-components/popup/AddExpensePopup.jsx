@@ -157,9 +157,9 @@ export default function AddExpensePopup({isOpen, onClose, selectedAccount, selec
 
                 <Dropdown value={selectedCategoryIndex} onChange={(e)=> setSelectedCategoryIndex(Number(e.target.value))} 
                     options={categoryData.map(
-                        (category, index)=>({
+                        (category)=>({
                             label: category.name,
-                            value: index
+                            value: category.categoryIndex
                         })
                     )}
                 />

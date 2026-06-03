@@ -144,9 +144,9 @@ export default function AddMultipleExpensesModal({onBack, selectedAccount, selec
                                 <div style={{marginBottom: '-20px'}}>
                                     <Dropdown value={expense.categoryIndex} onChange={(e)=> handleCategoryChange(index, e.target.value)}
                                         options={
-                                            categoryData.map((category, categoryIndex)=>({
+                                            categoryData.map((category)=>({
                                                 label: category.name,
-                                                value: categoryIndex
+                                                value: category.categoryIndex
                                             }))
                                         }
                                     />

@@ -23,8 +23,66 @@ import {
     FaTrain,
     FaWallet,
     FaDumbbell,
-    FaMusic
+    FaMusic,
+    FaMotorcycle,
+    FaPlane,
+    FaHotel,
+    FaHouse,
+    FaHouseChimney,
+    FaHouseLaptop,
+    FaPaw,
+    FaBaby,
+    FaChild,
+    FaBook,
+    FaBookOpen,
+    FaCamera,
+    FaTv,
+    FaHeadphones,
+    FaMicrophone,
+    FaBicycle,
+    FaTaxi,
+    FaShip,
+    FaHospital,
+    FaBriefcase,
+    FaBuilding,
+    FaBuildingColumns,
+    FaBurger,
+    FaPizzaSlice,
+    FaIceCream,
+    FaWineGlass,
+    FaBeerMugEmpty,
+    FaCakeCandles,
+    FaKey,
+    FaLock,
+    FaBell,
+    FaGlobe,
+    FaEarthAsia,
+    FaPen,
+    FaPalette,
+    FaScissors,
+    FaHammer,
+    FaWrench,
+    FaToolbox,
+    FaSeedling,
+    FaTree,
+    FaLeaf,
+    FaCartShopping,
+    FaBasketball,
+    FaFutbol,
+    FaPersonRunning,
+    FaKitMedical,
+    FaNotesMedical,
+    FaPrescriptionBottleMedical,
+    FaSuitcase,
+    FaMapLocationDot,
+    FaPassport,
+    FaTicket,
+    FaTicketSimple,
+    FaBookBookmark,
+    FaUserGraduate,
+    FaChildren
 } from "react-icons/fa6";
+import {theme} from '../themes/theme';
 
 export const CATEGORY_ICONS = {
     FaGraduationCap,
@@ -51,5 +109,82 @@ export const CATEGORY_ICONS = {
     FaTrain,
     FaWallet,
     FaDumbbell,
-    FaMusic
+    FaMusic,
+    FaMotorcycle,
+    FaPlane,
+    FaHotel,
+    FaHouse,
+    FaHouseChimney,
+    FaHouseLaptop,
+    FaPaw,
+    FaBaby,
+    FaChild,
+    FaBook,
+    FaBookOpen,
+    FaCamera,
+    FaTv,
+    FaHeadphones,
+    FaMicrophone,
+    FaBicycle,
+    FaTaxi,
+    FaShip,
+    FaHospital,
+    FaBriefcase,
+    FaBuilding,
+    FaBuildingColumns,
+    FaBurger,
+    FaPizzaSlice,
+    FaIceCream,
+    FaWineGlass,
+    FaBeerMugEmpty,
+    FaCakeCandles,
+    FaKey,
+    FaLock,
+    FaBell,
+    FaGlobe,
+    FaEarthAsia,
+    FaPen,
+    FaPalette,
+    FaScissors,
+    FaHammer,
+    FaWrench,
+    FaToolbox,
+    FaSeedling,
+    FaTree,
+    FaLeaf,
+    FaCartShopping,
+    FaBasketball,
+    FaFutbol,
+    FaPersonRunning,
+    FaKitMedical,
+    FaNotesMedical,
+    FaPrescriptionBottleMedical,
+    FaSuitcase,
+    FaMapLocationDot,
+    FaPassport,
+    FaTicket,
+    FaTicketSimple,
+    FaBookBookmark,
+    FaUserGraduate,
+    FaChildren
 };
+
+export const CHART_COLORS = [
+    '#3B82F6', // blue
+    '#F59E0B', // orange
+    '#22C55E', // green
+    '#EF4444', // red
+    '#8B5CF6', // purple
+    '#60A5FA', // light blue
+    '#D1D5DB', // gray
+    '#14B8A6', // teal
+    '#EC4899', // pink
+    '#84CC16', // lime
+    '#F97316', // deep orange
+    '#6366F1', // indigo
+    '#06B6D4', // cyan
+    '#EAB308', // yellow
+    '#A855F7', // violet
+];
+
+export const getCategoryColor = categoryIndex => CHART_COLORS[categoryIndex % CHART_COLORS.length];

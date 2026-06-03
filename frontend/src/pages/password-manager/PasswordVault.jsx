@@ -87,7 +87,8 @@ export default function PasswordVault() {
                 },
                 onError: (err)=> {
                     setError(err);
-                }
+                },
+                defaultSuccessToast: false
             });
         }
         fetchLabels();
@@ -114,7 +115,8 @@ export default function PasswordVault() {
                 },
                 onError: (err)=> {
                     setError(err);
-                }
+                },
+                defaultSuccessToast: false
             });
         }
         fetchPasswords();

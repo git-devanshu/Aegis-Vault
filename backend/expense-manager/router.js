@@ -1,5 +1,5 @@
 const express = require('express');
-const { fetchAllAccountTrackers, fetchAllTrackerExpenses, fetchAllUserCategories, addIncomeTracker, deleteIncomeTracker, addExpense, deleteExpense, transferExpenses, addMultipleExpenses } = require('./controller');
+const { fetchAllAccountTrackers, fetchAllTrackerExpenses, fetchAllUserCategories, addIncomeTracker, deleteIncomeTracker, addExpense, deleteExpense, transferExpenses, addMultipleExpenses, updateExpenseCategories, updateExpenseLimits } = require('./controller');
 const { checkAuthorization } = require('../middlewares/checkAuthorization');
 
 // endpoint prefix : /api/em
@@ -17,5 +17,7 @@ emRouter.post('/expenses/multiple', checkAuthorization, addMultipleExpenses);
 emRouter.delete('/expenses/:expenseId', checkAuthorization, deleteExpense);
 emRouter.put('/expenses/transfer', checkAuthorization, transferExpenses);
 
+emRouter.post('/categories', checkAuthorization, updateExpenseCategories);
+emRouter.post('/limits', checkAuthorization, updateExpenseLimits);
 
 module.exports = {emRouter};

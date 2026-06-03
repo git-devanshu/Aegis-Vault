@@ -21,7 +21,8 @@
         "LABEL_ALREADY_EXISTS": "this label is already created"
     },
     "EXPENSE_MANAGER": {
-        "ADDING_ACCOUNT": "adding bank account, please wait..."
+        "ADDING_ACCOUNT": "adding bank account, please wait...",
+        "CATEGORY_ALREADY_EXISTS": "category with this name is already present"
     },
     "QUICK_SAVE": {
         "DATA_EXPORTED": "expenses exported successfully",

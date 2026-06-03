@@ -312,51 +312,70 @@ const transferExpenses = async(req, res) =>{
 
 
 /*
-* POST /api/em/
-* 
+* POST /api/em/categories
+* Create or update the expense categories array
 */
-// const updateExpenseCategories = async(req, res) =>{
-//     const {RESPONSES} = getLanguageConstants(req.lang);
-//     try{
+const updateExpenseCategories = async(req, res) =>{
+    const {RESPONSES} = getLanguageConstants(req.lang);
+    try{
+        const {categoryData, nonce} = req.body;
+        if(!categoryData?.length || !nonce?.length){
+            return res.status(400).json({message: RESPONSES.COMMON.UNEXPECTED_ERROR});
+        }
 
-//     }
-//     catch(error){
-//         console.log('Server error: ', error);
-//         res.status(500).json({ message : RESPONSES.COMMON.SERVER_ERROR });
-//     }
-// }
+        await ExpenseCategories.findOneAndUpdate({userId: req.id}, {
+                categoryData,
+                nonce
+            }, {
+                upsert: true,
+                new: true
+            }
+        );
+
+        res.status(200).json({ message: RESPONSES.EXPENSE_MANAGER.CATEGORIES_UPDATED });
+    }
+    catch(error){
+        console.log('Server error: ', error);
+        res.status(500).json({message: RESPONSES.COMMON.SERVER_ERROR});
+    }
+}
 
 
 /*
-* POST /api/em/
-* 
+* POST /api/em/limits
+* Update category budgets for a specific income tracker
 */
-// const  = async(req, res) =>{
-//     const {RESPONSES} = getLanguageConstants(req.lang);
-//     try{
+const updateExpenseLimits = async(req, res) =>{
+    const {RESPONSES} = getLanguageConstants(req.lang);
+    try{
+        const {accountIndex, trackerIndex, limitsData, limitsDataNonce} = req.body;
+        const accountIndexNumber = Number(accountIndex);
+        const trackerIndexNumber = Number(trackerIndex);
 
-//     }
-//     catch(error){
-//         console.log('Server error: ', error);
-//         res.status(500).json({ message : RESPONSES.COMMON.SERVER_ERROR });
-//     }
-// }
+        if(Number.isNaN(accountIndexNumber) || Number.isNaN(trackerIndexNumber) || !limitsData?.length || !limitsDataNonce?.length){
+            return res.status(400).json({ message: RESPONSES.COMMON.UNEXPECTED_ERROR });
+        }
 
+        const updatedTracker = await ExpenseTrackers.findOneAndUpdate({
+                userId: req.id,
+                accountIndex: accountIndexNumber,
+                trackerIndex: trackerIndexNumber
+            }, {
+                limitsData,
+                limitsDataNonce
+            }
+        );
+        if(!updatedTracker){
+            return res.status(404).json({ message: RESPONSES.EXPENSE_MANAGER.TRACKER_NOT_FOUND });
+        }
 
-/*
-* POST /api/em/
-* 
-*/
-// const  = async(req, res) =>{
-//     const {RESPONSES} = getLanguageConstants(req.lang);
-//     try{
-
-//     }
-//     catch(error){
-//         console.log('Server error: ', error);
-//         res.status(500).json({ message : RESPONSES.COMMON.SERVER_ERROR });
-//     }
-// }
+        res.status(200).json({ message: RESPONSES.EXPENSE_MANAGER.LIMITS_UPDATED });
+    }
+    catch(error){
+        console.log('Server error: ', error);
+        res.status(500).json({ message: RESPONSES.COMMON.SERVER_ERROR });
+    }
+}
 
 
 /*
@@ -417,5 +436,7 @@ module.exports = {
     addExpense,
     addMultipleExpenses,
     deleteExpense,
-    transferExpenses
+    transferExpenses,
+    updateExpenseCategories,
+    updateExpenseLimits
 };

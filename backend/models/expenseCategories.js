@@ -15,7 +15,8 @@ module.exports = {ExpenseCategories};
 categoryData [
     {
         name,
-        icon
+        icon,
+        categoryIndex
     }
 ]
 
