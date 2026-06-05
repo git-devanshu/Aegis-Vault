@@ -121,6 +121,12 @@ export const getCategoryMap = (categoryData) =>{
 }
 
 
+export const getCssVariable = variableName =>{
+    return getComputedStyle(document.documentElement)
+        .getPropertyValue(variableName)
+        .trim();
+};
+
 
 //function to get the current date in different formats
 /*

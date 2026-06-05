@@ -7,22 +7,8 @@ import ActionButton from "../form/ActionButton";
 import { ExternalLinkIcon } from "@chakra-ui/icons";
 
 
-export default function WidgetCTopExpenses({expenseData, selectedTracker, selectedAccount, onBack, setSelectedTab}) {
+export default function WidgetCTopExpenses({country, onBack, setSelectedTab, analytics}) {
     const {DISPLAY} = useLanguage();
-
-    const country = BANKS.country[selectedAccount.countryCode];
-
-    const analytics = useMemo(()=>{
-        const sortedExpenses = [...expenseData].sort((a, b)=> b.amount - a.amount);
-        const topExpenses = sortedExpenses.slice(0, 3);
-        const largestExpense = sortedExpenses[0];
-        const percentageConsumed = largestExpense ? (largestExpense.amount / selectedTracker.amount) * 100 : 0;
-        return {
-            largestExpense,
-            topExpenses,
-            percentageConsumed
-        };
-    }, [expenseData, selectedTracker]);
 
     const showAllExpenses = async() =>{
         onBack();

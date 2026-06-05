@@ -1,14 +1,13 @@
 import React, { useMemo } from "react";
-import { Flex, Text, Divider, Spacer, Grid, Progress, Image } from '@chakra-ui/react';
+import { Flex, Text, Divider, Spacer, Grid, Image, GridItem } from '@chakra-ui/react';
 import { theme } from '../../themes/theme';
 import BANKS from '../../assets/banks.json';
-import { CATEGORY_ICONS } from '../../assets/categoryIcons';
 import useLanguage from "../../hooks/useLanguage";
+import getExpenseAnalyticsMetrics, {downloadAnalyticsReport, downloadExpenseStatement} from "../../utility/expenseAnalyticsMetrics.js";
 
-import { ArrowBackIcon } from '@chakra-ui/icons';
-import { MdAnalytics, MdDownload, MdOutlineInsights } from "react-icons/md";
-import { FaChartPie, FaWallet, FaChartLine } from "react-icons/fa";
+import { ArrowBackIcon, DownloadIcon } from '@chakra-ui/icons';
 import { RiBubbleChartLine } from "react-icons/ri";
+import { BiSolidReport } from "react-icons/bi";
 
 import ActionButton from "../../common-components/form/ActionButton";
 import WidgetAAccountSnapshot from "../../common-components/widgets/WidgetAAccountSnapshot";
@@ -21,7 +20,6 @@ import WidgetGIncomeOverview from "../../common-components/widgets/WidgetGIncome
 import WidgetHTopSpendingDays from "../../common-components/widgets/WidgetHTopSpendingDays";
 import WidgetIWeekendVsWeekday from "../../common-components/widgets/WidgetIWeekendVsWeekday";
 import WidgetJInsights from "../../common-components/widgets/WidgetJInsights";
-import InputBox from "../../common-components/form/InputBox";
 import Dropdown from "../../common-components/form/Dropdown";
 
 
@@ -33,6 +31,16 @@ export default function ExpenseAnalyticsModal({onBack, selectedAccount, selected
     const {DISPLAY} = useLanguage();
     const country = BANKS.country[selectedAccount.countryCode];
     const bank = BANKS.banks[selectedAccount.bankId];
+
+    const analytics = useMemo(
+        ()=> getExpenseAnalyticsMetrics({
+            expenseData,
+            categoryData,
+            selectedTracker,
+            selectedAccount
+        }),
+        [expenseData, categoryData, selectedTracker, selectedAccount]
+    );
     
     return (
         <div className="fullscreen-overlay">
@@ -47,7 +55,7 @@ export default function ExpenseAnalyticsModal({onBack, selectedAccount, selected
             </Flex>
             <Divider borderColor={theme.border} borderWidth='1px' />
 
-            <Flex gap={theme.marginL} justifyContent='space-between' alignItems='center' marginTop={theme.marginL}>
+            <Flex gap={theme.paddingL} justifyContent='space-between' alignItems='center' marginTop={theme.marginL} marginBottom={theme.marginL}>
                 <Flex gap={theme.paddingL} align='center'>
                     <Image src={bank.logo} alt={bank.bankName} width='45px' height='45px' borderRadius='4px' />
                     <div>
@@ -64,101 +72,60 @@ export default function ExpenseAnalyticsModal({onBack, selectedAccount, selected
                 </div>
             </Flex>
 
-            <Grid templateColumns={{base:'1fr', lg:'1fr 1fr'}} gap={theme.marginL} marginTop={theme.marginL}>
+            <WidgetAAccountSnapshot selectedAccount={selectedAccount} analytics={analytics} />
+
+            <Grid templateColumns={{base:'1fr', lg:'1fr 1fr'}} templateRows={{base: 'auto', lg: '486px'}} gap={theme.paddingL} marginTop={theme.marginL}>
                 <Flex direction='column' gap={theme.paddingL}>
-                    <WidgetAAccountSnapshot selectedAccount={selectedAccount} trackerData={trackerData} onBack={onBack} setSelectedTab={setSelectedTab} />
-                    <WidgetGIncomeOverview selectedAccount={selectedAccount} selectedTracker={selectedTracker} expenseData={expenseData} country={country} setSelectedTab={setSelectedTab} onBack={onBack} />
-                </Flex>
-                <Flex direction='column' gap={theme.paddingL}>
-                    <WidgetBCategoryDistribution categoryData={categoryData} expenseData={expenseData} selectedAccount={selectedAccount}/>
-                    <Grid templateColumns={{base:'1fr', md:'1fr 1fr'}} gap={theme.marginL}>
-                        
-                        <WidgetJInsights expenseData={expenseData} categoryData={categoryData} selectedTracker={selectedTracker} selectedAccount={selectedAccount}/>
+                    <WidgetGIncomeOverview analytics={analytics} country={country} />
+                    <Grid templateColumns={{base:'1fr', md:'1fr 1fr'}} gap={theme.paddingL} height='100%'>
+                        <WidgetDBudgetVsActual analytics={analytics} categoryData={categoryData} />
+                        <WidgetEBudgetHealth analytics={analytics} />
                     </Grid>
                 </Flex>
-
-                <Grid templateColumns={{base:'1fr', md:'1fr 1fr'}} gap={theme.marginL}>
-                    <WidgetDBudgetVsActual categoryData={categoryData} expenseData={expenseData} selectedTracker={selectedTracker} country={country}/>
+                <Grid templateColumns={{base: '1fr', md: '1fr 1fr'}} gap={theme.paddingL}>
+                    <WidgetBCategoryDistribution analytics={analytics} categoryData={categoryData} country={country}/>
+                    <WidgetJInsights expenseData={expenseData} categoryData={categoryData} selectedTracker={selectedTracker} country={country}/>
                 </Grid>
-                <Grid templateColumns={{base:'1fr', md:'1fr 1fr'}} gap={theme.marginL}></Grid>
-
-                <Grid templateColumns={{base:'1fr', md:'1fr 1fr'}} gap={theme.marginL}></Grid>
-                <Grid templateColumns={{base:'1fr', md:'1fr 1fr'}} gap={theme.marginL}></Grid>
             </Grid>
-            
-            
-            {/* <div style={{paddingTop: theme.marginL}}>
-                <WidgetAAccountSnapshot
-                    selectedAccount={selectedAccount}
-                    country={country}
-                />
 
-                <Grid templateColumns={{base:'1fr', xl:'1fr 1fr'}} gap={theme.marginL} marginTop={theme.marginL}>
-                    <WidgetGIncomeOverview
-                        selectedTracker={selectedTracker}
-                        expenseData={expenseData}
-                        country={country}
-                    />
-
-                    <WidgetCTopExpenses
-                        selectedTracker={selectedTracker}
-                        expenseData={expenseData}
-                        country={country}
-                    />
+            <Grid templateColumns={{base:'1fr', lg:'1fr 1fr'}} gap={theme.paddingL} marginTop={theme.marginL}>    
+                <Grid templateColumns={{base: '1fr', md: '1fr 1fr'}} gap={theme.paddingL}>
+                    <WidgetCTopExpenses analytics={analytics} country={country} onBack={onBack} setSelectedTab={setSelectedTab}/>
+                    <WidgetFSpendingTimeline analytics={analytics} />
                 </Grid>
-
-                <Grid templateColumns={{base:'1fr', xl:'1fr 1fr'}} gap={theme.marginL} marginTop={theme.marginL}>
-                    <WidgetBCategoryDistribution
-                        categoryData={categoryData}
-                        expenseData={expenseData}
-                        country={country}
-                    />
-
-                    <WidgetEBudgetHealth
-                        expenseData={expenseData}
-                        selectedTracker={selectedTracker}
-                    />
+                <Grid templateColumns={{base: '1fr', md: '1fr 1fr'}} gap={theme.paddingL}>
+                    <WidgetHTopSpendingDays analytics={analytics} country={country} />
+                    <WidgetIWeekendVsWeekday analytics={analytics} country={country} />
                 </Grid>
+            </Grid>
 
-                <div style={{marginTop: theme.marginL}}>
-                    <WidgetDBudgetVsActual
-                        categoryData={categoryData}
-                        expenseData={expenseData}
-                        selectedTracker={selectedTracker}
-                        country={country}
+            <Grid templateColumns={{base:'1fr', md:'1fr 1fr', lg:'1fr 1fr 1fr 1fr'}} gap={theme.marginL} marginTop={theme.marginL}>
+                <GridItem colStart={{lg:3}}>
+                    <ActionButton name={DISPLAY.BUTTONS.DOWNLOAD_STATEMENT} icon={<DownloadIcon/>}
+                        onClick={()=> downloadExpenseStatement({
+                            expenseData,
+                            categoryData,
+                            selectedTracker,
+                            bank,
+                            country,
+                            DISPLAY
+                        })}
                     />
-                </div>
+                </GridItem>
 
-                <div style={{marginTop: theme.marginL}}>
-                    <WidgetFSpendingTimeline
-                        expenseData={expenseData}
-                        country={country}
+                <GridItem>
+                    <ActionButton name={DISPLAY.BUTTONS.DOWNLOAD_REPORT} actionType='primary' icon={<BiSolidReport/>}
+                        onClick={()=> downloadAnalyticsReport({
+                            analytics,
+                            selectedAccount,
+                            selectedTracker,
+                            country,
+                            DISPLAY,
+                            bank
+                        })}
                     />
-                </div>
-
-                <Grid templateColumns={{base:'1fr', xl:'1fr 1fr'}} gap={theme.marginL} marginTop={theme.marginL}>
-                    <WidgetHTopSpendingDays
-                        expenseData={expenseData}
-                        country={country}
-                    />
-                    <WidgetIWeekendVsWeekday
-                        expenseData={expenseData}
-                        country={country}
-                    />
-                </Grid>
-
-                <div style={{marginTop: theme.marginL}}>
-                    <WidgetJInsights
-                        expenseData={expenseData}
-                        selectedTracker={selectedTracker}
-                        categoryData={categoryData}
-                        country={country}
-                    />
-                </div>
-
-                <div style={{height:'120px'}}></div>
-
-            </div> */}
+                </GridItem>
+            </Grid>
         </div>
         </div>
     );

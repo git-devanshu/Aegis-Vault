@@ -3,15 +3,12 @@ import { Flex, Text, Box, Grid, Spacer } from '@chakra-ui/react';
 import { Chart } from 'primereact/chart';
 import { theme } from '../../themes/theme';
 import useLanguage from "../../hooks/useLanguage";
-import BANKS from '../../assets/banks.json';
 import {getCategoryColor} from '../../assets/categoryIcons';
 import { CATEGORY_ICONS } from '../../assets/categoryIcons';
 
 
-export default function WidgetBCategoryDistribution({categoryData, expenseData, selectedAccount}) {
+export default function WidgetBCategoryDistribution({categoryData, country, analytics}) {
     const {DISPLAY} = useLanguage();
-
-    const country = BANKS.country[selectedAccount.countryCode];
 
     const categoryMap = useMemo(
         ()=> new Map(
@@ -23,35 +20,6 @@ export default function WidgetBCategoryDistribution({categoryData, expenseData, 
         [categoryData]
     );
 
-    const analytics = useMemo(()=>{
-        const categorySpendMap = new Map();
-        expenseData.forEach(expense =>{
-            categorySpendMap.set(
-                expense.categoryIndex, 
-                (categorySpendMap.get(expense.categoryIndex) || 0) + expense.amount
-            );
-        });
-
-        const totalExpense = expenseData.reduce((sum, expense)=> sum + expense.amount, 0);
-
-        const categoryDistribution = categoryData
-            .map(category =>({
-                categoryName: category.name,
-                amount: categorySpendMap.get(category.categoryIndex) || 0,
-                categoryIndex: category.categoryIndex
-            }))
-            .filter(category => category.amount > 0)
-            .sort((a, b)=> b.amount - a.amount)
-            .map(category =>({
-                ...category,
-                percentage: totalExpense ? (category.amount / totalExpense) * 100 : 0
-            }));
-
-        return {
-            totalExpense,
-            categoryDistribution
-        };
-    }, [expenseData, categoryData]);
 
     const chartData = {
         labels: analytics.categoryDistribution.map(item => item.categoryName),
@@ -83,14 +51,14 @@ export default function WidgetBCategoryDistribution({categoryData, expenseData, 
     }
 
     return (
-        <Flex direction='column' padding={theme.paddingL} border={`1px solid ${theme.border}`} borderRadius={`calc(${theme.radius} * 2)`}>
+        <Flex direction='column' padding={theme.paddingL} border={`1px solid ${theme.border}`} borderRadius={`calc(${theme.radius} * 2)`} height='486px'>
             <Text color={theme.text} fontSize={theme.textSize} fontWeight={600} marginBottom={theme.marginL}>
                 {DISPLAY.TEXT.CATEGORYWISE_DISTRIBUTION}
             </Text>
 
-            <Grid templateColumns={{base: '1fr', md: '1fr 1fr'}} gap={theme.paddingL}>
+            <Flex direction='column' gap={theme.paddingL} height='90%'>
                 <Flex justify='center' padding={theme.paddingL} style={{position:'relative'}}>
-                    <Chart type='doughnut' data={chartData} options={chartOptions} style={{width:'60%', maxWidth: '190px'}} />
+                    <Chart type='doughnut' data={chartData} options={chartOptions} style={{maxHeight:'190px'}} />
                     <div style={{position:'absolute', top:'50%', left:'50%', transform:'translate(-50%, -50%)', textAlign:'center', pointerEvents:'none'}}>
                         <Text color={theme.text} fontSize={theme.headingSize} fontWeight={600}>
                             {analytics.categoryDistribution.length}
@@ -101,7 +69,7 @@ export default function WidgetBCategoryDistribution({categoryData, expenseData, 
                     </div>
                 </Flex>
 
-                <Box paddingTop={theme.paddingL} overflowY='auto' maxHeight='190px'>
+                <Box paddingTop={theme.paddingL} overflowY='scroll'>
                     <Flex wrap='wrap' gap={theme.marginL} padding={theme.paddingS} justifyContent='center' alignContent='flex-start'>
                         {
                             analytics.categoryDistribution.map(category =>{
@@ -123,7 +91,7 @@ export default function WidgetBCategoryDistribution({categoryData, expenseData, 
                         }
                     </Flex>
                 </Box>
-            </Grid>
+            </Flex>
         </Flex>
     );
 }

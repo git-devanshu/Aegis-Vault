@@ -1,39 +1,28 @@
 import React, { useMemo } from "react";
-import { Flex, Text } from '@chakra-ui/react';
+import { Box, Flex, Text } from '@chakra-ui/react';
 import { Chart } from 'primereact/chart';
 import { theme } from '../../themes/theme';
+import { getCssVariable } from "../../utility/helpers";
+import useLanguage from "../../hooks/useLanguage";
 
-export default function WidgetIWeekendVsWeekday({expenseData, country}) {
 
-    const analytics = useMemo(()=>{
-        let weekdaySpend = 0;
-        let weekendSpend = 0;
+export default function WidgetIWeekendVsWeekday({country, analytics}) {
+    const {DISPLAY} = useLanguage();
 
-        expenseData.forEach(expense =>{
-            const day = new Date(expense.spentDate).getDay();
-
-            if(day === 0 || day === 6){
-                weekendSpend += expense.amount;
-            }
-            else{
-                weekdaySpend += expense.amount;
-            }
-        });
-
-        return {
-            weekdaySpend,
-            weekendSpend
-        };
-    }, [expenseData]);
 
     const chartData = {
-        labels: ['Weekday', 'Weekend'],
+        labels: [DISPLAY.TEXT.WEEKDAY, DISPLAY.TEXT.WEEKEND],
         datasets: [
             {
                 data: [
                     analytics.weekdaySpend,
                     analytics.weekendSpend
-                ]
+                ],
+                backgroundColor: [
+                    getCssVariable('--primary'),
+                    getCssVariable('--accent')
+                ],
+                borderWidth: 0
             }
         ]
     };
@@ -41,31 +30,36 @@ export default function WidgetIWeekendVsWeekday({expenseData, country}) {
     const chartOptions = {
         plugins: {
             legend: {
-                position: 'bottom',
-                labels: {
-                    color: theme.text
-                }
+                display: false
             }
         }
     };
 
     return (
-        <div>
-            <Text color={theme.text} fontSize={theme.headingSize} fontWeight={600} marginBottom={theme.marginL}>
-                Weekend vs Weekday
+        <Box padding={theme.paddingL} border={`1px solid ${theme.border}`} borderRadius={`calc(${theme.radius} * 2)`} height='100%'>
+            <Text color={theme.text} fontSize={theme.textSize} fontWeight={600} marginBottom={theme.marginL}>
+                {DISPLAY.TEXT.WEEKDAY_VS_WEEKEND}
             </Text>
 
-            <Flex direction='column' backgroundColor={theme.cardBg} border={`1px solid ${theme.border}`} borderRadius={`calc(${theme.radius} * 2)`} padding={theme.paddingL}>
-                <Chart type='doughnut' data={chartData} options={chartOptions} />
+            <Flex padding={theme.paddingL} gap={theme.paddingL} alignItems='center' justifyContent='center'>
+                <Chart type='pie' data={chartData} options={chartOptions} style={{maxHeight: '140px', maxWidth: '140px'}} />
 
-                <Text color={theme.textSecondary} textAlign='center' marginTop={theme.marginL}>
-                    Weekend: {country.currency.symbol}{analytics.weekendSpend.toLocaleString()}
-                </Text>
+                <Flex direction='column' gap={theme.paddingL} alignItems='center' justifyContent='center'>
+                    <Box padding={`${theme.paddingS} ${theme.paddingL}`} bgColor={theme.cardBg} borderRadius={theme.radius} border={`2px solid ${theme.primary}`}>
+                        <Text color={theme.textSecondary} fontSize={theme.smallTextSize} textAlign='center'>{DISPLAY.TEXT.WEEKDAY}</Text>
+                        <Text color={theme.text} fontSize={theme.smallTextSize} textAlign='center'>
+                            {country.currency.symbol} {analytics.weekdaySpend.toLocaleString(country.locale)}
+                        </Text>
+                    </Box>
 
-                <Text color={theme.textSecondary} textAlign='center'>
-                    Weekday: {country.currency.symbol}{analytics.weekdaySpend.toLocaleString()}
-                </Text>
+                    <Box padding={`${theme.paddingS} ${theme.paddingL}`} bgColor={theme.cardBg} borderRadius={theme.radius} border={`2px solid ${theme.accent}`}>
+                        <Text color={theme.textSecondary} fontSize={theme.smallTextSize} textAlign='center'>{DISPLAY.TEXT.WEEKEND}</Text>
+                        <Text color={theme.text} fontSize={theme.smallTextSize} textAlign='center'>
+                            {country.currency.symbol} {analytics.weekendSpend.toLocaleString(country.locale)}
+                        </Text>
+                    </Box>
+                </Flex>
             </Flex>
-        </div>
+        </Box>
     );
 }

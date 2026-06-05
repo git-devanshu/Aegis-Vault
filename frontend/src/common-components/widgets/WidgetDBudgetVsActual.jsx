@@ -1,85 +1,95 @@
 import React, { useMemo } from "react";
-import { Flex, Text } from '@chakra-ui/react';
+import { Box, Flex, Text } from '@chakra-ui/react';
 import { Chart } from 'primereact/chart';
 import { theme } from '../../themes/theme';
+import BANKS from '../../assets/banks.json';
+import { CATEGORY_ICONS } from '../../assets/categoryIcons';
+import useLanguage from "../../hooks/useLanguage";
+import { getCssVariable } from "../../utility/helpers";
 
-export default function WidgetDBudgetVsActual({categoryData, expenseData, selectedTracker, country}) {
 
-    const budgetAnalytics = useMemo(()=>{
-        const spendMap = new Map();
+export default function WidgetDBudgetVsActual({categoryData, analytics}) {
+    const {DISPLAY} = useLanguage();
 
-        expenseData.forEach(expense =>{
-            spendMap.set(
-                expense.categoryIndex,
-                (spendMap.get(expense.categoryIndex) || 0) + expense.amount
-            );
-        });
+    const categoryMap = useMemo(
+        ()=> new Map(
+            categoryData.map(category => [
+                category.categoryIndex,
+                category
+            ])
+        ),
+        [categoryData]
+    );
 
-        return (selectedTracker?.limitsData || [])
-            .map(limit =>{
-                const category = categoryData.find(
-                    c => c.categoryIndex === limit.categoryIndex
-                );
+    const getCategoryIcon = (category) =>{
+        return CATEGORY_ICONS[category.icon];
+    }
 
-                return {
-                    categoryName: category?.name || 'Unknown',
-                    budget: limit.limit,
-                    actual: spendMap.get(limit.categoryIndex) || 0
-                };
-            })
-            .sort((a, b)=> b.actual - a.actual);
+    const budgetAnalytics = analytics.budgetAnalytics;
 
-    }, [expenseData, categoryData, selectedTracker]);
 
     const chartData = {
         labels: budgetAnalytics.map(item => item.categoryName),
         datasets: [
             {
-                label: 'Budget',
-                data: budgetAnalytics.map(item => item.budget)
+                data: budgetAnalytics.map(item => item.budget),
+                backgroundColor: getCssVariable('--primary'),
+                borderRadius: 4
             },
             {
-                label: 'Actual',
-                data: budgetAnalytics.map(item => item.actual)
+                data: budgetAnalytics.map(item => item.actual),
+                backgroundColor: getCssVariable('--accent'),
+                borderRadius: 4
             }
         ]
     };
 
     const chartOptions = {
-        indexAxis: 'y',
+        indexAxis: 'x',
         maintainAspectRatio: false,
         plugins: {
             legend: {
-                labels: {
-                    color: theme.text
-                }
+                display: false
             }
         },
         scales: {
             x: {
-                ticks: {
-                    color: theme.text
-                }
+                display: false,
+                grid: { display: false, drawBorder: false }
             },
             y: {
-                ticks: {
-                    color: theme.text
-                }
+                display: false,
+                grid: { display: false, drawBorder: false }
             }
         }
     };
 
+    const chartWidth = Math.max(budgetAnalytics.length * 35, 200);
+
     return (
-        <div>
-            <Text color={theme.text} fontSize={theme.headingSize} fontWeight={600} marginBottom={theme.marginL}>
-                Budget vs Actual
+        <Box padding={theme.paddingL} border={`1px solid ${theme.border}`} borderRadius={`calc(${theme.radius} * 2)`} height='100%'>
+            <Text color={theme.text} fontSize={theme.textSize} fontWeight={600} marginBottom={theme.marginL}>
+                {DISPLAY.TEXT.BUDGET_VS_ACTUAL}
             </Text>
 
-            <Flex backgroundColor={theme.cardBg} border={`1px solid ${theme.border}`} borderRadius={`calc(${theme.radius} * 2)`} padding={theme.paddingL}>
-                <div style={{width:'100%', height:'350px'}}>
-                    <Chart type='bar' data={chartData} options={chartOptions} />
+            <Flex marginTop={theme.marginL}>
+                <div style={{overflowX: 'auto', width: '100%', display: 'flex', alignItems: 'center', flexDirection: 'column'}}>
+                    <div style={{width: `${chartWidth}px`}}>
+                        <Chart type='bar' data={chartData} options={chartOptions} />
+                    </div>
+                    <Flex width={`${chartWidth}px`} justifyContent='space-around' marginTop={theme.marginL}>
+                        {
+                            budgetAnalytics.map(item =>{
+                                const categoryObj = categoryMap.get(item.categoryIndex);
+                                const Icon = getCategoryIcon(categoryObj);
+                                return (
+                                    <Icon key={item.categoryIndex} color={theme.textSecondary} size='16px'/>
+                                );
+                            })
+                        }
+                    </Flex>
                 </div>
             </Flex>
-        </div>
+        </Box>
     );
 }

@@ -3,7 +3,7 @@ import { createContext, useEffect, useState } from 'react';
 export const ThemeContext = createContext();
 
 export const ThemeProvider = ({ children }) => {
-    const [aegisTheme, setAegisTheme] = useState(localStorage.getItem('aegis-theme') || 'dark');
+    const [aegisTheme, setAegisTheme] = useState(localStorage.getItem('aegis-theme') || 'light');
 
     useEffect(() => {
         document.documentElement.setAttribute('data-aegis-theme', aegisTheme);

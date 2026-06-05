@@ -47,7 +47,11 @@
         "SEARCH_EXPENSE": "Search Expense",
         "CATEGORY_NAME": "Category Name",
         "SELECT_ICON": "Select Icon",
-        "EXPENSE_ANALYTICS": "Expense Analytics"
+        "EXPENSE_ANALYTICS": "Expense Analytics",
+        "GENERATED_ON": "Generated On",
+        "UNKNOWN": "Unknown",
+        "TRANSFER_FROM": "Transfer From",
+        "EXPENSES_SELECTED": "Expenses Selected"
     },
 
     "TEXT": {
@@ -149,8 +153,6 @@
         "ACCOUNT_SNAPSHOT": "Account Snapshot",
         "TOP_INCOME": "Highest Income",
         "SELECTED_INCOME_OVERVIEW": "Selected Income Overview",
-        "PART_OF_TOTAL_INCOME": "part of total income",
-        "PART_OF_INCOME_AMOUNT": "part of income amount",
         "INCOME_REMAINING": "Income Remaining",
         "SAVINGS_RATE": "Savings Rate",
         "TRANSACTIONS": "Transactions",
@@ -159,7 +161,23 @@
         "TOTAL_SPENT": "Total Spent",
         "CATEGORYWISE_DISTRIBUTION": "Categorywise Distribution",
         "TOP_EXPENSES": "Top Expenses",
-        "LARGEST_EXPENSE": "Largest Expense"
+        "LARGEST_EXPENSE": "Largest Expense",
+        "BUDGET_VS_ACTUAL": "Budget vs Actual",
+        "BUDGET_HEALTH": "Budget Health",
+        "NEAR_LIMIT": "Near Limit",
+        "OVER_BUDGET": "Over Budget",
+        "ON_TRACK": "On Track",
+        "SPENDING_TIMELINE": "Spending Timeline",
+        "TOP_SPENDING_DAYS": "Top Spending Days",
+        "WEEKDAY_VS_WEEKEND": "Weekend vs Weekday",
+        "WEEKDAY": "Weekday",
+        "WEEKEND": "Weekend",
+        "EXPENSE_ANALYTICS_REPORT": "Expense Analytics Report",
+        "EXPENSE_STATEMENT": "Expense Statement",
+        "STATEMENT_SUMMARY": "Statement Summary",
+        "EXPENSE_TRANSACTIONS": "Expense Transactions",
+        "TRANSFER_EXPENSES": "Transfer Expenses",
+        "SELECTED_EXPENSES": "Selected Expenses"
     },
 
     "BUTTONS": {
@@ -197,7 +215,11 @@
         "CREATE_CATEGORY": "Create Category",
         "SET_BUDGET": "Set Budget",
         "SHOW_ALL_EXPENSES": "Show All Expenses",
-        "SHOW_ALL_INCOMES": "Show All Incomes"
+        "SHOW_ALL_INCOMES": "Show All Incomes",
+        "DOWNLOAD_STATEMENT": "Download Statement",
+        "DOWNLOAD_REPORT": "Download Report",
+        "TRANSFER_EXPENSES":"Transfer Expenses",
+        "DOWNLOAD_SELECTED": "Download Selected"
     },
 
     "PASSWORD_LABELS": {
@@ -239,7 +261,8 @@
         "ANALYTICS": "Show Analytics",
         "QUICK_SAVE": "Quick Save Expenses",
         "GROUP_BY_CATEGORY": "Group By Category",
-        "SORT_BY_DATE": "Sort by Date Descending"
+        "SORT_BY_DATE": "Sort by Date Descending",
+        "TRANSFER_EXPENSES": "Transfer Expenses"
     },
 
     "ALERTS": {
@@ -251,5 +274,33 @@
         "TOP_SPENDING_DAY": "{date} accounted for {percentage}% of all spending",
         "TOP_CATEGORY_NO_BUDGET": "{category} is your highest spending category but has no budget",
         "SAVINGS_RATE": "You retained {percentage}% of this income"
+    },
+
+    "REPORT": {
+        "METRIC": "Metric",
+        "VALUE": "Value",
+        "CURRENT_BALANCE": "Current Balance",
+        "TOTAL_INCOME": "Total Income",
+        "TOTAL_EXPENSE": "Total Expense",
+        "CONSUMED": "Consumed",
+        "INCOME_AMOUNT": "Income Amount",
+        "EXPENSE_AMOUNT": "Expense Amount",
+        "REMAINING_AMOUNT": "Remaining Amount",
+        "TRANSACTIONS": "Transactions",
+        "AVERAGE_TRANSACTION": "Average Transaction",
+        "SAVINGS_RATE": "Savings Rate",
+        "CATEGORY": "Category",
+        "AMOUNT": "Amount",
+        "PERCENTAGE": "Percentage",
+        "BUDGET": "Budget",
+        "ACTUAL": "Actual",
+        "HEALTHY": "Healthy",
+        "WARNING": "Warning",
+        "EXCEEDED": "Exceeded",
+        "EXPENSE": "Expense",
+        "DATE": "Date",
+        "TYPE": "Type",
+        "WEEKDAY": "Weekday",
+        "WEEKEND": "Weekend"
     }
 }

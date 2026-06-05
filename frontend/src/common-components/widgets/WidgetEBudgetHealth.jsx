@@ -1,91 +1,74 @@
 import React, { useMemo } from "react";
-import { Flex, Text } from '@chakra-ui/react';
+import { Flex, Text, Box } from '@chakra-ui/react';
 import { Chart } from 'primereact/chart';
 import { theme } from '../../themes/theme';
+import { getCssVariable } from '../../utility/helpers';
+import useLanguage from "../../hooks/useLanguage";
 
-export default function WidgetEBudgetHealth({expenseData, selectedTracker}) {
-
-    const analytics = useMemo(()=>{
-        let healthy = 0;
-        let warning = 0;
-        let exceeded = 0;
-
-        const spendMap = new Map();
-
-        expenseData.forEach(expense =>{
-            spendMap.set(
-                expense.categoryIndex,
-                (spendMap.get(expense.categoryIndex) || 0) + expense.amount
-            );
-        });
-
-        (selectedTracker?.limitsData || []).forEach(limit =>{
-            const spent = spendMap.get(limit.categoryIndex) || 0;
-
-            const usage = limit.limit
-                ? (spent / limit.limit) * 100
-                : 0;
-
-            if(usage < 70){
-                healthy++;
-            }
-            else if(usage <= 100){
-                warning++;
-            }
-            else{
-                exceeded++;
-            }
-        });
-
-        return {
-            healthy,
-            warning,
-            exceeded
-        };
-    }, [expenseData, selectedTracker]);
+export default function WidgetEBudgetHealth({analytics}) {
+    const {DISPLAY} = useLanguage();
+    
 
     const chartData = {
-        labels: ['Healthy', 'Warning', 'Exceeded'],
         datasets: [
             {
                 data: [
-                    analytics.healthy,
+                    analytics.exceeded,
                     analytics.warning,
-                    analytics.exceeded
-                ]
+                    analytics.healthy
+                ],
+                backgroundColor: [
+                    getCssVariable('--error'),
+                    getCssVariable('--warning'),
+                    getCssVariable('--primary')
+                ],
+                borderWidth: 0,
+                cutout: '72%'
             }
         ]
     };
 
     const chartOptions = {
+        maintainAspectRatio: false,
         plugins: {
             legend: {
-                position: 'bottom',
-                labels: {
-                    color: theme.text
-                }
+                display: false
             }
         }
     };
 
-    const totalBudgetCategories =
-        analytics.healthy +
-        analytics.warning +
-        analytics.exceeded;
-
     return (
-        <div>
-            <Text color={theme.text} fontSize={theme.headingSize} fontWeight={600} marginBottom={theme.marginL}>
-                Budget Health
+        <Box padding={theme.paddingL} border={`1px solid ${theme.border}`} borderRadius={`calc(${theme.radius} * 2)`} height='100%'>
+            <Text color={theme.text} fontSize={theme.textSize} fontWeight={600} marginBottom={theme.marginL}>
+                {DISPLAY.TEXT.BUDGET_HEALTH}
             </Text>
 
-            <Flex direction='column' backgroundColor={theme.cardBg} border={`1px solid ${theme.border}`} borderRadius={`calc(${theme.radius} * 2)`} padding={theme.paddingL}>
-                <Chart type='doughnut' data={chartData} options={chartOptions} />
+            <Flex align='center' justify='center' gap={theme.paddingL} marginTop={theme.spacing}>
+                <Chart type='doughnut' data={chartData} options={chartOptions} style={{maxHeight: '120px', maxWidth: '120px'}}/>
 
-                <Text color={theme.textSecondary} textAlign='center' marginTop={theme.marginL}>
-                    {totalBudgetCategories} Budget Categories Tracked
-                </Text>
+                <Flex direction='column' gap={theme.paddingL}>
+                    <Flex align='center' gap={theme.marginL}>
+                        <Box width='12px' height='12px' borderRadius='50%' bgColor={theme.error}/>
+                        <Text color={theme.text} fontSize={theme.smallTextSize}>
+                            {analytics.exceeded} {DISPLAY.TEXT.OVER_BUDGET}
+                        </Text>
+                    </Flex>
+
+                    <Flex align='center' gap={theme.marginL}>
+                        <Box width='12px' height='12px' borderRadius='50%' bgColor={theme.warning}/>
+                        <Text color={theme.text} fontSize={theme.smallTextSize}>
+                            {analytics.warning} {DISPLAY.TEXT.OVER_BUDGET}
+                        </Text>
+                    </Flex>
+
+                    <Flex align='center' gap={theme.marginL}>
+                        <Box width='12px' height='12px' borderRadius='50%' bgColor={theme.primary}/>
+                        <Text color={theme.text} fontSize={theme.smallTextSize}>
+                            {analytics.healthy} {DISPLAY.TEXT.ON_TRACK}
+                        </Text>
+                    </Flex>
+                </Flex>
             </Flex>
-        </div>
+        </Box>
     );
 }

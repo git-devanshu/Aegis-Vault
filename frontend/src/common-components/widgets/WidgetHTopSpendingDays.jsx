@@ -1,65 +1,40 @@
 import React, { useMemo } from "react";
-import { Flex, Text, Stack } from '@chakra-ui/react';
+import { Flex, Text, Box, Divider } from '@chakra-ui/react';
 import { theme } from '../../themes/theme';
+import useLanguage from "../../hooks/useLanguage";
 
-export default function WidgetHTopSpendingDays({expenseData, country}) {
 
-    const analytics = useMemo(()=>{
-        const dailySpendMap = new Map();
-
-        expenseData.forEach(expense =>{
-            dailySpendMap.set(
-                expense.spentDate,
-                (dailySpendMap.get(expense.spentDate) || 0) + expense.amount
-            );
-        });
-
-        const totalExpense = expenseData.reduce(
-            (sum, expense)=> sum + expense.amount,
-            0
-        );
-
-        const topDays = [...dailySpendMap.entries()]
-            .map(([date, amount])=>({
-                date,
-                amount,
-                percentage: totalExpense
-                    ? (amount / totalExpense) * 100
-                    : 0
-            }))
-            .sort((a, b)=> b.amount - a.amount)
-            .slice(0, 3);
-
-        return topDays;
-    }, [expenseData]);
+export default function WidgetHTopSpendingDays({country, analytics}) {
+    const {DISPLAY} = useLanguage();
 
     return (
-        <div>
-            <Text color={theme.text} fontSize={theme.headingSize} fontWeight={600} marginBottom={theme.marginL}>
-                Top Spending Days
+        <Box bgColor={theme.cardBg} padding={theme.paddingL} border={`1px solid ${theme.border}`} borderRadius={`calc(${theme.radius} * 2)`} height='100%'>
+            <Text color={theme.text} fontSize={theme.textSize} fontWeight={600} marginBottom={theme.marginL}>
+                {DISPLAY.TEXT.TOP_SPENDING_DAYS}
             </Text>
 
-            <Stack spacing={theme.marginL}>
+            <Flex gap={theme.marginL} direction='column'>
                 {
-                    analytics.map((day, index)=>(
-                        <Flex key={index} justify='space-between' backgroundColor={theme.cardBg} border={`1px solid ${theme.border}`} borderRadius={`calc(${theme.radius} * 2)`} padding={theme.paddingL}>
+                    analytics.topDays.map((day, index)=>(<>
+                        <Divider borderColor={theme.border} borderWidth='1px' />
+                        <Flex key={index} justify='space-between'>
                             <div>
-                                <Text color={theme.text}>
-                                    {new Date(day.date).toLocaleDateString()}
+                                <Text color={theme.text} fontSize={theme.textSize}>
+                                    {new Date(day.date).toLocaleDateString(country.locale)}
                                 </Text>
 
                                 <Text color={theme.textSecondary} fontSize={theme.smallTextSize}>
-                                    {day.percentage.toFixed(1)}% of spending
+                                    {day.percentage.toFixed(2)}% ({DISPLAY.TEXT.INCOME_AMOUNT})
                                 </Text>
                             </div>
 
-                            <Text color={theme.primary} fontWeight={600}>
-                                {country.currency.symbol}{day.amount.toLocaleString()}
+                            <Text color={theme.primary} fontSize={theme.textSize} fontWeight={500}>
+                                {country.currency.symbol} {day.amount.toLocaleString(country.locale)}
                             </Text>
                         </Flex>
-                    ))
+                    </>))
                 }
-            </Stack>
-        </div>
+            </Flex>
+        </Box>
     );
 }

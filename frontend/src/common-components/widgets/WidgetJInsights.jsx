@@ -19,10 +19,8 @@ const ALERT_TYPES = {
 };
 
 
-export default function WidgetJInsights({expenseData, selectedTracker, selectedAccount, categoryData}) {
+export default function WidgetJInsights({expenseData, selectedTracker, country, categoryData}) {
     const {DISPLAY} = useLanguage();
-
-    const country = BANKS.country[selectedAccount.countryCode];
 
     const getAlertMessage = alert =>{
         switch(alert.alertType){
@@ -185,7 +183,7 @@ export default function WidgetJInsights({expenseData, selectedTracker, selectedA
     }
 
     return (
-        <Box padding={theme.paddingL} border={`1px solid ${theme.border}`} borderRadius={`calc(${theme.radius} * 2)`} overflowY='auto' maxHeight='full'>
+        <Box padding={theme.paddingL} border={`1px solid ${theme.border}`} borderRadius={`calc(${theme.radius} * 2)`} overflowY='auto' height='486px'>
             <Text color={theme.text} fontSize={theme.textSize} fontWeight={600} marginBottom={theme.marginL}>
                 {DISPLAY.ALERTS.INSIGHTS_AND_ALERTS}
             </Text>

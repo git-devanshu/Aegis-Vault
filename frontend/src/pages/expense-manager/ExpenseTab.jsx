@@ -13,11 +13,8 @@ import useAppContext from "../../hooks/useAppContext";
 import useClearOnUnmount from '../../hooks/useClearOnUnmount';
 
 import { ArrowBackIcon, AddIcon, LockIcon, EditIcon, CloseIcon, DeleteIcon } from '@chakra-ui/icons';
-import { MdRefresh, MdAutoGraph, MdOutlineViewAgenda, MdOutlineSort } from "react-icons/md";
-import { FaInfo } from "react-icons/fa";
-import { GiMoneyStack } from "react-icons/gi";
-import { PiChartDonut } from "react-icons/pi";
-import { TbMoneybagPlus } from "react-icons/tb";
+import { RiFileTransferLine } from "react-icons/ri";
+import { MdOutlineViewAgenda, MdOutlineSort } from "react-icons/md";
 
 import InputBox from "../../common-components/form/InputBox";
 import ActionButton from "../../common-components/form/ActionButton";
@@ -25,9 +22,10 @@ import Popup from "../../common-components/popup/Popup";
 import CircleIconButton from "../../common-components/form/CircleIconButton";
 import Dropdown from "../../common-components/form/Dropdown";
 import { getCategoryMap } from "../../utility/helpers";
+import ExpenseTransferModal from "./ExpenseTransferModal";
 
 
-export default function ExpenseTab({expenseData, trackerData, selectedAccount, selectedTrackerIndex, setSelectedTrackerIndex, categoryData, accountDataArray, setAccountData, refreshExpenses, setRefreshExpenses, trackerDataOptions}) {
+export default function ExpenseTab({expenseData, trackerData, selectedAccount, selectedTrackerIndex, setSelectedTrackerIndex, categoryData, accountDataArray, setAccountData, refreshExpenses, setRefreshExpenses, trackerDataOptions, selectedTracker}) {
     if(!selectedAccount || !trackerData) return null;
 
     const {DISPLAY, TOASTS} = useLanguage();
@@ -42,6 +40,8 @@ export default function ExpenseTab({expenseData, trackerData, selectedAccount, s
 
     const [showDeleteExpensePopup, setShowDeleteExpensePopup] = useState(false);
     const [expenseToBeDeleted, setExpenseToBeDeleted] = useState(null);
+
+    const [showExpenseTransferModal, setShowExpenseTransferModal] = useState(false);
 
     const filteredExpenses = useMemo(()=>{
         const q = searchQuery.trim().toLowerCase();
@@ -175,9 +175,18 @@ export default function ExpenseTab({expenseData, trackerData, selectedAccount, s
                         />
                     </div>
                 </Flex>
-                <div style={{marginBottom:'-10px', marginTop: '-10px'}}>
-                    <InputBox placeholder={`🔎︎ ${DISPLAY.LABELS.SEARCH_EXPENSE}`} type='text' name='searchQuery' value={searchQuery} onChange={(e)=> setSearchQuery(e.target.value)}/>
-                </div>
+                <Flex align='center' gap={theme.marginL}>
+                    <div style={{width:'100%', marginBottom:'-10px', marginTop: '-10px'}}>
+                        <InputBox placeholder={`🔎︎ ${DISPLAY.LABELS.SEARCH_EXPENSE}`} type='text' name='searchQuery' value={searchQuery} onChange={(e)=> setSearchQuery(e.target.value)}/>
+                    </div>
+                    <div style={{marginBottom: '8px'}}>
+                        <CircleIconButton icon={<RiFileTransferLine/>}
+                            iconSize='18px'
+                            onClick={()=> { setShowExpenseTransferModal(true); }}
+                            tooltip={DISPLAY.TOOLTIPS.TRANSFER_EXPENSES}
+                        />
+                    </div>
+                </Flex>
             </Grid>
 
             {filteredExpenses.length === 0 &&
@@ -236,6 +245,9 @@ export default function ExpenseTab({expenseData, trackerData, selectedAccount, s
                     <ActionButton name={DISPLAY.BUTTONS.DELETE} onClick={deleteExpense} isLoading={isLoading} disabled={isLoading} actionType='primary' />
                 </ButtonGroup>
             </Popup>
+
+            {/* Expense Transfer Modal */}
+            {showExpenseTransferModal && <ExpenseTransferModal onBack={()=> setShowExpenseTransferModal(false) } expenseData={expenseData} trackerData={trackerData} selectedTracker={selectedTracker} country={country} refreshExpenses={refreshExpenses} setRefreshExpenses={setRefreshExpenses} />}
         </>
     );
 }

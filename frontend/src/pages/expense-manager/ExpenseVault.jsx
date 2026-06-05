@@ -282,7 +282,7 @@ export default function ExpenseVault() {
                         }
                         {/* Expenses */}
                         {selectedTab === 1 && 
-                            <ExpenseTab expenseData={expenseData} trackerData={trackerData} selectedAccount={selectedAccount} selectedTrackerIndex={selectedTrackerIndex} setSelectedTrackerIndex={setSelectedTrackerIndex} categoryData={categoryData} accountDataArray={accountData} setAccountData={setAccountData} refreshExpenses={refreshExpenses} setRefreshExpenses={setRefreshExpenses} trackerDataOptions={trackerDataOptions}/>
+                            <ExpenseTab expenseData={expenseData} trackerData={trackerData} selectedAccount={selectedAccount} selectedTracker={selectedTracker} selectedTrackerIndex={selectedTrackerIndex} setSelectedTrackerIndex={setSelectedTrackerIndex} categoryData={categoryData} accountDataArray={accountData} setAccountData={setAccountData} refreshExpenses={refreshExpenses} setRefreshExpenses={setRefreshExpenses} trackerDataOptions={trackerDataOptions}/>
                         }
                         {/* Categories */}
                         {selectedTab === 2 && 
