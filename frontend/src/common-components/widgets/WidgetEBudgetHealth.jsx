@@ -23,6 +23,8 @@ export default function WidgetEBudgetHealth({analytics}) {
                     getCssVariable('--primary')
                 ],
                 borderWidth: 0,
+                spacing: 3,
+                borderRadius: 4,
                 cutout: '72%'
             }
         ]
@@ -38,7 +40,7 @@ export default function WidgetEBudgetHealth({analytics}) {
     };
 
     return (
-        <Box padding={theme.paddingL} border={`1px solid ${theme.border}`} borderRadius={`calc(${theme.radius} * 2)`} height='100%'>
+        <Box padding={theme.paddingL} border={`1px solid ${theme.border}`} borderRadius={`calc(${theme.radius} * 2)`} height='100%' minWidth='300px'>
             <Text color={theme.text} fontSize={theme.textSize} fontWeight={600} marginBottom={theme.marginL}>
                 {DISPLAY.TEXT.BUDGET_HEALTH}
             </Text>
@@ -57,7 +59,7 @@ export default function WidgetEBudgetHealth({analytics}) {
                     <Flex align='center' gap={theme.marginL}>
                         <Box width='12px' height='12px' borderRadius='50%' bgColor={theme.warning}/>
                         <Text color={theme.text} fontSize={theme.smallTextSize}>
-                            {analytics.warning} {DISPLAY.TEXT.OVER_BUDGET}
+                            {analytics.warning} {DISPLAY.TEXT.NEAR_LIMIT}
                         </Text>
                     </Flex>
 

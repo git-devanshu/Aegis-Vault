@@ -2,17 +2,16 @@ import React, { useState, useEffect, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import toast from 'react-hot-toast';
 import { theme } from '../../themes/theme';
-import SYSTEM_DATA from '../../assets/system-data.json'
 import BANKS from '../../assets/banks.json';
 import { CATEGORY_ICONS } from '../../assets/categoryIcons';
-import { Divider, Text, Flex, Stack, useMediaQuery, ButtonGroup, Spacer, Grid } from '@chakra-ui/react'
-import { createHash, createPassKey, decryptData, encryptData } from '../../utility/crypto';
+import { Divider, Text, Flex, ButtonGroup, Spacer, Grid } from '@chakra-ui/react'
+import { encryptData } from '../../utility/crypto';
 import { validateAndStartLoading, apiRequest } from "../../utility/api";
+import { getCategoryDisplayName, getCategoryMap } from "../../utility/helpers";
 import useLanguage from "../../hooks/useLanguage";
 import useAppContext from "../../hooks/useAppContext";
-import useClearOnUnmount from '../../hooks/useClearOnUnmount';
 
-import { ArrowBackIcon, AddIcon, LockIcon, EditIcon, CloseIcon, DeleteIcon } from '@chakra-ui/icons';
+import { DeleteIcon } from '@chakra-ui/icons';
 import { RiFileTransferLine } from "react-icons/ri";
 import { MdOutlineViewAgenda, MdOutlineSort } from "react-icons/md";
 
@@ -21,7 +20,6 @@ import ActionButton from "../../common-components/form/ActionButton";
 import Popup from "../../common-components/popup/Popup";
 import CircleIconButton from "../../common-components/form/CircleIconButton";
 import Dropdown from "../../common-components/form/Dropdown";
-import { getCategoryMap } from "../../utility/helpers";
 import ExpenseTransferModal from "./ExpenseTransferModal";
 
 
@@ -29,7 +27,7 @@ export default function ExpenseTab({expenseData, trackerData, selectedAccount, s
     if(!selectedAccount || !trackerData) return null;
 
     const {DISPLAY, TOASTS} = useLanguage();
-    const {masterKey} = useAppContext();
+    const {masterKey, allowExpenseDeletion} = useAppContext();
 
     const country = BANKS.country[selectedAccount.countryCode];
 
@@ -151,9 +149,11 @@ export default function ExpenseTab({expenseData, trackerData, selectedAccount, s
                                 {new Date(expense.spentDate).toLocaleDateString(country.locale)}
                             </Text>
                         </div>
-                        <div style={{marginTop: theme.marginL}}>
-                            <CircleIconButton icon={<DeleteIcon />} onClick={()=> { setExpenseToBeDeleted(expense); setShowDeleteExpensePopup(true); }} tooltip={DISPLAY.TOOLTIPS.DELETE}/>
-                        </div>
+                        {allowExpenseDeletion && 
+                            <div style={{marginTop: theme.marginL}}>
+                                <CircleIconButton icon={<DeleteIcon />} onClick={()=> { setExpenseToBeDeleted(expense); setShowDeleteExpensePopup(true); }} tooltip={DISPLAY.TOOLTIPS.DELETE}/>
+                            </div>
+                        }
                     </Flex>
                 </div>
             </div>
@@ -214,10 +214,10 @@ export default function ExpenseTab({expenseData, trackerData, selectedAccount, s
                         groupedExpenses.map(group =>{
                             const Icon = getCategoryIcon(group.category);
                             return(
-                                <div key={group.category.name} style={{marginBottom:theme.spacing}}>
+                                <div key={group.category.categoryIndex} style={{marginBottom:theme.spacing}}>
                                     <Flex align='center' gap={theme.marginS} marginBottom={theme.marginL}>
                                         <Icon color={theme.primary} size='18px'/>
-                                        <Text color={theme.text} fontSize={theme.text} fontWeight={600}> {group.category.name} </Text>
+                                        <Text color={theme.text} fontSize={theme.textSize} fontWeight={600}> {getCategoryDisplayName(group.category, DISPLAY)} </Text>
                                         <Text color={theme.textSecondary} fontSize={theme.smallTextSize}> ({group.expenses.length}) </Text>
                                     </Flex>
                                     <Grid templateColumns={{base:'1fr', md:'1fr 1fr'}} gap={theme.marginL} alignItems='start'>
@@ -236,7 +236,7 @@ export default function ExpenseTab({expenseData, trackerData, selectedAccount, s
             }
 
             {/* Delete Expense Popup */}
-            <Popup isOpen={showDeleteExpensePopup} onClose={()=> setShowDeleteExpensePopup(false)} title={DISPLAY.TEXT.DELETE_EXPENSE} borderColor={theme.warning}>
+            <Popup isOpen={showDeleteExpensePopup && allowExpenseDeletion} onClose={()=> setShowDeleteExpensePopup(false)} title={DISPLAY.TEXT.DELETE_EXPENSE} borderColor={theme.warning}>
                 <Text color={theme.text} fontSize={theme.textSize} textAlign='center'>
                     {DISPLAY.TEXT.CONFIRM_DELETE_EXPENSE}
                 </Text>

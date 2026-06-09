@@ -82,10 +82,12 @@ export default function QuickSave() {
                         <form>
                             <InputBox type='text' label={DISPLAY.LABELS.SPENT_AT} name='spentAt' value={currentLog.spentAt} onChange={handleChange} required={true} maxLen={50} />
                             <Flex align='center' gap={theme.paddingL}>
-                                <InputBox type='number' label={DISPLAY.LABELS.AMOUNT} name='amount' value={currentLog.amount} onChange={handleChange} required={true} min={0} />
-                                <DateInput value={currentLog.spentDate} name='spentDate' onChange={handleChange} />
+                                <div style={{marginTop: '-20px'}}>
+                                    <InputBox type='number' label={DISPLAY.LABELS.AMOUNT} name='amount' value={currentLog.amount} onChange={handleChange} required={true} min={0} />
+                                </div>
+                                <DateInput value={currentLog.spentDate} name='spentDate' onChange={handleChange} label={DISPLAY.LABELS.SPENT_DATE} />
                             </Flex>
-                            <ActionButton name={DISPLAY.BUTTONS.SAVE} onClick={addCurrentLog} actionType='primary'/>
+                            <ActionButton name={DISPLAY.BUTTONS.SAVE} disabled={currentLog.amount <= 0} onClick={addCurrentLog} actionType='primary'/>
                         </form>
                     </div>
                 </div>

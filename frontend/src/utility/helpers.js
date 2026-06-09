@@ -110,6 +110,14 @@ export function getContrastColor(hex){
 }
 
 
+export const getCategoryDisplayName = (category, DISPLAY) =>{
+    if(!category) return '';
+    if(category.categoryIndex >= 0 && category.categoryIndex <= 12){
+        return DISPLAY.DEFAULT_EXPENSE_CATEGORIES[category.name] || category.name;
+    }
+    return category.name;
+}
+
 
 export const getCategoryMap = (categoryData) =>{
     return Object.fromEntries(

@@ -1,8 +1,8 @@
 import jsPDF from "jspdf";
 import autoTable from "jspdf-autotable";
+import {getCategoryDisplayName} from './helpers'
 
-
-export default function getExpenseAnalyticsMetrics({expenseData, categoryData, selectedTracker, selectedAccount}){
+export default function getExpenseAnalyticsMetrics({expenseData, categoryData, selectedTracker, selectedAccount, DISPLAY}){
 
     const totalIncome = Number(selectedAccount?.totalIncome || 0);
     const totalExpense = expenseData.reduce((sum, expense)=> sum + Number(expense.amount), 0);
@@ -11,9 +11,7 @@ export default function getExpenseAnalyticsMetrics({expenseData, categoryData, s
 
     const currentBalance = totalIncome - totalAccountExpense;
 
-    const percentageConsumed = totalIncome
-        ? (totalAccountExpense / totalIncome) * 100
-        : 0;
+    const percentageConsumed = totalIncome ? (totalAccountExpense / totalIncome) * 100 : 0;
 
     const incomeAmount = Number(selectedTracker?.amount || 0);
 
@@ -60,7 +58,7 @@ export default function getExpenseAnalyticsMetrics({expenseData, categoryData, s
 
     const categoryDistribution = categoryData
         .map(category =>({
-            categoryName: category.name,
+            categoryName: getCategoryDisplayName(category, DISPLAY),
             amount: spendMap.get(category.categoryIndex) || 0,
             categoryIndex: category.categoryIndex
         }))
@@ -81,7 +79,7 @@ export default function getExpenseAnalyticsMetrics({expenseData, categoryData, s
 
             return {
                 categoryIndex: limit.categoryIndex,
-                categoryName: category?.name || 'Unknown',
+                categoryName: getCategoryDisplayName(category, DISPLAY) || DISPLAY.LABELS.UNKNOWN,
                 budget: limit.limit,
                 actual: spendMap.get(limit.categoryIndex) || 0
             };
@@ -436,15 +434,13 @@ export const downloadExpenseStatement = ({expenseData, categoryData, selectedTra
             DISPLAY.REPORT.AMOUNT
         ]],
         body: expenseData.map(expense =>{
-
             const category = categoryData.find(
                 c => c.categoryIndex === expense.categoryIndex
             );
-
             return [
                 new Date(expense.spentDate).toLocaleDateString(country.locale),
                 expense.spentAt,
-                category?.name || DISPLAY.LABELS.UNKNOWN,
+                getCategoryDisplayName(category, DISPLAY) || DISPLAY.LABELS.UNKNOWN,
                 formatCurrency(expense.amount)
             ];
         }),

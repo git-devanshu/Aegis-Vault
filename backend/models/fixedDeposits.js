@@ -2,15 +2,10 @@ const mongoose = require('mongoose');
 
 const fixedDepositSchema = new mongoose.Schema({
     userId : {type : mongoose.Schema.Types.ObjectId, required : true},
-
     accountIndex : {type : Number, required : true},
-
     fdIndex : {type : Number, required : true},
-
     status : {type : Number, required : true},
-
     fdData : {type : String, required : true},
-
     nonce : {type : String, required : true}
 });
 
@@ -22,9 +17,8 @@ module.exports = {FixedDeposits};
 
 status :
 0 -> active
-1 -> matured
-2 -> rolled
-3 -> closed
+1 -> rolled
+2 -> closed
 
 
 fdData {

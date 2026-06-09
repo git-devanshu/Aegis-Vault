@@ -32,6 +32,22 @@ export default function WidgetIWeekendVsWeekday({country, analytics}) {
             legend: {
                 display: false
             }
+        },
+        scales: {
+            r: {
+                ticks: {
+                    display: false
+                },
+                grid: {
+                    color: `${getCssVariable('--border')}40`
+                },
+                angleLines: {
+                    color: `${getCssVariable('--border')}40`
+                },
+                pointLabels: {
+                    display: false
+                }
+            }
         }
     };
 
@@ -42,7 +58,7 @@ export default function WidgetIWeekendVsWeekday({country, analytics}) {
             </Text>
 
             <Flex padding={theme.paddingL} gap={theme.paddingL} alignItems='center' justifyContent='center'>
-                <Chart type='pie' data={chartData} options={chartOptions} style={{maxHeight: '140px', maxWidth: '140px'}} />
+                <Chart type='polarArea' data={chartData} options={chartOptions} style={{maxHeight: '140px', maxWidth: '140px'}} />
 
                 <Flex direction='column' gap={theme.paddingL} alignItems='center' justifyContent='center'>
                     <Box padding={`${theme.paddingS} ${theme.paddingL}`} bgColor={theme.cardBg} borderRadius={theme.radius} border={`2px solid ${theme.primary}`}>

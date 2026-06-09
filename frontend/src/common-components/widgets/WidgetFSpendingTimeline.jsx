@@ -18,11 +18,12 @@ export default function WidgetFSpendingTimeline({analytics}) {
                 data: timelineData.values,
                 tension: 0,
                 borderColor: getCssVariable('--primary'),
-                backgroundColor: 'transparent',
+                borderWidth: 2,
                 pointBackgroundColor: getCssVariable('--primary'),
                 pointBorderColor: getCssVariable('--primary'),
-                pointRadius: 4,
-                pointHoverRadius: 6
+                pointRadius: 1,
+                pointHoverRadius: 3,
+                pointHitRadius: 10
             }
         ]
     };
@@ -32,6 +33,10 @@ export default function WidgetFSpendingTimeline({analytics}) {
         plugins: {
             legend: { display: false }
         },
+        interaction: {
+            mode: 'index',
+            intersect: false
+        },
         scales: {
             x: {
                 display: false,
@@ -39,12 +44,26 @@ export default function WidgetFSpendingTimeline({analytics}) {
             },
             y: {
                 ticks: {
-                    color: getCssVariable('--text')
+                    color: getCssVariable('--text-secondary'),
+                    font: {
+                        size: 10
+                    },
+                    padding: 8
                 },
-                grid: { 
+                grid: {
                     color: `${getCssVariable('--border')}40`,
-                    drawBorder: false
+                    drawBorder: false,
+                    tickLength: 0
+                },
+                border: {
+                    display: false
                 }
+            }
+        },
+        elements: {
+            line: {
+                tension: 0,
+                borderJoinStyle: 'round'
             }
         }
     };

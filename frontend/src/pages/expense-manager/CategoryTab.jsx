@@ -5,9 +5,10 @@ import { theme } from '../../themes/theme';
 import SYSTEM_DATA from '../../assets/system-data.json'
 import BANKS from '../../assets/banks.json';
 import { CATEGORY_ICONS } from '../../assets/categoryIcons';
-import { Divider, Text, Flex, Stack, useMediaQuery, ButtonGroup, Spacer, Grid } from '@chakra-ui/react'
+import { Text, Flex, ButtonGroup, Grid } from '@chakra-ui/react'
 import { createHash, createPassKey, decryptData, encryptData } from '../../utility/crypto';
 import { validateAndStartLoading, apiRequest } from "../../utility/api";
+import { getCategoryDisplayName } from "../../utility/helpers";
 import useLanguage from "../../hooks/useLanguage";
 import useAppContext from "../../hooks/useAppContext";
 
@@ -15,14 +16,13 @@ import InputBox from "../../common-components/form/InputBox";
 import ActionButton from "../../common-components/form/ActionButton";
 import Popup from "../../common-components/popup/Popup";
 import Dropdown from "../../common-components/form/Dropdown";
-import { getCategoryMap } from "../../utility/helpers";
 
 
 export default function CategoryTab({expenseData, selectedTracker, selectedAccount, selectedTrackerIndex, setSelectedTrackerIndex, categoryData, refreshCategories, setRefreshCategories, trackerDataOptions, refreshTrackers, setRefreshTrackers}) {
     if(!selectedAccount || !selectedTracker) return null;
 
     const {DISPLAY, TOASTS} = useLanguage();
-    const {masterKey} = useAppContext();
+    const {masterKey, allowNewCategoryCreation} = useAppContext();
 
     const country = BANKS.country[selectedAccount.countryCode];
 
@@ -37,11 +37,6 @@ export default function CategoryTab({expenseData, selectedTracker, selectedAccou
     });
 
     const [budgetData, setBudgetData] = useState([]);
-
-    const categoryMap = useMemo(
-        ()=> getCategoryMap(categoryData),
-        [categoryData]
-    );
 
     const categoryBudgetData = useMemo(()=>{
         const limitsMap = new Map(
@@ -75,7 +70,7 @@ export default function CategoryTab({expenseData, selectedTracker, selectedAccou
 
     const createNewCategory = async(e) =>{
         if(categoryData.some(category => category.name.trim().toLowerCase() === newCategory.name.trim().toLowerCase())){
-            toast.error(TOASTS.EXPENSE_MANAGER.CATEGORY_ALREADY_EXISTS, {id: toastId});
+            toast.error(TOASTS.EXPENSE_MANAGER.CATEGORY_ALREADY_EXISTS);
             return;
         }
         const toastId = validateAndStartLoading({
@@ -188,7 +183,7 @@ export default function CategoryTab({expenseData, selectedTracker, selectedAccou
                 </div>
                 <div style={{ marginTop: '-10px'}}>
                     <ButtonGroup width='100%'>
-                        <ActionButton name={DISPLAY.BUTTONS.CREATE_CATEGORY} onClick={()=> { setShowCreateCategoryPopup(true) }} />
+                        {allowNewCategoryCreation && <ActionButton name={DISPLAY.BUTTONS.CREATE_CATEGORY} onClick={()=> { setShowCreateCategoryPopup(true) }} /> }
                         <ActionButton name={DISPLAY.BUTTONS.SET_BUDGET} onClick={openBudgetPopup} actionType='primary' />
                     </ButtonGroup>
                 </div>
@@ -201,7 +196,7 @@ export default function CategoryTab({expenseData, selectedTracker, selectedAccou
                         <Flex key={category.categoryIndex} backgroundColor={theme.cardBg} direction='column' padding={theme.paddingL} border={`1px solid ${theme.border}`} borderRadius={`calc(${theme.radius} * 2)`}>
                             <Flex alignItems='center'>
                                 <Icon color={theme.text} size='20px' style={{marginRight: theme.marginL, marginLeft: theme.marginS}}/>
-                                <Text color={theme.text} fontSize={theme.textSize}>{category.name}</Text>
+                                <Text color={theme.text} fontSize={theme.textSize}>{getCategoryDisplayName(category, DISPLAY)}</Text>
                             </Flex>
                             <Flex direction='column' marginTop={theme.marginS}>
                                 {
@@ -235,7 +230,7 @@ export default function CategoryTab({expenseData, selectedTracker, selectedAccou
             </Grid>
 
             {/* Popup for creating custom category */}
-            <Popup isOpen={showCreateCategoryPopup} onClose={()=> setShowCreateCategoryPopup(false)} title={DISPLAY.TEXT.CREATE_CATEGORY} borderColor={theme.success} bg={theme.bg}>
+            <Popup isOpen={showCreateCategoryPopup && allowNewCategoryCreation} onClose={()=> setShowCreateCategoryPopup(false)} title={DISPLAY.TEXT.CREATE_CATEGORY} borderColor={theme.success} bg={theme.bg}>
                 <form>
                     <InputBox type='text' label={DISPLAY.LABELS.CATEGORY_NAME} value={newCategory.name} onChange={(e)=> setNewCategory({...newCategory, name: e.target.value})} maxLen={30} required />
                     <Text color={theme.text} fontSize={theme.textSize} marginBottom={theme.marginL}>
@@ -271,10 +266,10 @@ export default function CategoryTab({expenseData, selectedTracker, selectedAccou
                                 const Icon = CATEGORY_ICONS[category.icon];
                                 return(
                                     <Grid key={category.categoryIndex} templateColumns='1fr 1fr' marginBottom='-10px' marginTop='-10px'>
-                                        <Flex align='center'>
+                                        <Flex align='center' marginLeft={theme.marginS}>
                                             <Icon color={theme.text} size='18px' style={{marginRight: theme.marginL}}/>
                                             <Text color={theme.text}>
-                                                {category.name}
+                                                {getCategoryDisplayName(category, DISPLAY)}
                                             </Text>
                                         </Flex>
                                         <InputBox type='number' value={budgetData[index]?.limit || ''} 

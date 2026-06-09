@@ -56,5 +56,23 @@
         "CANNOT_DELETE_TRACKER": "cannot remove this income",
         "CATEGORIES_UPDATED": "category list updated successfully",
         "LIMITS_UPDATED": "budget updated for these categories"
+    },
+
+    "INVESTMENT_MANAGER": {
+        "NO_FD_ADDED" : "no fixed deposit is added to this account",
+        "NO_RD_ADDED" : "no recurring deposit is added to this account",
+        "NO_GOLD_ASSET_ADDED" : "no gold asset is added to this account",
+        "NO_STOCK_ADDED" : "no stocks are added to this account",
+        "FD_ADDED" : "fixed deposit added successfully",
+        "RD_ADDED" : "recurring deposit added successfully",
+        "GOLD_ASSET_ADDED" : "gold asset added successfully",
+        "STOCK_ADDED" : "stock added successfully",
+        "FD_CLOSED" : "fixed deposit closed successfully",
+        "FD_ROLLED_OVER" : "fixed deposit rolled over successfully",
+        "FD_NOT_FOUND": "fixed deposit not found",
+        "FD_DELETED": "fixed deposit deleted successfully",
+        "RD_NOT_FOUND": "recurring deposit not found",
+        "RD_CLOSED": "recurring deposit closed successfully",
+        "RD_DELETED": "recurring deposit deleted successfully"
     }
 }

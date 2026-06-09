@@ -67,7 +67,7 @@ export default function Home() {
             <CircleIconButton icon={aegisTheme === 'dark' ? <MdOutlineLightMode/> : <MdOutlineDarkMode/>} iconSize="18px" tooltip={DISPLAY.TOOLTIPS.THEME} ttPlacement="right" onClick={toggleAegisTheme}/>
             <CircleIconButton icon={<RiStickyNoteLine/>} iconSize="18px" tooltip={DISPLAY.TOOLTIPS.QUICK_SAVE} ttPlacement="right" onClick={()=> navigate('/quick-save')}/>
             <CircleIconButton icon={<FaInfo/>} tooltip={DISPLAY.TOOLTIPS.ABOUT_US} ttPlacement="right" onClick={()=>{}}/>
-            <CircleIconButton icon={<RiLogoutCircleRLine/>} iconSize="18px" tooltip={DISPLAY.TOOLTIPS.LOGOUT} ttPlacement="right" onClick={()=> setShowLogoutPopup(true)}/>
+            <CircleIconButton icon={<RiLogoutCircleRLine color={theme.error}/>} iconSize="18px" tooltip={DISPLAY.TOOLTIPS.LOGOUT} ttPlacement="right" onClick={()=> setShowLogoutPopup(true)}/>
         </Flex>
     );
 
@@ -92,7 +92,7 @@ export default function Home() {
                             <PrimaryVaultCard title={DISPLAY.LABELS.EXPENSES} onClick={()=>navigateToVault('/expense-manager')} icon={<GiMoneyStack style={{height:'70px', width:'70px'}}/>} />
                             <PrimaryVaultCard title={DISPLAY.LABELS.INVESTMENTS} onClick={()=>navigateToVault('/investment-manager')} icon={<GiGoldBar style={{height:'70px', width:'70px'}}/>} />
                             <VaultCard title={DISPLAY.LABELS.SECURITY} onClick={()=>navigateToVault('/active-sessions')} icon={<MdDevices style={{height:'70px', width:'70px'}}/>} />
-                            <VaultCard title={DISPLAY.LABELS.NOTIFICATIONS} onClick={()=>navigateToVault('/notifications')} icon={<BellIcon style={{height:'60px', width:'60px'}}/>} />
+                            {/* <VaultCard title={DISPLAY.LABELS.NOTIFICATIONS} onClick={()=>navigateToVault('/notifications')} icon={<BellIcon style={{height:'60px', width:'60px'}}/>} /> */}
                         </div>
                     </Flex>
                 </div>

@@ -1,35 +1,27 @@
 import React, { useState, useEffect, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
-import toast from 'react-hot-toast';
 import { theme } from '../../themes/theme';
 import SYSTEM_DATA from '../../assets/system-data.json'
-import { CATEGORY_ICONS } from '../../assets/categoryIcons';
-import { Divider, Text, Flex, Stack, useMediaQuery, ButtonGroup, Spacer, Grid } from '@chakra-ui/react'
-import { createHash, createPassKey, decryptData, encryptData } from '../../utility/crypto';
-import { validateAndStartLoading, apiRequest } from "../../utility/api";
+import { Divider, Text, Flex, Spacer, Grid } from '@chakra-ui/react'
+import { decryptData } from '../../utility/crypto';
+import { apiRequest } from "../../utility/api";
 import useLanguage from "../../hooks/useLanguage";
 import useAppContext from "../../hooks/useAppContext";
 import useClearOnUnmount from '../../hooks/useClearOnUnmount';
 
-import { ArrowBackIcon, AddIcon, LockIcon, EditIcon, CloseIcon } from '@chakra-ui/icons';
-import { MdRefresh, MdAutoGraph, MdOutlineSettingsBackupRestore } from "react-icons/md";
+import { ArrowBackIcon, AddIcon } from '@chakra-ui/icons';
+import { MdRefresh } from "react-icons/md";
 import { FaInfo } from "react-icons/fa";
 import { GiMoneyStack } from "react-icons/gi";
-import { PiChartDonut } from "react-icons/pi";
 import { TbMoneybagPlus } from "react-icons/tb";
 import { RiBubbleChartLine } from "react-icons/ri";
 
-import InputBox from "../../common-components/form/InputBox";
 import ActionButton from "../../common-components/form/ActionButton";
-import Popup from "../../common-components/popup/Popup";
 import AppLayout from "../../common-components/AppLayout";
 import CircleIconButton from "../../common-components/form/CircleIconButton";
 import Loading from "../../common-components/Loading";
 import PinModal from "../../common-components/PinModal";
 import TabGroup from "../../common-components/navbar/TabGroup";
-import Dropdown from "../../common-components/form/Dropdown";
-import PasswordCard from "../../common-components/vault/PasswordCard";
-import AddEditPasswordPopup from "../../common-components/popup/AddEditPasswordPopup";
 import AddBankAccountModal from "./AddBankAccountModal";
 import BankAccountCard from "../../common-components/widgets/BankAccountCard";
 import ManageBankAccountsModal from "./ManageBankAccountsModal";
@@ -43,7 +35,7 @@ import CategoryTab from "./CategoryTab";
 
 export default function ExpenseVault() {
     const {DISPLAY, TOASTS} = useLanguage();
-    const {masterKey, clearMasterKey, hideDeleteExpenseButton, hideInvestments} = useAppContext();
+    const {masterKey, clearMasterKey} = useAppContext();
     const navigate = useNavigate();
 
     const [accountData, setAccountData] = useState(null);
@@ -68,7 +60,6 @@ export default function ExpenseVault() {
     const [showManageAccountModal, setShowManageAccountModal] = useState(false);
     const [showAddTrackerPopup, setShowAddTrackerPopup] = useState(false);
     const [showAddExpensePopup, setShowAddExpensePopup] = useState(false);
-    const [showAddCategoryPopup, setShowAddCategoryPopup] = useState(false);
     const [showExpenseAnalytics, setShowExpenseAnalytics] = useState(false);
 
     // for removing the master key after exiting the module
@@ -278,7 +269,7 @@ export default function ExpenseVault() {
                         <TabGroup tabs={tabs} value={selectedTab} onChange={setSelectedTab}/>
                         {/* Income (Trackers) */}
                         {selectedTab === 0 && 
-                            <IncomeTab trackerData={trackerData} selectedAccount={selectedAccount} accountDataArray={accountData} setAccountData={setAccountData} refreshTrackers={refreshTrackers} setRefreshTrackers={setRefreshTrackers} />
+                            <IncomeTab trackerData={trackerData} selectedAccount={selectedAccount} accountDataArray={accountData} setAccountData={setAccountData} refreshTrackers={refreshTrackers} setRefreshTrackers={setRefreshTrackers} selectedTrackerIndex={selectedTrackerIndex} />
                         }
                         {/* Expenses */}
                         {selectedTab === 1 && 

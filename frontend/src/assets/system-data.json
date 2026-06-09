@@ -5,58 +5,77 @@
 
     "DEFAULT_EXPENSE_CATEGORIES": [
         {
-            "name": "Education",
+            "name": "EDUCATION",
             "icon": "FaGraduationCap",
             "categoryIndex": 0
-        }, {
-            "name": "Food",
+        },
+        {
+            "name": "FOOD",
             "icon": "FaUtensils",
             "categoryIndex": 1
-        }, {
-            "name": "Transport",
+        },
+        {
+            "name": "TRANSPORT",
             "icon": "FaBus",
             "categoryIndex": 2
-        }, {
-            "name": "Bills",
+        },
+        {
+            "name": "BILLS",
             "icon": "FaFileInvoiceDollar",
             "categoryIndex": 3
-        }, {
-            "name": "Groceries",
+        },
+        {
+            "name": "GROCERIES",
             "icon": "FaBasketShopping",
             "categoryIndex": 4
-        }, {
-            "name": "Fuel",
+        },
+        {
+            "name": "FUEL",
             "icon": "FaGasPump",
             "categoryIndex": 5
-        }, {
-            "name": "Health",
+        },
+        {
+            "name": "HEALTH",
             "icon": "FaHeartPulse",
             "categoryIndex": 6
-        }, {
-            "name": "Shopping",
+        },
+        {
+            "name": "SHOPPING",
             "icon": "FaBagShopping",
             "categoryIndex": 7
-        }, {
-            "name": "Investment",
+        },
+        {
+            "name": "INVESTMENT",
             "icon": "FaChartLine",
             "categoryIndex": 8
-        }, {
-            "name": "Entertainment",
+        },
+        {
+            "name": "ENTERTAINMENT",
             "icon": "FaFilm",
             "categoryIndex": 9
-        }, {
-            "name": "Gifts",
+        },
+        {
+            "name": "GIFTS",
             "icon": "FaGift",
             "categoryIndex": 10
-        }, {
-            "name": "Lifestyle",
+        },
+        {
+            "name": "LIFESTYLE",
             "icon": "FaSpa",
             "categoryIndex": 11
-        }, {
-            "name": "Other",
+        },
+        {
+            "name": "OTHER",
             "icon": "FaFolderOpen",
             "categoryIndex": 12
         }
+    ],
+
+    "GOLD_ASSET_TYPES": [
+        "PHYSICAL_GOLD",
+        "DIGITAL_GOLD",
+        "GOLD_ETF",
+        "SOVEREIGN_GOLD_BOND"
     ],
 
     "SUPPORTED_LANGUAGES": [

@@ -14,6 +14,7 @@ import Dropdown from "../../common-components/form/Dropdown";
 import ActionButton from "../../common-components/form/ActionButton";
 import { GiMoneyStack } from "react-icons/gi";
 import InputBox from "../../common-components/form/InputBox";
+import { getCategoryDisplayName } from "../../utility/helpers";
 
 
 export default function AddMultipleExpensesModal({onBack, selectedAccount, selectedTracker, categoryData, refreshExpenses, setRefreshExpenses, accountDataArray, setAccountData, quickSaveLogs, setQuickSaveLogs}) {
@@ -145,7 +146,7 @@ export default function AddMultipleExpensesModal({onBack, selectedAccount, selec
                                     <Dropdown value={expense.categoryIndex} onChange={(e)=> handleCategoryChange(index, e.target.value)}
                                         options={
                                             categoryData.map((category)=>({
-                                                label: category.name,
+                                                label: getCategoryDisplayName(category, DISPLAY),
                                                 value: category.categoryIndex
                                             }))
                                         }

@@ -8,7 +8,7 @@ export default function CircleIconButton({icon, onClick, actionType, tooltip, tt
             <IconButton icon={icon} onClick={onClick} borderRadius='20px' fontSize={iconSize}
                 backgroundColor={actionType === 'primary' ? theme.primary : theme.bg} 
                 color={actionType === 'primary' ? '#0F172A' : theme.textSecondary}
-                border={`2px solid ${actionType === 'primary' ? theme.primary : theme.border}`}
+                border={`1px solid ${actionType === 'primary' ? theme.primary : theme.border}`}
                 _hover={actionType === 'primary' ? 
                     {backgroundColor: theme.accent, borderColor: theme.accent} : 
                     {backgroundColor: theme.cardBg}

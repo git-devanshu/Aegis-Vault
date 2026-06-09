@@ -5,9 +5,11 @@ const settingsSchema = new mongoose.Schema({
     hideRemovedLabels : {type : Boolean, default : false},
     hideShowPasswordButton : {type : Boolean, default : false},
     disablePasswordModifications : {type : Boolean, default : false},
-    hideDeleteExpenseButton : {type : Boolean, default : false},
-    hideInvestments : {type : Boolean, default : false},
-    getEmailNotifications : {type : Boolean, default : false}
+    allowBankAccountDeletion : {type : Boolean, default : false},
+    allowIncomeTrackerDeletion : {type : Boolean, default : true},
+    allowExpenseDeletion : {type : Boolean, default : true},
+    allowNewCategoryCreation : {type : Boolean, default : true},
+    hideAccountSnapshotInAnalytics : {type : Boolean, default : false},
 });
 
 const Settings = mongoose.model('settings', settingsSchema, 'settings');

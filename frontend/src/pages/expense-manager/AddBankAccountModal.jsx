@@ -10,7 +10,7 @@ import { apiRequest, validateAndStartLoading } from "../../utility/api";
 import { encryptData } from "../../utility/crypto";
 
 import { ArrowBackIcon, InfoOutlineIcon } from '@chakra-ui/icons';
-import { GiMoneyStack } from "react-icons/gi";
+import { RiBankLine } from "react-icons/ri";
 
 import InputBox from "../../common-components/form/InputBox";
 import ActionButton from "../../common-components/form/ActionButton";
@@ -94,7 +94,7 @@ export default function AddBankAccountModal({onBack, refreshAccounts, setRefresh
         <div className="fullscreen-overlay">
         <div className="common-page">
             <Flex align='center' justify='space-between' paddingBottom={theme.paddingL}>
-                <GiMoneyStack color={theme.primary} style={{marginLeft: theme.marginS, marginRight: theme.marginS}}/>
+                <RiBankLine color={theme.primary} style={{marginLeft: theme.marginS, marginRight: theme.marginS}}/>
                 <Text color={theme.primary} fontSize={theme.text} fontWeight={500} align={{base: 'center', sm: 'left'}}>
                     {DISPLAY.LABELS.BANK_ACCOUNT}
                 </Text>

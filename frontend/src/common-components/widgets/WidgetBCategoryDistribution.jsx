@@ -29,13 +29,15 @@ export default function WidgetBCategoryDistribution({categoryData, country, anal
                 backgroundColor: analytics.categoryDistribution.map(item =>
                     getCategoryColor(item.categoryIndex)
                 ),
-                borderWidth: 0
+                borderWidth: 0,
+                borderRadius: 4,
+                spacing: 5
             }
         ]
     };
 
     const chartOptions = {
-        cutout: '72%',
+        cutout: '78%',
         plugins: {
             legend: {
                 display: false

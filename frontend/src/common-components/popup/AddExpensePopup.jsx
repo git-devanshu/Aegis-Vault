@@ -17,6 +17,7 @@ import TabGroup from '../navbar/TabGroup';
 import AddMultipleExpensesModal from '../../pages/expense-manager/AddMultipleExpensesModal';
 
 import * as XLSX from 'xlsx';
+import { getCategoryDisplayName } from '../../utility/helpers';
 
 
 export default function AddExpensePopup({isOpen, onClose, selectedAccount, selectedTracker, categoryData, refreshExpenses, setRefreshExpenses, accountDataArray, setAccountData}) {
@@ -151,18 +152,21 @@ export default function AddExpensePopup({isOpen, onClose, selectedAccount, selec
             {/* Fill details */}
             {selectedTab === 0 && <form style={{marginTop: theme.spacing, height: '397px'}}>
                 <InputBox type='text' label={DISPLAY.LABELS.INCOME_SOURCE} value={selectedTracker?.name} readOnly={true} />
+                <DateInput value={expense.spentDate} name='spentDate' onChange={handleChange} label={DISPLAY.LABELS.SPENT_DATE} />
+
+                <div style={{marginTop: '-20px'}}>
+                    <Dropdown value={selectedCategoryIndex} onChange={(e)=> setSelectedCategoryIndex(Number(e.target.value))}
+                        options={categoryData.map(
+                            (category)=>({
+                                label: getCategoryDisplayName(category, DISPLAY),
+                                value: category.categoryIndex
+                            })
+                        )}
+                    />
+                </div>
+
                 <InputBox type='text' label={DISPLAY.LABELS.SPENT_AT} name='spentAt' value={expense.spentAt} onChange={handleChange} required maxLen={50} />
                 <InputBox type='number' label={DISPLAY.LABELS.AMOUNT} name='amount' value={expense.amount} onChange={handleChange} required min={0} />
-                <DateInput value={expense.spentDate} name='spentDate' onChange={handleChange} />
-
-                <Dropdown value={selectedCategoryIndex} onChange={(e)=> setSelectedCategoryIndex(Number(e.target.value))} 
-                    options={categoryData.map(
-                        (category)=>({
-                            label: category.name,
-                            value: category.categoryIndex
-                        })
-                    )}
-                />
 
                 <ActionButton name={DISPLAY.BUTTONS.ADD_EXPENSE} actionType='primary' isLoading={isLoading} disabled={isLoading || expense.amount <= 0} onClick={addExpense} customStyle={{marginBottom: theme.marginL}} />
             </form>}

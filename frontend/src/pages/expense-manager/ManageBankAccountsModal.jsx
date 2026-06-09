@@ -7,16 +7,18 @@ import BANKS from '../../assets/banks.json';
 import { apiRequest, validateAndStartLoading } from "../../utility/api";
 
 import { ArrowBackIcon } from '@chakra-ui/icons';
-import { GiMoneyStack } from "react-icons/gi";
+import { RiBankLine } from "react-icons/ri";
 
 import ActionButton from "../../common-components/form/ActionButton";
 import AddBankAccountModal from "./AddBankAccountModal";
 import Popup from "../../common-components/popup/Popup";
+import useAppContext from "../../hooks/useAppContext";
 
 
 export default function ManageBankAccountsModal({ accountData, onBack, setSelectedAccountIndex, refreshAccounts, setRefreshAccounts }) {
     const {DISPLAY, TOASTS} = useLanguage();
     const navigate = useNavigate();
+    const {allowBankAccountDeletion} = useAppContext();
 
     const [isLoading, setIsLoading] = useState(false);
 
@@ -45,7 +47,7 @@ export default function ManageBankAccountsModal({ accountData, onBack, setSelect
         <div className="fullscreen-overlay">
         <div className="common-page">
             <Flex align='center' justify='space-between' paddingBottom={theme.paddingL}>
-                <GiMoneyStack color={theme.primary} style={{marginLeft: theme.marginS, marginRight: theme.marginS}}/>
+                <RiBankLine color={theme.primary} style={{marginLeft: theme.marginS, marginRight: theme.marginS}}/>
                 <Text color={theme.primary} fontSize={theme.text} fontWeight={500} align={{base: 'center', sm: 'left'}}>
                     {DISPLAY.LABELS.BANK_ACCOUNT}
                 </Text>
@@ -84,7 +86,7 @@ export default function ManageBankAccountsModal({ accountData, onBack, setSelect
                             </Text>
                             <Divider borderColor={theme.border} borderWidth='1px' />
                             <ButtonGroup width='100%' marginTop={theme.marginL}>
-                                <ActionButton name={DISPLAY.BUTTONS.DELETE} onClick={()=>{ setAccountIdToBeDeleted(account.id); setShowDeleteAccountPopup(true); }} />
+                                {allowBankAccountDeletion && <ActionButton name={DISPLAY.BUTTONS.DELETE} onClick={()=>{ setAccountIdToBeDeleted(account.id); setShowDeleteAccountPopup(true); }} /> }
                                 <ActionButton name={DISPLAY.BUTTONS.SELECT} onClick={()=>{ setSelectedAccountIndex(account.accountIndex); onBack(); }} actionType='primary' />
                             </ButtonGroup>
                         </div>
@@ -98,7 +100,7 @@ export default function ManageBankAccountsModal({ accountData, onBack, setSelect
             {showAddAccountModal && <AddBankAccountModal onBack={()=> setShowAddAccountModal(false)} refreshAccounts={refreshAccounts} setRefreshAccounts={setRefreshAccounts}/>}
 
             {/* Delete Account Popup */}
-            <Popup isOpen={showDeleteAccountPopup} onClose={()=> setShowDeleteAccountPopup(false)} title={DISPLAY.TEXT.DELETE_ACCOUNT} borderColor={theme.error}>
+            <Popup isOpen={showDeleteAccountPopup && allowBankAccountDeletion} onClose={()=> setShowDeleteAccountPopup(false)} title={DISPLAY.TEXT.DELETE_ACCOUNT} borderColor={theme.error}>
                 <Text color={theme.text} fontSize={theme.textSize} textAlign='center'>
                     {DISPLAY.TEXT.CONFIRM_DELETE_ACCOUNT}
                 </Text>

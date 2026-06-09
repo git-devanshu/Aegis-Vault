@@ -9,7 +9,7 @@ import { TbMoneybag } from "react-icons/tb";
 import { GiMoneyStack } from 'react-icons/gi';
 
 
-export default function BankAccountCard({account, setShowManageAccountModal}) {
+export default function BankAccountCard({account, setShowManageAccountModal, showIncomeAndExpense=true}) {
     if(!account) return null;
     const {DISPLAY} = useLanguage();
     
@@ -54,32 +54,34 @@ export default function BankAccountCard({account, setShowManageAccountModal}) {
                 </Flex>
             </div>
 
-            {/* Analytics */}
-            <Grid templateColumns='1fr 1fr' gap={theme.paddingL} marginTop={theme.paddingL}>
-                <Flex direction='column' justify='space-between' style={{ backgroundColor:theme.cardBg, border:`1px solid ${theme.border}`, borderRadius: `calc(${theme.radius} * 2)`, padding:theme.paddingL }}>
-                    <Flex align='center'>
-                        <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: theme.bg, borderRadius: '50%', padding: '6px'}}>
-                            <TbMoneybag size='22px' color={theme.text} />
-                        </div>
-                        <Text color={theme.textSecondary} fontSize={theme.textSize} marginLeft={theme.marginL}>{DISPLAY.TEXT.TOTAL_INCOME}</Text>
+            {/* Income and Expense */}
+            {showIncomeAndExpense &&
+                <Grid templateColumns='1fr 1fr' gap={theme.paddingL} marginTop={theme.paddingL}>
+                    <Flex direction='column' justify='space-between' style={{ backgroundColor:theme.cardBg, border:`1px solid ${theme.border}`, borderRadius: `calc(${theme.radius} * 2)`, padding:theme.paddingL }}>
+                        <Flex align='center'>
+                            <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: theme.bg, borderRadius: '50%', padding: '6px'}}>
+                                <TbMoneybag size='22px' color={theme.text} />
+                            </div>
+                            <Text color={theme.textSecondary} fontSize={theme.textSize} marginLeft={theme.marginL}>{DISPLAY.TEXT.TOTAL_INCOME}</Text>
+                        </Flex>
+                        <Text color={theme.text} fontSize={theme.headingSize} fontWeight={600} marginTop={theme.marginL} marginLeft={theme.marginS}>
+                            {country.currency.symbol} {account.totalIncome?.toLocaleString(country.locale) || 0}
+                        </Text>
                     </Flex>
-                    <Text color={theme.text} fontSize={theme.headingSize} fontWeight={600} marginTop={theme.marginL} marginLeft={theme.marginS}>
-                        {country.currency.symbol} {account.totalIncome?.toLocaleString(country.locale) || 0}
-                    </Text>
-                </Flex>
 
-                <Flex direction='column' justify='space-between' style={{ backgroundColor:theme.primary, border:`1px solid ${theme.primary}`, borderRadius: `calc(${theme.radius} * 2)`, padding:theme.paddingL }}>
-                    <Flex align='center'>
-                        <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: theme.bg, borderRadius: '50%', padding: '6px'}}>
-                            <GiMoneyStack size='22px' color={theme.text} />
-                        </div>
-                        <Text color='#0F172A' fontSize={theme.textSize} marginLeft={theme.marginL} fontWeight={500}>{DISPLAY.TEXT.TOTAL_EXPENSE}</Text>
+                    <Flex direction='column' justify='space-between' style={{ backgroundColor:theme.primary, border:`1px solid ${theme.primary}`, borderRadius: `calc(${theme.radius} * 2)`, padding:theme.paddingL }}>
+                        <Flex align='center'>
+                            <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: theme.bg, borderRadius: '50%', padding: '6px'}}>
+                                <GiMoneyStack size='22px' color={theme.text} />
+                            </div>
+                            <Text color='#0F172A' fontSize={theme.textSize} marginLeft={theme.marginL} fontWeight={500}>{DISPLAY.TEXT.TOTAL_EXPENSE}</Text>
+                        </Flex>
+                        <Text color='#0F172A' fontSize={theme.headingSize} fontWeight={600} marginTop={theme.marginL} marginLeft={theme.marginS}>
+                            {country.currency.symbol} {account.totalExpense?.toLocaleString(country.locale) || 0}
+                        </Text>
                     </Flex>
-                    <Text color='#0F172A' fontSize={theme.headingSize} fontWeight={600} marginTop={theme.marginL} marginLeft={theme.marginS}>
-                        {country.currency.symbol} {account.totalExpense?.toLocaleString(country.locale) || 0}
-                    </Text>
-                </Flex>
-            </Grid>
+                </Grid>
+            }
         </div>
     );
 }

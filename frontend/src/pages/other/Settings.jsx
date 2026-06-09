@@ -15,6 +15,7 @@ import { LockIcon, BellIcon, ArrowBackIcon } from '@chakra-ui/icons';
 import { GiMoneyStack } from "react-icons/gi";
 import { MdRefresh, MdLockReset, MdOutlineDarkMode, MdOutlineLightMode, MdSecurity } from "react-icons/md";
 import { FaInfo } from "react-icons/fa";
+import { RiBankLine } from "react-icons/ri";
 
 import InputBox from "../../common-components/form/InputBox";
 import ActionButton from "../../common-components/form/ActionButton";
@@ -29,7 +30,18 @@ export default function Settings() {
     const { name, email } = getAuthUser();
     const {DISPLAY, TOASTS} = useLanguage();
     const {aegisTheme, toggleAegisTheme} = useTheme();
-    const {userSalt, setUserSalt, hideRemovedLabels, setHideRemovedLabels, hideShowPasswordButton, setHideShowPasswordButton, hideDeleteExpenseButton, setHideDeleteExpenseButton, hideInvestments, setHideInvestments, getEmailNotifications, setGetEmailNotifications, disablePasswordModifications, setDisablePasswordModifications} = useAppContext();
+    const {
+        userSalt, setUserSalt,
+        hideRemovedLabels, setHideRemovedLabels,
+        hideShowPasswordButton, setHideShowPasswordButton,
+        disablePasswordModifications, setDisablePasswordModifications,
+        allowBankAccountDeletion, setAllowBankAccountDeletion,
+        allowIncomeTrackerDeletion, setAllowIncomeTrackerDeletion,
+        allowExpenseDeletion, setAllowExpenseDeletion,
+        allowNewCategoryCreation, setAllowNewCategoryCreation,
+        hideAccountSnapshotInAnalytics, setHideAccountSnapshotInAnalytics,
+    } = useAppContext();
+
     const navigate = useNavigate();
 
     const [password, setPassword] = useState('');
@@ -55,9 +67,11 @@ export default function Settings() {
                     setHideShowPasswordButton(res?.data?.userSettings?.hideShowPasswordButton);
                     setHideRemovedLabels(res?.data?.userSettings?.hideRemovedLabels);
                     setDisablePasswordModifications(res?.data?.userSettings?.disablePasswordModifications);
-                    setHideInvestments(res?.data?.userSettings?.hideInvestments);
-                    setHideDeleteExpenseButton(res?.data?.userSettings?.hideDeleteExpenseButton);
-                    setGetEmailNotifications(res?.data?.userSettings?.getEmailNotifications);
+                    setAllowBankAccountDeletion(res?.data?.userSettings?.allowBankAccountDeletion);
+                    setAllowIncomeTrackerDeletion(res?.data?.userSettings?.allowIncomeTrackerDeletion);
+                    setAllowExpenseDeletion(res?.data?.userSettings?.allowExpenseDeletion);
+                    setAllowNewCategoryCreation(res?.data?.userSettings?.allowNewCategoryCreation);
+                    setHideAccountSnapshotInAnalytics(res?.data?.userSettings?.hideAccountSnapshotInAnalytics);
                 }
             });
         }
@@ -76,7 +90,7 @@ export default function Settings() {
             await apiRequest({
                 method: 'POST',
                 endpoint: '/api/config/settings',
-                data: {passwordHash, hideRemovedLabels, hideShowPasswordButton, hideDeleteExpenseButton, hideInvestments, getEmailNotifications, disablePasswordModifications},
+                data: {passwordHash, hideRemovedLabels, hideShowPasswordButton, disablePasswordModifications, allowBankAccountDeletion, allowIncomeTrackerDeletion, allowExpenseDeletion, allowNewCategoryCreation, hideAccountSnapshotInAnalytics},
                 toastId,
                 setIsLoading,
                 onSuccess: (res) =>{
@@ -93,12 +107,14 @@ export default function Settings() {
 
     const resetSettings = (e) =>{
         setPassword('');
-        setGetEmailNotifications(false);
         setHideRemovedLabels(false);
         setDisablePasswordModifications(false);
         setHideShowPasswordButton(false);
-        setHideDeleteExpenseButton(false);
-        setHideInvestments(false);
+        setAllowBankAccountDeletion(false);
+        setAllowExpenseDeletion(true);
+        setAllowIncomeTrackerDeletion(true);
+        setAllowNewCategoryCreation(true);
+        setHideAccountSnapshotInAnalytics(false);
     }
 
     const sidebar = (
@@ -167,6 +183,25 @@ export default function Settings() {
                             </Flex>
                         </div>
 
+                        {/* Notifications Settings */}
+                        <div style={{padding: theme.paddingL, borderRadius: `calc(${theme.radius} * 2)`, border: `1px solid ${theme.border}`, backgroundColor: theme.cardBg, marginBottom: theme.marginL}}>
+                            <Flex align='center' marginBottom={theme.marginL}>
+                                <RiBankLine color={theme.textSecondary} margin={0}/>
+                                <Text color={theme.text} fontSize={theme.textSize} marginLeft={theme.marginS} marginBottom='2px' fontWeight={500}>
+                                    {DISPLAY.TEXT.BANK_ACCOUNT_SETTINGS}
+                                </Text>
+                            </Flex>
+
+                            <Divider borderColor={theme.border} borderWidth='1px' />
+
+                            <Flex align='center' justify='space-between' marginTop={theme.marginL}>
+                                <Text color={theme.text} fontSize={theme.textSize} marginLeft={theme.marginS}>
+                                    {DISPLAY.TEXT.ALLOW_BANK_ACCOUNT_DELETION}
+                                </Text>
+                                <ToggleSwitch value={allowBankAccountDeletion} onChange={setAllowBankAccountDeletion}/>
+                            </Flex>
+                        </div>
+
                         {/* Expense Manager Settings */}
                         <div style={{padding: theme.paddingL, borderRadius: `calc(${theme.radius} * 2)`, border: `1px solid ${theme.border}`, backgroundColor: theme.cardBg, marginBottom: theme.marginL}}>
                             <Flex align='center' marginBottom={theme.marginL}>
@@ -179,30 +214,31 @@ export default function Settings() {
                             <Divider borderColor={theme.border} borderWidth='1px' />
 
                             <Flex align='center' justify='space-between' marginTop={theme.marginL}>
-                                <Text color={theme.text} fontSize={theme.textSize} marginLeft={theme.marginS}>{DISPLAY.TEXT.HIDE_DELETE_EXPENSE_BUTTON}</Text>
-                                <ToggleSwitch value={hideDeleteExpenseButton} onChange={setHideDeleteExpenseButton}/>
-                            </Flex>
-                            
-                            <Flex align='center' justify='space-between' marginTop={theme.marginL}>
-                                <Text color={theme.text} fontSize={theme.textSize} marginLeft={theme.marginS}>{DISPLAY.TEXT.HIDE_INVESTMENTS}</Text>
-                                <ToggleSwitch value={hideInvestments} onChange={setHideInvestments}/>
-                            </Flex>
-                        </div>
-
-                        {/* Notifications Settings */}
-                        <div style={{padding: theme.paddingL, borderRadius: `calc(${theme.radius} * 2)`, border: `1px solid ${theme.border}`, backgroundColor: theme.cardBg, marginBottom: theme.marginL}}>
-                            <Flex align='center' marginBottom={theme.marginL}>
-                                <BellIcon color={theme.textSecondary} margin={0}/>
-                                <Text color={theme.text} fontSize={theme.textSize} marginLeft={theme.marginS} marginBottom='2px' fontWeight={500}>
-                                    {DISPLAY.TEXT.NOTIFICATIONS_SETTINGS}
+                                <Text color={theme.text} fontSize={theme.textSize} marginLeft={theme.marginS}>
+                                    {DISPLAY.TEXT.ALLOW_INCOME_TRACKER_DELETION}
                                 </Text>
+                                <ToggleSwitch value={allowIncomeTrackerDeletion} onChange={setAllowIncomeTrackerDeletion}/>
                             </Flex>
 
-                            <Divider borderColor={theme.border} borderWidth='1px' />
+                            <Flex align='center' justify='space-between' marginTop={theme.marginL}>
+                                <Text color={theme.text} fontSize={theme.textSize} marginLeft={theme.marginS}>
+                                    {DISPLAY.TEXT.ALLOW_EXPENSE_DELETION}
+                                </Text>
+                                <ToggleSwitch value={allowExpenseDeletion} onChange={setAllowExpenseDeletion}/>
+                            </Flex>
 
                             <Flex align='center' justify='space-between' marginTop={theme.marginL}>
-                                <Text color={theme.text} fontSize={theme.textSize} marginLeft={theme.marginS}>{DISPLAY.TEXT.GET_EMAILS}</Text>
-                                <ToggleSwitch value={getEmailNotifications} onChange={setGetEmailNotifications}/>
+                                <Text color={theme.text} fontSize={theme.textSize} marginLeft={theme.marginS}>
+                                    {DISPLAY.TEXT.ALLOW_NEW_CATEGORY_CREATION}
+                                </Text>
+                                <ToggleSwitch value={allowNewCategoryCreation} onChange={setAllowNewCategoryCreation}/>
+                            </Flex>
+
+                            <Flex align='center' justify='space-between' marginTop={theme.marginL}>
+                                <Text color={theme.text} fontSize={theme.textSize} marginLeft={theme.marginS}>
+                                    {DISPLAY.TEXT.HIDE_ACCOUNT_SNAPSHOT_IN_ANALYTICS}
+                                </Text>
+                                <ToggleSwitch value={hideAccountSnapshotInAnalytics} onChange={setHideAccountSnapshotInAnalytics}/>
                             </Flex>
                         </div>
                     </div>

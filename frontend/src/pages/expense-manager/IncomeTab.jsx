@@ -1,23 +1,14 @@
-import React, { useState, useEffect, useMemo } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState } from "react";
 import toast from 'react-hot-toast';
 import { theme } from '../../themes/theme';
-import SYSTEM_DATA from '../../assets/system-data.json'
 import BANKS from '../../assets/banks.json';
-import { CATEGORY_ICONS } from '../../assets/categoryIcons';
-import { Divider, Text, Flex, Stack, useMediaQuery, ButtonGroup, Spacer, Grid } from '@chakra-ui/react'
-import { createHash, createPassKey, decryptData, encryptData } from '../../utility/crypto';
+import { Text, Flex, ButtonGroup, Spacer, Grid } from '@chakra-ui/react'
+import { encryptData } from '../../utility/crypto';
 import { validateAndStartLoading, apiRequest } from "../../utility/api";
 import useLanguage from "../../hooks/useLanguage";
 import useAppContext from "../../hooks/useAppContext";
-import useClearOnUnmount from '../../hooks/useClearOnUnmount';
 
-import { ArrowBackIcon, AddIcon, LockIcon, EditIcon, CloseIcon, DeleteIcon } from '@chakra-ui/icons';
-import { MdRefresh, MdAutoGraph, MdOutlineSettingsBackupRestore } from "react-icons/md";
-import { FaInfo } from "react-icons/fa";
-import { GiMoneyStack } from "react-icons/gi";
-import { PiChartDonut } from "react-icons/pi";
-import { TbMoneybagPlus } from "react-icons/tb";
+import { DeleteIcon } from '@chakra-ui/icons';
 
 import InputBox from "../../common-components/form/InputBox";
 import ActionButton from "../../common-components/form/ActionButton";
@@ -26,11 +17,11 @@ import CircleIconButton from "../../common-components/form/CircleIconButton";
 import Dropdown from "../../common-components/form/Dropdown";
 
 
-export default function IncomeTab({trackerData, selectedAccount, accountDataArray, setAccountData, refreshTrackers, setRefreshTrackers}) {
+export default function IncomeTab({trackerData, selectedAccount, accountDataArray, setAccountData, refreshTrackers, setRefreshTrackers, selectedTrackerIndex}) {
     if(!selectedAccount) return null;
 
     const {DISPLAY, TOASTS} = useLanguage();
-    const {masterKey} = useAppContext();
+    const {masterKey, allowIncomeTrackerDeletion} = useAppContext();
 
     const [searchQuery, setSearchQuery] = useState('');
     const [sortBy, setSortBy] = useState('newestFirst');
@@ -151,7 +142,7 @@ export default function IncomeTab({trackerData, selectedAccount, accountDataArra
             <Grid templateColumns={{base:'1fr', md:'1fr 1fr'}} gap={theme.marginL} alignItems='start'>
                 {
                     filteredTrackers.map((tracker)=>(
-                        <div key={tracker.id} style={{backgroundColor: theme.cardBg, border: `1px solid ${theme.border}`, borderRadius: `calc(${theme.radius} * 2)`, padding: theme.paddingL}}>
+                        <div key={tracker.id} style={{backgroundColor: theme.cardBg, border: `1px solid ${tracker.trackerIndex === selectedTrackerIndex ? theme.primary : theme.border}`, borderRadius: `calc(${theme.radius} * 2)`, padding: theme.paddingL}}>
                             <Flex justify='space-between' align='center'>
                                 <div>
                                     <Text color={theme.textSecondary} fontSize={theme.textSize}>
@@ -161,7 +152,7 @@ export default function IncomeTab({trackerData, selectedAccount, accountDataArra
                                         {country.currency.symbol} {tracker.amount?.toLocaleString(country.locale)}
                                     </Text>
                                 </div>
-                                <CircleIconButton icon={<DeleteIcon />} onClick={()=> { setTrackerToBeDeleted(tracker); setShowDeleteTrackerPopup(true); }} tooltip={DISPLAY.TOOLTIPS.DELETE}/>
+                                {allowIncomeTrackerDeletion && <CircleIconButton icon={<DeleteIcon />} onClick={()=> { setTrackerToBeDeleted(tracker); setShowDeleteTrackerPopup(true); }} tooltip={DISPLAY.TOOLTIPS.DELETE}/> }
                             </Flex>
                         </div>
                     ))
@@ -170,7 +161,7 @@ export default function IncomeTab({trackerData, selectedAccount, accountDataArra
             </Grid>
 
             {/* Delete Tracker Popup */}
-            <Popup isOpen={showDeleteTrackerPopup} onClose={()=> setShowDeleteTrackerPopup(false)} title={DISPLAY.TEXT.DELETE_INCOME} borderColor={theme.warning}>
+            <Popup isOpen={showDeleteTrackerPopup && allowIncomeTrackerDeletion} onClose={()=> setShowDeleteTrackerPopup(false)} title={DISPLAY.TEXT.DELETE_INCOME} borderColor={theme.warning}>
                 <Text color={theme.text} fontSize={theme.textSize} textAlign='center'>
                     {DISPLAY.TEXT.COMFIRM_DELETE_INCOME}
                 </Text>

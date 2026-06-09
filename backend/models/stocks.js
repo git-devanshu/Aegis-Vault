@@ -2,13 +2,9 @@ const mongoose = require('mongoose');
 
 const stockSchema = new mongoose.Schema({
     userId : {type : mongoose.Schema.Types.ObjectId, required : true},
-
     accountIndex : {type : Number, required : true},
-
     status : {type : Number, required : true},
-
     stockData : {type : String, required : true},
-
     nonce : {type : String, required : true}
 });
 
@@ -29,7 +25,8 @@ stockData {
     units,
     unitPrice,
     totalPrice,
-    purchaseDate
+    purchaseDate,
+    broker
 }
 
 This object is stringified and then encrypted on client side

@@ -72,12 +72,12 @@ export default function WidgetDBudgetVsActual({categoryData, analytics}) {
                 {DISPLAY.TEXT.BUDGET_VS_ACTUAL}
             </Text>
 
-            <Flex marginTop={theme.marginL}>
-                <div style={{overflowX: 'auto', width: '100%', display: 'flex', alignItems: 'center', flexDirection: 'column'}}>
-                    <div style={{width: `${chartWidth}px`}}>
+            <Flex marginTop={theme.marginL} overflowX='scroll' width='100%'>
+                <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', width:`${chartWidth}px`}}>
+                    <div style={{width:`${chartWidth}px`}}>
                         <Chart type='bar' data={chartData} options={chartOptions} />
                     </div>
-                    <Flex width={`${chartWidth}px`} justifyContent='space-around' marginTop={theme.marginL}>
+                    <Flex width='100%' justifyContent='space-around' marginTop={theme.marginL}>
                         {
                             budgetAnalytics.map(item =>{
                                 const categoryObj = categoryMap.get(item.categoryIndex);

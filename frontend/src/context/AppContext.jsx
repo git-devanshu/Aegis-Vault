@@ -12,9 +12,12 @@ export const AppContextProvider = ({ children }) => {
     const [hideRemovedLabels, setHideRemovedLabels] = useState(false);
     const [hideShowPasswordButton, setHideShowPasswordButton] = useState(false);
     const [disablePasswordModifications, setDisablePasswordModifications] = useState(false);
-    const [hideDeleteExpenseButton, setHideDeleteExpenseButton] = useState(false);
-    const [hideInvestments, setHideInvestments] = useState(false);
-    const [getEmailNotifications, setGetEmailNotifications] = useState(false);
+
+    const [allowBankAccountDeletion, setAllowBankAccountDeletion] = useState(false);
+    const [allowIncomeTrackerDeletion, setAllowIncomeTrackerDeletion] = useState(true);
+    const [allowExpenseDeletion, setAllowExpenseDeletion] = useState(true);
+    const [allowNewCategoryCreation, setAllowNewCategoryCreation] = useState(true);
+    const [hideAccountSnapshotInAnalytics, setHideAccountSnapshotInAnalytics] = useState(false);
     
     const clearMasterKey = useCallback(() => {
         setMasterKey(null);
@@ -29,9 +32,11 @@ export const AppContextProvider = ({ children }) => {
         hideRemovedLabels, setHideRemovedLabels,
         hideShowPasswordButton, setHideShowPasswordButton,
         disablePasswordModifications, setDisablePasswordModifications,
-        hideDeleteExpenseButton, setHideDeleteExpenseButton,
-        hideInvestments, setHideInvestments,
-        getEmailNotifications, setGetEmailNotifications
+        allowBankAccountDeletion, setAllowBankAccountDeletion,
+        allowIncomeTrackerDeletion, setAllowIncomeTrackerDeletion,
+        allowExpenseDeletion, setAllowExpenseDeletion,
+        allowNewCategoryCreation, setAllowNewCategoryCreation,
+        hideAccountSnapshotInAnalytics, setHideAccountSnapshotInAnalytics,
     };
 
     return (

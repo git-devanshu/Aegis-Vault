@@ -15,7 +15,18 @@ import { createHash, decryptMasterKey } from "../utility/crypto";
 
 export default function PinModal() {
     const {DISPLAY, TOASTS} = useLanguage();
-    const {setMasterKey, userSalt, setUserSalt, setNewPassKeyGenerated, setHideRemovedLabels, setHideShowPasswordButton, setHideDeleteExpenseButton, setHideInvestments, setGetEmailNotifications} = useAppContext();
+    const {setMasterKey,
+        userSalt, setUserSalt,
+        setNewPassKeyGenerated,
+        setHideRemovedLabels,
+        hideShowPasswordButton, setHideShowPasswordButton,
+        disablePasswordModifications, setDisablePasswordModifications,
+        allowBankAccountDeletion, setAllowBankAccountDeletion,
+        allowIncomeTrackerDeletion, setAllowIncomeTrackerDeletion,
+        allowExpenseDeletion, setAllowExpenseDeletion,
+        allowNewCategoryCreation, setAllowNewCategoryCreation,
+        hideAccountSnapshotInAnalytics, setHideAccountSnapshotInAnalytics,
+    } = useAppContext();
     const navigate = useNavigate();
     const [searchParams] = useSearchParams();
 
@@ -70,13 +81,16 @@ export default function PinModal() {
                 onSuccess: async(res) =>{
                     const decryptedMasterKey = await decryptMasterKey(res?.data?.pinEncryptedKey, securityPin, res?.data?.pinSalt, res?.data?.pinNonce);
                     setMasterKey(decryptedMasterKey);
-                    
                     setNewPassKeyGenerated(res?.data?.newPassKeyGenerated);
+
                     setHideShowPasswordButton(res?.data?.userSettings?.hideShowPasswordButton);
                     setHideRemovedLabels(res?.data?.userSettings?.hideRemovedLabels);
-                    setHideInvestments(res?.data?.userSettings?.hideInvestments);
-                    setHideDeleteExpenseButton(res?.data?.userSettings?.hideDeleteExpenseButton);
-                    setGetEmailNotifications(res?.data?.userSettings?.getEmailNotifications);
+                    setDisablePasswordModifications(res?.data?.userSettings?.disablePasswordModifications);
+                    setAllowBankAccountDeletion(res?.data?.userSettings?.allowBankAccountDeletion);
+                    setAllowIncomeTrackerDeletion(res?.data?.userSettings?.allowIncomeTrackerDeletion);
+                    setAllowExpenseDeletion(res?.data?.userSettings?.allowExpenseDeletion);
+                    setAllowNewCategoryCreation(res?.data?.userSettings?.allowNewCategoryCreation);
+                    setHideAccountSnapshotInAnalytics(res?.data?.userSettings?.hideAccountSnapshotInAnalytics);
                 }
             });
         }

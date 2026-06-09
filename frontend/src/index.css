@@ -27,11 +27,11 @@ html, body, #root{
     width: 350px;
 }
 
-@media (max-width: 400px) {
+/* @media (max-width: 400px) {
     .auth-page{
         padding: var(--padding-s);
     }
-}
+} */
 
 /* -------------------------------------------- */
 
@@ -60,11 +60,11 @@ html, body, #root{
     overflow-y: auto;
 }
 
-@media (max-width: 400px) {
+/* @media (max-width: 400px) {
     .common-page{
         padding: var(--padding-s);
     }
-}
+} */
 
 /* -------------------------------------------- */
 

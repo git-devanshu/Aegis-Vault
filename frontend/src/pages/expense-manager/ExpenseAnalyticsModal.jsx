@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useState } from "react";
 import { Flex, Text, Divider, Spacer, Grid, Image, GridItem } from '@chakra-ui/react';
 import { theme } from '../../themes/theme';
 import BANKS from '../../assets/banks.json';
@@ -21,12 +21,20 @@ import WidgetHTopSpendingDays from "../../common-components/widgets/WidgetHTopSp
 import WidgetIWeekendVsWeekday from "../../common-components/widgets/WidgetIWeekendVsWeekday";
 import WidgetJInsights from "../../common-components/widgets/WidgetJInsights";
 import Dropdown from "../../common-components/form/Dropdown";
+import useAppContext from "../../hooks/useAppContext.jsx";
 
 
 export default function ExpenseAnalyticsModal({onBack, selectedAccount, selectedTracker, expenseData, categoryData, selectedTrackerIndex, setSelectedTrackerIndex, trackerDataOptions, trackerData, setSelectedTab}) {
     if(!selectedAccount || !selectedTracker){
         return null;
     }
+
+    const {hideAccountSnapshotInAnalytics} = useAppContext();
+
+    const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+    const lgColumnWidth = (screenWidth - (3 * 10)) / 2; // 10 is the value for theme.paddingL
+    const mdColumnWidth = (lgColumnWidth - 10) / 2; // 10 is the value for theme.paddingL
+    const baseColumnWidth = (screenWidth - (2 * 10)); // 10 is the value for theme.paddingL
 
     const {DISPLAY} = useLanguage();
     const country = BANKS.country[selectedAccount.countryCode];
@@ -37,7 +45,8 @@ export default function ExpenseAnalyticsModal({onBack, selectedAccount, selected
             expenseData,
             categoryData,
             selectedTracker,
-            selectedAccount
+            selectedAccount,
+            DISPLAY
         }),
         [expenseData, categoryData, selectedTracker, selectedAccount]
     );
@@ -72,28 +81,28 @@ export default function ExpenseAnalyticsModal({onBack, selectedAccount, selected
                 </div>
             </Flex>
 
-            <WidgetAAccountSnapshot selectedAccount={selectedAccount} analytics={analytics} />
+            {!hideAccountSnapshotInAnalytics && <WidgetAAccountSnapshot selectedAccount={selectedAccount} analytics={analytics} /> }
 
-            <Grid templateColumns={{base:'1fr', lg:'1fr 1fr'}} templateRows={{base: 'auto', lg: '486px'}} gap={theme.paddingL} marginTop={theme.marginL}>
+            <Grid templateColumns={{base:`${baseColumnWidth}px`, lg:`${lgColumnWidth}px ${lgColumnWidth}px`}} templateRows={{base: 'auto', lg: '486px'}} gap={theme.paddingL} marginTop={theme.marginL}>
                 <Flex direction='column' gap={theme.paddingL}>
                     <WidgetGIncomeOverview analytics={analytics} country={country} />
-                    <Grid templateColumns={{base:'1fr', md:'1fr 1fr'}} gap={theme.paddingL} height='100%'>
+                    <Grid templateColumns={{base:`${baseColumnWidth}px`, md:`${mdColumnWidth}px ${mdColumnWidth}px`}} gap={theme.paddingL} height='100%'>
                         <WidgetDBudgetVsActual analytics={analytics} categoryData={categoryData} />
                         <WidgetEBudgetHealth analytics={analytics} />
                     </Grid>
                 </Flex>
-                <Grid templateColumns={{base: '1fr', md: '1fr 1fr'}} gap={theme.paddingL}>
+                <Grid templateColumns={{base: `${baseColumnWidth}px`, md: `${mdColumnWidth}px ${mdColumnWidth}px`}} gap={theme.paddingL}>
                     <WidgetBCategoryDistribution analytics={analytics} categoryData={categoryData} country={country}/>
                     <WidgetJInsights expenseData={expenseData} categoryData={categoryData} selectedTracker={selectedTracker} country={country}/>
                 </Grid>
             </Grid>
 
-            <Grid templateColumns={{base:'1fr', lg:'1fr 1fr'}} gap={theme.paddingL} marginTop={theme.marginL}>    
-                <Grid templateColumns={{base: '1fr', md: '1fr 1fr'}} gap={theme.paddingL}>
+            <Grid templateColumns={{base:`${baseColumnWidth}px`, lg:`${lgColumnWidth}px ${lgColumnWidth}px`}} gap={theme.paddingL} marginTop={theme.marginL}>    
+                <Grid templateColumns={{base:`${baseColumnWidth}px`, md:`${mdColumnWidth}px ${mdColumnWidth}px`}} gap={theme.paddingL}>
                     <WidgetCTopExpenses analytics={analytics} country={country} onBack={onBack} setSelectedTab={setSelectedTab}/>
                     <WidgetFSpendingTimeline analytics={analytics} />
                 </Grid>
-                <Grid templateColumns={{base: '1fr', md: '1fr 1fr'}} gap={theme.paddingL}>
+                <Grid templateColumns={{base:`${baseColumnWidth}px`, md:`${mdColumnWidth}px ${mdColumnWidth}px`}} gap={theme.paddingL}>
                     <WidgetHTopSpendingDays analytics={analytics} country={country} />
                     <WidgetIWeekendVsWeekday analytics={analytics} country={country} />
                 </Grid>
