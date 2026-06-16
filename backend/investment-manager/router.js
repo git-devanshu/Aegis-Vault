@@ -1,5 +1,5 @@
 const express = require('express');
-const { fetchAllAccountFDs, fetchAllAccountRDs, fetchAllAccountGoldAssets, fetchAllAccountStocks, addFixedDeposit, addRecurringDeposit, addGoldAsset, addStock, closeFixedDeposit, rolloverFixedDeposit, deleteFixedDeposit, closeRecurringDeposit, deleteRecurringDeposit } = require('./controller');
+const { fetchAllAccountFDs, fetchAllAccountRDs, fetchAllAccountGoldAssets, fetchAllAccountStocks, addFixedDeposit, addRecurringDeposit, addGoldAsset, addStock, closeFixedDeposit, rolloverFixedDeposit, deleteFixedDeposit, closeRecurringDeposit, deleteRecurringDeposit, sellGoldAsset, deleteGoldAsset, sellStock, deleteStock } = require('./controller');
 const { checkAuthorization } = require('../middlewares/checkAuthorization');
 
 // endpoint prefix : /api/im
@@ -22,6 +22,10 @@ imRouter.delete('/fd/:id', checkAuthorization, deleteFixedDeposit);
 imRouter.put('/rd/close', checkAuthorization, closeRecurringDeposit);
 imRouter.delete('/rd/:id', checkAuthorization, deleteRecurringDeposit);
 
+imRouter.put('/gold/sell', checkAuthorization, sellGoldAsset);
+imRouter.delete('/gold/:id', checkAuthorization, deleteGoldAsset);
 
+imRouter.put('/stocks/sell', checkAuthorization, sellStock);
+imRouter.delete('/stocks/:id', checkAuthorization, deleteStock);
 
 module.exports = {imRouter};

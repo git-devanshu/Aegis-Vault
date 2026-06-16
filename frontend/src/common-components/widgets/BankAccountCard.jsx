@@ -9,7 +9,7 @@ import { TbMoneybag } from "react-icons/tb";
 import { GiMoneyStack } from 'react-icons/gi';
 
 
-export default function BankAccountCard({account, setShowManageAccountModal, showIncomeAndExpense=true}) {
+export default function BankAccountCard({account, setShowManageAccountModal, showIncomeAndExpense=true, showAccountBalance=true}) {
     if(!account) return null;
     const {DISPLAY} = useLanguage();
     
@@ -34,9 +34,9 @@ export default function BankAccountCard({account, setShowManageAccountModal, sho
                     </div>
                 </Flex>
 
-                <Text fontSize={`calc(${theme.headingSize} * 1.5)`} fontWeight={600}>
+                {showAccountBalance && <Text fontSize={`calc(${theme.headingSize} * 1.5)`} fontWeight={600}>
                     {formattedBalance}
-                </Text>
+                </Text>}
                 <Text letterSpacing='1px' fontSize={theme.headingSize} fontFamily='math' fontWeight={600}>
                     {maskedAccountNo}
                 </Text>

@@ -39,6 +39,7 @@ export default function AddHoldingsPopup({isOpen, onClose, selectedAccount, refr
     const defaultStockObject = {
         name: '',
         symbol: '',
+        exchange: 'NSE',
         units: '', // use parseFloat before calculations
         unitPrice: '', // use parseFloat before calculations
         totalPrice: 0,
@@ -152,6 +153,11 @@ export default function AddHoldingsPopup({isOpen, onClose, selectedAccount, refr
         value: type
     }));
 
+    const stockExchangeOptions = SYSTEM_DATA.STOCK_EXCHANGES.map(exchange =>({
+        label: exchange,
+        value: exchange
+    }));
+
     return (
         <Popup isOpen={isOpen} onClose={onClose} title={DISPLAY.TEXT.ADD_HOLDINGS} bg={theme.bg} borderColor={theme.success}>
             <TabGroup tabs={tabs} value={selectedTab} onChange={setSelectedTab}/>
@@ -197,6 +203,7 @@ export default function AddHoldingsPopup({isOpen, onClose, selectedAccount, refr
                 <form style={{marginTop: theme.marginL, maxHeight: '400px', overflowY: "scroll"}}>
                     <InputBox type='text' label={DISPLAY.LABELS.NAME} name='name' value={stock.name} onChange={handleStockChange} required maxLen={50} />
                     <InputBox type='text' label={DISPLAY.LABELS.SYMBOL} name='symbol' value={stock.symbol} onChange={handleStockChange} required maxLen={20} />
+                    <Dropdown value={stock.exchange} onChange={e => setStock({...stock, exchange: e.target.value})} options={stockExchangeOptions} />
                     <InputBox type='text' label={DISPLAY.LABELS.UNITS} name='units' value={stock.units} onChange={handleStockChange} required />
                     <InputBox type='text' label={DISPLAY.LABELS.UNIT_PRICE} name='unitPrice' value={stock.unitPrice} onChange={handleStockChange} required />
                     <InputBox type='number' label={DISPLAY.LABELS.TOTAL_AMOUNT} name='totalPrice' value={stock.totalPrice} onChange={handleStockChange} required min={0} />

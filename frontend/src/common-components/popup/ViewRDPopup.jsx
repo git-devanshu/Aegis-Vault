@@ -67,7 +67,8 @@ export default function ViewRDPopup({isOpen, onClose, selectedRD, selectedAccoun
         });
         if(!toastId) return;
         try{
-            const closedRD = { ...selectedRD, closingDate };
+            const {id, status, ...restRDData} = selectedRD;
+            const closedRD = { ...restRDData, closingDate };
             const {encryptedData: rdData, nonce} = await encryptData(JSON.stringify(closedRD), masterKey);
             await apiRequest({
                 method: 'PUT',
@@ -144,13 +145,13 @@ export default function ViewRDPopup({isOpen, onClose, selectedRD, selectedAccoun
                 <Table variant='unstyled' size='sm'>
                     <Thead position='sticky' top='0' zIndex={1}>
                         <Tr>
-                            <Th color={theme.textSecondary}>
+                            <Th color={theme.textSecondary} textTransform='none'>
                                 {DISPLAY.LABELS.SR_NO}
                             </Th>
-                            <Th color={theme.textSecondary}>
+                            <Th color={theme.textSecondary} textTransform='none'>
                                 {DISPLAY.LABELS.MONTH}
                             </Th>
-                            <Th color={theme.textSecondary} textAlign='right'>
+                            <Th color={theme.textSecondary} textAlign='right' textTransform='none'>
                                 {DISPLAY.LABELS.AMOUNT}
                             </Th>
                         </Tr>

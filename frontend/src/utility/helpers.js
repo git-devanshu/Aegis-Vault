@@ -1,4 +1,5 @@
 import {UAParser} from 'ua-parser-js';
+import SYSTEM_DATA from '../assets/system-data.json';
 
 
 // decode the JWT and return the payload
@@ -133,7 +134,14 @@ export const getCssVariable = variableName =>{
     return getComputedStyle(document.documentElement)
         .getPropertyValue(variableName)
         .trim();
-};
+}
+
+
+export function getStockTicker(symbol, exchange){
+    if(!symbol?.trim()) return '';
+    const suffix = SYSTEM_DATA.STOCK_EXCHANGE_TICKER_SUFFIX[exchange] || '';
+    return `${symbol.trim().toUpperCase()}${suffix}`;
+}
 
 
 //function to get the current date in different formats

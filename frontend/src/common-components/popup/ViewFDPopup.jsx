@@ -20,13 +20,15 @@ import CircleIconButton from '../form/CircleIconButton';
 
 
 export default function ViewFDPopup({isOpen, onClose, selectedFDGroup, selectedAccount, refreshFDs, setRefreshFDs}) {
-    if(!selectedAccount || !selectedFDGroup) return;
+    if(!selectedAccount || !selectedFDGroup) return null;
 
     const {DISPLAY, TOASTS} = useLanguage();
     const {masterKey} = useAppContext();
 
     const country = BANKS.country[selectedAccount.countryCode];
-    const latestFD = selectedFDGroup?.[0];
+    const latestFD = selectedFDGroup[0];
+    const firstFD =  selectedFDGroup[selectedFDGroup.length - 1];
+    const totalInterest = latestFD.maturityAmount - firstFD.principal;
 
     const [rolledFD, setRolledFD] = useState({
         holderName: '',
@@ -119,7 +121,8 @@ export default function ViewFDPopup({isOpen, onClose, selectedFDGroup, selectedA
         });
         if(!toastId) return;
         try{
-            const closedFD = { ...latestFD, closingDate };
+            const {id, status, ...restFDData} = latestFD;
+            const closedFD = { ...restFDData, closingDate };
             const {encryptedData: fdData, nonce} = await encryptData(JSON.stringify(closedFD), masterKey);
 
             await apiRequest({
@@ -197,16 +200,16 @@ export default function ViewFDPopup({isOpen, onClose, selectedFDGroup, selectedA
                 <Table variant='unstyled' size='sm'>
                     <Thead position='sticky' top='0' zIndex={1}>
                         <Tr>
-                            <Th color={theme.textSecondary}>
+                            <Th color={theme.textSecondary} textTransform='none'>
                                 {DISPLAY.LABELS.DATE}
                             </Th>
-                            <Th color={theme.textSecondary} textAlign='right'>
+                            <Th color={theme.textSecondary} textAlign='right' textTransform='none'>
                                 {DISPLAY.LABELS.AMOUNT}
                             </Th>
-                            <Th color={theme.textSecondary} textAlign='right'>
+                            <Th color={theme.textSecondary} textAlign='right' textTransform='none'>
                                 {DISPLAY.LABELS.RATE}
                             </Th>
-                            <Th color={theme.textSecondary} textAlign='right'>
+                            <Th color={theme.textSecondary} textAlign='right' textTransform='none'>
                                 {DISPLAY.LABELS.INTEREST}
                             </Th>
                         </Tr>
@@ -241,6 +244,14 @@ export default function ViewFDPopup({isOpen, onClose, selectedFDGroup, selectedA
                                 </Td>
                             </Tr>
                         ))}
+                        <Tr borderTop={`1px solid ${theme.border}`}>
+                            <Td color={theme.primary} colSpan={3} fontWeight={500}>
+                                {DISPLAY.TEXT.TOTAL_INTEREST}
+                            </Td>
+                            <Td color={theme.primary} textAlign='right' fontWeight={500}>
+                                {country.currency.symbol}{totalInterest.toLocaleString(country.locale, {maximumFractionDigits: 2})}
+                            </Td>
+                        </Tr>
                     </Tbody>
                 </Table>
             </Box>

@@ -27,7 +27,8 @@ assetData {
     rate,
     totalPrice,
     purchaseDate,
-    broker
+    broker, 
+    soldDate
 }
 
 This object is stringified and then encrypted on client side

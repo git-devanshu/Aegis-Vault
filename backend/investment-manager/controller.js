@@ -407,84 +407,123 @@ const deleteRecurringDeposit = async(req, res) =>{
 
 
 /*
-* POST /api/im/
-* 
+* PUT /api/im/gold/sell
+* Sell a Gold Asset
 */
-// const  = async(req, res) =>{
-//     const {RESPONSES} = getLanguageConstants(req.lang);
-//     try{
+const sellGoldAsset = async(req, res) =>{
+    const {RESPONSES} = getLanguageConstants(req.lang);
+    try{
+        const {id, assetData, nonce} = req.body;
+        if(!id?.length || !assetData?.length || !nonce?.length){
+            return res.status(400).json({ message: RESPONSES.COMMON.UNEXPECTED_ERROR });
+        }
 
-//     }
-//     catch(error){
-//         console.log('Server error: ', error);
-//         res.status(500).json({ message : RESPONSES.COMMON.SERVER_ERROR });
-//     }
-// }
+        const updatedGoldAsset = await GoldAssets.updateOne(
+            { _id: id, userId: req.id }, 
+            { $set:{
+                    status: 1,
+                    assetData,
+                    nonce
+                }
+            }
+        );
+
+        if(!updatedGoldAsset){
+            return res.status(404).json({ message: RESPONSES.INVESTMENT_MANAGER.GOLD_ASSET_NOT_FOUND });
+        }
+        res.status(200).json({ message: RESPONSES.INVESTMENT_MANAGER.GOLD_ASSET_SOLD });
+    }
+    catch(error){
+        console.log('Server error: ', error);
+        res.status(500).json({ message: RESPONSES.COMMON.SERVER_ERROR });
+    }
+};
 
 
 /*
-* POST /api/im/
-* 
+* DELETE /api/im/gold/{id}
+* Delete a Gold Asset
 */
-// const  = async(req, res) =>{
-//     const {RESPONSES} = getLanguageConstants(req.lang);
-//     try{
+const deleteGoldAsset = async(req, res) =>{
+    const {RESPONSES} = getLanguageConstants(req.lang);
+    try{
+        const id = req.params.id;
+        if(!id?.length){
+            return res.status(400).json({ message: RESPONSES.COMMON.UNEXPECTED_ERROR });
+        }
 
-//     }
-//     catch(error){
-//         console.log('Server error: ', error);
-//         res.status(500).json({ message : RESPONSES.COMMON.SERVER_ERROR });
-//     }
-// }
+        const deletedGoldAsset = await GoldAssets.findOneAndDelete({ _id: id, userId: req.id });
+        if(!deletedGoldAsset){
+            return res.status(404).json({ message: RESPONSES.INVESTMENT_MANAGER.GOLD_ASSET_NOT_FOUND });
+        }
+
+        res.status(200).json({ message: RESPONSES.INVESTMENT_MANAGER.GOLD_ASSET_DELETED });
+    }
+    catch(error){
+        console.log('Server error: ', error);
+        res.status(500).json({ message: RESPONSES.COMMON.SERVER_ERROR });
+    }
+};
 
 
 /*
-* POST /api/im/
-* 
+* PUT /api/im/stocks/sell
+* Sell a Stock
 */
-// const  = async(req, res) =>{
-//     const {RESPONSES} = getLanguageConstants(req.lang);
-//     try{
+const sellStock = async(req, res) =>{
+    const {RESPONSES} = getLanguageConstants(req.lang);
+    try{
+        const {id, stockData, nonce} = req.body;
+        if(!id?.length || !stockData?.length || !nonce?.length){
+            return res.status(400).json({ message: RESPONSES.COMMON.UNEXPECTED_ERROR });
+        }
 
-//     }
-//     catch(error){
-//         console.log('Server error: ', error);
-//         res.status(500).json({ message : RESPONSES.COMMON.SERVER_ERROR });
-//     }
-// }
+        const updatedStock = await Stocks.updateOne(
+            { _id: id, userId: req.id },
+            { $set:{
+                    status: 1,
+                    stockData,
+                    nonce
+                }
+            }
+        );
 
+        if(!updatedStock){
+            return res.status(404).json({ message: RESPONSES.INVESTMENT_MANAGER.STOCK_NOT_FOUND });
+        }
+        res.status(200).json({ message: RESPONSES.INVESTMENT_MANAGER.STOCK_SOLD });
+    }
+    catch(error){
+        console.log('Server error: ', error);
+        res.status(500).json({ message: RESPONSES.COMMON.SERVER_ERROR });
+    }
+};
 
 
 /*
-* POST /api/im/
-* 
+* DELETE /api/im/stocks/{id}
+* Delete a Stock
 */
-// const  = async(req, res) =>{
-//     const {RESPONSES} = getLanguageConstants(req.lang);
-//     try{
+const deleteStock = async(req, res) =>{
+    const {RESPONSES} = getLanguageConstants(req.lang);
+    try{
+        const id = req.params.id;
+        if(!id?.length){
+            return res.status(400).json({ message: RESPONSES.COMMON.UNEXPECTED_ERROR });
+        }
 
-//     }
-//     catch(error){
-//         console.log('Server error: ', error);
-//         res.status(500).json({ message : RESPONSES.COMMON.SERVER_ERROR });
-//     }
-// }
+        const deletedStock = await Stocks.findOneAndDelete({ _id: id, userId: req.id });
+        if(!deletedStock){
+            return res.status(404).json({ message: RESPONSES.INVESTMENT_MANAGER.STOCK_NOT_FOUND });
+        }
 
-
-/*
-* POST /api/im/
-* 
-*/
-// const  = async(req, res) =>{
-//     const {RESPONSES} = getLanguageConstants(req.lang);
-//     try{
-
-//     }
-//     catch(error){
-//         console.log('Server error: ', error);
-//         res.status(500).json({ message : RESPONSES.COMMON.SERVER_ERROR });
-//     }
-// }
+        res.status(200).json({ message: RESPONSES.INVESTMENT_MANAGER.STOCK_DELETED });
+    }
+    catch(error){
+        console.log('Server error: ', error);
+        res.status(500).json({ message: RESPONSES.COMMON.SERVER_ERROR });
+    }
+};
 
 
 /*
@@ -532,5 +571,9 @@ module.exports = {
     rolloverFixedDeposit,
     deleteFixedDeposit,
     closeRecurringDeposit,
-    deleteRecurringDeposit
+    deleteRecurringDeposit,
+    deleteGoldAsset,
+    sellGoldAsset,
+    deleteStock,
+    sellStock
 };

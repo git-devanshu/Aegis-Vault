@@ -31,7 +31,7 @@ import AddDepositPopup from "../../common-components/popup/AddDepositPopup";
 import DepositsTab from "./DepositsTab";
 import { groupFDData } from "../../utility/investmentCalculators";
 import AddHoldingsPopup from "../../common-components/popup/AddHoldingsPopup";
-
+import HoldingsTab from "./HoldingsTab";
 
 
 export default function InvestmentVault() {
@@ -283,7 +283,7 @@ export default function InvestmentVault() {
             <AppLayout sidebar={sidebar}>
                 <Grid templateColumns={{base:'1fr', md:'1fr 2fr'}} width='100%' gap={theme.paddingL}>
                     {/* Account Details */}
-                    <BankAccountCard account={selectedAccount} setShowManageAccountModal={setShowManageAccountModal} showIncomeAndExpense={false}/>
+                    <BankAccountCard account={selectedAccount} setShowManageAccountModal={setShowManageAccountModal} showIncomeAndExpense={false} showAccountBalance={false}/>
 
                     <div>
                         <TabGroup tabs={tabs} value={selectedTab} onChange={setSelectedTab}/>
@@ -292,7 +292,8 @@ export default function InvestmentVault() {
                             <DepositsTab selectedAccount={selectedAccount} groupedFDData={groupedFDData} refreshFDs={refreshFDs} setRefreshFDs={setRefreshFDs} rdData={rdData} refreshRDs={refreshRDs} setRefreshRDs={setRefreshRDs}/>
                         }
                         {/* Holdings */}
-                        {selectedTab === 1 && <></>
+                        {selectedTab === 1 && 
+                            <HoldingsTab selectedAccount={selectedAccount} goldAssetData={goldAssetData} refreshGoldAssets={refreshGoldAssets} setRefreshGoldAssets={setRefreshGoldAssets} stockData={stockData} refreshStocks={refreshStocks} setRefreshStocks={setRefreshStocks} />
                         }
                     </div>
                 </Grid>
