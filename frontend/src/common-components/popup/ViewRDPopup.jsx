@@ -23,7 +23,7 @@ export default function ViewRDPopup({isOpen, onClose, selectedRD, selectedAccoun
     if(!selectedAccount || !selectedRD) return;
 
     const {DISPLAY, TOASTS} = useLanguage();
-    const {masterKey} = useAppContext();
+    const {masterKey, allowRDDeletion} = useAppContext();
 
     const country = BANKS.country[selectedAccount.countryCode];
     const currentDate = new Date().toLocaleDateString('en-CA');
@@ -144,14 +144,14 @@ export default function ViewRDPopup({isOpen, onClose, selectedRD, selectedAccoun
             <Box maxHeight='300px' overflowY='auto'>
                 <Table variant='unstyled' size='sm'>
                     <Thead position='sticky' top='0' zIndex={1}>
-                        <Tr>
-                            <Th color={theme.textSecondary} textTransform='none'>
+                        <Tr bgColor={theme.accent}>
+                            <Th color={theme.text} textTransform='none'>
                                 {DISPLAY.LABELS.SR_NO}
                             </Th>
-                            <Th color={theme.textSecondary} textTransform='none'>
+                            <Th color={theme.text} textTransform='none'>
                                 {DISPLAY.LABELS.MONTH}
                             </Th>
-                            <Th color={theme.textSecondary} textAlign='right' textTransform='none'>
+                            <Th color={theme.text} textAlign='right' textTransform='none'>
                                 {DISPLAY.LABELS.AMOUNT}
                             </Th>
                         </Tr>
@@ -159,11 +159,11 @@ export default function ViewRDPopup({isOpen, onClose, selectedRD, selectedAccoun
 
                     <Tbody>
                         {selectedRD.status === 1 && <Tr bgColor={theme.hoverBg}>
-                                <Td color={theme.error}>
-                                    {new Date(selectedRD.closingDate).toLocaleDateString(country.locale)}
-                                </Td>
-                                <Td color={theme.error} colSpan={3} textAlign='right'>
+                                <Td color={theme.error} colSpan={2}>
                                     {DISPLAY.TEXT.CLOSED}
+                                </Td>
+                                <Td color={theme.error} textAlign='right'>
+                                    {new Date(selectedRD.closingDate).toLocaleDateString(country.locale)}
                                 </Td>
                             </Tr>
                         }
@@ -196,7 +196,7 @@ export default function ViewRDPopup({isOpen, onClose, selectedRD, selectedAccoun
             </Box>
 
             <ButtonGroup marginTop={theme.spacing} marginBottom={theme.marginL} width='full'>
-                <CircleIconButton icon={<DeleteIcon/>} onClick={()=>{ setShowDeleteRDPopup(true) }} tooltip={DISPLAY.TOOLTIPS.DELETE}/>
+                {allowRDDeletion && <CircleIconButton icon={<DeleteIcon/>} onClick={()=>{ setShowDeleteRDPopup(true) }} tooltip={DISPLAY.TOOLTIPS.DELETE} />}
                 <ActionButton name={DISPLAY.BUTTONS.CLOSE} onClick={()=>{ setShowCloseRDPopup(true) }} isLoading={isLoading} disabled={isLoading || selectedRD.status === 1}/>
             </ButtonGroup>
         </Popup>
@@ -214,7 +214,7 @@ export default function ViewRDPopup({isOpen, onClose, selectedRD, selectedAccoun
             </Text>
             <ButtonGroup width='full' marginTop={theme.spacing} marginBottom={theme.marginL}>
                 <ActionButton name={DISPLAY.BUTTONS.CANCEL} onClick={()=> setShowDeleteRDPopup(false)} disabled={isLoading} />
-                <ActionButton name={DISPLAY.BUTTONS.DELETE} onClick={deleteRecurringDeposit} isLoading={isLoading} disabled={isLoading} actionType='primary' />
+                <ActionButton name={DISPLAY.BUTTONS.DELETE} onClick={deleteRecurringDeposit} isLoading={isLoading} disabled={isLoading || !allowRDDeletion} actionType='primary' />
             </ButtonGroup>
         </Popup>
         </>

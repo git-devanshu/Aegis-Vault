@@ -8,7 +8,9 @@ import { TbMoneybagHeart } from "react-icons/tb";
 import { GiMoneyStack } from 'react-icons/gi';
 import { RiPercentFill } from "react-icons/ri";
 import { PiWalletFill } from "react-icons/pi";
+import { InfoOutlineIcon } from "@chakra-ui/icons";
 
+import InfoTooltip from "../popup/InfoTooltip";
 
 export default function WidgetAAccountSnapshot({selectedAccount, analytics}) {
     const {DISPLAY} = useLanguage();
@@ -45,9 +47,14 @@ export default function WidgetAAccountSnapshot({selectedAccount, analytics}) {
 
     return (
         <Box padding={theme.paddingL} border={`1px solid ${theme.border}`} borderRadius={`calc(${theme.radius} * 2)`}>
-            <Text color={theme.text} fontSize={theme.textSize} fontWeight={600} marginBottom={theme.marginL}>
-                {DISPLAY.TEXT.ACCOUNT_SNAPSHOT}
-            </Text>
+            <Flex align='start' justify='space-between'>
+                <Text color={theme.text} fontSize={theme.textSize} fontWeight={600} marginBottom={theme.marginL}>
+                    {DISPLAY.TEXT.ACCOUNT_SNAPSHOT}
+                </Text>
+                <InfoTooltip label={DISPLAY.TOOLTIPS.ACCOUNT_SNAPSHOT_INFO}>
+                    <InfoOutlineIcon color={theme.text}/>
+                </InfoTooltip>
+            </Flex>
             <Grid templateColumns={{base: '1fr', md: '1fr 1fr', lg: '1fr 1fr 1fr 1fr'}} gap={theme.marginL}>
                 <PrimaryMetricCard title={DISPLAY.TEXT.TOTAL_BALANCE} value={`${country.currency.symbol} ${analytics.currentBalance.toLocaleString(country.locale)}`} Icon={PiWalletFill} />
                 <MetricCard title={DISPLAY.TEXT.TOTAL_INCOME} value={`${country.currency.symbol} ${analytics.totalIncome.toLocaleString(country.locale)}`} Icon={TbMoneybagHeart}/>

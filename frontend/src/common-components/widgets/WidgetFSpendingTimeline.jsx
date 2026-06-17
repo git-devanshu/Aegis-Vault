@@ -5,6 +5,9 @@ import { theme } from '../../themes/theme';
 import { getCssVariable } from "../../utility/helpers";
 import useLanguage from "../../hooks/useLanguage";
 
+import { InfoOutlineIcon } from "@chakra-ui/icons";
+
+import InfoTooltip from "../popup/InfoTooltip";
 
 export default function WidgetFSpendingTimeline({analytics}) {
     const {DISPLAY} = useLanguage();
@@ -70,9 +73,14 @@ export default function WidgetFSpendingTimeline({analytics}) {
 
     return (
         <Box padding={theme.paddingL} border={`1px solid ${theme.border}`} borderRadius={`calc(${theme.radius} * 2)`} height='100%'>
-            <Text color={theme.text} fontSize={theme.textSize} fontWeight={600} marginBottom={theme.marginL}>
-                {DISPLAY.TEXT.SPENDING_TIMELINE}
-            </Text>
+            <Flex align='start' justify='space-between'>
+                <Text color={theme.text} fontSize={theme.textSize} fontWeight={600} marginBottom={theme.marginL}>
+                    {DISPLAY.TEXT.SPENDING_TIMELINE}
+                </Text>
+                <InfoTooltip label={DISPLAY.TOOLTIPS.SPENDING_TIMELINE_INFO}>
+                    <InfoOutlineIcon color={theme.text}/>
+                </InfoTooltip>
+            </Flex>
 
             <Flex padding={theme.paddingL}>
                 <div style={{width:'100%'}}>

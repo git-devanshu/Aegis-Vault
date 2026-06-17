@@ -10,6 +10,16 @@ const settingsSchema = new mongoose.Schema({
     allowExpenseDeletion : {type : Boolean, default : true},
     allowNewCategoryCreation : {type : Boolean, default : true},
     hideAccountSnapshotInAnalytics : {type : Boolean, default : false},
+    hideAccountSnapshotInAnalytics : {type : Boolean, default : false},
+    hideAccountBalanceInCard : {type : Boolean, default : false},
+    allowFDDeletion : {type : Boolean, default : true},
+    allowRDDeletion : {type : Boolean, default : true},
+    allowGoldAssetDeletion : {type : Boolean, default : true},
+    allowStockDeletion : {type : Boolean, default : true},
+    hideClosedFD : {type : Boolean, default : false},
+    hideClosedRD : {type : Boolean, default : false},
+    hideSoldGoldAssets : {type : Boolean, default : false},
+    hideSoldStocks : {type : Boolean, default : false},
 });
 
 const Settings = mongoose.model('settings', settingsSchema, 'settings');

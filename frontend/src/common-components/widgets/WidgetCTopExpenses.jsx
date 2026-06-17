@@ -5,7 +5,9 @@ import useLanguage from "../../hooks/useLanguage";
 import BANKS from '../../assets/banks.json';
 import ActionButton from "../form/ActionButton";
 import { ExternalLinkIcon } from "@chakra-ui/icons";
+import { InfoOutlineIcon } from "@chakra-ui/icons";
 
+import InfoTooltip from "../popup/InfoTooltip";
 
 export default function WidgetCTopExpenses({country, onBack, setSelectedTab, analytics}) {
     const {DISPLAY} = useLanguage();
@@ -17,9 +19,14 @@ export default function WidgetCTopExpenses({country, onBack, setSelectedTab, ana
 
     return (
         <Box padding={theme.paddingL} border={`1px solid ${theme.border}`} borderRadius={`calc(${theme.radius} * 2)`} height='fit-content'>
-            <Text color={theme.text} fontSize={theme.textSize} fontWeight={600} marginBottom={theme.marginL}>
-                {DISPLAY.TEXT.TOP_EXPENSES}
-            </Text>
+            <Flex align='start' justify='space-between'>
+                <Text color={theme.text} fontSize={theme.textSize} fontWeight={600} marginBottom={theme.marginL}>
+                    {DISPLAY.TEXT.TOP_EXPENSES}
+                </Text>
+                <InfoTooltip label={DISPLAY.TOOLTIPS.TOP_EXPENSES_INFO}>
+                    <InfoOutlineIcon color={theme.text}/>
+                </InfoTooltip>
+            </Flex>
 
             {analytics.topExpenses[0] &&
                 <Flex direction='column' border={`1px solid ${theme.border}`} bgColor={theme.hoverBg} borderRadius={theme.radius} padding={theme.paddingL}>

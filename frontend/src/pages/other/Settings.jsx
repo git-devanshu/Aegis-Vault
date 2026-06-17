@@ -12,7 +12,7 @@ import useAppContext from "../../hooks/useAppContext";
 import useTheme from "../../hooks/useTheme";
 
 import { LockIcon, BellIcon, ArrowBackIcon } from '@chakra-ui/icons';
-import { GiMoneyStack } from "react-icons/gi";
+import { GiMoneyStack, GiGoldBar } from "react-icons/gi";
 import { MdRefresh, MdLockReset, MdOutlineDarkMode, MdOutlineLightMode, MdSecurity } from "react-icons/md";
 import { FaInfo } from "react-icons/fa";
 import { RiBankLine } from "react-icons/ri";
@@ -40,6 +40,15 @@ export default function Settings() {
         allowExpenseDeletion, setAllowExpenseDeletion,
         allowNewCategoryCreation, setAllowNewCategoryCreation,
         hideAccountSnapshotInAnalytics, setHideAccountSnapshotInAnalytics,
+        hideAccountBalanceInCard, setHideAccountBalanceInCard,
+        allowFDDeletion, setAllowFDDeletion,
+        allowRDDeletion, setAllowRDDeletion,
+        allowGoldAssetDeletion, setAllowGoldAssetDeletion,
+        allowStockDeletion, setAllowStockDeletion,
+        hideClosedFD, setHideClosedFD,
+        hideClosedRD, setHideClosedRD,
+        hideSoldGoldAssets, setHideSoldGoldAssets,
+        hideSoldStocks, setHideSoldStocks
     } = useAppContext();
 
     const navigate = useNavigate();
@@ -72,6 +81,15 @@ export default function Settings() {
                     setAllowExpenseDeletion(res?.data?.userSettings?.allowExpenseDeletion);
                     setAllowNewCategoryCreation(res?.data?.userSettings?.allowNewCategoryCreation);
                     setHideAccountSnapshotInAnalytics(res?.data?.userSettings?.hideAccountSnapshotInAnalytics);
+                    setHideAccountBalanceInCard(res?.data?.userSettings?.hideAccountBalanceInCard);
+                    setAllowFDDeletion(res?.data?.userSettings?.allowFDDeletion);
+                    setAllowRDDeletion(res?.data?.userSettings?.allowRDDeletion);
+                    setAllowGoldAssetDeletion(res?.data?.userSettings?.allowGoldAssetDeletion);
+                    setAllowStockDeletion(res?.data?.userSettings?.allowStockDeletion);
+                    setHideClosedFD(res?.data?.userSettings?.hideClosedFD);
+                    setHideClosedRD(res?.data?.userSettings?.hideClosedRD);
+                    setHideSoldGoldAssets(res?.data?.userSettings?.hideSoldGoldAssets);
+                    setHideSoldStocks(res?.data?.userSettings?.hideSoldStocks);
                 }
             });
         }
@@ -90,7 +108,13 @@ export default function Settings() {
             await apiRequest({
                 method: 'POST',
                 endpoint: '/api/config/settings',
-                data: {passwordHash, hideRemovedLabels, hideShowPasswordButton, disablePasswordModifications, allowBankAccountDeletion, allowIncomeTrackerDeletion, allowExpenseDeletion, allowNewCategoryCreation, hideAccountSnapshotInAnalytics},
+                data: {
+                    passwordHash,
+                    hideRemovedLabels, hideShowPasswordButton, disablePasswordModifications,
+                    allowBankAccountDeletion,
+                    allowIncomeTrackerDeletion, allowExpenseDeletion, allowNewCategoryCreation, hideAccountSnapshotInAnalytics,
+                    hideAccountBalanceInCard, allowFDDeletion, allowRDDeletion, allowGoldAssetDeletion, allowStockDeletion, hideClosedFD, hideClosedRD, hideSoldGoldAssets, hideSoldStocks
+                },
                 toastId,
                 setIsLoading,
                 onSuccess: (res) =>{
@@ -107,14 +131,27 @@ export default function Settings() {
 
     const resetSettings = (e) =>{
         setPassword('');
+    
         setHideRemovedLabels(false);
         setDisablePasswordModifications(false);
         setHideShowPasswordButton(false);
+    
         setAllowBankAccountDeletion(false);
         setAllowExpenseDeletion(true);
         setAllowIncomeTrackerDeletion(true);
         setAllowNewCategoryCreation(true);
+    
         setHideAccountSnapshotInAnalytics(false);
+    
+        setHideAccountBalanceInCard(false);
+        setAllowFDDeletion(true);
+        setAllowRDDeletion(true);
+        setAllowGoldAssetDeletion(true);
+        setAllowStockDeletion(true);
+        setHideClosedFD(false);
+        setHideClosedRD(false);
+        setHideSoldGoldAssets(false);
+        setHideSoldStocks(false);
     }
 
     const sidebar = (
@@ -239,6 +276,81 @@ export default function Settings() {
                                     {DISPLAY.TEXT.HIDE_ACCOUNT_SNAPSHOT_IN_ANALYTICS}
                                 </Text>
                                 <ToggleSwitch value={hideAccountSnapshotInAnalytics} onChange={setHideAccountSnapshotInAnalytics}/>
+                            </Flex>
+                        </div>
+
+                        {/* Investment Settings */}
+                        <div style={{padding: theme.paddingL, borderRadius: `calc(${theme.radius} * 2)`, border: `1px solid ${theme.border}`, backgroundColor: theme.cardBg, marginBottom: theme.marginL}}>
+                            <Flex align='center' marginBottom={theme.marginL}>
+                                <GiGoldBar color={theme.textSecondary} margin={0}/>
+                                <Text color={theme.text} fontSize={theme.textSize} marginLeft={theme.marginS} marginBottom='2px' fontWeight={500}>
+                                    {DISPLAY.TEXT.INVESTMENT_MANAGER_SETTINGS}
+                                </Text>
+                            </Flex>
+
+                            <Divider borderColor={theme.border} borderWidth='1px' />
+
+                            <Flex align='center' justify='space-between' marginTop={theme.marginL}>
+                                <Text color={theme.text} fontSize={theme.textSize} marginLeft={theme.marginS}>
+                                    {DISPLAY.TEXT.HIDE_ACCOUNT_BALANCE_IN_CARD}
+                                </Text>
+                                <ToggleSwitch value={hideAccountBalanceInCard} onChange={setHideAccountBalanceInCard}/>
+                            </Flex>
+
+                            <Flex align='center' justify='space-between' marginTop={theme.marginL}>
+                                <Text color={theme.text} fontSize={theme.textSize} marginLeft={theme.marginS}>
+                                    {DISPLAY.TEXT.ALLOW_FD_DELETION}
+                                </Text>
+                                <ToggleSwitch value={allowFDDeletion} onChange={setAllowFDDeletion}/>
+                            </Flex>
+
+                            <Flex align='center' justify='space-between' marginTop={theme.marginL}>
+                                <Text color={theme.text} fontSize={theme.textSize} marginLeft={theme.marginS}>
+                                    {DISPLAY.TEXT.ALLOW_RD_DELETION}
+                                </Text>
+                                <ToggleSwitch value={allowRDDeletion} onChange={setAllowRDDeletion}/>
+                            </Flex>
+
+                            <Flex align='center' justify='space-between' marginTop={theme.marginL}>
+                                <Text color={theme.text} fontSize={theme.textSize} marginLeft={theme.marginS}>
+                                    {DISPLAY.TEXT.ALLOW_GOLD_ASSET_DELETION}
+                                </Text>
+                                <ToggleSwitch value={allowGoldAssetDeletion} onChange={setAllowGoldAssetDeletion}/>
+                            </Flex>
+
+                            <Flex align='center' justify='space-between' marginTop={theme.marginL}>
+                                <Text color={theme.text} fontSize={theme.textSize} marginLeft={theme.marginS}>
+                                    {DISPLAY.TEXT.ALLOW_STOCK_DELETION}
+                                </Text>
+                                <ToggleSwitch value={allowStockDeletion} onChange={setAllowStockDeletion}/>
+                            </Flex>
+
+                            <Flex align='center' justify='space-between' marginTop={theme.marginL}>
+                                <Text color={theme.text} fontSize={theme.textSize} marginLeft={theme.marginS}>
+                                    {DISPLAY.TEXT.HIDE_CLOSED_FD}
+                                </Text>
+                                <ToggleSwitch value={hideClosedFD} onChange={setHideClosedFD}/>
+                            </Flex>
+
+                            <Flex align='center' justify='space-between' marginTop={theme.marginL}>
+                                <Text color={theme.text} fontSize={theme.textSize} marginLeft={theme.marginS}>
+                                    {DISPLAY.TEXT.HIDE_CLOSED_RD}
+                                </Text>
+                                <ToggleSwitch value={hideClosedRD} onChange={setHideClosedRD}/>
+                            </Flex>
+
+                            <Flex align='center' justify='space-between' marginTop={theme.marginL}>
+                                <Text color={theme.text} fontSize={theme.textSize} marginLeft={theme.marginS}>
+                                    {DISPLAY.TEXT.HIDE_SOLD_GOLD_ASSETS}
+                                </Text>
+                                <ToggleSwitch value={hideSoldGoldAssets} onChange={setHideSoldGoldAssets}/>
+                            </Flex>
+
+                            <Flex align='center' justify='space-between' marginTop={theme.marginL}>
+                                <Text color={theme.text} fontSize={theme.textSize} marginLeft={theme.marginS}>
+                                    {DISPLAY.TEXT.HIDE_SOLD_STOCKS}
+                                </Text>
+                                <ToggleSwitch value={hideSoldStocks} onChange={setHideSoldStocks}/>
                             </Flex>
                         </div>
                     </div>

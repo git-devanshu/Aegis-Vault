@@ -3,7 +3,9 @@ import { Grid, Flex, Text, Box, Spacer } from '@chakra-ui/react';
 import { theme } from '../../themes/theme';
 import useLanguage from "../../hooks/useLanguage";
 import { TbMoneybagMove, TbMoneybag } from "react-icons/tb";
+import { InfoOutlineIcon } from "@chakra-ui/icons";
 
+import InfoTooltip from "../popup/InfoTooltip";
 
 export default function WidgetGIncomeOverview({country, analytics}) {
     const {DISPLAY} = useLanguage();
@@ -26,9 +28,14 @@ export default function WidgetGIncomeOverview({country, analytics}) {
 
     return (
         <Box padding={theme.paddingL} border={`1px solid ${theme.border}`} borderRadius={`calc(${theme.radius} * 2)`}>
-            <Text color={theme.text} fontSize={theme.textSize} fontWeight={600} marginBottom={theme.marginL}>
-                {DISPLAY.TEXT.SELECTED_INCOME_OVERVIEW}
-            </Text>
+            <Flex align='start' justify='space-between'>
+                <Text color={theme.text} fontSize={theme.textSize} fontWeight={600} marginBottom={theme.marginL}>
+                    {DISPLAY.TEXT.SELECTED_INCOME_OVERVIEW}
+                </Text>
+                <InfoTooltip label={DISPLAY.TOOLTIPS.INCOME_OVERVIEW_INFO}>
+                    <InfoOutlineIcon color={theme.text}/>
+                </InfoTooltip>
+            </Flex>
 
             <Grid templateColumns={{base:'1fr', md:'1fr 1fr'}} gap={theme.marginL}>
                 <Flex direction='column' gap={theme.marginL}>

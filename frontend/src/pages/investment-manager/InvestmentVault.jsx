@@ -7,16 +7,17 @@ import { CATEGORY_ICONS } from '../../assets/categoryIcons';
 import { Divider, Text, Flex, Stack, useMediaQuery, ButtonGroup, Spacer, Grid } from '@chakra-ui/react'
 import { createHash, createPassKey, decryptData, encryptData } from '../../utility/crypto';
 import { validateAndStartLoading, apiRequest } from "../../utility/api";
+import { groupFDData } from "../../utility/investmentCalculators";
 import useLanguage from "../../hooks/useLanguage";
 import useAppContext from "../../hooks/useAppContext";
 import useClearOnUnmount from '../../hooks/useClearOnUnmount';
 
 import { ArrowBackIcon, AddIcon } from '@chakra-ui/icons';
-import { MdAddchart, MdRefresh } from "react-icons/md";
+import { MdRefresh } from "react-icons/md";
 import { FaInfo } from "react-icons/fa";
 import { GiGoldBar } from "react-icons/gi";
-import { TbMoneybagPlus } from "react-icons/tb";
 import { RiBubbleChartLine } from "react-icons/ri";
+import { LuGrid2X2Plus } from "react-icons/lu";
 
 import ActionButton from "../../common-components/form/ActionButton";
 import AppLayout from "../../common-components/AppLayout";
@@ -29,14 +30,14 @@ import BankAccountCard from "../../common-components/widgets/BankAccountCard";
 import ManageBankAccountsModal from "../expense-manager/ManageBankAccountsModal";
 import AddDepositPopup from "../../common-components/popup/AddDepositPopup";
 import DepositsTab from "./DepositsTab";
-import { groupFDData } from "../../utility/investmentCalculators";
 import AddHoldingsPopup from "../../common-components/popup/AddHoldingsPopup";
 import HoldingsTab from "./HoldingsTab";
+import InvestmentAnalyticsModal from "./InvestmentAnalyticsModal";
 
 
 export default function InvestmentVault() {
     const {DISPLAY, TOASTS} = useLanguage();
-    const {masterKey, clearMasterKey} = useAppContext();
+    const {masterKey, clearMasterKey, hideAccountBalanceInCard} = useAppContext();
     const navigate = useNavigate();
 
     const [accountData, setAccountData] = useState(null);
@@ -62,6 +63,8 @@ export default function InvestmentVault() {
     const [showManageAccountModal, setShowManageAccountModal] = useState(false);
     const [showAddDepositPopup, setShowAddDepositPopup] = useState(false);
     const [showAddHoldingsPopup, setShowAddHoldingsPopup] = useState(false);
+
+    const [showAnalyticsModal, setShowAnalyticsModal] = useState(false);
 
     // for removing the master key after exiting the module
     useClearOnUnmount(clearMasterKey);
@@ -255,9 +258,9 @@ export default function InvestmentVault() {
     const sidebar = (
         <Flex align='center' gap={theme.paddingL} direction={{base:'row', sm:'column'}} backgroundColor={theme.cardBg} borderRadius='35px'>
             <CircleIconButton icon={<MdRefresh/>} iconSize="18px" tooltip={DISPLAY.TOOLTIPS.REFRESH} ttPlacement="right" onClick={refreshPage}/>
-            <CircleIconButton icon={<MdAddchart/>} iconSize="18px" tooltip={DISPLAY.TOOLTIPS.ADD_HOLDING} ttPlacement="right" onClick={()=> setShowAddHoldingsPopup(true) }/>
+            <CircleIconButton icon={<LuGrid2X2Plus/>} iconSize="18px" tooltip={DISPLAY.TOOLTIPS.ADD_HOLDING} ttPlacement="right" onClick={()=> setShowAddHoldingsPopup(true) }/>
             <CircleIconButton icon={<AddIcon/>} tooltip={DISPLAY.TOOLTIPS.ADD_DEPOSIT} ttPlacement="right" onClick={()=> setShowAddDepositPopup(true) } actionType='primary' />
-            <CircleIconButton icon={<RiBubbleChartLine/>} iconSize="18px" tooltip={DISPLAY.TOOLTIPS.ANALYTICS} ttPlacement="right" onClick={()=> {} }/>
+            <CircleIconButton icon={<RiBubbleChartLine/>} iconSize="18px" tooltip={DISPLAY.TOOLTIPS.ANALYTICS} ttPlacement="right" onClick={()=> setShowAnalyticsModal(true) }/>
             <CircleIconButton icon={<FaInfo/>} tooltip={DISPLAY.TOOLTIPS.LEARN_MORE} ttPlacement="right" onClick={()=>{}}/>
         </Flex>
     );
@@ -283,7 +286,7 @@ export default function InvestmentVault() {
             <AppLayout sidebar={sidebar}>
                 <Grid templateColumns={{base:'1fr', md:'1fr 2fr'}} width='100%' gap={theme.paddingL}>
                     {/* Account Details */}
-                    <BankAccountCard account={selectedAccount} setShowManageAccountModal={setShowManageAccountModal} showIncomeAndExpense={false} showAccountBalance={false}/>
+                    <BankAccountCard account={selectedAccount} setShowManageAccountModal={setShowManageAccountModal} showIncomeAndExpense={false} hideAccountBalanceInCard={hideAccountBalanceInCard}/>
 
                     <div>
                         <TabGroup tabs={tabs} value={selectedTab} onChange={setSelectedTab}/>
@@ -307,6 +310,9 @@ export default function InvestmentVault() {
 
             {/* Add Holding Popup */}
             <AddHoldingsPopup isOpen={showAddHoldingsPopup} onClose={setShowAddHoldingsPopup} selectedAccount={selectedAccount} refreshGoldAssets={refreshGoldAssets} setRefreshGoldAssets={setRefreshGoldAssets} refreshStocks={refreshStocks} setRefreshStocks={setRefreshStocks} />
+
+            {/* Analytics Modal */}
+            {showAnalyticsModal && <InvestmentAnalyticsModal onBack={()=> setShowAnalyticsModal(false)} selectedAccount={selectedAccount} groupedFDData={groupedFDData} rdData={rdData} goldAssetData={goldAssetData} stockData={stockData} />}
         </div>
     );
 }

@@ -21,7 +21,7 @@ export default function ViewStockPopup({isOpen, onClose, selectedStock, selected
     if(!selectedAccount || !selectedStock) return null;
 
     const {DISPLAY, TOASTS} = useLanguage();
-    const {masterKey} = useAppContext();
+    const {masterKey, allowStockDeletion} = useAppContext();
     const country = BANKS.country[selectedAccount.countryCode];
 
     const [isLoading, setIsLoading] = useState(false);
@@ -127,17 +127,17 @@ export default function ViewStockPopup({isOpen, onClose, selectedStock, selected
 
                 <Table variant='unstyled' size='sm' marginTop={theme.marginL}>
                     <Thead>
-                        <Tr>
-                            <Th color={theme.textSecondary} textTransform='none'>
+                        <Tr bgColor={theme.accent}>
+                            <Th color={theme.text} textTransform='none'>
                                 {DISPLAY.LABELS.UNITS}
                             </Th>
-                            <Th color={theme.textSecondary} textAlign='right' textTransform='none'>
+                            <Th color={theme.text} textAlign='right' textTransform='none'>
                                 {DISPLAY.LABELS.UNIT_PRICE}
                             </Th>
-                            <Th color={theme.textSecondary} textAlign='right' textTransform='none'>
+                            <Th color={theme.text} textAlign='right' textTransform='none'>
                                 {DISPLAY.LABELS.TOTAL_AMOUNT}
                             </Th>
-                            <Th color={theme.textSecondary} textAlign='right' textTransform='none'>
+                            <Th color={theme.text} textAlign='right' textTransform='none'>
                                 {DISPLAY.LABELS.PURCHASE_DATE}
                             </Th>
                         </Tr>
@@ -187,7 +187,7 @@ export default function ViewStockPopup({isOpen, onClose, selectedStock, selected
                 </>}
 
                 <ButtonGroup marginTop={theme.spacing} marginBottom={theme.marginL} width='full'>
-                    <CircleIconButton icon={<DeleteIcon/>} onClick={()=> setShowDeleteStockPopup(true)} tooltip={DISPLAY.TOOLTIPS.DELETE} />
+                    {allowStockDeletion && <CircleIconButton icon={<DeleteIcon/>} onClick={()=> setShowDeleteStockPopup(true)} tooltip={DISPLAY.TOOLTIPS.DELETE} />}
                     <ActionButton name={DISPLAY.BUTTONS.SELL} onClick={()=> setShowSellStockPopup(true)} isLoading={isLoading} disabled={isLoading || selectedStock.status === 1} />
                 </ButtonGroup>
             </Popup>
@@ -199,7 +199,7 @@ export default function ViewStockPopup({isOpen, onClose, selectedStock, selected
                 </Text>
                 <ButtonGroup width='full' marginTop={theme.spacing} marginBottom={theme.marginL}>
                     <ActionButton name={DISPLAY.BUTTONS.CANCEL} onClick={()=> setShowDeleteStockPopup(false)} disabled={isLoading} />
-                    <ActionButton name={DISPLAY.BUTTONS.DELETE} onClick={deleteStock} actionType='primary' disabled={isLoading} isLoading={isLoading} />
+                    <ActionButton name={DISPLAY.BUTTONS.DELETE} onClick={deleteStock} actionType='primary' disabled={isLoading || !allowStockDeletion} isLoading={isLoading} />
                 </ButtonGroup>
             </Popup>
 

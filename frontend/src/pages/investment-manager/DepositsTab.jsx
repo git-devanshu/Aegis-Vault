@@ -3,6 +3,7 @@ import { theme } from '../../themes/theme';
 import BANKS from '../../assets/banks.json';
 import { Text, Flex, Grid, Box, Badge } from '@chakra-ui/react'
 import useLanguage from "../../hooks/useLanguage";
+import useAppContext from "../../hooks/useAppContext";
 
 import { CgMenuRound } from "react-icons/cg";
 import { BsSortDown } from "react-icons/bs";
@@ -18,6 +19,7 @@ export default function DepositsTab({selectedAccount, groupedFDData, refreshFDs,
     if(!selectedAccount || !groupedFDData || !rdData) return null;
 
     const {DISPLAY, TOASTS} = useLanguage();
+    const {hideClosedFD, hideClosedRD} = useAppContext();
 
     const country = BANKS.country[selectedAccount.countryCode];
     const bank = BANKS.banks[selectedAccount.bankId];
@@ -151,7 +153,7 @@ export default function DepositsTab({selectedAccount, groupedFDData, refreshFDs,
                 <Grid templateColumns={{base:'1fr', md:'1fr 1fr'}} gap={theme.marginL} marginTop={theme.marginL}>
                     {sortedFDData.map(fdGroup =>{
                         const fd = fdGroup[0];
-
+                        if(hideClosedFD && fd.status === 2) return null;
                         return (
                             <Box key={fd.id} position='relative' overflow='hidden' backgroundColor={theme.cardBg} border={`1px solid ${theme.border}`} borderRadius={theme.radius} padding={theme.paddingL}>
                                 <Box position='absolute' left='0' top='0' bottom='0' width='4px' bg={theme.primary}/>
@@ -221,69 +223,72 @@ export default function DepositsTab({selectedAccount, groupedFDData, refreshFDs,
             {selectedDepositType === 'rd' && 
                 <Grid templateColumns={{base:'1fr', md:'1fr 1fr'}} gap={theme.marginL} marginTop={theme.marginL}>
                     {
-                        sortedRDData.map(rd =>
-                            <Box key={rd.id} position='relative' overflow='hidden' backgroundColor={theme.cardBg} border={`1px solid ${theme.border}`} borderRadius={theme.radius} padding={theme.paddingL}>
-                                <Box position='absolute' left='0' right='0' top='0' height='4px' bg={theme.primary}/>
-                                <img src={bank.logo} alt=''
-                                    style={{ position:'absolute', right:'15%', top:'50%', transform:'translateY(-50%)', width:'140px', height:'140px', objectFit:'contain', opacity:0.05, pointerEvents:'none', borderRadius:'14px' }}
-                                />
+                        sortedRDData.map(rd => {
+                            if(hideClosedRD && rd.status === 1) return null;
+                            return(
+                                <Box key={rd.id} position='relative' overflow='hidden' backgroundColor={theme.cardBg} border={`1px solid ${theme.border}`} borderRadius={theme.radius} padding={theme.paddingL}>
+                                    <Box position='absolute' left='0' right='0' top='0' height='4px' bg={theme.primary}/>
+                                    <img src={bank.logo} alt=''
+                                        style={{ position:'absolute', right:'15%', top:'50%', transform:'translateY(-50%)', width:'140px', height:'140px', objectFit:'contain', opacity:0.05, pointerEvents:'none', borderRadius:'14px' }}
+                                    />
 
-                                <Flex justify='space-between' align='center' position='relative' zIndex={1}>
-                                    <Text color={theme.primary} fontSize={theme.smallTextSize} fontWeight={600}>
-                                        {DISPLAY.LABELS.RD} #{rd.rdIndex}
-                                    </Text>
-                                    <Badge borderRadius='6px' paddingX={theme.paddingL} color='#0F172A' textTransform='none'
-                                        backgroundColor={ rd.status === 1
-                                            ? theme.error : new Date(rd.maturityDate) < new Date() ? theme.warning : theme.success
-                                        }
-                                    >
-                                        {
-                                            rd.status === 1
-                                                ? DISPLAY.TEXT.CLOSED : new Date(rd.maturityDate) < new Date() ? DISPLAY.TEXT.MATURED : DISPLAY.TEXT.ACTIVE
-                                        }
-                                    </Badge>
-                                </Flex>
-
-                                <Flex alignItems='center' marginTop={theme.marginL} position='relative' zIndex={1} gap={theme.paddingL}>
-                                    <Text color={theme.text} fontSize={theme.headingSize} fontWeight={500}>
-                                        {country.currency.symbol} {rd.investedAmount.toLocaleString(country.locale)}
-                                    </Text>
-                                    <Text color={theme.textSecondary} fontSize={theme.text} fontWeight={500}>
-                                        ({country.currency.symbol} {rd.installment.toLocaleString(country.locale)} {DISPLAY.LABELS.INSTALLMENT})
-                                    </Text>
-                                </Flex>
-                                
-                                <Grid templateColumns='1fr 1fr' gap={theme.marginL} marginTop={theme.marginL} position='relative' zIndex={1}>
-                                    <Text color={theme.text} fontWeight={500} textAlign='left'>
-                                        {rd.rate}%
-                                    </Text>
-                                    <Text color={theme.text} fontWeight={500} textAlign='right'>
-                                        {rd.period} {DISPLAY.LABELS.MONTHS}
-                                    </Text>
-                                </Grid>
-
-                                <Text color={theme.textSecondary} fontSize={theme.smallTextSize}>
-                                    {DISPLAY.LABELS.MATURITY_DATE}: {new Date(rd.maturityDate).toLocaleDateString(country.locale)}
-                                </Text>
-
-                                <Flex justify='space-between' marginTop={theme.marginS} align='end' borderTop={`1px solid ${theme.border}`} position='relative' zIndex={1}>
-                                    <Box>
-                                        <Text color={theme.textSecondary} fontSize={theme.smallTextSize} textAlign='left'>
-                                            {DISPLAY.LABELS.MATURITY_AMOUNT}
+                                    <Flex justify='space-between' align='center' position='relative' zIndex={1}>
+                                        <Text color={theme.primary} fontSize={theme.smallTextSize} fontWeight={600}>
+                                            {DISPLAY.LABELS.RD} #{rd.rdIndex}
                                         </Text>
-                                        <Text color={theme.primary} fontSize={theme.headingSize} fontWeight={500}>
-                                            {country.currency.symbol} {rd.maturityAmount.toLocaleString(country.locale)}
+                                        <Badge borderRadius='6px' paddingX={theme.paddingL} color='#0F172A' textTransform='none'
+                                            backgroundColor={ rd.status === 1
+                                                ? theme.error : new Date(rd.maturityDate) < new Date() ? theme.warning : theme.success
+                                            }
+                                        >
+                                            {
+                                                rd.status === 1
+                                                    ? DISPLAY.TEXT.CLOSED : new Date(rd.maturityDate) < new Date() ? DISPLAY.TEXT.MATURED : DISPLAY.TEXT.ACTIVE
+                                            }
+                                        </Badge>
+                                    </Flex>
+
+                                    <Flex alignItems='center' marginTop={theme.marginL} position='relative' zIndex={1} gap={theme.paddingL}>
+                                        <Text color={theme.text} fontSize={theme.headingSize} fontWeight={500}>
+                                            {country.currency.symbol} {rd.investedAmount.toLocaleString(country.locale)}
                                         </Text>
-                                    </Box>
-                                    <Box onClick={() =>{ setSelectedRD(rd); setShowViewRDPopup(true); }} display='flex' alignItems='center' backgroundColor={theme.bg} borderRadius='25px' padding='6px 10px' gap='5px' cursor='pointer' _hover={{backgroundColor: theme.cardBg}}>
-                                        <CgMenuRound style={{fontSize:'20px', color:theme.text}}/>
-                                        <Text fontSize={theme.textSize} color={theme.text}>
-                                            {DISPLAY.BUTTONS.VIEW}
+                                        <Text color={theme.textSecondary} fontSize={theme.text} fontWeight={500}>
+                                            ({country.currency.symbol} {rd.installment.toLocaleString(country.locale)} {DISPLAY.LABELS.INSTALLMENT})
                                         </Text>
-                                    </Box>
-                                </Flex>
-                            </Box>
-                        )
+                                    </Flex>
+                                    
+                                    <Grid templateColumns='1fr 1fr' gap={theme.marginL} marginTop={theme.marginL} position='relative' zIndex={1}>
+                                        <Text color={theme.text} fontWeight={500} textAlign='left'>
+                                            {rd.rate}%
+                                        </Text>
+                                        <Text color={theme.text} fontWeight={500} textAlign='right'>
+                                            {rd.period} {DISPLAY.LABELS.MONTHS}
+                                        </Text>
+                                    </Grid>
+
+                                    <Text color={theme.textSecondary} fontSize={theme.smallTextSize}>
+                                        {DISPLAY.LABELS.MATURITY_DATE}: {new Date(rd.maturityDate).toLocaleDateString(country.locale)}
+                                    </Text>
+
+                                    <Flex justify='space-between' marginTop={theme.marginS} align='end' borderTop={`1px solid ${theme.border}`} position='relative' zIndex={1}>
+                                        <Box>
+                                            <Text color={theme.textSecondary} fontSize={theme.smallTextSize} textAlign='left'>
+                                                {DISPLAY.LABELS.MATURITY_AMOUNT}
+                                            </Text>
+                                            <Text color={theme.primary} fontSize={theme.headingSize} fontWeight={500}>
+                                                {country.currency.symbol} {rd.maturityAmount.toLocaleString(country.locale)}
+                                            </Text>
+                                        </Box>
+                                        <Box onClick={() =>{ setSelectedRD(rd); setShowViewRDPopup(true); }} display='flex' alignItems='center' backgroundColor={theme.bg} borderRadius='25px' padding='6px 10px' gap='5px' cursor='pointer' _hover={{backgroundColor: theme.cardBg}}>
+                                            <CgMenuRound style={{fontSize:'20px', color:theme.text}}/>
+                                            <Text fontSize={theme.textSize} color={theme.text}>
+                                                {DISPLAY.BUTTONS.VIEW}
+                                            </Text>
+                                        </Box>
+                                    </Flex>
+                                </Box>
+                            );
+                        })
                     }
                     <div style={{height: '140px'}}></div>
                 </Grid>

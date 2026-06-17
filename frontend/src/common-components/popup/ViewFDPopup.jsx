@@ -23,7 +23,7 @@ export default function ViewFDPopup({isOpen, onClose, selectedFDGroup, selectedA
     if(!selectedAccount || !selectedFDGroup) return null;
 
     const {DISPLAY, TOASTS} = useLanguage();
-    const {masterKey} = useAppContext();
+    const {masterKey, allowFDDeletion} = useAppContext();
 
     const country = BANKS.country[selectedAccount.countryCode];
     const latestFD = selectedFDGroup[0];
@@ -199,17 +199,17 @@ export default function ViewFDPopup({isOpen, onClose, selectedFDGroup, selectedA
             <Box maxHeight='300px' overflowY='auto'>
                 <Table variant='unstyled' size='sm'>
                     <Thead position='sticky' top='0' zIndex={1}>
-                        <Tr>
-                            <Th color={theme.textSecondary} textTransform='none'>
+                        <Tr bgColor={theme.accent}>
+                            <Th color={theme.text} textTransform='none'>
                                 {DISPLAY.LABELS.DATE}
                             </Th>
-                            <Th color={theme.textSecondary} textAlign='right' textTransform='none'>
+                            <Th color={theme.text} textAlign='right' textTransform='none'>
                                 {DISPLAY.LABELS.AMOUNT}
                             </Th>
-                            <Th color={theme.textSecondary} textAlign='right' textTransform='none'>
+                            <Th color={theme.text} textAlign='right' textTransform='none'>
                                 {DISPLAY.LABELS.RATE}
                             </Th>
-                            <Th color={theme.textSecondary} textAlign='right' textTransform='none'>
+                            <Th color={theme.text} textAlign='right' textTransform='none'>
                                 {DISPLAY.LABELS.INTEREST}
                             </Th>
                         </Tr>
@@ -257,7 +257,7 @@ export default function ViewFDPopup({isOpen, onClose, selectedFDGroup, selectedA
             </Box>
 
             <ButtonGroup marginTop={theme.spacing} marginBottom={theme.marginL} width='full'>
-                <CircleIconButton icon={<DeleteIcon/>} onClick={()=>{ setShowDeleteFDPopup(true) }} tooltip={DISPLAY.TOOLTIPS.DELETE}/>
+                {allowFDDeletion && <CircleIconButton icon={<DeleteIcon/>} onClick={()=>{ setShowDeleteFDPopup(true) }} tooltip={DISPLAY.TOOLTIPS.DELETE} />}
                 <ActionButton name={DISPLAY.BUTTONS.CLOSE} onClick={()=>{ setShowCloseFDPopup(true) }} isLoading={isLoading} disabled={isLoading || latestFD.status === 2}/>
                 <ActionButton name={DISPLAY.BUTTONS.ROLLOVER} onClick={()=>{ setShowRolloverFDPopup(true) }} isLoading={isLoading} disabled={isLoading || new Date(latestFD.maturityDate) > new Date() || latestFD.status === 2} actionType='primary'/>
             </ButtonGroup>
@@ -287,7 +287,7 @@ export default function ViewFDPopup({isOpen, onClose, selectedFDGroup, selectedA
             </Text>
             <ButtonGroup width='full' marginTop={theme.spacing} marginBottom={theme.marginL}>
                 <ActionButton name={DISPLAY.BUTTONS.CANCEL} onClick={()=> setShowDeleteFDPopup(false)} disabled={isLoading} />
-                <ActionButton name={DISPLAY.BUTTONS.DELETE} onClick={deleteFixedDeposit} isLoading={isLoading} disabled={isLoading} actionType='primary' />
+                <ActionButton name={DISPLAY.BUTTONS.DELETE} onClick={deleteFixedDeposit} isLoading={isLoading} disabled={isLoading || !allowFDDeletion} actionType='primary' />
             </ButtonGroup>
         </Popup>
         </>

@@ -6,6 +6,10 @@ import useLanguage from "../../hooks/useLanguage";
 import {getCategoryColor} from '../../assets/categoryIcons';
 import { CATEGORY_ICONS } from '../../assets/categoryIcons';
 
+import { InfoOutlineIcon } from "@chakra-ui/icons";
+
+import InfoTooltip from "../popup/InfoTooltip";
+
 
 export default function WidgetBCategoryDistribution({categoryData, country, analytics}) {
     const {DISPLAY} = useLanguage();
@@ -54,9 +58,14 @@ export default function WidgetBCategoryDistribution({categoryData, country, anal
 
     return (
         <Flex direction='column' padding={theme.paddingL} border={`1px solid ${theme.border}`} borderRadius={`calc(${theme.radius} * 2)`} height='486px'>
-            <Text color={theme.text} fontSize={theme.textSize} fontWeight={600} marginBottom={theme.marginL}>
-                {DISPLAY.TEXT.CATEGORYWISE_DISTRIBUTION}
-            </Text>
+            <Flex align='start' justify='space-between'>
+                <Text color={theme.text} fontSize={theme.textSize} fontWeight={600} marginBottom={theme.marginL}>
+                    {DISPLAY.TEXT.CATEGORYWISE_DISTRIBUTION}
+                </Text>
+                <InfoTooltip label={DISPLAY.TOOLTIPS.CATEGORYWISE_DISTRIBUTION_INFO}>
+                    <InfoOutlineIcon color={theme.text}/>
+                </InfoTooltip>
+            </Flex>
 
             <Flex direction='column' gap={theme.paddingL} height='90%'>
                 <Flex justify='center' padding={theme.paddingL} style={{position:'relative'}}>

@@ -109,6 +109,10 @@ export default function ExpenseAnalyticsModal({onBack, selectedAccount, selected
             </Grid>
 
             <Grid templateColumns={{base:'1fr', md:'1fr 1fr', lg:'1fr 1fr 1fr 1fr'}} gap={theme.marginL} marginTop={theme.marginL}>
+                {screenWidth > 486 && <Text color={theme.textSecondary} fontSize={theme.smallTextSize} marginTop={theme.marginL}>
+                    {DISPLAY.TEXT.ZOOM_AT_90_NOTE}
+                </Text>}
+                
                 <GridItem colStart={{lg:3}}>
                     <ActionButton name={DISPLAY.BUTTONS.DOWNLOAD_STATEMENT} icon={<DownloadIcon/>}
                         onClick={()=> downloadExpenseStatement({

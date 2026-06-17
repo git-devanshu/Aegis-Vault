@@ -6,7 +6,9 @@ import BANKS from '../../assets/banks.json';
 import { CATEGORY_ICONS } from '../../assets/categoryIcons';
 import useLanguage from "../../hooks/useLanguage";
 import { getCssVariable } from "../../utility/helpers";
+import { InfoOutlineIcon } from "@chakra-ui/icons";
 
+import InfoTooltip from "../popup/InfoTooltip";
 
 export default function WidgetDBudgetVsActual({categoryData, analytics}) {
     const {DISPLAY} = useLanguage();
@@ -33,12 +35,12 @@ export default function WidgetDBudgetVsActual({categoryData, analytics}) {
         datasets: [
             {
                 data: budgetAnalytics.map(item => item.budget),
-                backgroundColor: getCssVariable('--primary'),
+                backgroundColor: getCssVariable('--success'),
                 borderRadius: 4
             },
             {
                 data: budgetAnalytics.map(item => item.actual),
-                backgroundColor: getCssVariable('--accent'),
+                backgroundColor: getCssVariable('--error'),
                 borderRadius: 4
             }
         ]
@@ -68,9 +70,30 @@ export default function WidgetDBudgetVsActual({categoryData, analytics}) {
 
     return (
         <Box padding={theme.paddingL} border={`1px solid ${theme.border}`} borderRadius={`calc(${theme.radius} * 2)`} height='100%'>
-            <Text color={theme.text} fontSize={theme.textSize} fontWeight={600} marginBottom={theme.marginL}>
-                {DISPLAY.TEXT.BUDGET_VS_ACTUAL}
-            </Text>
+            <Flex align='start' justify='space-between'>
+                <Text color={theme.text} fontSize={theme.textSize} fontWeight={600} marginBottom={theme.marginL}>
+                    {DISPLAY.TEXT.BUDGET_VS_ACTUAL}
+                </Text>
+                <InfoTooltip label={<>
+                    {DISPLAY.TOOLTIPS.BUDGET_VS_ACTUAL_INFO}
+                    <Flex align='center' gap={theme.paddingL}>
+                        <Flex align='center' gap={theme.paddingS}>
+                            <Box width='12px' height='12px' borderRadius='3px' bgColor={theme.success}/>
+                            <Text color={theme.textSecondary} fontSize={theme.smallTextSize}>
+                                {DISPLAY.TEXT.BUDGET}
+                            </Text>
+                        </Flex>
+                        <Flex align='center' gap={theme.paddingS}>
+                            <Box width='12px' height='12px' borderRadius='3px' bgColor={theme.error}/>
+                            <Text color={theme.textSecondary} fontSize={theme.smallTextSize}>
+                                {DISPLAY.TEXT.ACTUAL}
+                            </Text>
+                        </Flex>
+                    </Flex>
+                </>}>
+                    <InfoOutlineIcon color={theme.text}/>
+                </InfoTooltip>
+            </Flex>
 
             <Flex marginTop={theme.marginL} overflowX='scroll' width='100%'>
                 <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column', width:`${chartWidth}px`}}>

@@ -17,7 +17,6 @@ import NotFound from './pages/NotFound';
 import QuickSave from './pages/QuickSave';
 import Settings from './pages/other/Settings';
 import Security from './pages/other/Security';
-import Notifications from './pages/other/Notifications';
 import PasswordVault from './pages/password-manager/PasswordVault';
 import ExpenseVault from './pages/expense-manager/ExpenseVault';
 import InvestmentVault from './pages/investment-manager/InvestmentVault';
@@ -46,7 +45,6 @@ export default function App() {
                     <Route path='/password-manager' element={<ProtectedComponent component={<PasswordVault />} />} />
                     <Route path='/expense-manager' element={<ProtectedComponent component={<ExpenseVault />} />} />
                     <Route path='/investment-manager' element={<ProtectedComponent component={<InvestmentVault />} />} />
-                    <Route path='/notifications' element={<ProtectedComponent component={<Notifications />} />} />
                     <Route path='/active-sessions' element={<ProtectedComponent component={<Security />} />} />
                     {/* <Route path='/vault/notes' element={<ProtectedComponent component={<NotesVault />} />} /> */}
                     {/* <Route path='/vault/task' element={<ProtectedComponent component={<TaskVault />} />} /> */}

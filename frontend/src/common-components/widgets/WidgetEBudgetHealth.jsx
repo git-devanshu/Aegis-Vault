@@ -5,6 +5,10 @@ import { theme } from '../../themes/theme';
 import { getCssVariable } from '../../utility/helpers';
 import useLanguage from "../../hooks/useLanguage";
 
+import { InfoOutlineIcon } from "@chakra-ui/icons";
+
+import InfoTooltip from "../popup/InfoTooltip";
+
 export default function WidgetEBudgetHealth({analytics}) {
     const {DISPLAY} = useLanguage();
     
@@ -41,9 +45,14 @@ export default function WidgetEBudgetHealth({analytics}) {
 
     return (
         <Box padding={theme.paddingL} border={`1px solid ${theme.border}`} borderRadius={`calc(${theme.radius} * 2)`} height='100%' minWidth='300px'>
-            <Text color={theme.text} fontSize={theme.textSize} fontWeight={600} marginBottom={theme.marginL}>
-                {DISPLAY.TEXT.BUDGET_HEALTH}
-            </Text>
+            <Flex align='start' justify='space-between'>
+                <Text color={theme.text} fontSize={theme.textSize} fontWeight={600} marginBottom={theme.marginL}>
+                    {DISPLAY.TEXT.BUDGET_HEALTH}
+                </Text>
+                <InfoTooltip label={DISPLAY.TOOLTIPS.BUDGET_HEALTH_INFO}>
+                    <InfoOutlineIcon color={theme.text}/>
+                </InfoTooltip>
+            </Flex>
 
             <Flex align='center' justify='center' gap={theme.paddingL} marginTop={theme.spacing}>
                 <Chart type='doughnut' data={chartData} options={chartOptions} style={{maxHeight: '120px', maxWidth: '120px'}}/>

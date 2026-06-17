@@ -60,11 +60,6 @@ html, body, #root{
     overflow-y: auto;
 }
 
-/* @media (max-width: 400px) {
-    .common-page{
-        padding: var(--padding-s);
-    }
-} */
 
 /* -------------------------------------------- */
 

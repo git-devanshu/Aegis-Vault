@@ -22,7 +22,7 @@ export default function ViewGoldPopup({isOpen, onClose, selectedGoldAsset, selec
     if(!selectedAccount || !selectedGoldAsset) return null;
 
     const {DISPLAY, TOASTS} = useLanguage();
-    const {masterKey} = useAppContext();
+    const {masterKey, allowGoldAssetDeletion} = useAppContext();
     const country = BANKS.country[selectedAccount.countryCode];
 
     const [isLoading, setIsLoading] = useState(false);
@@ -125,17 +125,17 @@ export default function ViewGoldPopup({isOpen, onClose, selectedGoldAsset, selec
 
                 <Table variant='unstyled' size='sm' marginTop={theme.marginL}>
                     <Thead>
-                        <Tr>
-                            <Th color={theme.textSecondary} textTransform='none'>
+                        <Tr bgColor={theme.accent}>
+                            <Th color={theme.text} textTransform='none'>
                                 {DISPLAY.LABELS.WEIGHT_IN_GRAMS}
                             </Th>
-                            <Th color={theme.textSecondary} textAlign='right' textTransform='none'>
+                            <Th color={theme.text} textAlign='right' textTransform='none'>
                                 {DISPLAY.LABELS.RATE_PER_GRAM}
                             </Th>
-                            <Th color={theme.textSecondary} textAlign='right' textTransform='none'>
+                            <Th color={theme.text} textAlign='right' textTransform='none'>
                                 {DISPLAY.LABELS.TOTAL_AMOUNT}
                             </Th>
-                            <Th color={theme.textSecondary} textAlign='right' textTransform='none'>
+                            <Th color={theme.text} textAlign='right' textTransform='none'>
                                 {DISPLAY.LABELS.PURCHASE_DATE}
                             </Th>
                         </Tr>
@@ -191,7 +191,7 @@ export default function ViewGoldPopup({isOpen, onClose, selectedGoldAsset, selec
                 }
 
                 <ButtonGroup marginTop={theme.spacing} marginBottom={theme.marginL} width='full'>
-                    <CircleIconButton icon={<DeleteIcon/>} onClick={()=>{ setShowDeleteGoldPopup(true) }} tooltip={DISPLAY.TOOLTIPS.DELETE}/>
+                    {allowGoldAssetDeletion && <CircleIconButton icon={<DeleteIcon/>} onClick={()=>{ setShowDeleteGoldPopup(true) }} tooltip={DISPLAY.TOOLTIPS.DELETE} />}
                     <ActionButton name={DISPLAY.BUTTONS.SELL} onClick={()=>{ setShowSellGoldPopup(true) }} isLoading={isLoading} disabled={isLoading || selectedGoldAsset.status === 1}/>
                 </ButtonGroup>
             </Popup>
@@ -203,7 +203,7 @@ export default function ViewGoldPopup({isOpen, onClose, selectedGoldAsset, selec
                 </Text>
                 <ButtonGroup width='full' marginTop={theme.spacing} marginBottom={theme.marginL}>
                     <ActionButton name={DISPLAY.BUTTONS.CANCEL} onClick={()=> setShowDeleteGoldPopup(false)} />
-                    <ActionButton name={DISPLAY.BUTTONS.DELETE} onClick={deleteGoldAsset} actionType='primary' disabled={isLoading} isLoading={isLoading} />
+                    <ActionButton name={DISPLAY.BUTTONS.DELETE} onClick={deleteGoldAsset} actionType='primary' disabled={isLoading || !allowGoldAssetDeletion} isLoading={isLoading} />
                 </ButtonGroup>
             </Popup>
 

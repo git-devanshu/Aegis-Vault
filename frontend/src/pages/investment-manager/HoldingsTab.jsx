@@ -4,6 +4,7 @@ import { theme } from '../../themes/theme';
 import BANKS from '../../assets/banks.json';
 import { Text, Flex, Grid, Box, Badge, Spacer } from '@chakra-ui/react'
 import useLanguage from "../../hooks/useLanguage";
+import useAppContext from "../../hooks/useAppContext";
 
 import { CgMenuRound } from "react-icons/cg";
 
@@ -17,6 +18,8 @@ export default function HoldingsTab({selectedAccount, goldAssetData, refreshGold
     if(!selectedAccount || !goldAssetData || !stockData) return null;
 
     const {DISPLAY} = useLanguage();
+    const {hideSoldGoldAssets, hideSoldStocks} = useAppContext();
+
     const country = BANKS.country[selectedAccount.countryCode];
 
     const [selectedHolding, setSelectedHolding] = useState('gold');
@@ -77,57 +80,60 @@ export default function HoldingsTab({selectedAccount, goldAssetData, refreshGold
 
             {selectedHolding === 'gold' && 
                 <Grid templateColumns={{base:'1fr', md:'1fr 1fr'}} gap={theme.marginL} marginTop={theme.marginL}>
-                    {filteredGold.map(gold =>
-                        <Box key={gold.id} position='relative' overflow='hidden' backgroundColor={theme.cardBg} border={`1px solid ${theme.border}`} borderRadius={theme.radius} padding={theme.paddingL}>
-                            <Box position='absolute' left='0' top='0' bottom='0' width='4px' bg='#D4AF37' />
+                    {filteredGold.map(gold =>{
+                        if(hideSoldGoldAssets && gold.status === 1) return null;
+                        return(
+                            <Box key={gold.id} position='relative' overflow='hidden' backgroundColor={theme.cardBg} border={`1px solid ${theme.border}`} borderRadius={theme.radius} padding={theme.paddingL}>
+                                <Box position='absolute' left='0' top='0' bottom='0' width='4px' bg='#D4AF37' />
 
-                            <Flex justify='space-between' align='start'>
-                                <div>
+                                <Flex justify='space-between' align='start'>
+                                    <div>
+                                        <Text color={theme.text} fontSize={theme.textSize} fontWeight={600}>
+                                            {gold.assetName}
+                                        </Text>
+                                    </div>
+
+                                    <Badge borderRadius='6px' paddingX={theme.paddingL} color='#0F172A' textTransform='none' 
+                                        backgroundColor={gold.status === 1 ? theme.error : theme.success}
+                                    >
+                                        {gold.status === 1 ? DISPLAY.TEXT.SOLD : DISPLAY.TEXT.ACTIVE}
+                                    </Badge>
+                                </Flex>
+                    
+                                <Text color='#D4AF37' fontSize={theme.headingSize} fontWeight={600} marginTop={theme.marginL}>
+                                    {country.currency.symbol} {gold.totalPrice.toLocaleString(country.locale)}
+                                </Text>
+                    
+                                <Flex justifyContent='space-between' gap={theme.marginL} marginTop={theme.marginL}>
                                     <Text color={theme.text} fontSize={theme.textSize} fontWeight={600}>
-                                        {gold.assetName}
+                                        {gold.weight}g
                                     </Text>
-                                </div>
-
-                                <Badge borderRadius='6px' paddingX={theme.paddingL} color='#0F172A' textTransform='none' 
-                                    backgroundColor={gold.status === 1 ? theme.error : theme.success}
-                                >
-                                    {gold.status === 1 ? DISPLAY.TEXT.SOLD : DISPLAY.TEXT.ACTIVE}
-                                </Badge>
-                            </Flex>
-                
-                            <Text color='#D4AF37' fontSize={theme.headingSize} fontWeight={600} marginTop={theme.marginL}>
-                                {country.currency.symbol} {gold.totalPrice.toLocaleString(country.locale)}
-                            </Text>
-                
-                            <Flex justifyContent='space-between' gap={theme.marginL} marginTop={theme.marginL}>
-                                <Text color={theme.text} fontSize={theme.textSize} fontWeight={600}>
-                                    {gold.weight}g
-                                </Text>
-                                <Text color={theme.text} fontSize={theme.textSize} fontWeight={600} textAlign='right'>
-                                    {country.currency.symbol} {gold.rate.toLocaleString(country.locale)}/g
-                                </Text>
-                            </Flex>
-                
-                            <Flex borderTop={`1px solid ${theme.border}`} marginTop={theme.marginS} alignItems='end'>
-                                <Box>
-                                    <Text color={theme.textSecondary} fontSize={theme.smallTextSize}>
-                                        {DISPLAY.LABELS.BROKER}: {' '}
-                                        {gold.broker?.length > 0 ? gold.broker : DISPLAY.LABELS.NONE}
+                                    <Text color={theme.text} fontSize={theme.textSize} fontWeight={600} textAlign='right'>
+                                        {country.currency.symbol} {gold.rate.toLocaleString(country.locale)}/g
                                     </Text>
-                                    <Text color={theme.textSecondary} fontSize={theme.smallTextSize}>
-                                        {DISPLAY.LABELS.PURCHASE_DATE}: {' '}
-                                        {new Date(gold.purchaseDate).toLocaleDateString(country.locale)}
-                                    </Text>
-                                </Box>
-                                <Spacer/>
-                                <Box onClick={() =>{ setSelectedGoldAsset(gold); setShowViewGoldPopup(true); }} display='flex' alignItems='center' backgroundColor={theme.bg} borderRadius='25px' padding='6px 10px' gap='5px' cursor='pointer' _hover={{backgroundColor: theme.cardBg}}>
-                                    <CgMenuRound style={{fontSize:'20px', color:theme.text}}/>
-                                    <Text fontSize={theme.textSize} color={theme.text}>
-                                        {DISPLAY.BUTTONS.VIEW}
-                                    </Text>
-                                </Box>
-                            </Flex>
-                        </Box>
+                                </Flex>
+                    
+                                <Flex borderTop={`1px solid ${theme.border}`} marginTop={theme.marginS} alignItems='end'>
+                                    <Box>
+                                        <Text color={theme.textSecondary} fontSize={theme.smallTextSize}>
+                                            {DISPLAY.LABELS.BROKER}: {' '}
+                                            {gold.broker?.length > 0 ? gold.broker : DISPLAY.LABELS.NONE}
+                                        </Text>
+                                        <Text color={theme.textSecondary} fontSize={theme.smallTextSize}>
+                                            {DISPLAY.LABELS.PURCHASE_DATE}: {' '}
+                                            {new Date(gold.purchaseDate).toLocaleDateString(country.locale)}
+                                        </Text>
+                                    </Box>
+                                    <Spacer/>
+                                    <Box onClick={() =>{ setSelectedGoldAsset(gold); setShowViewGoldPopup(true); }} display='flex' alignItems='center' backgroundColor={theme.bg} borderRadius='25px' padding='6px 10px' gap='5px' cursor='pointer' _hover={{backgroundColor: theme.cardBg}}>
+                                        <CgMenuRound style={{fontSize:'20px', color:theme.text}}/>
+                                        <Text fontSize={theme.textSize} color={theme.text}>
+                                            {DISPLAY.BUTTONS.VIEW}
+                                        </Text>
+                                    </Box>
+                                </Flex>
+                            </Box>
+                        )}
                     )}
                     
                     <div style={{height:'140px'}}></div>
@@ -136,60 +142,63 @@ export default function HoldingsTab({selectedAccount, goldAssetData, refreshGold
 
             {selectedHolding === 'stocks' && 
                 <Grid templateColumns={{base:'1fr', md:'1fr 1fr'}} gap={theme.marginL} marginTop={theme.marginL}>
-                    {filteredStocks.map(stock =>
-                        <Box key={stock.id} position='relative' overflow='hidden' backgroundColor={theme.cardBg} border={`1px solid ${theme.border}`} borderRadius={theme.radius} padding={theme.paddingL}>
-                            <Box position='absolute' left='0' top='0' bottom='0' width='4px' bg={theme.info} />
+                    {filteredStocks.map(stock => {
+                        if(hideSoldStocks && stock.status === 1) return null;
+                        return(
+                            <Box key={stock.id} position='relative' overflow='hidden' backgroundColor={theme.cardBg} border={`1px solid ${theme.border}`} borderRadius={theme.radius} padding={theme.paddingL}>
+                                <Box position='absolute' left='0' top='0' bottom='0' width='4px' bg={theme.info} />
 
-                            <Flex justify='space-between' align='start'>
-                                <Box>
-                                    <Text color={theme.text} fontSize={theme.textSize} fontWeight={500}>
-                                        {stock.name}
-                                    </Text>
-                                    <Text color={theme.textSecondary} fontSize={theme.smallTextSize}>
-                                        {stock.symbol} • {stock.exchange}
-                                    </Text>
-                                </Box>
+                                <Flex justify='space-between' align='start'>
+                                    <Box>
+                                        <Text color={theme.text} fontSize={theme.textSize} fontWeight={500}>
+                                            {stock.name}
+                                        </Text>
+                                        <Text color={theme.textSecondary} fontSize={theme.smallTextSize}>
+                                            {stock.symbol} • {stock.exchange}
+                                        </Text>
+                                    </Box>
 
-                                <Badge borderRadius='6px' paddingX={theme.paddingL} color='#0F172A' textTransform='none'
-                                    backgroundColor={stock.status === 1 ? theme.error : theme.success}
-                                >
-                                    {stock.status === 1 ? DISPLAY.TEXT.SOLD : DISPLAY.TEXT.ACTIVE}
-                                </Badge>
-                            </Flex>
+                                    <Badge borderRadius='6px' paddingX={theme.paddingL} color='#0F172A' textTransform='none'
+                                        backgroundColor={stock.status === 1 ? theme.error : theme.success}
+                                    >
+                                        {stock.status === 1 ? DISPLAY.TEXT.SOLD : DISPLAY.TEXT.ACTIVE}
+                                    </Badge>
+                                </Flex>
 
-                            <Text color={theme.info} fontSize={theme.headingSize} fontWeight={600} marginTop={theme.marginL}>
-                                {country.currency.symbol} {stock.totalPrice.toLocaleString(country.locale)}
-                            </Text>
-
-                            <Flex justifyContent='space-between' gap={theme.marginL} marginTop={theme.marginL}>
-                                <Text color={theme.text} fontSize={theme.textSize} fontWeight={600}>
-                                    {stock.units} {DISPLAY.LABELS.UNITS}
+                                <Text color={theme.info} fontSize={theme.headingSize} fontWeight={600} marginTop={theme.marginL}>
+                                    {country.currency.symbol} {stock.totalPrice.toLocaleString(country.locale)}
                                 </Text>
-                                <Text color={theme.text} fontSize={theme.textSize} fontWeight={600} textAlign='right'>
-                                    {country.currency.symbol} {Number(stock.unitPrice).toLocaleString(country.locale)}
-                                </Text>
-                            </Flex>
 
-                            <Flex borderTop={`1px solid ${theme.border}`} marginTop={theme.marginS} alignItems='end'>
-                                <Box>
-                                    <Text color={theme.textSecondary} fontSize={theme.smallTextSize}>
-                                        {DISPLAY.LABELS.BROKER}:{' '}
-                                        {stock.broker}
+                                <Flex justifyContent='space-between' gap={theme.marginL} marginTop={theme.marginL}>
+                                    <Text color={theme.text} fontSize={theme.textSize} fontWeight={600}>
+                                        {stock.units} {DISPLAY.LABELS.UNITS}
                                     </Text>
-                                    <Text color={theme.textSecondary} fontSize={theme.smallTextSize}>
-                                        {DISPLAY.LABELS.PURCHASE_DATE}:{' '}
-                                        {new Date(stock.purchaseDate).toLocaleDateString(country.locale)}
+                                    <Text color={theme.text} fontSize={theme.textSize} fontWeight={600} textAlign='right'>
+                                        {country.currency.symbol} {Number(stock.unitPrice).toLocaleString(country.locale)}
                                     </Text>
-                                </Box>
-                                <Spacer/>
-                                <Box onClick={() =>{ setSelectedStock(stock); setShowViewStockPopup(true); }} display='flex' alignItems='center' backgroundColor={theme.bg} borderRadius='25px' padding='6px 10px' gap='5px' cursor='pointer' _hover={{backgroundColor: theme.cardBg}}>
-                                    <CgMenuRound style={{fontSize:'20px', color:theme.text}}/>
-                                    <Text fontSize={theme.textSize} color={theme.text}>
-                                        {DISPLAY.BUTTONS.VIEW}
-                                    </Text>
-                                </Box>
-                            </Flex>
-                        </Box>
+                                </Flex>
+
+                                <Flex borderTop={`1px solid ${theme.border}`} marginTop={theme.marginS} alignItems='end'>
+                                    <Box>
+                                        <Text color={theme.textSecondary} fontSize={theme.smallTextSize}>
+                                            {DISPLAY.LABELS.BROKER}:{' '}
+                                            {stock.broker}
+                                        </Text>
+                                        <Text color={theme.textSecondary} fontSize={theme.smallTextSize}>
+                                            {DISPLAY.LABELS.PURCHASE_DATE}:{' '}
+                                            {new Date(stock.purchaseDate).toLocaleDateString(country.locale)}
+                                        </Text>
+                                    </Box>
+                                    <Spacer/>
+                                    <Box onClick={() =>{ setSelectedStock(stock); setShowViewStockPopup(true); }} display='flex' alignItems='center' backgroundColor={theme.bg} borderRadius='25px' padding='6px 10px' gap='5px' cursor='pointer' _hover={{backgroundColor: theme.cardBg}}>
+                                        <CgMenuRound style={{fontSize:'20px', color:theme.text}}/>
+                                        <Text fontSize={theme.textSize} color={theme.text}>
+                                            {DISPLAY.BUTTONS.VIEW}
+                                        </Text>
+                                    </Box>
+                                </Flex>
+                            </Box>
+                        )}
                     )}
 
                     <div style={{height:'140px'}}></div>

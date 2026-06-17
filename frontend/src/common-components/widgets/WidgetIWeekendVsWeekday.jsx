@@ -5,10 +5,12 @@ import { theme } from '../../themes/theme';
 import { getCssVariable } from "../../utility/helpers";
 import useLanguage from "../../hooks/useLanguage";
 
+import { InfoOutlineIcon } from "@chakra-ui/icons";
+
+import InfoTooltip from "../popup/InfoTooltip";
 
 export default function WidgetIWeekendVsWeekday({country, analytics}) {
     const {DISPLAY} = useLanguage();
-
 
     const chartData = {
         labels: [DISPLAY.TEXT.WEEKDAY, DISPLAY.TEXT.WEEKEND],
@@ -53,9 +55,14 @@ export default function WidgetIWeekendVsWeekday({country, analytics}) {
 
     return (
         <Box padding={theme.paddingL} border={`1px solid ${theme.border}`} borderRadius={`calc(${theme.radius} * 2)`} height='100%'>
-            <Text color={theme.text} fontSize={theme.textSize} fontWeight={600} marginBottom={theme.marginL}>
-                {DISPLAY.TEXT.WEEKDAY_VS_WEEKEND}
-            </Text>
+            <Flex align='start' justify='space-between'>
+                <Text color={theme.text} fontSize={theme.textSize} fontWeight={600} marginBottom={theme.marginL}>
+                    {DISPLAY.TEXT.WEEKDAY_VS_WEEKEND}
+                </Text>
+                <InfoTooltip label={DISPLAY.TOOLTIPS.WEEKEND_VS_WEEKDAY_INFO}>
+                    <InfoOutlineIcon color={theme.text}/>
+                </InfoTooltip>
+            </Flex>
 
             <Flex padding={theme.paddingL} gap={theme.paddingL} alignItems='center' justifyContent='center'>
                 <Chart type='polarArea' data={chartData} options={chartOptions} style={{maxHeight: '140px', maxWidth: '140px'}} />

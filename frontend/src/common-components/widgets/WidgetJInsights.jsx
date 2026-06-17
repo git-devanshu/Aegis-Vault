@@ -6,7 +6,9 @@ import { GrStatusInfo } from "react-icons/gr";
 import { theme } from '../../themes/theme';
 import useLanguage from "../../hooks/useLanguage";
 import BANKS from '../../assets/banks.json';
+import { InfoOutlineIcon } from "@chakra-ui/icons";
 
+import InfoTooltip from "../popup/InfoTooltip";
 
 const ALERT_TYPES = {
     BUDGET_EXCEEDED: 'BUDGET_EXCEEDED',
@@ -184,9 +186,14 @@ export default function WidgetJInsights({expenseData, selectedTracker, country, 
 
     return (
         <Box padding={theme.paddingL} border={`1px solid ${theme.border}`} borderRadius={`calc(${theme.radius} * 2)`} overflowY='auto' height='486px'>
-            <Text color={theme.text} fontSize={theme.textSize} fontWeight={600} marginBottom={theme.marginL}>
-                {DISPLAY.ALERTS.INSIGHTS_AND_ALERTS}
-            </Text>
+            <Flex align='start' justify='space-between'>
+                <Text color={theme.text} fontSize={theme.textSize} fontWeight={600} marginBottom={theme.marginL}>
+                    {DISPLAY.ALERTS.INSIGHTS_AND_ALERTS}
+                </Text>
+                <InfoTooltip label={DISPLAY.TOOLTIPS.INSIGHTS_INFO}>
+                    <InfoOutlineIcon color={theme.text}/>
+                </InfoTooltip>
+            </Flex>
 
             <Stack spacing={theme.marginL}>
                 {

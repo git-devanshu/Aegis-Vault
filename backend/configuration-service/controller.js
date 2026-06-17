@@ -39,9 +39,20 @@ const fetchUserSettings = async(req, res) =>{
 const saveUserSettings = async(req, res) =>{
     const {RESPONSES} = getLanguageConstants(req.lang);
     try{
-        const {passwordHash, hideRemovedLabels, hideShowPasswordButton, disablePasswordModifications, allowBankAccountDeletion, allowIncomeTrackerDeletion, allowExpenseDeletion, allowNewCategoryCreation, hideAccountSnapshotInAnalytics} = req.body;
+        const {
+            passwordHash,
+            hideRemovedLabels, hideShowPasswordButton, disablePasswordModifications,
+            allowBankAccountDeletion, 
+            allowIncomeTrackerDeletion, allowExpenseDeletion, allowNewCategoryCreation, hideAccountSnapshotInAnalytics,
+            hideAccountBalanceInCard, allowFDDeletion, allowRDDeletion, allowGoldAssetDeletion, allowStockDeletion, hideClosedFD, hideClosedRD, hideSoldGoldAssets, hideSoldStocks
+        } = req.body;
 
-        if(hideRemovedLabels === null || hideShowPasswordButton === null || disablePasswordModifications === null || allowBankAccountDeletion === null || allowIncomeTrackerDeletion === null || allowExpenseDeletion === null || allowNewCategoryCreation === null || hideAccountSnapshotInAnalytics === null){
+        if(
+            hideRemovedLabels === null || hideShowPasswordButton === null || disablePasswordModifications === null ||
+            allowBankAccountDeletion === null ||
+            allowIncomeTrackerDeletion === null || allowExpenseDeletion === null || allowNewCategoryCreation === null || hideAccountSnapshotInAnalytics === null ||
+            hideAccountBalanceInCard === null || allowFDDeletion === null || allowRDDeletion === null || allowGoldAssetDeletion === null || allowStockDeletion === null || hideClosedFD === null || hideClosedRD === null || hideSoldGoldAssets === null || hideSoldStocks === null 
+        ){
             return res.status(400).json({ message : RESPONSES.COMMON.UNEXPECTED_ERROR });
         }
 
@@ -54,7 +65,16 @@ const saveUserSettings = async(req, res) =>{
             return res.status(401).json({ message : RESPONSES.AUTH.INVALID_CREDENTIALS });
         }
 
-        const updatedSettings = await Settings.findOneAndUpdate({userId: req.id}, {hideRemovedLabels, hideShowPasswordButton, disablePasswordModifications, allowBankAccountDeletion, allowIncomeTrackerDeletion, allowExpenseDeletion, allowNewCategoryCreation, hideAccountSnapshotInAnalytics});
+        const updatedSettings = await Settings.findOneAndUpdate({
+                userId: req.id
+            }, {
+                hideRemovedLabels, hideShowPasswordButton, disablePasswordModifications,
+                allowBankAccountDeletion, 
+                allowIncomeTrackerDeletion, allowExpenseDeletion, allowNewCategoryCreation, hideAccountSnapshotInAnalytics,
+                hideAccountBalanceInCard, allowFDDeletion, allowRDDeletion, allowGoldAssetDeletion, allowStockDeletion, hideClosedFD, hideClosedRD, hideSoldGoldAssets, hideSoldStocks
+            }
+        );
+
         if(!updatedSettings){
             return res.status(400).json({ message : RESPONSES.COMMON.UNEXPECTED_ERROR });
         }

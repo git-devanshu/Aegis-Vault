@@ -3,15 +3,23 @@ import { Flex, Text, Box, Divider } from '@chakra-ui/react';
 import { theme } from '../../themes/theme';
 import useLanguage from "../../hooks/useLanguage";
 
+import { InfoOutlineIcon } from "@chakra-ui/icons";
+
+import InfoTooltip from "../popup/InfoTooltip";
 
 export default function WidgetHTopSpendingDays({country, analytics}) {
     const {DISPLAY} = useLanguage();
 
     return (
         <Box bgColor={theme.cardBg} padding={theme.paddingL} border={`1px solid ${theme.border}`} borderRadius={`calc(${theme.radius} * 2)`} height='100%'>
-            <Text color={theme.text} fontSize={theme.textSize} fontWeight={600} marginBottom={theme.marginL}>
-                {DISPLAY.TEXT.TOP_SPENDING_DAYS}
-            </Text>
+            <Flex align='start' justify='space-between'>
+                <Text color={theme.text} fontSize={theme.textSize} fontWeight={600} marginBottom={theme.marginL}>
+                    {DISPLAY.TEXT.TOP_SPENDING_DAYS}
+                </Text>
+                <InfoTooltip label={DISPLAY.TOOLTIPS.TOP_SPENDING_DAYS_INFO}>
+                    <InfoOutlineIcon color={theme.text}/>
+                </InfoTooltip>
+            </Flex>
 
             <Flex gap={theme.marginL} direction='column'>
                 {
