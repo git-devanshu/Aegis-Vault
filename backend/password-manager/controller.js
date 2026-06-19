@@ -152,7 +152,7 @@ const updateLabels = async(req, res) =>{
 
 
 /*
-* @P: POST /api/password-manager
+* @P: POST /api/pm
 * 
 */
 // const  = async(req, res) =>{

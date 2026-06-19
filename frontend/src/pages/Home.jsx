@@ -16,6 +16,7 @@ import { MdOutlineDarkMode, MdOutlineLightMode, MdDevices } from "react-icons/md
 import { FaInfo } from "react-icons/fa";
 import { HiMiniDevicePhoneMobile } from "react-icons/hi2";
 import { RiLogoutCircleRLine, RiStickyNoteLine } from "react-icons/ri";
+import { BsCalendarRange } from "react-icons/bs";
 
 import CircleIconButton from "../common-components/form/CircleIconButton";
 import ActionButton from "../common-components/form/ActionButton";
@@ -91,6 +92,7 @@ export default function Home() {
                             <PrimaryVaultCard title={DISPLAY.LABELS.PASSWORDS} onClick={()=>navigateToVault('/password-manager')} icon={<LockIcon style={{height:'60px', width:'60px'}}/>} />
                             <PrimaryVaultCard title={DISPLAY.LABELS.EXPENSES} onClick={()=>navigateToVault('/expense-manager')} icon={<GiMoneyStack style={{height:'70px', width:'70px'}}/>} />
                             <PrimaryVaultCard title={DISPLAY.LABELS.INVESTMENTS} onClick={()=>navigateToVault('/investment-manager')} icon={<GiGoldBar style={{height:'70px', width:'70px'}}/>} />
+                            <PrimaryVaultCard title={DISPLAY.LABELS.PLANNER} onClick={()=>navigateToVault('/planning-manager')} icon={<BsCalendarRange style={{height:'70px', width:'70px'}}/>} />
                             <VaultCard title={DISPLAY.LABELS.SECURITY} onClick={()=>navigateToVault('/active-sessions')} icon={<MdDevices style={{height:'70px', width:'70px'}}/>} />
                             {/* <VaultCard title={DISPLAY.LABELS.NOTIFICATIONS} onClick={()=>navigateToVault('/notifications')} icon={<BellIcon style={{height:'60px', width:'60px'}}/>} /> */}
                         </div>

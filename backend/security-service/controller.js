@@ -2,6 +2,11 @@ const {Users} = require('../models/users');
 const {Sessions} = require('../models/sessions');
 const {Settings} = require('../models/settings');
 const {PasswordLabels} = require('../models/passwordLabels');
+const {PlannerCollections} = require('../models/plannerCollections');
+const {WeeklySchedules} = require('../models/weeklySchedules');
+const {JournalMetadata} = require('../models/journalMetadata');
+const {NoteMetadata} = require('../models/noteMetadata');
+
 const {getLanguageConstants} = require('../utility/language');
 const {checkEmailExists, createNewUserSession} = require('./helper');
 
@@ -41,9 +46,15 @@ const checkEmailAvailability = async(req, res) =>{
 const registerNewUser = async(req, res) =>{
     const {RESPONSES} = getLanguageConstants(req.lang);
     try{
-        const { email, name, passwordHash, pinHash, userSalt, passwordSalt, pinSalt, passwordNonce, pinNonce, pinEncryptedKey, passwordEncryptedKey, passKeyHash, labelList, labelNonce } = req.body;
+        const { 
+            email, name, 
+            passwordHash, pinHash, userSalt, 
+            passwordSalt, pinSalt, passwordNonce, pinNonce, pinEncryptedKey, passwordEncryptedKey, passKeyHash, 
+            labelList, labelNonce,
+            journalMetadata, journalNonce, noteMetadata, noteNonce, allCollectionsData, allCollectionsNonce, scheduleData, scheduleNonce, plannerCollectionTypes
+        } = req.body;
 
-        if(!email?.length || !name?.length || !passwordHash?.length || !pinHash?.length || !passwordEncryptedKey?.length || !pinEncryptedKey?.length || !passwordSalt?.length || !pinSalt?.length || !passwordNonce?.length || !pinNonce?.length || !passKeyHash?.length || !labelList?.length || !labelNonce?.length || !userSalt?.length) {
+        if(!email?.length || !name?.length || !passwordHash?.length || !pinHash?.length || !passwordEncryptedKey?.length || !pinEncryptedKey?.length || !passwordSalt?.length || !pinSalt?.length || !passwordNonce?.length || !pinNonce?.length || !passKeyHash?.length || !labelList?.length || !labelNonce?.length || !userSalt?.length || !journalMetadata?.length || !journalNonce?.length || !noteMetadata?.length || !noteNonce?.length || !allCollectionsData?.length || !allCollectionsNonce?.length || !scheduleData?.length || !scheduleNonce?.length){
             return res.status(400).json({ message : RESPONSES.COMMON.FIELD_REQUIRED });
         }
 
@@ -64,6 +75,35 @@ const registerNewUser = async(req, res) =>{
             userId: newUser._id, labelList, labelNonce
         });
         await userPasswordLabels.save();
+
+        const userJournalMetadata = new JournalMetadata({
+            userId: newUser._id, metadataData: journalMetadata, nonce: journalNonce
+        });
+        await userJournalMetadata.save();
+
+        const userNoteMetadata = new NoteMetadata({
+            userId: newUser._id, metadataData: noteMetadata, nonce: noteNonce
+        });
+        await userNoteMetadata.save();
+        
+        await PlannerCollections.insertMany(
+            plannerCollectionTypes.map(type =>({
+                userId: newUser._id,
+                type, collectionData: allCollectionsData, nonce: allCollectionsNonce
+            }))
+        );
+
+        const userWeeklySchedule = new WeeklySchedules({
+            userId: newUser._id,
+            mondayScheduleData: scheduleData, mondayNonce: scheduleNonce,
+            tuesdayScheduleData: scheduleData, tuesdayNonce: scheduleNonce,
+            wednesdayScheduleData: scheduleData, wednesdayNonce: scheduleNonce,
+            thursdayScheduleData: scheduleData, thursdayNonce: scheduleNonce,
+            fridayScheduleData: scheduleData, fridayNonce: scheduleNonce,
+            saturdayScheduleData: scheduleData, saturdayNonce: scheduleNonce,
+            sundayScheduleData: scheduleData, sundayNonce: scheduleNonce
+        });
+        await userWeeklySchedule.save();
         
         res.status(201).json({ message : RESPONSES.AUTH.SIGNUP_SUCCESS });
     }
@@ -140,7 +180,7 @@ const loginUser = async(req, res) =>{
         const ip = req.headers['x-forwarded-for']?.split(',')[0] || req.socket.remoteAddress;
         const geo = geoip.lookup(ip);
         const deviceLocation = geo ? `${geo.city || 'Unknown'}, ${geo.country || 'Unknown'}` : 'Unknown';
-        const coordinates = geo.ll || [0, 0];
+        const coordinates = geo?.ll || [0, 0];
 
         const token = await createNewUserSession(existingUser, deviceType, device, deviceLocation, coordinates);
 

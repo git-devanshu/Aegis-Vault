@@ -93,6 +93,10 @@ export default function InvestmentVault() {
                     }
                     else{
                         setSelectedAccountIndex(null);
+                        setFDData([]);
+                        setRDData([]);
+                        setGoldAssetData([]);
+                        setStockData([]);
                     }
                 },
                 onError: (err)=> {
@@ -225,6 +229,10 @@ export default function InvestmentVault() {
 
     const refreshPage = (e) =>{
         setRefreshAccounts(!refreshAccounts);
+        setRefreshFDs(!refreshFDs);
+        setRefreshRDs(!refreshRDs);
+        setRefreshGoldAssets(!refreshGoldAssets);
+        setRefreshStocks(!refreshStocks);
     }
 
     if(!masterKey){

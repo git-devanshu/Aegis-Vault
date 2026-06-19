@@ -89,12 +89,27 @@ export default function Signup() {
 
             const defaultLabels = [SYSTEM_DATA.PASSWORD_LABELS.OTHER]; //the default label is used by id for translation purpose
             const { encryptedData: labelList, nonce: labelNonce } = await encryptData(JSON.stringify(defaultLabels), masterKey);
+
+            const journalMetadataPayload = [];
+            const { encryptedData: journalMetadata, nonce: journalNonce } = await encryptData(JSON.stringify(journalMetadataPayload), masterKey);
+
+            const noteMetadataPayload = [];
+            const { encryptedData: noteMetadata, nonce: noteNonce } = await encryptData(JSON.stringify(noteMetadataPayload), masterKey);
+
+            const allCollectionsPayload = []; // use this same for creating all 8 collections
+            const { encryptedData: allCollectionsData, nonce: allCollectionsNonce } = await encryptData(JSON.stringify(allCollectionsPayload), masterKey);
+
+            const scheduleDataPayload = []; // use this same for all 7 days
+            const { encryptedData: scheduleData, nonce: scheduleNonce } = await encryptData(JSON.stringify(scheduleDataPayload), masterKey);
             
+            const plannerCollectionTypes = SYSTEM_DATA.PLANNER_COLLECTION_TYPES;
+
             const requestPayload = {
                 email: user.email, name: user.name,
                 passwordHash, pinHash, passKeyHash, userSalt,
                 pinEncryptedKey, passwordEncryptedKey, pinSalt, passwordSalt, pinNonce, passwordNonce,
-                labelList, labelNonce
+                labelList, labelNonce,
+                journalMetadata, journalNonce, noteMetadata, noteNonce, allCollectionsData, allCollectionsNonce, scheduleData, scheduleNonce, plannerCollectionTypes
             }
 
             await apiRequest({

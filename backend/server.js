@@ -10,6 +10,7 @@ const {pmRouter} = require('./password-manager/router');
 const {alRouter} = require('./accounts-layer/router');
 const {emRouter} = require('./expense-manager/router');
 const {imRouter} = require('./investment-manager/router');
+const {plRouter} = require('./planning-manager/router');
 const {checkAuthorization} = require('./middlewares/checkAuthorization');
 
 const app = express();
@@ -33,6 +34,7 @@ app.use('/api/pm', pmRouter);
 app.use('/api/al', alRouter);
 app.use('/api/em', emRouter);
 app.use('/api/im', imRouter);
+app.use('/api/pl', plRouter);
 
 
 // health check APIs

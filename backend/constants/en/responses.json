@@ -79,5 +79,10 @@
         "STOCK_NOT_FOUND": "stock not found",
         "STOCK_SOLD": "stock sold successfully",
         "STOCK_DELETED": "stock deleted successfully"
+    },
+
+    "PLANNING_MANAGER": {
+        "COLLECTION_UPDATED": "collection data updated successfully",
+        "COLLECTION_NOT_FOUND": "collection does not exist"
     }
 }

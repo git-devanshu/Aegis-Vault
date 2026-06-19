@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from "react";
-import { Box, Flex, Text, Spacer, Divider, Grid, Checkbox, Table, Thead, Tbody, Tr, Th, Td, TableContainer, GridItem } from "@chakra-ui/react";
+import { Box, Flex, Text, Spacer, Divider, Grid, Table, Thead, Tbody, Tr, Th, Td, TableContainer, GridItem } from "@chakra-ui/react";
 import { ArrowBackIcon } from "@chakra-ui/icons";
 import { RiFileTransferLine, RiArrowTurnForwardFill } from "react-icons/ri";
 import { BiSolidDownload } from "react-icons/bi";
@@ -11,6 +11,7 @@ import InputBox from "../../common-components/form/InputBox";
 import jsPDF from "jspdf";
 import autoTable from "jspdf-autotable";
 import { apiRequest, validateAndStartLoading } from "../../utility/api";
+import Tickbox from "../../common-components/form/Tickbox";
 
 
 export default function ExpenseTransferModal({onBack, expenseData, trackerData, selectedTracker, country, refreshExpenses, setRefreshExpenses}){
@@ -174,7 +175,7 @@ export default function ExpenseTransferModal({onBack, expenseData, trackerData, 
                     <Thead bgColor={theme.hoverBg}>
                         <Tr>
                             <Th>
-                                <Checkbox size='md' px="3" py="3"
+                                <Tickbox size='md' px="3" py="3"
                                     isChecked={
                                         expenseData.length > 0 &&
                                         selectedRows.size === expenseData.length
@@ -199,7 +200,7 @@ export default function ExpenseTransferModal({onBack, expenseData, trackerData, 
                             expenseData.map(expense =>(
                                 <Tr key={expense.id} cursor='pointer' onClick={()=> handleRowSelect(expense.id)} _hover={{backgroundColor: theme.hoverBg}}>
                                     <Td>
-                                        <Checkbox size='md' px="3" py="1"
+                                        <Tickbox size='md' px="3" py="1"
                                             isChecked={selectedRows.has(expense.id)}
                                             pointerEvents='none'
                                         />

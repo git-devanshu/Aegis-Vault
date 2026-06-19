@@ -154,6 +154,17 @@
         "QSE": ".QA"
     },
 
+    "PLANNER_COLLECTION_TYPES": [
+        "SHOPPING",
+        "FOOD",
+        "WATCHLIST",
+        "READING",
+        "WISHLIST",
+        "TODO",
+        "TRIP",
+        "NOTEPAD"
+    ],
+
     "SUPPORTED_LANGUAGES": [
         {
             "code": "en",

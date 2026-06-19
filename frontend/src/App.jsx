@@ -21,6 +21,7 @@ import PasswordVault from './pages/password-manager/PasswordVault';
 import ExpenseVault from './pages/expense-manager/ExpenseVault';
 import InvestmentVault from './pages/investment-manager/InvestmentVault';
 import ThemeTest from './themes/ThemeTest';
+import PlannerVault from './pages/planning-manager/PlannerVault';
 
 initializeLanguage();
 
@@ -46,7 +47,7 @@ export default function App() {
                     <Route path='/expense-manager' element={<ProtectedComponent component={<ExpenseVault />} />} />
                     <Route path='/investment-manager' element={<ProtectedComponent component={<InvestmentVault />} />} />
                     <Route path='/active-sessions' element={<ProtectedComponent component={<Security />} />} />
-                    {/* <Route path='/vault/notes' element={<ProtectedComponent component={<NotesVault />} />} /> */}
+                    <Route path='/planning-manager' element={<ProtectedComponent component={<PlannerVault />} />} />
                     {/* <Route path='/vault/task' element={<ProtectedComponent component={<TaskVault />} />} /> */}
                     {/* <Route path='/access-control' element={<ProtectedAdminComponent component={<AccessControlPage />} />} /> */}
                     <Route path='/settings' element={<ProtectedComponent component={<Settings />} />} />

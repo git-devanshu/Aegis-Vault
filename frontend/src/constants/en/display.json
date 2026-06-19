@@ -98,7 +98,12 @@
         "SELLING_PRICE": "Selling price",
         "NONE": "None",
         "EXCHANGE": "Exchange",
-        "INVESTMENT_ANALYTICS": "Investment Analytics"
+        "INVESTMENT_ANALYTICS": "Investment Analytics",
+        
+        "PLANNER": "Planner",
+        "CALENDAR": "Calendar",
+        "NOTES": "Notes",
+        "COLLECTIONS": "Collections"
     },
 
     "TEXT": {
@@ -296,7 +301,58 @@
         "HIDE_CLOSED_RD": "Hide Closed RDs",
         "HIDE_SOLD_GOLD_ASSETS": "Hide Sold Gold Assets",
         "HIDE_SOLD_STOCKS": "Hide Sold Stocks",
-        "ACTUAL": "Actual"
+        "ACTUAL": "Actual",
+        "COLLECTIONS": "Collections",
+        "JOURNALS": "Journals",
+        "NOTES": "Notes",
+        "WEEKLY_SCHEDULE": "Weekly Schedule",
+        "TASKS": "Tasks",
+        "SHOPPING": "Shopping List",
+        "FOOD": "Food",
+        "WATCHLIST": "Watchlist",
+        "READING": "Reading List",
+        "WISHLIST": "Wishlist",
+        "TODO": "Todo List",
+        "TRIP": "Trip List",
+        "NOTEPAD": "Notepad",
+        "ITEMS": "items",
+        "QUICK_NOTES": "Quick Notes",
+        "SHOPPING_LIST": "Shopping List",
+        "TOTAL_ITEMS": "Total Items",
+        "CHECKED_ITEMS": "Checked Items",
+        "PENDING_ITEMS": "Pending Items",
+        "ITEM_NAME": "Item Name",
+        "QUANTITY": "Quantity",
+        "BOUGHT": "Bought",
+        "PENDING": "Pending",
+        "STATUS": "Status",
+        "RECIPE": "Recipe",
+        "PLACE": "Place",
+        "VIEW_RECIPE": "View Recipe",
+        "VIEW_LOCATION": "View Location",
+        "LINK": "Link",
+        "WATCHED": "Watched",
+        "MOVIE": "Movie",
+        "SERIES": "Series",
+        "ANIME": "Anime",
+        "VIDEO": "Video",
+        "GENERAL": "General",
+        "PERSONAL": "Personal",
+        "RATING": "Rating",
+        "CATEGORY": "Category",
+        "READING_LIST": "Reading List",
+        "BOOK": "Book",
+        "ARTICLE": "Article",
+        "OTHER": "Other",
+        "COMPLETED": "Completed",
+        "PRIORITY": "Priority",
+        "LOW": "Low",
+        "MEDIUM": "Medium",
+        "HIGH": "High",
+        "DONE": "Done",
+        "DESTINATION": "Destination",
+        "DUE_DATE": "Due Date",
+        "WRITE_HERE": "Write here..."
     },
 
     "BUTTONS": {
@@ -347,7 +403,14 @@
         "ADD_GOLD_ASSET": "Add Gold Asset",
         "ADD_STOCK": "Add Stock",
         "SELL": "Sell",
-        "MARK_AS_SOLD": "Mark As Sold"
+        "MARK_AS_SOLD": "Mark As Sold",
+        "COPY_PENDING": "Copy Pending",
+        "DOWNLOAD_PDF": "Download PDF",
+        "ADD_ITEM": "Add Item",
+        "DOWNLOAD_ALL": "Download All",
+        "DOWNLOAD_GENERAL": "Download General",
+        "DOWNLOAD_PENDING": "Download Pending",
+        "COPY_DATA": "Copy Data"
     },
 
     "PASSWORD_LABELS": {
@@ -410,7 +473,10 @@
         "INCOME_OVERVIEW_INFO": "Summarizes income performance including income received, expenses incurred, remaining funds and savings rate for the selected tracker.",
         "TOP_SPENDING_DAYS_INFO": "Highlights the days with the highest spending activity. This can help identify spending habits, special events or recurring high-expense periods.",
         "WEEKEND_VS_WEEKDAY_INFO": "Compares spending behaviour on weekdays and weekends, helping you understand when most of your discretionary spending occurs.",
-        "INSIGHTS_INFO": "Provides personalized observations and highlights based on your expense data, spending patterns, category trends and budget performance."
+        "INSIGHTS_INFO": "Provides personalized observations and highlights based on your expense data, spending patterns, category trends and budget performance.",
+        "ADD_NOTE": "Add Note",
+        "MANAGE_SCHEDULE": "Manage Schedule",
+        "ADD_EVENT": "Add Event"
     },
 
     "DEFAULT_EXPENSE_CATEGORIES": {
