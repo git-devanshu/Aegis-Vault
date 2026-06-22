@@ -3,12 +3,12 @@ import { Flex, Text, Stack, Box } from '@chakra-ui/react';
 import { GoCheckCircle } from "react-icons/go";
 import { PiWarning } from "react-icons/pi";
 import { GrStatusInfo } from "react-icons/gr";
-import { theme } from '../../themes/theme';
-import useLanguage from "../../hooks/useLanguage";
-import BANKS from '../../assets/banks.json';
+import { theme } from '../../../themes/theme';
+import useLanguage from "../../../hooks/useLanguage";
+import BANKS from '../../../assets/banks.json';
 import { InfoOutlineIcon } from "@chakra-ui/icons";
 
-import InfoTooltip from "../popup/InfoTooltip";
+import InfoTooltip from "../../popup/InfoTooltip";
 
 const ALERT_TYPES = {
     BUDGET_EXCEEDED: 'BUDGET_EXCEEDED',

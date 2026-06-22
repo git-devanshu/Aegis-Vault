@@ -1,11 +1,11 @@
 import React, { useMemo } from "react";
 import { Grid, Flex, Text, Box, Spacer } from '@chakra-ui/react';
-import { theme } from '../../themes/theme';
-import useLanguage from "../../hooks/useLanguage";
+import { theme } from '../../../themes/theme';
+import useLanguage from "../../../hooks/useLanguage";
 import { TbMoneybagMove, TbMoneybag } from "react-icons/tb";
 import { InfoOutlineIcon } from "@chakra-ui/icons";
 
-import InfoTooltip from "../popup/InfoTooltip";
+import InfoTooltip from "../../popup/InfoTooltip";
 
 export default function WidgetGIncomeOverview({country, analytics}) {
     const {DISPLAY} = useLanguage();

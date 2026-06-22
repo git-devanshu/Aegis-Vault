@@ -20,6 +20,21 @@ const settingsSchema = new mongoose.Schema({
     hideClosedRD : {type : Boolean, default : false},
     hideSoldGoldAssets : {type : Boolean, default : false},
     hideSoldStocks : {type : Boolean, default : false},
+    disableShoppingListModifications : {type : Boolean, default : false},
+    disableFoodListModifications : {type : Boolean, default : false},
+    disableWatchlistModifications : {type : Boolean, default : false},
+    disableReadingListModifications : {type : Boolean, default : false},
+    disableWishlistModifications : {type : Boolean, default : false},
+    disableTodoListModifications : {type : Boolean, default : false},
+    disableTripListModifications : {type : Boolean, default : false},
+    disableNotepadModifications : {type : Boolean, default : false},
+    use12HourClockInSchedule : {type : Boolean, default : false},
+    disableJournalModifications : {type : Boolean, default : false},
+    hideWeeklyScheduleItems : {type : Boolean, default : false},
+    hideHighPriorityTasks : {type : Boolean, default : false},
+    hideCompletedTasks : {type : Boolean, default : false},
+    hideHighPriorityNotes : {type : Boolean, default : false},
+    disableNoteModifications : {type : Boolean, default : false}
 });
 
 const Settings = mongoose.model('settings', settingsSchema, 'settings');

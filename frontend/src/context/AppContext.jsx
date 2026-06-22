@@ -29,7 +29,23 @@ export const AppContextProvider = ({ children }) => {
     const [hideClosedRD, setHideClosedRD] = useState(false);
     const [hideSoldGoldAssets, setHideSoldGoldAssets] = useState(false);
     const [hideSoldStocks, setHideSoldStocks] = useState(false);
-    
+
+    const [disableShoppingListModifications, setDisableShoppingListModifications] = useState(false);
+    const [disableFoodListModifications, setDisableFoodListModifications] = useState(false);
+    const [disableWatchlistModifications, setDisableWatchlistModifications] = useState(false);
+    const [disableReadingListModifications, setDisableReadingListModifications] = useState(false);
+    const [disableWishlistModifications, setDisableWishlistModifications] = useState(false);
+    const [disableTodoListModifications, setDisableTodoListModifications] = useState(false);
+    const [disableTripListModifications, setDisableTripListModifications] = useState(false);
+    const [disableNotepadModifications, setDisableNotepadModifications] = useState(false);
+    const [use12HourClockInSchedule, setUse12HourClockInSchedule] = useState(false);
+    const [disableJournalModifications, setDisableJournalModifications] = useState(false);
+    const [hideWeeklyScheduleItems, setHideWeeklyScheduleItems] = useState(false);
+    const [hideHighPriorityTasks, setHideHighPriorityTasks] = useState(false);
+    const [hideCompletedTasks, setHideCompletedTasks] = useState(false);
+    const [hideHighPriorityNotes, setHideHighPriorityNotes] = useState(false);
+    const [disableNoteModifications, setDisableNoteModifications] = useState(false);    
+
     const clearMasterKey = useCallback(() => {
         setMasterKey(null);
     }, []);
@@ -60,7 +76,23 @@ export const AppContextProvider = ({ children }) => {
         hideClosedFD, setHideClosedFD,
         hideClosedRD, setHideClosedRD,
         hideSoldGoldAssets, setHideSoldGoldAssets,
-        hideSoldStocks, setHideSoldStocks
+        hideSoldStocks, setHideSoldStocks,
+
+        disableShoppingListModifications, setDisableShoppingListModifications,
+        disableFoodListModifications, setDisableFoodListModifications,
+        disableWatchlistModifications, setDisableWatchlistModifications,
+        disableReadingListModifications, setDisableReadingListModifications,
+        disableWishlistModifications, setDisableWishlistModifications,
+        disableTodoListModifications, setDisableTodoListModifications,
+        disableTripListModifications, setDisableTripListModifications,
+        disableNotepadModifications, setDisableNotepadModifications,
+        use12HourClockInSchedule, setUse12HourClockInSchedule,
+        disableJournalModifications, setDisableJournalModifications,
+        hideWeeklyScheduleItems, setHideWeeklyScheduleItems,
+        hideHighPriorityTasks, setHideHighPriorityTasks,
+        hideCompletedTasks, setHideCompletedTasks,
+        hideHighPriorityNotes, setHideHighPriorityNotes,
+        disableNoteModifications, setDisableNoteModifications
     };
 
     return (

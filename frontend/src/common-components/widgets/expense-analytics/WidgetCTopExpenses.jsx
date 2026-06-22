@@ -1,13 +1,13 @@
 import React, { useMemo } from "react";
 import { Flex, Text, Box, Spacer, Badge, Divider } from '@chakra-ui/react';
-import { theme } from '../../themes/theme';
-import useLanguage from "../../hooks/useLanguage";
-import BANKS from '../../assets/banks.json';
-import ActionButton from "../form/ActionButton";
+import { theme } from '../../../themes/theme';
+import useLanguage from "../../../hooks/useLanguage";
+import BANKS from '../../../assets/banks.json';
+import ActionButton from "../../form/ActionButton";
 import { ExternalLinkIcon } from "@chakra-ui/icons";
 import { InfoOutlineIcon } from "@chakra-ui/icons";
 
-import InfoTooltip from "../popup/InfoTooltip";
+import InfoTooltip from "../../popup/InfoTooltip";
 
 export default function WidgetCTopExpenses({country, onBack, setSelectedTab, analytics}) {
     const {DISPLAY} = useLanguage();

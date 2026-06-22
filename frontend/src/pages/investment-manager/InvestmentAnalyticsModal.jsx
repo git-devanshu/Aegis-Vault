@@ -5,9 +5,8 @@ import BANKS from '../../assets/banks.json';
 import useLanguage from "../../hooks/useLanguage";
 import { calculateInvestmentAnalytics } from "../../utility/investmentAnalyticsMetrics";
 
-import { ArrowBackIcon, DownloadIcon } from '@chakra-ui/icons';
+import { ArrowBackIcon } from '@chakra-ui/icons';
 import { RiBubbleChartLine } from "react-icons/ri";
-import { BiSolidReport } from "react-icons/bi";
 
 import ActionButton from "../../common-components/form/ActionButton";
 import WidgetAInvestmentSnapshot from "../../common-components/widgets/investment-analytics/WidgetAInvestmentSnapshot";

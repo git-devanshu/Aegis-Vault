@@ -8,8 +8,8 @@ import { apiRequest, validateAndStartLoading } from '../../utility/api';
 
 import { Flex, Text, Box, Grid, Divider, Badge, Checkbox, Textarea } from '@chakra-ui/react';
 import { DeleteIcon } from '@chakra-ui/icons';
-import { SiMdbook } from "react-icons/si";
-import { RiArticleLine } from "react-icons/ri";
+import { GiWhiteBook } from "react-icons/gi";
+import { PiArticle } from "react-icons/pi";
 import { FaRegFileAlt } from "react-icons/fa";
 
 import Popup from "../popup/Popup";
@@ -78,10 +78,10 @@ export default function EditReadingListPopup({isOpen, onClose, readingList, refr
 
     const getTypeIcon = type =>{
         switch(type){
-            case 'book': return <SiMdbook size='26px' color={theme.text}/>;
-            case 'article': return <RiArticleLine size='26px' color={theme.text}/>;
+            case 'book': return <GiWhiteBook size='26px' color={theme.text}/>;
+            case 'article': return <PiArticle size='26px' color={theme.text}/>;
             case 'other': return <FaRegFileAlt size='24px' color={theme.text}/>;
-            default: return <SiMdbook size='26px' color={theme.text}/>;
+            default: return <GiWhiteBook size='26px' color={theme.text}/>;
         }
     }
 

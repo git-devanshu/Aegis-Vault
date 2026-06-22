@@ -15,7 +15,7 @@ import { IoSettingsOutline, IoDesktopOutline } from "react-icons/io5";
 import { MdOutlineDarkMode, MdOutlineLightMode, MdDevices } from "react-icons/md";
 import { FaInfo } from "react-icons/fa";
 import { HiMiniDevicePhoneMobile } from "react-icons/hi2";
-import { RiLogoutCircleRLine, RiStickyNoteLine } from "react-icons/ri";
+import { RiLogoutCircleRLine, RiFileEditLine } from "react-icons/ri";
 import { BsCalendarRange } from "react-icons/bs";
 
 import CircleIconButton from "../common-components/form/CircleIconButton";
@@ -66,7 +66,7 @@ export default function Home() {
         <Flex align='center' gap={theme.paddingL} direction={{base:'row', sm:'column'}} backgroundColor={theme.cardBg} borderRadius='35px'>
             <CircleIconButton icon={<IoSettingsOutline/>} iconSize="18px" tooltip={DISPLAY.TOOLTIPS.SETTINGS} ttPlacement="right" onClick={()=> navigate('/settings')}/>
             <CircleIconButton icon={aegisTheme === 'dark' ? <MdOutlineLightMode/> : <MdOutlineDarkMode/>} iconSize="18px" tooltip={DISPLAY.TOOLTIPS.THEME} ttPlacement="right" onClick={toggleAegisTheme}/>
-            <CircleIconButton icon={<RiStickyNoteLine/>} iconSize="18px" tooltip={DISPLAY.TOOLTIPS.QUICK_SAVE} ttPlacement="right" onClick={()=> navigate('/quick-save')}/>
+            <CircleIconButton icon={<RiFileEditLine/>} iconSize="18px" tooltip={DISPLAY.TOOLTIPS.QUICK_SAVE} ttPlacement="right" onClick={()=> navigate('/quick-save')}/>
             <CircleIconButton icon={<FaInfo/>} tooltip={DISPLAY.TOOLTIPS.ABOUT_US} ttPlacement="right" onClick={()=>{}}/>
             <CircleIconButton icon={<RiLogoutCircleRLine color={theme.error}/>} iconSize="18px" tooltip={DISPLAY.TOOLTIPS.LOGOUT} ttPlacement="right" onClick={()=> setShowLogoutPopup(true)}/>
         </Flex>

@@ -6,8 +6,7 @@ import useLanguage from "../../hooks/useLanguage";
 import useAppContext from "../../hooks/useAppContext";
 
 import { CgMenuRound } from "react-icons/cg";
-import { BsSortDown } from "react-icons/bs";
-import { BsSortUp } from "react-icons/bs";
+import { ImSortAmountAsc, ImSortAmountDesc } from "react-icons/im";
 
 import CircleIconButton from "../../common-components/form/CircleIconButton";
 import Dropdown from "../../common-components/form/Dropdown";
@@ -121,7 +120,7 @@ export default function DepositsTab({selectedAccount, groupedFDData, refreshFDs,
     
     return (
         <>
-            <Grid templateColumns={{base:'1fr', md:'1fr 1fr'}} gap={theme.marginL} marginTop={theme.marginL}>
+            <Grid templateColumns={{base:'1fr', md:'1fr 1fr'}} gap={theme.marginL} marginTop={theme.spacing}>
                 {/* FD / RD dropdown */}
                 <div style={{width:'100%', marginBottom:'-10px', marginTop: '-10px'}}>
                     <Dropdown value={selectedDepositType} onChange={e => setSelectedDepositType(e.target.value)} options={depositTypeOptions} />
@@ -132,8 +131,8 @@ export default function DepositsTab({selectedAccount, groupedFDData, refreshFDs,
                         <Dropdown value={sortBy} onChange={e => setSortBy(e.target.value)} options={sortOptions} />
                     </div>
                     <div style={{marginBottom: '8px'}}>
-                        <CircleIconButton icon={sortDesc ? <BsSortUp/> : <BsSortDown/>}
-                            iconSize='18px'
+                        <CircleIconButton icon={sortDesc ? <ImSortAmountAsc/> : <ImSortAmountDesc/>}
+                            iconSize='16px'
                             onClick={()=> setSortDesc(!sortDesc)}
                             tooltip={sortDesc ? DISPLAY.TOOLTIPS.SORT_ASC : DISPLAY.TOOLTIPS.SORT_DESC}
                         />
@@ -150,7 +149,7 @@ export default function DepositsTab({selectedAccount, groupedFDData, refreshFDs,
             }
 
             {selectedDepositType === 'fd' && 
-                <Grid templateColumns={{base:'1fr', md:'1fr 1fr'}} gap={theme.marginL} marginTop={theme.marginL}>
+                <Grid templateColumns={{base:'1fr', md:'1fr 1fr'}} gap={theme.marginL}>
                     {sortedFDData.map(fdGroup =>{
                         const fd = fdGroup[0];
                         if(hideClosedFD && fd.status === 2) return null;
@@ -221,7 +220,7 @@ export default function DepositsTab({selectedAccount, groupedFDData, refreshFDs,
             }
 
             {selectedDepositType === 'rd' && 
-                <Grid templateColumns={{base:'1fr', md:'1fr 1fr'}} gap={theme.marginL} marginTop={theme.marginL}>
+                <Grid templateColumns={{base:'1fr', md:'1fr 1fr'}} gap={theme.marginL}>
                     {
                         sortedRDData.map(rd => {
                             if(hideClosedRD && rd.status === 1) return null;

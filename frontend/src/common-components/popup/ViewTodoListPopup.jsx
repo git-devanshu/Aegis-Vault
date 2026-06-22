@@ -99,7 +99,7 @@ export default function ViewTodoListPopup({isOpen, onClose, todoList}) {
             ]),
             didParseCell: data =>{
                 if(data.section === 'body' && data.row.raw?.[0] === DISPLAY.TEXT.COMPLETED){
-                    data.cell.styles.fillColor = [220, 252, 231];
+                    data.cell.styles.fillColor = [137, 214, 124];
                 }
             }
         });

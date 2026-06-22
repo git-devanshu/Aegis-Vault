@@ -2,6 +2,8 @@ import { WorldMap, Box } from 'grommet';
 import { theme } from '../../themes/theme';
 import { Text, Flex, useMediaQuery, Tooltip } from '@chakra-ui/react';
 import useLanguage from '../../hooks/useLanguage';
+import { InfoOutlineIcon } from '@chakra-ui/icons';
+import InfoTooltip from '../popup/InfoTooltip';
 
 
 export default function SessionLocationMap({sessions}) {
@@ -15,10 +17,13 @@ export default function SessionLocationMap({sessions}) {
             borderRadius:`calc(${theme.radius} * 2)`,
             padding:theme.paddingL
         }}>
-            <Flex align='center' justify='space-between'>
+            <Flex align='start' justify='space-between'>
                 <Text color={theme.text} fontSize={theme.textSize} marginBottom={theme.marginL}>
                     {DISPLAY.TEXT.SESSION_LOCATION}
                 </Text>
+                <InfoTooltip label={DISPLAY.TOOLTIPS.SESSION_LOCATION_INFO}>
+                    <InfoOutlineIcon color={theme.text}/>
+                </InfoTooltip>
             </Flex>
             <WorldMap
                 color={theme.border}

@@ -1,14 +1,14 @@
 import React, { useMemo } from "react";
 import { Box, Flex, Text } from '@chakra-ui/react';
 import { Chart } from 'primereact/chart';
-import { theme } from '../../themes/theme';
-import BANKS from '../../assets/banks.json';
-import { CATEGORY_ICONS } from '../../assets/categoryIcons';
-import useLanguage from "../../hooks/useLanguage";
-import { getCssVariable } from "../../utility/helpers";
+import { theme } from '../../../themes/theme';
+import BANKS from '../../../assets/banks.json';
+import { CATEGORY_ICONS } from '../../../assets/categoryIcons';
+import useLanguage from "../../../hooks/useLanguage";
+import { getCssVariable } from "../../../utility/helpers";
 import { InfoOutlineIcon } from "@chakra-ui/icons";
 
-import InfoTooltip from "../popup/InfoTooltip";
+import InfoTooltip from "../../popup/InfoTooltip";
 
 export default function WidgetDBudgetVsActual({categoryData, analytics}) {
     const {DISPLAY} = useLanguage();

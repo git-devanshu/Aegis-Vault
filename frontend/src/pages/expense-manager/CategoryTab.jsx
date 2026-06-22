@@ -177,7 +177,7 @@ export default function CategoryTab({expenseData, selectedTracker, selectedAccou
 
     return (
         <>
-            <Grid templateColumns={{base: '1fr', md: '1fr 1fr'}} gap={theme.marginL} marginTop={theme.marginL} alignItems='center'>
+            <Grid templateColumns={{base: '1fr', md: '1fr 1fr'}} gap={theme.marginL} marginTop={theme.spacing} alignItems='center'>
                 <div style={{marginBottom: '-10px', marginTop: '-10px'}}>
                     <Dropdown value={selectedTrackerIndex} onChange={(e)=> setSelectedTrackerIndex(Number(e.target.value))} options={trackerDataOptions} />
                 </div>
@@ -189,7 +189,7 @@ export default function CategoryTab({expenseData, selectedTracker, selectedAccou
                 </div>
             </Grid>
 
-            <Grid templateColumns={{base: '1fr', md: '1fr 1fr'}} gap={theme.marginL} marginTop={theme.marginL}>
+            <Grid templateColumns={{base: '1fr', md: '1fr 1fr'}} gap={theme.marginL}>
                 {categoryData.map((category) => {
                     const Icon = getCategoryIcon(category);
                     return(

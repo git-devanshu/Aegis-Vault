@@ -59,7 +59,7 @@ export default function HoldingsTab({selectedAccount, goldAssetData, refreshGold
 
     return (
         <>
-            <Grid templateColumns={{base:'1fr', md:'1fr 1fr'}} gap={theme.marginL} marginTop={theme.marginL}>
+            <Grid templateColumns={{base:'1fr', md:'1fr 1fr'}} gap={theme.marginL} marginTop={theme.spacing}>
                 {/* Gold / Stocks dropdown */}
                 <div style={{width:'100%', marginBottom:'-10px', marginTop: '-10px'}}>
                     <Dropdown value={selectedHolding} onChange={e => setSelectedHolding(e.target.value)} options={holdingTypeOptions} />
@@ -79,7 +79,7 @@ export default function HoldingsTab({selectedAccount, goldAssetData, refreshGold
             }
 
             {selectedHolding === 'gold' && 
-                <Grid templateColumns={{base:'1fr', md:'1fr 1fr'}} gap={theme.marginL} marginTop={theme.marginL}>
+                <Grid templateColumns={{base:'1fr', md:'1fr 1fr'}} gap={theme.marginL}>
                     {filteredGold.map(gold =>{
                         if(hideSoldGoldAssets && gold.status === 1) return null;
                         return(
@@ -141,7 +141,7 @@ export default function HoldingsTab({selectedAccount, goldAssetData, refreshGold
             }
 
             {selectedHolding === 'stocks' && 
-                <Grid templateColumns={{base:'1fr', md:'1fr 1fr'}} gap={theme.marginL} marginTop={theme.marginL}>
+                <Grid templateColumns={{base:'1fr', md:'1fr 1fr'}} gap={theme.marginL}>
                     {filteredStocks.map(stock => {
                         if(hideSoldStocks && stock.status === 1) return null;
                         return(

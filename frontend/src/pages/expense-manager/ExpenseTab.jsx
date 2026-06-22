@@ -13,7 +13,8 @@ import useAppContext from "../../hooks/useAppContext";
 
 import { DeleteIcon } from '@chakra-ui/icons';
 import { RiFileTransferLine } from "react-icons/ri";
-import { MdOutlineViewAgenda, MdOutlineSort } from "react-icons/md";
+import { MdOutlineViewAgenda } from "react-icons/md";
+import { ImSortAmountDesc } from "react-icons/im";
 
 import InputBox from "../../common-components/form/InputBox";
 import ActionButton from "../../common-components/form/ActionButton";
@@ -162,14 +163,14 @@ export default function ExpenseTab({expenseData, trackerData, selectedAccount, s
 
     return (
         <>
-            <Grid templateColumns={{base:'1fr', md:'1fr 1fr'}} gap={theme.marginL} marginTop={theme.marginL}>
+            <Grid templateColumns={{base:'1fr', md:'1fr 1fr'}} gap={theme.marginL} marginTop={theme.spacing}>
                 <Flex align='center' gap={theme.marginL}>
                     <div style={{width:'100%', marginBottom:'-10px', marginTop: '-10px'}}>
                         <Dropdown value={selectedTrackerIndex} onChange={(e)=> setSelectedTrackerIndex(Number(e.target.value))} options={trackerDataOptions} />
                     </div>
                     <div style={{marginBottom: '8px'}}>
-                        <CircleIconButton icon={groupByCategory ? <MdOutlineSort/> : <MdOutlineViewAgenda/>}
-                            iconSize='18px'
+                        <CircleIconButton icon={groupByCategory ? <ImSortAmountDesc/> : <MdOutlineViewAgenda/>}
+                            iconSize='16px'
                             onClick={()=> setGroupByCategory(!groupByCategory)}
                             tooltip={groupByCategory ? DISPLAY.TOOLTIPS.SORT_BY_DATE : DISPLAY.TOOLTIPS.GROUP_BY_CATEGORY}
                         />

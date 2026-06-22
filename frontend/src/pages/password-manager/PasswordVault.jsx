@@ -279,11 +279,8 @@ export default function PasswordVault() {
                 
                 {/* Search bar and Label Drodpwon */}
                 {selectedTab === 0 && 
-                    <Flex width={{base: '100%', md: '70%'}} gap={theme.paddingL} direction={{base:'column', md:'row'}} align='stretch' marginTop={theme.marginL} marginBottom={theme.marginL} sx={{ '& > div > div':{ marginTop:'0px !important', marginBottom:'0px !important'} }}>
-                        <div style={{flex:1, minWidth:'240px', marginBottom:'-6px'}}>
-                            <InputBox type='text' placeholder={`🔎︎ ${DISPLAY.LABELS.SEARCH_PASSWORD}`} name='searchQuery' value={searchQuery} onChange={(e)=> setSearchQuery(e.target.value)}/>
-                        </div>
-                        <div style={{flex:0.8, minWidth:'240px', marginBottom:'-6px'}}>
+                    <Grid templateColumns={{base:'1fr', md:'1fr 1fr 2fr'}} gap={theme.paddingL} marginTop={theme.spacing} marginBottom={theme.marginL}>
+                        <div style={{marginTop:'-10px', marginBottom: '-10px'}}>
                             <Dropdown value={selectedLabelIndex} onChange={(e)=> setSelectedLabelIndex(Number(e.target.value))}
                                 options={
                                     labels.map((label, index)=>{
@@ -298,37 +295,40 @@ export default function PasswordVault() {
                                 }
                             />
                         </div>
-                    </Flex>
+                        <div style={{marginTop:'-10px', marginBottom: '-10px'}}>
+                            <InputBox type='text' placeholder={`🔎︎ ${DISPLAY.LABELS.SEARCH_PASSWORD}`} name='searchQuery' value={searchQuery} onChange={(e)=> setSearchQuery(e.target.value)}/>
+                        </div>
+                    </Grid>
+                }
+
+                {(selectedTab === 0 && filteredData?.length === 0) &&
+                    <div style={{width: '100%', display: 'flex', marginTop: theme.spacing, justifyContent: 'center'}}>
+                        <Text color={theme.textSecondary} fontSize={theme.smallTextSize} border={`1px solid ${theme.border}`} borderRadius={theme.radius} padding={`${theme.paddingS} ${theme.paddingL}`}>{DISPLAY.TEXT.NO_DATA}</Text>
+                    </div>
                 }
 
                 {/* Main Content for Password */}
                 {selectedTab === 0 && 
-                    <Grid templateColumns={{base:'1fr', md:'1fr 1fr'}} marginTop={`calc(${theme.marginL} * 2)`} width='100%' gap={theme.paddingL}>
-                        {
-                            !filteredData?.length ? 
-                            <div style={{width: '100%', display: 'flex', marginTop: theme.spacing, justifyContent: 'center'}}>
-                                <Text color={theme.textSecondary} fontSize={theme.smallTextSize} border={`1px solid ${theme.border}`} borderRadius={theme.radius} padding={`${theme.paddingS} ${theme.paddingL}`}>{DISPLAY.TEXT.NO_DATA}</Text>
+                    <Grid templateColumns={{base:'1fr', md:'1fr 1fr', lg: '1fr 1fr 1fr'}} marginTop={`calc(${theme.marginL} * 2)`} width='100%' gap={theme.paddingL}>
+                        {filteredData.map((item, index)=>
+                            <div key={index}>
+                                <PasswordCard labels={labels}
+                                    item={item}
+                                    hideShowPasswordButton={hideShowPasswordButton}
+                                    disablePasswordModifications={disablePasswordModifications}
+                                    setPasswordToBeUpdated={setPasswordToBeUpdated}
+                                    setPasswordIdToRemove={setPasswordIdToRemove}
+                                    setShowUpdatePasswordPopup={setShowEditPasswordPopup}
+                                    setShowDeletePasswordPopup={setShowDeletePasswordPopup}
+                                />
                             </div>
-                            : filteredData.map((item, index)=>(
-                                <div key={index}>
-                                    <PasswordCard labels={labels}
-                                        item={item}
-                                        hideShowPasswordButton={hideShowPasswordButton}
-                                        disablePasswordModifications={disablePasswordModifications}
-                                        setPasswordToBeUpdated={setPasswordToBeUpdated}
-                                        setPasswordIdToRemove={setPasswordIdToRemove}
-                                        setShowUpdatePasswordPopup={setShowEditPasswordPopup}
-                                        setShowDeletePasswordPopup={setShowDeletePasswordPopup}
-                                    />
-                                </div>
-                            ))
-                        }
+                        )}
                     </Grid>
                 }
 
                 {/* Main Content for Labels */}
                 {selectedTab === 1 && <>
-                    <Grid templateColumns={{base:'1fr', md:'1fr 1fr'}} marginTop={`calc(${theme.marginL} * 2)`} width='100%' gap={theme.paddingL}>
+                    <Grid templateColumns={{base:'1fr', md:'1fr 1fr', lg: '1fr 1fr 1fr'}} marginTop={`calc(${theme.marginL} * 2)`} width='100%' gap={theme.paddingL}>
                         {
                             labels.map((label, index)=>{
                                 if(label.startsWith('*~Rem*')) return null;
@@ -350,30 +350,31 @@ export default function PasswordVault() {
                             })
                         }
                     </Grid>
+                    
                     {!hideRemovedLabels && <>
                         <Divider borderColor={theme.border} borderWidth='1px' marginTop={theme.marginL} width='auto'/>
                         <Text marginTop={theme.marginL} fontSize={theme.text} color={theme.text}>{DISPLAY.TEXT.REMOVED_LABELS}</Text>
-                        <Grid templateColumns={{base:'1fr', md:'1fr 1fr'}} marginTop={`calc(${theme.marginL} * 2)`} width='100%' gap={theme.paddingL}>
-                            {
-                                labels.some(label => label.startsWith('*~Rem*')) === false ? 
-                                <div style={{width: '100%', display: 'flex', marginTop: theme.spacing, justifyContent: 'center'}}>
-                                    <Text color={theme.textSecondary} fontSize={theme.smallTextSize} border={`1px solid ${theme.border}`} borderRadius={theme.radius} padding={`${theme.paddingS} ${theme.paddingL}`}> {DISPLAY.TEXT.NO_DATA} </Text>
-                                </div>
-                                : labels.map((label, index)=>{
-                                    if(!label.startsWith('*~Rem*')) return null;
-                                    return (
-                                        <div key={index}>
-                                            <Flex height='55.23px' backgroundColor={theme.cardBg} justify='space-between' align='center' border={`1px solid ${theme.border}`} borderRadius={`calc(${theme.radius} * 2)`} padding='7px' paddingLeft={theme.paddingL}>
-                                                <Text color={theme.text} fontSize={theme.textSize}>
-                                                    {label.replace("*~Rem*", '')}
-                                                </Text>
-    
-                                                <CircleIconButton icon={<MdOutlineSettingsBackupRestore />} iconSize="18px" tooltip={DISPLAY.TOOLTIPS.RECOVER} onClick={()=> {setLabelIndexForAction(index); setShowRecoverLabelPopup(true); }}/>
-                                            </Flex>
-                                        </div>
-                                    );
-                                })
-                            }
+                        {labels.some(label => label.startsWith('*~Rem*')) === false && 
+                            <div style={{width: '100%', display: 'flex', marginTop: theme.spacing, justifyContent: 'center'}}>
+                                <Text color={theme.textSecondary} fontSize={theme.smallTextSize} border={`1px solid ${theme.border}`} borderRadius={theme.radius} padding={`${theme.paddingS} ${theme.paddingL}`}> {DISPLAY.TEXT.NO_DATA} </Text>
+                            </div>
+                        }
+
+                        <Grid templateColumns={{base:'1fr', md:'1fr 1fr', lg: '1fr 1fr 1fr'}} marginTop={`calc(${theme.marginL} * 2)`} width='100%' gap={theme.paddingL}>
+                            {labels.map((label, index)=>{
+                                if(!label.startsWith('*~Rem*')) return null;
+                                return (
+                                    <div key={index}>
+                                        <Flex height='55.23px' backgroundColor={theme.cardBg} justify='space-between' align='center' border={`1px solid ${theme.border}`} borderRadius={`calc(${theme.radius} * 2)`} padding='7px' paddingLeft={theme.paddingL}>
+                                            <Text color={theme.text} fontSize={theme.textSize}>
+                                                {label.replace("*~Rem*", '')}
+                                            </Text>
+
+                                            <CircleIconButton icon={<MdOutlineSettingsBackupRestore />} iconSize="18px" tooltip={DISPLAY.TOOLTIPS.RECOVER} onClick={()=> {setLabelIndexForAction(index); setShowRecoverLabelPopup(true); }}/>
+                                        </Flex>
+                                    </div>
+                                )}
+                            )}
                         </Grid>
                     </>}
                 </>}

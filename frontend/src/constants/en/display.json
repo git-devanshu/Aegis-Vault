@@ -99,11 +99,20 @@
         "NONE": "None",
         "EXCHANGE": "Exchange",
         "INVESTMENT_ANALYTICS": "Investment Analytics",
-        
         "PLANNER": "Planner",
         "CALENDAR": "Calendar",
         "NOTES": "Notes",
-        "COLLECTIONS": "Collections"
+        "COLLECTIONS": "Collections",
+        "DAY": "Day",
+        "START_TIME": "Start Time",
+        "END_TIME": "End Time",
+        "TITLE": "Title",
+        "TASK_NAME": "Task Name",
+        "DESCRIPTION": "Description",
+        "TAG": "Tag",
+        "CATEGORY_COLOR": "Category Color",
+        "SEARCH_NOTES": "Search Notes Title",
+        "LAST_UPDATED": "Updated at"
     },
 
     "TEXT": {
@@ -352,7 +361,57 @@
         "DONE": "Done",
         "DESTINATION": "Destination",
         "DUE_DATE": "Due Date",
-        "WRITE_HERE": "Write here..."
+        "WRITE_HERE": "Write here...",
+        "SCHEDULE_ITEMS": "Schedule Items",
+        "SCHEDULE": "Schedule",
+        "JOURNAL": "Journal",
+        "AVAILABLE": "Available",
+        "NOT_AVAILABLE": "Not Available",
+        "NOTHING_TODAY": "You're completely free",
+        "MANAGE_SCHEDULE": "Manage Schedule",
+        "MONDAY": "Monday",
+        "TUESDAY": "Tuesday",
+        "WEDNESDAY": "Wednesday",
+        "THURSDAY": "Thursday",
+        "FRIDAY": "Friday",
+        "SATURDAY": "Saturday",
+        "SUNDAY": "Sunday",
+        "TASK": "Task",
+        "ADD_EVENT": "Add Event",
+        "NO_DESCRIPTION": "No Description",
+        "TASK_DETAILS": "Task Details",
+        "DELETE_TASK": "Delete Task",
+        "CONFIRM_DELETE_TASK": "Are you sure you want to delete this task ?",
+        "MARK_COMPLETED": "Mark Completed",
+        "COMFIRM_MARK_COMPLETE": "This action cannot be undone, do you want to proceed ?",
+        "TIME": "Time",
+        "NO_JOURNAL": "No Journal Added",
+        "JOURNAL_DATE": "Journal Date",
+        "EDIT_JOURNAL": "Edit Journal",
+        "CLICK_TO_ADD_JOURNAL": "Click to Add Journal",
+        "CONFIRM_DELETE_JOURNAL": "Are you sure you want to delete this journal ?",
+        "DELETE_JOURNAL": "Delete Journal",
+        "ADD_NOTE": "Add Note",
+        "EDIT_NOTE": "Edit Note",
+        "DELETE_NOTE": "Delete Note",
+        "CONFIRM_DELETE_NOTE": "Are you sure you want to delete this note ?",
+        "NOTE": "Note",
+        "PLANNER_SETTINGS": "Planner Settings",
+        "DISABLE_SHOPPING_LIST_MODIFICATIONS": "Disable Shopping List Modifications",
+        "DISABLE_FOOD_LIST_MODIFICATIONS": "Disable Food List Modifications",
+        "DISABLE_WATCHLIST_MODIFICATIONS": "Disable Shopping Watchlist Modifications",
+        "DISABLE_READING_LIST_MODIFICATIONS": "Disable Reading List Modifications",
+        "DISABLE_WISHLIST_MODIFICATIONS": "Disable Wishlist Modifications",
+        "DISABLE_TODO_LIST_MODIFICATIONS": "Disable Todo List Modifications",
+        "DISABLE_TRIP_LIST_MODIFICATIONS": "Disable Trip List Modifications",
+        "DISABLE_NOTEPAD_MODIFICATIONS": "Disable Notepad Modifications",
+        "USE_12_HOUR_CLOCK_IN_SCHEDULE": "Use 12 hour clock in schedule",
+        "DISABLE_JOURNAL_MODIFICATIONS": "Disable Journal Modifications",
+        "HIDE_WEEKLY_SCHEDULE_ITEMS": "Hide Weekly Schedule Items",
+        "HIDE_HIGH_PRIORITY_TASKS": "Hide High Priority Tasks",
+        "HIDE_COMPLETED_TASKS": "Hide Completed Tasks",
+        "HIDE_HIGH_PRIORITY_NOTES": "Hide High Priority Notes",
+        "DISABLE_NOTE_MODIFICATIONS": "Disable Note Modifications"
     },
 
     "BUTTONS": {
@@ -410,7 +469,12 @@
         "DOWNLOAD_ALL": "Download All",
         "DOWNLOAD_GENERAL": "Download General",
         "DOWNLOAD_PENDING": "Download Pending",
-        "COPY_DATA": "Copy Data"
+        "COPY_DATA": "Copy Data",
+        "ADD_SCHEDULE": "Add Schedule",
+        "ADD_TASK": "Add Task",
+        "MARK_COMPLETED": "Mark Completed",
+        "ADD_JOURNAL": "Add Journal",
+        "ADD_NOTE": "Add Note"
     },
 
     "PASSWORD_LABELS": {
@@ -432,7 +496,7 @@
         "LANGUAGE": "Change Language",
         "THEME": "Switch Theme",
         "ABOUT_US": "About Creator",
-        "LEARN_MORE": "Info",
+        "LEARN_MORE": "Help",
         "REFRESH": "Refresh",
         "RESET_SETTINGS": "Reset Settings",
         "LOGOUT_ALL": "Logout from All Other Devices",
@@ -476,7 +540,8 @@
         "INSIGHTS_INFO": "Provides personalized observations and highlights based on your expense data, spending patterns, category trends and budget performance.",
         "ADD_NOTE": "Add Note",
         "MANAGE_SCHEDULE": "Manage Schedule",
-        "ADD_EVENT": "Add Event"
+        "ADD_EVENT": "Add Event",
+        "SESSION_LOCATION_INFO": "Location of devices that are currently logged in."
     },
 
     "DEFAULT_EXPENSE_CATEGORIES": {
@@ -505,6 +570,16 @@
         "TOP_CATEGORY_NO_BUDGET": "{category} is your highest spending category but has no budget",
         "SAVINGS_RATE": "You retained {percentage}% of this income"
     },
+
+    "WEEKDAYS_SHORT": [
+        "Su",
+        "Mo",
+        "Tu",
+        "We",
+        "Th",
+        "Fr",
+        "Sa"
+    ],
 
     "REPORT": {
         "METRIC": "Metric",

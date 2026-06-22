@@ -74,7 +74,8 @@ export default function EditNotepadPopup({isOpen, onClose, notepad, refreshColle
                 _focus={{borderColor: theme.primary, boxShadow: 'none'}}
             />
 
-            <Grid templateColumns='1fr' marginTop={theme.marginL} marginBottom={theme.marginS}>
+            <Grid templateColumns='1fr 1fr' gap={theme.paddingL} marginTop={theme.marginL} marginBottom={theme.marginS}>
+                <ActionButton name={DISPLAY.BUTTONS.CLEAR_ALL} onClick={ (e)=> setNoteData('') } disabled={isLoading} />
                 <ActionButton name={DISPLAY.BUTTONS.SAVE_CHANGES} onClick={saveNotepad} isLoading={isLoading} disabled={isLoading} actionType='primary' />
             </Grid>
         </Popup>

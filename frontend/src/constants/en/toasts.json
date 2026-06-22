@@ -30,6 +30,8 @@
     },
     "PLANNING_MANAGER": {
         "PENDING_ITEMS_COPIED": "pending items copied",
-        "DATA_COPIED": "data copied to clipboard"
+        "DATA_COPIED": "data copied to clipboard",
+        "INVALID_TIME_RANGE": "invalid time range",
+        "JOURNAL_ALREADY_EXISTS": "journal for this date already exists"
     }
 }

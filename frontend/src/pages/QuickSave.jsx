@@ -5,7 +5,7 @@ import useLanguage from "../hooks/useLanguage";
 import { theme } from '../themes/theme';
 
 import { DeleteIcon, ArrowBackIcon } from '@chakra-ui/icons';
-import { RiStickyNoteLine } from "react-icons/ri";
+import { RiFileEditLine } from "react-icons/ri";
 
 import CircleIconButton from "../common-components/form/CircleIconButton";
 import ActionButton from "../common-components/form/ActionButton";
@@ -63,7 +63,7 @@ export default function QuickSave() {
     return (
         <div className="common-page">
             <Flex align='center' justify='space-between' paddingBottom={theme.paddingL}>
-                <RiStickyNoteLine color={theme.primary} style={{marginLeft: theme.marginS, marginRight: theme.marginS}}/>
+                <RiFileEditLine color={theme.primary} style={{marginLeft: theme.marginS, marginRight: theme.marginS}}/>
                 <Text color={theme.primary} fontSize={theme.text} fontWeight={500} align={{base: 'center', sm: 'left'}}>
                     {DISPLAY.LABELS.QUICK_SAVE}
                 </Text>

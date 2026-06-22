@@ -1,14 +1,14 @@
 import React, { useMemo } from "react";
 import { Flex, Text, Box, Grid, Spacer } from '@chakra-ui/react';
 import { Chart } from 'primereact/chart';
-import { theme } from '../../themes/theme';
-import useLanguage from "../../hooks/useLanguage";
-import {getCategoryColor} from '../../assets/categoryIcons';
-import { CATEGORY_ICONS } from '../../assets/categoryIcons';
+import { theme } from '../../../themes/theme';
+import useLanguage from "../../../hooks/useLanguage";
+import {getCategoryColor} from '../../../assets/categoryIcons';
+import { CATEGORY_ICONS } from '../../../assets/categoryIcons';
 
 import { InfoOutlineIcon } from "@chakra-ui/icons";
 
-import InfoTooltip from "../popup/InfoTooltip";
+import InfoTooltip from "../../popup/InfoTooltip";
 
 
 export default function WidgetBCategoryDistribution({categoryData, country, analytics}) {

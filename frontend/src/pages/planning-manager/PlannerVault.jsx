@@ -14,7 +14,7 @@ import { ArrowBackIcon, AddIcon } from '@chakra-ui/icons';
 import { MdRefresh } from "react-icons/md";
 import { FaInfo } from "react-icons/fa";
 import { BsCalendarWeek, BsCalendarRange } from "react-icons/bs";
-import { AiOutlineFileAdd } from "react-icons/ai";
+import { RiStickyNoteAddLine } from "react-icons/ri";
 
 import ActionButton from "../../common-components/form/ActionButton";
 import AppLayout from "../../common-components/AppLayout";
@@ -23,6 +23,11 @@ import Loading from "../../common-components/Loading";
 import PinModal from "../../common-components/PinModal";
 import TabGroup from "../../common-components/navbar/TabGroup";
 import CollectionsTab from "./CollectionsTab";
+import CalendarTab from "./CalendarTab";
+import ManageSchedulePopup from "../../common-components/popup/ManageSchedulePopup";
+import AddEventPopup from "../../common-components/popup/AddEventPopup";
+import AddNotesPopup from "../../common-components/popup/AddNotesPopup";
+import NotesTab from "./NotesTab";
 
 
 export default function PlannerVault() {
@@ -43,6 +48,10 @@ export default function PlannerVault() {
     const [refreshNoteMetadata, setRefreshNoteMetadata] = useState(false);
     const [refreshSchedule, setRefreshSchedule] = useState(false);
     const [refreshTasks, setRefreshTasks] = useState(false);
+
+    const [showManageSchedulePopup, setShowManageSchedulePopup] = useState(false);
+    const [showAddEventPopup, setShowAddEventPopup] = useState(false);
+    const [showAddNotePopup, setShowAddNotePopup] = useState(false);
 
     const [error, setError] = useState(null);
     const [isLoading, setIsLoading] = useState(false); // use this to disable buttons not to show <Loading/>
@@ -227,9 +236,9 @@ export default function PlannerVault() {
     const sidebar = (
         <Flex align='center' gap={theme.paddingL} direction={{base:'row', sm:'column'}} backgroundColor={theme.cardBg} borderRadius='35px'>
             <CircleIconButton icon={<MdRefresh/>} iconSize="18px" tooltip={DISPLAY.TOOLTIPS.REFRESH} ttPlacement="right" onClick={refreshPage}/>
-            <CircleIconButton icon={<BsCalendarWeek/>} iconSize="18px" tooltip={DISPLAY.TOOLTIPS.MANAGE_SCHEDULE} ttPlacement="right" onClick={()=> {} }/>
-            <CircleIconButton icon={<AddIcon/>} tooltip={DISPLAY.TOOLTIPS.ADD_EVENT} ttPlacement="right" onClick={()=> {} } actionType='primary' />
-            <CircleIconButton icon={<AiOutlineFileAdd/>} iconSize="18px" tooltip={DISPLAY.TOOLTIPS.ADD_NOTE} ttPlacement="right" onClick={()=> {} }/>
+            <CircleIconButton icon={<BsCalendarWeek/>} iconSize="18px" tooltip={DISPLAY.TOOLTIPS.MANAGE_SCHEDULE} ttPlacement="right" onClick={()=> setShowManageSchedulePopup(true)}/>
+            <CircleIconButton icon={<AddIcon/>} tooltip={DISPLAY.TOOLTIPS.ADD_EVENT} ttPlacement="right" onClick={()=> setShowAddEventPopup(true) } actionType='primary' />
+            <CircleIconButton icon={<RiStickyNoteAddLine/>} iconSize="18px" tooltip={DISPLAY.TOOLTIPS.ADD_NOTE} ttPlacement="right" onClick={()=> setShowAddNotePopup(true) }/>
             <CircleIconButton icon={<FaInfo/>} tooltip={DISPLAY.TOOLTIPS.LEARN_MORE} ttPlacement="right" onClick={()=>{}}/>
         </Flex>
     );
@@ -247,7 +256,6 @@ export default function PlannerVault() {
             <Divider borderColor={theme.border} borderWidth='1px' />
 
             <AppLayout sidebar={sidebar}>
-
                 <TabGroup tabs={tabs} value={selectedTab} onChange={setSelectedTab}/>
 
                 {/* Collections Tab */}
@@ -256,15 +264,24 @@ export default function PlannerVault() {
                 }
 
                 {/* Calendar Tab */}
-                {selectedTab === 1 && <></>}
+                {selectedTab === 1 && 
+                    <CalendarTab journalMetadata={journalMetadata} weeklySchedule={weeklySchedule} taskData={taskData} refreshJournalMetadata={refreshJournalMetadata} setRefreshJournalMetadata={setRefreshJournalMetadata} refreshTasks={refreshTasks} setRefreshTasks={setRefreshTasks} selectedDate={selectedDate} setSelectedDate={setSelectedDate} setShowAddEventPopup={setShowAddEventPopup} />
+                }
 
                 {/* Notes Tab */}
-                {selectedTab === 2 && <></>}
-
+                {selectedTab === 2 && 
+                    <NotesTab noteMetadata={noteMetadata} journalMetadata={journalMetadata} refreshJournalMetadata={refreshJournalMetadata} setRefreshJournalMetadata={setRefreshJournalMetadata} refreshNoteMetadata={refreshNoteMetadata} setRefreshNoteMetadata={setRefreshNoteMetadata} />
+                }
             </AppLayout>
             
-            {/* Required popups */}
+            {/* Manage Schedule Popup */}
+            <ManageSchedulePopup isOpen={showManageSchedulePopup} onClose={setShowManageSchedulePopup} weeklySchedule={weeklySchedule} refreshSchedule={refreshSchedule} setRefreshSchedule={setRefreshSchedule} />
 
+            {/* Add Event Popup */}
+            <AddEventPopup isOpen={showAddEventPopup} onClose={setShowAddEventPopup} selectedDate={selectedDate} refreshTasks={refreshTasks} setRefreshTasks={setRefreshTasks} refreshJournalMetadata={refreshJournalMetadata} setRefreshJournalMetadata={setRefreshJournalMetadata} journalMetadata={journalMetadata} />
+
+            {/* Add Note Popup */}
+            <AddNotesPopup isOpen={showAddNotePopup} onClose={setShowAddNotePopup} noteMetadata={noteMetadata} refreshNoteMetadata={refreshNoteMetadata} setRefreshNoteMetadata={setRefreshNoteMetadata} />
         </div>
     );
 }

@@ -44,14 +44,20 @@ const saveUserSettings = async(req, res) =>{
             hideRemovedLabels, hideShowPasswordButton, disablePasswordModifications,
             allowBankAccountDeletion, 
             allowIncomeTrackerDeletion, allowExpenseDeletion, allowNewCategoryCreation, hideAccountSnapshotInAnalytics,
-            hideAccountBalanceInCard, allowFDDeletion, allowRDDeletion, allowGoldAssetDeletion, allowStockDeletion, hideClosedFD, hideClosedRD, hideSoldGoldAssets, hideSoldStocks
+            hideAccountBalanceInCard, allowFDDeletion, allowRDDeletion, allowGoldAssetDeletion, allowStockDeletion, hideClosedFD, hideClosedRD, hideSoldGoldAssets, hideSoldStocks,
+            disableShoppingListModifications, disableFoodListModifications, disableWatchlistModifications, disableReadingListModifications, disableWishlistModifications, disableTodoListModifications, disableTripListModifications, disableNotepadModifications,
+            use12HourClockInSchedule, disableJournalModifications, hideWeeklyScheduleItems, hideHighPriorityTasks, hideCompletedTasks,
+            hideHighPriorityNotes, disableNoteModifications
         } = req.body;
 
         if(
             hideRemovedLabels === null || hideShowPasswordButton === null || disablePasswordModifications === null ||
             allowBankAccountDeletion === null ||
             allowIncomeTrackerDeletion === null || allowExpenseDeletion === null || allowNewCategoryCreation === null || hideAccountSnapshotInAnalytics === null ||
-            hideAccountBalanceInCard === null || allowFDDeletion === null || allowRDDeletion === null || allowGoldAssetDeletion === null || allowStockDeletion === null || hideClosedFD === null || hideClosedRD === null || hideSoldGoldAssets === null || hideSoldStocks === null 
+            hideAccountBalanceInCard === null || allowFDDeletion === null || allowRDDeletion === null || allowGoldAssetDeletion === null || allowStockDeletion === null || hideClosedFD === null || hideClosedRD === null || hideSoldGoldAssets === null || hideSoldStocks === null ||
+            disableShoppingListModifications === null || disableFoodListModifications === null || disableWatchlistModifications === null || disableReadingListModifications === null || disableWishlistModifications === null || disableTodoListModifications === null || disableTripListModifications === null || disableNotepadModifications === null ||
+            use12HourClockInSchedule === null || disableJournalModifications === null || hideWeeklyScheduleItems === null || hideHighPriorityTasks === null || hideCompletedTasks === null ||
+            hideHighPriorityNotes === null || disableNoteModifications === null
         ){
             return res.status(400).json({ message : RESPONSES.COMMON.UNEXPECTED_ERROR });
         }
@@ -71,7 +77,10 @@ const saveUserSettings = async(req, res) =>{
                 hideRemovedLabels, hideShowPasswordButton, disablePasswordModifications,
                 allowBankAccountDeletion, 
                 allowIncomeTrackerDeletion, allowExpenseDeletion, allowNewCategoryCreation, hideAccountSnapshotInAnalytics,
-                hideAccountBalanceInCard, allowFDDeletion, allowRDDeletion, allowGoldAssetDeletion, allowStockDeletion, hideClosedFD, hideClosedRD, hideSoldGoldAssets, hideSoldStocks
+                hideAccountBalanceInCard, allowFDDeletion, allowRDDeletion, allowGoldAssetDeletion, allowStockDeletion, hideClosedFD, hideClosedRD, hideSoldGoldAssets, hideSoldStocks,
+                disableShoppingListModifications, disableFoodListModifications, disableWatchlistModifications, disableReadingListModifications, disableWishlistModifications, disableTodoListModifications, disableTripListModifications, disableNotepadModifications,
+                use12HourClockInSchedule, disableJournalModifications, hideWeeklyScheduleItems, hideHighPriorityTasks, hideCompletedTasks,
+                hideHighPriorityNotes, disableNoteModifications
             }
         );
 

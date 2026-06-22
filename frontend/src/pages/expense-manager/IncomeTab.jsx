@@ -119,7 +119,7 @@ export default function IncomeTab({trackerData, selectedAccount, accountDataArra
 
     return (
         <>
-            <Grid templateColumns={{base: '1fr', md: '1fr 1fr'}} gap={theme.marginL} marginTop={theme.marginL}>
+            <Grid templateColumns={{base: '1fr', md: '1fr 1fr'}} gap={theme.marginL} marginTop={theme.spacing}>
                 {/* Search by Tracker Name */}
                 <div style={{marginBottom: '-10px', marginTop: '-10px'}}>
                     <InputBox placeholder={`🔎︎ ${DISPLAY.LABELS.SEARCH_INCOME}`} type='text' name='searchQuery' value={searchQuery} onChange={(e)=> setSearchQuery(e.target.value)}/>

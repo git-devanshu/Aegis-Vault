@@ -1,8 +1,8 @@
 import React, { useMemo } from "react";
 import { Grid, Flex, Text, Box } from '@chakra-ui/react';
-import { theme } from '../../themes/theme';
-import BANKS from '../../assets/banks.json';
-import useLanguage from "../../hooks/useLanguage";
+import { theme } from '../../../themes/theme';
+import BANKS from '../../../assets/banks.json';
+import useLanguage from "../../../hooks/useLanguage";
 
 import { TbMoneybagHeart } from "react-icons/tb";
 import { GiMoneyStack } from 'react-icons/gi';
@@ -10,7 +10,7 @@ import { RiPercentFill } from "react-icons/ri";
 import { PiWalletFill } from "react-icons/pi";
 import { InfoOutlineIcon } from "@chakra-ui/icons";
 
-import InfoTooltip from "../popup/InfoTooltip";
+import InfoTooltip from "../../popup/InfoTooltip";
 
 export default function WidgetAAccountSnapshot({selectedAccount, analytics}) {
     const {DISPLAY} = useLanguage();

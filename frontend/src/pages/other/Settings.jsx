@@ -11,10 +11,11 @@ import useLanguage, { getLanguageIcon, getLanguageName, setLanguage } from "../.
 import useAppContext from "../../hooks/useAppContext";
 import useTheme from "../../hooks/useTheme";
 
-import { LockIcon, BellIcon, ArrowBackIcon } from '@chakra-ui/icons';
+import { LockIcon, ArrowBackIcon } from '@chakra-ui/icons';
 import { GiMoneyStack, GiGoldBar } from "react-icons/gi";
-import { MdRefresh, MdLockReset, MdOutlineDarkMode, MdOutlineLightMode, MdSecurity } from "react-icons/md";
+import { MdRefresh, MdLockReset, MdOutlineDarkMode, MdOutlineLightMode } from "react-icons/md";
 import { FaInfo } from "react-icons/fa";
+import { BsCalendarRange } from "react-icons/bs";
 import { RiBankLine } from "react-icons/ri";
 
 import InputBox from "../../common-components/form/InputBox";
@@ -48,7 +49,22 @@ export default function Settings() {
         hideClosedFD, setHideClosedFD,
         hideClosedRD, setHideClosedRD,
         hideSoldGoldAssets, setHideSoldGoldAssets,
-        hideSoldStocks, setHideSoldStocks
+        hideSoldStocks, setHideSoldStocks,
+        disableShoppingListModifications, setDisableShoppingListModifications,
+        disableFoodListModifications, setDisableFoodListModifications,
+        disableWatchlistModifications, setDisableWatchlistModifications,
+        disableReadingListModifications, setDisableReadingListModifications,
+        disableWishlistModifications, setDisableWishlistModifications,
+        disableTodoListModifications, setDisableTodoListModifications,
+        disableTripListModifications, setDisableTripListModifications,
+        disableNotepadModifications, setDisableNotepadModifications,
+        use12HourClockInSchedule, setUse12HourClockInSchedule,
+        disableJournalModifications, setDisableJournalModifications,
+        hideWeeklyScheduleItems, setHideWeeklyScheduleItems,
+        hideHighPriorityTasks, setHideHighPriorityTasks,
+        hideCompletedTasks, setHideCompletedTasks,
+        hideHighPriorityNotes, setHideHighPriorityNotes,
+        disableNoteModifications, setDisableNoteModifications
     } = useAppContext();
 
     const navigate = useNavigate();
@@ -90,6 +106,21 @@ export default function Settings() {
                     setHideClosedRD(res?.data?.userSettings?.hideClosedRD);
                     setHideSoldGoldAssets(res?.data?.userSettings?.hideSoldGoldAssets);
                     setHideSoldStocks(res?.data?.userSettings?.hideSoldStocks);
+                    setDisableShoppingListModifications(res?.data?.userSettings?.disableShoppingListModifications);
+                    setDisableFoodListModifications(res?.data?.userSettings?.disableFoodListModifications);
+                    setDisableWatchlistModifications(res?.data?.userSettings?.disableWatchlistModifications);
+                    setDisableReadingListModifications(res?.data?.userSettings?.disableReadingListModifications);
+                    setDisableWishlistModifications(res?.data?.userSettings?.disableWishlistModifications);
+                    setDisableTodoListModifications(res?.data?.userSettings?.disableTodoListModifications);
+                    setDisableTripListModifications(res?.data?.userSettings?.disableTripListModifications);
+                    setDisableNotepadModifications(res?.data?.userSettings?.disableNotepadModifications);
+                    setUse12HourClockInSchedule(res?.data?.userSettings?.use12HourClockInSchedule);
+                    setDisableJournalModifications(res?.data?.userSettings?.disableJournalModifications);
+                    setHideWeeklyScheduleItems(res?.data?.userSettings?.hideWeeklyScheduleItems);
+                    setHideHighPriorityTasks(res?.data?.userSettings?.hideHighPriorityTasks);
+                    setHideCompletedTasks(res?.data?.userSettings?.hideCompletedTasks);
+                    setHideHighPriorityNotes(res?.data?.userSettings?.hideHighPriorityNotes);
+                    setDisableNoteModifications(res?.data?.userSettings?.disableNoteModifications);
                 }
             });
         }
@@ -113,7 +144,10 @@ export default function Settings() {
                     hideRemovedLabels, hideShowPasswordButton, disablePasswordModifications,
                     allowBankAccountDeletion,
                     allowIncomeTrackerDeletion, allowExpenseDeletion, allowNewCategoryCreation, hideAccountSnapshotInAnalytics,
-                    hideAccountBalanceInCard, allowFDDeletion, allowRDDeletion, allowGoldAssetDeletion, allowStockDeletion, hideClosedFD, hideClosedRD, hideSoldGoldAssets, hideSoldStocks
+                    hideAccountBalanceInCard, allowFDDeletion, allowRDDeletion, allowGoldAssetDeletion, allowStockDeletion, hideClosedFD, hideClosedRD, hideSoldGoldAssets, hideSoldStocks,
+                    disableShoppingListModifications, disableFoodListModifications, disableWatchlistModifications, disableReadingListModifications, disableWishlistModifications, disableTodoListModifications, disableTripListModifications, disableNotepadModifications,
+                    use12HourClockInSchedule, disableJournalModifications, hideWeeklyScheduleItems, hideHighPriorityTasks, hideCompletedTasks,
+                    hideHighPriorityNotes, disableNoteModifications
                 },
                 toastId,
                 setIsLoading,
@@ -152,6 +186,22 @@ export default function Settings() {
         setHideClosedRD(false);
         setHideSoldGoldAssets(false);
         setHideSoldStocks(false);
+
+        setDisableShoppingListModifications(false);
+        setDisableFoodListModifications(false);
+        setDisableWatchlistModifications(false);
+        setDisableReadingListModifications(false);
+        setDisableWishlistModifications(false);
+        setDisableTodoListModifications(false);
+        setDisableTripListModifications(false);
+        setDisableNotepadModifications(false);
+        setUse12HourClockInSchedule(false);
+        setDisableJournalModifications(false);
+        setHideWeeklyScheduleItems(false);
+        setHideHighPriorityTasks(false);
+        setHideCompletedTasks(false);
+        setHideHighPriorityNotes(false);
+        setDisableNoteModifications(false);
     }
 
     const sidebar = (
@@ -220,7 +270,7 @@ export default function Settings() {
                             </Flex>
                         </div>
 
-                        {/* Notifications Settings */}
+                        {/* Bank Account Settings */}
                         <div style={{padding: theme.paddingL, borderRadius: `calc(${theme.radius} * 2)`, border: `1px solid ${theme.border}`, backgroundColor: theme.cardBg, marginBottom: theme.marginL}}>
                             <Flex align='center' marginBottom={theme.marginL}>
                                 <RiBankLine color={theme.textSecondary} margin={0}/>
@@ -351,6 +401,127 @@ export default function Settings() {
                                     {DISPLAY.TEXT.HIDE_SOLD_STOCKS}
                                 </Text>
                                 <ToggleSwitch value={hideSoldStocks} onChange={setHideSoldStocks}/>
+                            </Flex>
+                        </div>
+
+                        {/* Planning Manager Settings */}
+                        <div style={{padding: theme.paddingL, borderRadius: `calc(${theme.radius} * 2)`, border: `1px solid ${theme.border}`, backgroundColor: theme.cardBg, marginBottom: theme.marginL}}>
+                            <Flex align='center' marginBottom={theme.marginL}>
+                                <BsCalendarRange color={theme.textSecondary} margin={0}/>
+                                <Text color={theme.text} fontSize={theme.textSize} marginLeft={theme.marginS} marginBottom='2px' fontWeight={500}>
+                                    {DISPLAY.TEXT.PLANNER_SETTINGS}
+                                </Text>
+                            </Flex>
+
+                            <Divider borderColor={theme.border} borderWidth='1px' />
+
+                            <Flex align='center' justify='space-between' marginTop={theme.marginL}>
+                                <Text color={theme.text} fontSize={theme.textSize} marginLeft={theme.marginS}>
+                                    {DISPLAY.TEXT.DISABLE_SHOPPING_LIST_MODIFICATIONS}
+                                </Text>
+                                <ToggleSwitch value={disableShoppingListModifications} onChange={setDisableShoppingListModifications}/>
+                            </Flex>
+
+                            <Flex align='center' justify='space-between' marginTop={theme.marginL}>
+                                <Text color={theme.text} fontSize={theme.textSize} marginLeft={theme.marginS}>
+                                    {DISPLAY.TEXT.DISABLE_FOOD_LIST_MODIFICATIONS}
+                                </Text>
+                                <ToggleSwitch value={disableFoodListModifications} onChange={setDisableFoodListModifications}/>
+                            </Flex>
+
+                            <Flex align='center' justify='space-between' marginTop={theme.marginL}>
+                                <Text color={theme.text} fontSize={theme.textSize} marginLeft={theme.marginS}>
+                                    {DISPLAY.TEXT.DISABLE_WATCHLIST_MODIFICATIONS}
+                                </Text>
+                                <ToggleSwitch value={disableWatchlistModifications} onChange={setDisableWatchlistModifications}/>
+                            </Flex>
+
+                            <Flex align='center' justify='space-between' marginTop={theme.marginL}>
+                                <Text color={theme.text} fontSize={theme.textSize} marginLeft={theme.marginS}>
+                                    {DISPLAY.TEXT.DISABLE_READING_LIST_MODIFICATIONS}
+                                </Text>
+                                <ToggleSwitch value={disableReadingListModifications} onChange={setDisableReadingListModifications}/>
+                            </Flex>
+
+                            <Flex align='center' justify='space-between' marginTop={theme.marginL}>
+                                <Text color={theme.text} fontSize={theme.textSize} marginLeft={theme.marginS}>
+                                    {DISPLAY.TEXT.DISABLE_WISHLIST_MODIFICATIONS}
+                                </Text>
+                                <ToggleSwitch value={disableWishlistModifications} onChange={setDisableWishlistModifications}/>
+                            </Flex>
+
+                            <Flex align='center' justify='space-between' marginTop={theme.marginL}>
+                                <Text color={theme.text} fontSize={theme.textSize} marginLeft={theme.marginS}>
+                                    {DISPLAY.TEXT.DISABLE_TODO_LIST_MODIFICATIONS}
+                                </Text>
+                                <ToggleSwitch value={disableTodoListModifications} onChange={setDisableTodoListModifications}/>
+                            </Flex>
+
+                            <Flex align='center' justify='space-between' marginTop={theme.marginL}>
+                                <Text color={theme.text} fontSize={theme.textSize} marginLeft={theme.marginS}>
+                                    {DISPLAY.TEXT.DISABLE_TRIP_LIST_MODIFICATIONS}
+                                </Text>
+                                <ToggleSwitch value={disableTripListModifications} onChange={setDisableTripListModifications}/>
+                            </Flex>
+
+                            <Flex align='center' justify='space-between' marginTop={theme.marginL}>
+                                <Text color={theme.text} fontSize={theme.textSize} marginLeft={theme.marginS}>
+                                    {DISPLAY.TEXT.DISABLE_NOTEPAD_MODIFICATIONS}
+                                </Text>
+                                <ToggleSwitch value={disableNotepadModifications} onChange={setDisableNotepadModifications}/>
+                            </Flex>
+
+                            <Divider borderColor={theme.border} borderWidth='1px' marginTop={theme.marginL} />
+
+                            <Flex align='center' justify='space-between' marginTop={theme.marginL}>
+                                <Text color={theme.text} fontSize={theme.textSize} marginLeft={theme.marginS}>
+                                    {DISPLAY.TEXT.USE_12_HOUR_CLOCK_IN_SCHEDULE}
+                                </Text>
+                                <ToggleSwitch value={use12HourClockInSchedule} onChange={setUse12HourClockInSchedule}/>
+                            </Flex>
+
+                            <Flex align='center' justify='space-between' marginTop={theme.marginL}>
+                                <Text color={theme.text} fontSize={theme.textSize} marginLeft={theme.marginS}>
+                                    {DISPLAY.TEXT.HIDE_WEEKLY_SCHEDULE_ITEMS}
+                                </Text>
+                                <ToggleSwitch value={hideWeeklyScheduleItems} onChange={setHideWeeklyScheduleItems}/>
+                            </Flex>
+
+                            <Flex align='center' justify='space-between' marginTop={theme.marginL}>
+                                <Text color={theme.text} fontSize={theme.textSize} marginLeft={theme.marginS}>
+                                    {DISPLAY.TEXT.HIDE_HIGH_PRIORITY_TASKS}
+                                </Text>
+                                <ToggleSwitch value={hideHighPriorityTasks} onChange={setHideHighPriorityTasks}/>
+                            </Flex>
+
+                            <Flex align='center' justify='space-between' marginTop={theme.marginL}>
+                                <Text color={theme.text} fontSize={theme.textSize} marginLeft={theme.marginS}>
+                                    {DISPLAY.TEXT.HIDE_COMPLETED_TASKS}
+                                </Text>
+                                <ToggleSwitch value={hideCompletedTasks} onChange={setHideCompletedTasks}/>
+                            </Flex>
+
+                            <Divider borderColor={theme.border} borderWidth='1px' marginTop={theme.marginL} />
+
+                            <Flex align='center' justify='space-between' marginTop={theme.marginL}>
+                                <Text color={theme.text} fontSize={theme.textSize} marginLeft={theme.marginS}>
+                                    {DISPLAY.TEXT.DISABLE_JOURNAL_MODIFICATIONS}
+                                </Text>
+                                <ToggleSwitch value={disableJournalModifications} onChange={setDisableJournalModifications}/>
+                            </Flex>
+
+                            <Flex align='center' justify='space-between' marginTop={theme.marginL}>
+                                <Text color={theme.text} fontSize={theme.textSize} marginLeft={theme.marginS}>
+                                    {DISPLAY.TEXT.HIDE_HIGH_PRIORITY_NOTES}
+                                </Text>
+                                <ToggleSwitch value={hideHighPriorityNotes} onChange={setHideHighPriorityNotes}/>
+                            </Flex>
+
+                            <Flex align='center' justify='space-between' marginTop={theme.marginL}>
+                                <Text color={theme.text} fontSize={theme.textSize} marginLeft={theme.marginS}>
+                                    {DISPLAY.TEXT.DISABLE_NOTE_MODIFICATIONS}
+                                </Text>
+                                <ToggleSwitch value={disableNoteModifications} onChange={setDisableNoteModifications}/>
                             </Flex>
                         </div>
                     </div>

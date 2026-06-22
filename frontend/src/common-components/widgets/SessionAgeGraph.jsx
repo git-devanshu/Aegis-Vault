@@ -30,7 +30,7 @@ export default function SessionAgeGraph({sessions}) {
 
     return (
         <Flex direction='column' border={`1px solid ${theme.border}`} borderRadius={`calc(${theme.radius} * 2)`} p={theme.paddingL} width={isLargeScreen ? 'fit-content' : '100%'}>
-            <Flex align='center' justify='space-between'>
+            <Flex align='start' justify='space-between'>
                 <Text color={theme.text} fontSize={theme.textSize} marginBottom={theme.marginS}>
                     {DISPLAY.TEXT.SESSION_AGE}
                 </Text>

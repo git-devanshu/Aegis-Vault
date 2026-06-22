@@ -3,6 +3,7 @@ import { Flex, Text, Divider, Spacer, Grid, Image, GridItem } from '@chakra-ui/r
 import { theme } from '../../themes/theme';
 import BANKS from '../../assets/banks.json';
 import useLanguage from "../../hooks/useLanguage";
+import useAppContext from "../../hooks/useAppContext.jsx";
 import getExpenseAnalyticsMetrics, {downloadAnalyticsReport, downloadExpenseStatement} from "../../utility/expenseAnalyticsMetrics.js";
 
 import { ArrowBackIcon, DownloadIcon } from '@chakra-ui/icons';
@@ -10,18 +11,17 @@ import { RiBubbleChartLine } from "react-icons/ri";
 import { BiSolidReport } from "react-icons/bi";
 
 import ActionButton from "../../common-components/form/ActionButton";
-import WidgetAAccountSnapshot from "../../common-components/widgets/WidgetAAccountSnapshot";
-import WidgetBCategoryDistribution from "../../common-components/widgets/WidgetBCategoryDistribution";
-import WidgetCTopExpenses from "../../common-components/widgets/WidgetCTopExpenses";
-import WidgetDBudgetVsActual from "../../common-components/widgets/WidgetDBudgetVsActual";
-import WidgetEBudgetHealth from "../../common-components/widgets/WidgetEBudgetHealth";
-import WidgetFSpendingTimeline from "../../common-components/widgets/WidgetFSpendingTimeline";
-import WidgetGIncomeOverview from "../../common-components/widgets/WidgetGIncomeOverview";
-import WidgetHTopSpendingDays from "../../common-components/widgets/WidgetHTopSpendingDays";
-import WidgetIWeekendVsWeekday from "../../common-components/widgets/WidgetIWeekendVsWeekday";
-import WidgetJInsights from "../../common-components/widgets/WidgetJInsights";
+import WidgetAAccountSnapshot from "../../common-components/widgets/expense-analytics/WidgetAAccountSnapshot.jsx";
+import WidgetBCategoryDistribution from "../../common-components/widgets/expense-analytics/WidgetBCategoryDistribution.jsx";
+import WidgetCTopExpenses from "../../common-components/widgets/expense-analytics/WidgetCTopExpenses.jsx";
+import WidgetDBudgetVsActual from "../../common-components/widgets/expense-analytics/WidgetDBudgetVsActual.jsx";
+import WidgetEBudgetHealth from "../../common-components/widgets/expense-analytics/WidgetEBudgetHealth.jsx";
+import WidgetFSpendingTimeline from "../../common-components/widgets/expense-analytics/WidgetFSpendingTimeline.jsx";
+import WidgetGIncomeOverview from "../../common-components/widgets/expense-analytics/WidgetGIncomeOverview.jsx";
+import WidgetHTopSpendingDays from "../../common-components/widgets/expense-analytics/WidgetHTopSpendingDays.jsx";
+import WidgetIWeekendVsWeekday from "../../common-components/widgets/expense-analytics/WidgetIWeekendVsWeekday.jsx";
+import WidgetJInsights from "../../common-components/widgets/expense-analytics/WidgetJInsights.jsx";
 import Dropdown from "../../common-components/form/Dropdown";
-import useAppContext from "../../hooks/useAppContext.jsx";
 
 
 export default function ExpenseAnalyticsModal({onBack, selectedAccount, selectedTracker, expenseData, categoryData, selectedTrackerIndex, setSelectedTrackerIndex, trackerDataOptions, trackerData, setSelectedTab}) {

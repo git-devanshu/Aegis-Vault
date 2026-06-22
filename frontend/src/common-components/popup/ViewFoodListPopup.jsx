@@ -37,7 +37,7 @@ export default function ViewFoodListPopup({isOpen, onClose, foodList}) {
             ]),
             didParseCell: data =>{
                 if(data.section === 'body' && data.row.raw?.[0] === DISPLAY.TEXT.RECIPE){
-                    data.cell.styles.fillColor = [255, 243, 205];
+                    data.cell.styles.fillColor = [137, 214, 124];
                 }
             }
         });

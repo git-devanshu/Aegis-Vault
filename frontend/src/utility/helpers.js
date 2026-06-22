@@ -137,6 +137,20 @@ export const getCssVariable = variableName =>{
 }
 
 
+// return time in 12 hour clock or 24 hour clock
+export const formatTime = (time, use12HourClockInSchedule = false) =>{
+    if(!time?.length) return '';
+    if(!use12HourClockInSchedule){
+        return time;
+    }
+
+    const [hour, minute] = time.split(':').map(Number);
+    const period = hour >= 12 ? 'PM' : 'AM';
+    const displayHour = hour % 12 || 12;
+
+    return `${displayHour}:${minute.toString().padStart(2, '0')} ${period}`;
+}
+
 
 //function to get the current date in different formats
 /*

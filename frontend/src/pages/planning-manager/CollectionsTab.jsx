@@ -9,7 +9,7 @@ import { EditIcon } from "@chakra-ui/icons";
 import { RiShoppingBag4Line } from "react-icons/ri"; //shopping
 import { MdOutlineFastfood } from "react-icons/md"; // food
 import { MdOutlineOndemandVideo } from "react-icons/md"; // watchlist
-import { SiMdbook } from "react-icons/si"; // reading
+import { GiWhiteBook } from "react-icons/gi"; // reading
 import { TbCopyCheck } from "react-icons/tb"; // todo
 import { MdTravelExplore } from "react-icons/md"; // trip
 import { MdFavoriteBorder } from "react-icons/md"; // wishlist
@@ -37,8 +37,17 @@ import EditNotepadPopup from "../../common-components/popup/EditNotepadPopup";
 export default function CollectionsTab({collectionData, refreshCollections, setRefreshCollections}) {
     if(!collectionData) return null;
 
-    const {DISPLAY, TOASTS} = useLanguage();
-    const {masterKey} = useAppContext();
+    const {DISPLAY} = useLanguage();
+    const {
+        disableShoppingListModifications, 
+        disableFoodListModifications, 
+        disableWatchlistModifications, 
+        disableReadingListModifications, 
+        disableWishlistModifications, 
+        disableTodoListModifications, 
+        disableTripListModifications, 
+        disableNotepadModifications,
+    } = useAppContext();
 
     /* View Popups */
     const [showViewShoppingListPopup, setShowViewShoppingListPopup] = useState(false);
@@ -114,7 +123,7 @@ export default function CollectionsTab({collectionData, refreshCollections, setR
             color: '#8B5CF6'
         },
         READING: {
-            Icon: SiMdbook,
+            Icon: GiWhiteBook,
             color: '#3B82F6'
         },
         TODO: {
@@ -207,6 +216,19 @@ export default function CollectionsTab({collectionData, refreshCollections, setR
         }
     }
 
+    const getDisableModificationSettings = (type) =>{
+        switch(type){
+            case 'SHOPPING': return disableShoppingListModifications;
+            case 'FOOD': return disableFoodListModifications;
+            case 'WATCHLIST': return disableWatchlistModifications;
+            case 'READING': return disableReadingListModifications;
+            case 'WISHLIST': return disableWishlistModifications;
+            case 'TODO': return disableTodoListModifications;
+            case 'TRIP': return disableTripListModifications;
+            case 'NOTEPAD': return disableNotepadModifications;
+        }
+    }
+
 
     const CollectionCard = ({collection}) =>{
         const config = COLLECTION_CONFIG[collection.type];
@@ -233,7 +255,9 @@ export default function CollectionsTab({collectionData, refreshCollections, setR
                     </Flex>
                 </Flex>
                 
-                <CircleIconButton icon={<EditIcon/>} tooltip={DISPLAY.TOOLTIPS.EDIT} onClick={(e)=> {e.stopPropagation(); handleEditCollectionClick(collection.type); }} />
+                {!getDisableModificationSettings(collection.type) && 
+                    <CircleIconButton icon={<EditIcon/>} tooltip={DISPLAY.TOOLTIPS.EDIT} onClick={(e)=> {e.stopPropagation(); handleEditCollectionClick(collection.type); }} />
+                }
             </Flex>
         );
     }
@@ -241,15 +265,11 @@ export default function CollectionsTab({collectionData, refreshCollections, setR
     
     return (
         <>
-            <Grid templateColumns={{base:'1fr', md:'1fr 1fr', lg: '1fr 1fr 1fr'}} gap={theme.paddingL} marginTop={theme.spacing}>
-            {
-                collectionData.map(collection =>
-                    <CollectionCard
-                        key={collection.type}
-                        collection={collection}
-                    />
-                )
-            }
+            <Grid templateColumns={{base:'1fr', md:'1fr 1fr', lg: '1fr 1fr 1fr'}} gap={theme.paddingL} marginTop={theme.spacing} alignItems='start'>
+                {collectionData.map(collection =>
+                    <CollectionCard key={collection.type} collection={collection} />
+                )}
+                <div style={{height: '140px'}}></div>
             </Grid>
 
             {/* View Shopping List Popup */}

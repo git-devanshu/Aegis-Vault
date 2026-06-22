@@ -4,9 +4,9 @@ import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
 import useLanguage from "../../hooks/useLanguage";
 
-import { Flex, Text, Box, Grid, Divider, Badge, ButtonGroup } from '@chakra-ui/react';
-import { SiMdbook } from "react-icons/si";
-import { RiArticleLine } from "react-icons/ri";
+import { Flex, Text, Box, Badge, ButtonGroup } from '@chakra-ui/react';
+import { GiWhiteBook } from "react-icons/gi";
+import { PiArticle } from "react-icons/pi";
 import { FaRegFileAlt } from "react-icons/fa";
 
 import Popup from "../popup/Popup";
@@ -21,10 +21,10 @@ export default function ViewReadingListPopup({isOpen, onClose, readingList}) {
 
     const getTypeIcon = type =>{
         switch(type){
-            case 'book': return <SiMdbook size='26px' color={theme.text}/>;
-            case 'article': return <RiArticleLine size='26px' color={theme.text}/>;
+            case 'book': return <GiWhiteBook size='26px' color={theme.text}/>;
+            case 'article': return <PiArticle size='26px' color={theme.text}/>;
             case 'other': return <FaRegFileAlt size='24px' color={theme.text}/>;
-            default: return <SiMdbook size='26px' color={theme.text}/>;
+            default: return <GiWhiteBook size='26px' color={theme.text}/>;
         }
     }
 

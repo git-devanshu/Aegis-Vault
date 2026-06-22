@@ -1,13 +1,13 @@
 import React, { useMemo } from "react";
 import { Flex, Text, Box } from '@chakra-ui/react';
 import { Chart } from 'primereact/chart';
-import { theme } from '../../themes/theme';
-import { getCssVariable } from '../../utility/helpers';
-import useLanguage from "../../hooks/useLanguage";
+import { theme } from '../../../themes/theme';
+import { getCssVariable } from '../../../utility/helpers';
+import useLanguage from "../../../hooks/useLanguage";
 
 import { InfoOutlineIcon } from "@chakra-ui/icons";
 
-import InfoTooltip from "../popup/InfoTooltip";
+import InfoTooltip from "../../popup/InfoTooltip";
 
 export default function WidgetEBudgetHealth({analytics}) {
     const {DISPLAY} = useLanguage();

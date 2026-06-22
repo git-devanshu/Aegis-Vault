@@ -12,7 +12,7 @@ export default function NotFound() {
     return(
         <div className="common-page">
             <div className="common-container">
-                <Heading color={theme.primary} size='xl' textAlign='center' marginBottom={theme.spacing}>
+                <Heading color={theme.primary} size='xl' textAlign='center' marginBottom={theme.spacing} marginTop={`calc(3 * ${theme.spacing})`}>
                     404
                 </Heading>
 
