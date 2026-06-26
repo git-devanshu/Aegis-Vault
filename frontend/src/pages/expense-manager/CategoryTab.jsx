@@ -19,7 +19,7 @@ import Dropdown from "../../common-components/form/Dropdown";
 
 
 export default function CategoryTab({expenseData, selectedTracker, selectedAccount, selectedTrackerIndex, setSelectedTrackerIndex, categoryData, refreshCategories, setRefreshCategories, trackerDataOptions, refreshTrackers, setRefreshTrackers}) {
-    if(!selectedAccount || !selectedTracker) return null;
+    if(!selectedAccount) return null;
 
     const {DISPLAY, TOASTS} = useLanguage();
     const {masterKey, allowNewCategoryCreation} = useAppContext();
@@ -189,7 +189,7 @@ export default function CategoryTab({expenseData, selectedTracker, selectedAccou
                 </div>
             </Grid>
 
-            <Grid templateColumns={{base: '1fr', md: '1fr 1fr'}} gap={theme.marginL}>
+            <Grid templateColumns={{base: '1fr', md: '1fr 1fr'}} gap={theme.marginL} marginTop={theme.marginL} alignItems='start'>
                 {categoryData.map((category) => {
                     const Icon = getCategoryIcon(category);
                     return(
@@ -252,7 +252,7 @@ export default function CategoryTab({expenseData, selectedTracker, selectedAccou
                             ))
                         }
                     </Grid>
-                    <ActionButton name={DISPLAY.BUTTONS.CREATE_CATEGORY} onClick={createNewCategory} isLoading={isLoading} disabled={isLoading || newCategory.name.trim().length === 0} actionType='primary' customStyle={{marginBottom: theme.marginL}} />
+                    <ActionButton name={DISPLAY.BUTTONS.CREATE_CATEGORY} onClick={createNewCategory} isLoading={isLoading} disabled={isLoading || newCategory.name.trim().length === 0} actionType='primary' customStyle={{marginBottom: theme.marginS}} />
                 </form>
             </Popup>
 
@@ -285,7 +285,7 @@ export default function CategoryTab({expenseData, selectedTracker, selectedAccou
                             })
                         }
                     </div>
-                    <ActionButton name={DISPLAY.BUTTONS.SET_BUDGET} onClick={updateTrackerBudget} isLoading={isLoading} disabled={isLoading} actionType='primary' customStyle={{marginBottom: theme.marginL}} />
+                    <ActionButton name={DISPLAY.BUTTONS.SET_BUDGET} onClick={updateTrackerBudget} isLoading={isLoading} disabled={isLoading} actionType='primary' customStyle={{marginTop: theme.marginL, marginBottom: theme.marginS}} />
                 </form>
             </Popup>
         </>

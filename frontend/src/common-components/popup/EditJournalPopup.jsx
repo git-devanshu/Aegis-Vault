@@ -107,7 +107,7 @@ export default function EditJournalPopup({isOpen, onClose, selectedJournal, jour
 
     return (
         <>
-            <Popup isOpen={isOpen} onClose={onClose} title={DISPLAY.TEXT.EDIT_JOURNAL} bg={theme.bg} borderColor={theme.success}>
+            <Popup isOpen={isOpen} onClose={onClose} title={DISPLAY.TEXT.EDIT_JOURNAL} bg={theme.bg} borderColor={theme.success} takeFullHeight={true}>
                 <Text color={theme.text} fontSize={theme.textSize} marginBottom={theme.marginL}>
                     { new Date(selectedJournal.date).toLocaleDateString(undefined, {day:'numeric', month:'long', year:'numeric'}) }
                 </Text>
@@ -116,7 +116,7 @@ export default function EditJournalPopup({isOpen, onClose, selectedJournal, jour
                     value={journalContent}
                     onChange={e => setJournalContent(e.target.value)}
                     resize='vertical'
-                    minHeight='400px'
+                    height='calc(100% - 89px)'
                     backgroundColor={theme.bg}
                     border={`1px solid ${theme.border}`}
                     borderRadius={`calc(2 * ${theme.radius})`}
@@ -136,7 +136,7 @@ export default function EditJournalPopup({isOpen, onClose, selectedJournal, jour
                 <Text color={theme.text} fontSize={theme.textSize} textAlign='center'>
                     {DISPLAY.TEXT.CONFIRM_DELETE_JOURNAL}
                 </Text>
-                <ButtonGroup width='full' marginTop={theme.spacing} marginBottom={theme.marginL}>
+                <ButtonGroup width='full' marginTop={theme.spacing} marginBottom={theme.marginS}>
                     <ActionButton name={DISPLAY.BUTTONS.CANCEL} onClick={()=> setShowDeletePopup(false)} />
                     <ActionButton name={DISPLAY.BUTTONS.DELETE} onClick={deleteJournal} actionType='primary' />
                 </ButtonGroup>

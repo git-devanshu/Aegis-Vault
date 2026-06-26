@@ -33,7 +33,7 @@ export default function EditTodoListPopup({isOpen, onClose, todoList, refreshCol
 
     useEffect(() =>{
         setUpdatedTodoList(JSON.parse(JSON.stringify(todoList)));
-    }, [todoList]);
+    }, [todoList, isOpen]);
 
     const handleNewItemChange = e =>{
         setNewItem({

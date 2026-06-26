@@ -6,10 +6,12 @@ import useAppContext from "../../hooks/useAppContext";
 import { encryptData } from '../../utility/crypto';
 import { apiRequest, validateAndStartLoading } from '../../utility/api';
 
-import { Textarea, Grid } from '@chakra-ui/react';
+import { Textarea, ButtonGroup } from '@chakra-ui/react';
+import { BiExport, BiImport, BiEraser } from 'react-icons/bi';
 
 import Popup from "../popup/Popup";
 import ActionButton from "../form/ActionButton";
+import CircleIconButton from "../form/CircleIconButton";
 
 
 export default function EditNotepadPopup({isOpen, onClose, notepad, refreshCollections, setRefreshCollections}) {
@@ -21,7 +23,19 @@ export default function EditNotepadPopup({isOpen, onClose, notepad, refreshColle
 
     useEffect(() =>{
         setNoteData(notepad?.data || '');
-    }, [notepad]);
+    }, [notepad, isOpen]);
+
+    const exportToQuicksave = async(e) =>{
+        localStorage.setItem('aegis-saved-notes', JSON.stringify(noteData));
+        toast.success(TOASTS.QUICK_SAVE.NOTE_SAVED);
+    }
+
+    const importFromQuicksave = async(e) =>{
+        if(!JSON.parse(localStorage.getItem('aegis-saved-notes'))?.length){
+            toast.error(TOASTS.QUICK_SAVE.NO_DATA_AVAILABLE);
+        }
+        setNoteData(JSON.parse(localStorage.getItem('aegis-saved-notes')));
+    }
 
     const saveNotepad = async(e) =>{
         const toastId = validateAndStartLoading({
@@ -58,13 +72,13 @@ export default function EditNotepadPopup({isOpen, onClose, notepad, refreshColle
     }
 
     return (
-        <Popup isOpen={isOpen} onClose={onClose} title={DISPLAY.TEXT.NOTEPAD} bg={theme.bg} borderColor={theme.success}>
+        <Popup isOpen={isOpen} onClose={onClose} title={DISPLAY.TEXT.NOTEPAD} bg={theme.bg} borderColor={theme.success} takeFullHeight={true}>
             <Textarea
                 value={noteData}
                 placeholder={DISPLAY.TEXT.WRITE_HERE}
                 onChange={e => setNoteData(e.target.value)}
                 resize='vertical'
-                minHeight='350px'
+                height='calc(100% - 50px)'
                 maxLength={50000}
                 backgroundColor={theme.bg}
                 border={`1px solid ${theme.border}`}
@@ -74,10 +88,12 @@ export default function EditNotepadPopup({isOpen, onClose, notepad, refreshColle
                 _focus={{borderColor: theme.primary, boxShadow: 'none'}}
             />
 
-            <Grid templateColumns='1fr 1fr' gap={theme.paddingL} marginTop={theme.marginL} marginBottom={theme.marginS}>
-                <ActionButton name={DISPLAY.BUTTONS.CLEAR_ALL} onClick={ (e)=> setNoteData('') } disabled={isLoading} />
+            <ButtonGroup gap={theme.paddingS} width='full' marginTop={theme.marginL} marginBottom={theme.marginS}>
+                <CircleIconButton tooltip={DISPLAY.TOOLTIPS.IMPORT_FROM_QUICKSAVE} onClick={importFromQuicksave} icon={<BiImport/>} iconSize="18px" />
+                <CircleIconButton tooltip={DISPLAY.TOOLTIPS.SAVE_TO_QUICKSAVE} onClick={exportToQuicksave} icon={<BiExport/>} iconSize="18px" />
+                <CircleIconButton tooltip={DISPLAY.TOOLTIPS.CLEAR_NOTEPAD} onClick={(e)=> setNoteData('')} icon={<BiEraser/>} iconSize="18px" />
                 <ActionButton name={DISPLAY.BUTTONS.SAVE_CHANGES} onClick={saveNotepad} isLoading={isLoading} disabled={isLoading} actionType='primary' />
-            </Grid>
+            </ButtonGroup>
         </Popup>
     );
 }

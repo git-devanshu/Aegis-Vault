@@ -1,5 +1,7 @@
 import emailjs from "emailjs-com";
 
+// These functions are not used till now
+
 export async function sendIssueReportEmail(emailid, name, title, description) {
     try{
         const templateParams = {

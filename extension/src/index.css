@@ -1,0 +1,56 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    scrollbar-width: none;
+}
+
+html, body, #root{
+    width: 270px;
+    height: fit-content;
+    max-height: 380px;
+}
+
+/* -------------------------------------------- */
+
+/* Auth Classes */
+
+.auth-page{
+    background-color: var(--bg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: var(--padding-l);
+    width: 100%;
+}
+
+.auth-container{
+    width: 100%;
+}
+
+/* -------------------------------------------- */
+
+/* Common Classes */
+
+.common-page{
+    background-color: var(--bg);
+    padding: var(--padding-l);
+    scrollbar-width: none;
+    width: 100%;
+}
+
+.common-container{
+    width: 100%;
+    margin: 0 auto;
+}
+
+/* -------------------------------------------- */
+
+@keyframes spin{
+    from{
+        transform:rotate(0deg);
+    }
+    to{
+        transform:rotate(360deg);
+    }
+}

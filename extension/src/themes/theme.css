@@ -1,0 +1,40 @@
+:root {
+    --font-family: 'Inter', sans-serif;
+    --heading-size: 16px;
+    --text-size: 12px;
+    --small-text-size: 10px;
+    --radius: 8px;
+    --margin-l: 10px;
+    --margin-s: 5px;
+    --padding-l: 10px;
+    --padding-s: 5px;
+    --spacing: 20px;
+
+    --success: #22C55E;
+    --error: #EF4444;
+    --warning: #F59E0B;
+    --info: #64748B;
+}
+
+/* Main Palette */
+:root[data-aegis-theme="dark"] {
+    --bg: #020617;
+    --card-bg: #0F172A;
+    --hover-bg: #1E293B;
+    --primary: #2CFF05;
+    --accent: #237315;
+    --text: #F8FAFC;
+    --text-secondary: #babfc6;
+    --border: #1E293B;
+}
+
+:root[data-aegis-theme="light"] {
+    --bg: #ffffff;
+    --card-bg: #ededed;
+    --hover-bg: #cddcce;
+    --primary: #20d600;
+    --accent: rgb(137, 214, 124);
+    --text: #0F172A;
+    --text-secondary: #475569;
+    --border: #9b9fa5;
+}

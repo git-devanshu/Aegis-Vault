@@ -152,6 +152,21 @@ export const formatTime = (time, use12HourClockInSchedule = false) =>{
 }
 
 
+// normalize the website url to its domain
+export const normalizeWebsite = (site) =>{
+    if(!site){
+        return "";
+    }
+
+    return site
+        .trim()
+        .toLowerCase()
+        .replace(/^https?:\/\//, "")
+        .replace(/^www\./, "")
+        .split("/")[0];
+}
+
+
 //function to get the current date in different formats
 /*
 type values : 

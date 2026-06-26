@@ -33,6 +33,7 @@ import DepositsTab from "./DepositsTab";
 import AddHoldingsPopup from "../../common-components/popup/AddHoldingsPopup";
 import HoldingsTab from "./HoldingsTab";
 import InvestmentAnalyticsModal from "./InvestmentAnalyticsModal";
+import FeatureGuide from "./FeatureGuide";
 
 
 export default function InvestmentVault() {
@@ -65,6 +66,7 @@ export default function InvestmentVault() {
     const [showAddHoldingsPopup, setShowAddHoldingsPopup] = useState(false);
 
     const [showAnalyticsModal, setShowAnalyticsModal] = useState(false);
+    const [showGuideModal, setShowGuideModal] = useState(false);
 
     // for removing the master key after exiting the module
     useClearOnUnmount(clearMasterKey);
@@ -269,7 +271,7 @@ export default function InvestmentVault() {
             <CircleIconButton icon={<LuGrid2X2Plus/>} iconSize="18px" tooltip={DISPLAY.TOOLTIPS.ADD_HOLDING} ttPlacement="right" onClick={()=> setShowAddHoldingsPopup(true) }/>
             <CircleIconButton icon={<AddIcon/>} tooltip={DISPLAY.TOOLTIPS.ADD_DEPOSIT} ttPlacement="right" onClick={()=> setShowAddDepositPopup(true) } actionType='primary' />
             <CircleIconButton icon={<RiBubbleChartLine/>} iconSize="18px" tooltip={DISPLAY.TOOLTIPS.ANALYTICS} ttPlacement="right" onClick={()=> setShowAnalyticsModal(true) }/>
-            <CircleIconButton icon={<FaInfo/>} tooltip={DISPLAY.TOOLTIPS.LEARN_MORE} ttPlacement="right" onClick={()=>{}}/>
+            <CircleIconButton icon={<FaInfo/>} tooltip={DISPLAY.TOOLTIPS.LEARN_MORE} ttPlacement="right" onClick={()=> setShowGuideModal(true)}/>
         </Flex>
     );
 
@@ -321,6 +323,9 @@ export default function InvestmentVault() {
 
             {/* Analytics Modal */}
             {showAnalyticsModal && <InvestmentAnalyticsModal onBack={()=> setShowAnalyticsModal(false)} selectedAccount={selectedAccount} groupedFDData={groupedFDData} rdData={rdData} goldAssetData={goldAssetData} stockData={stockData} />}
+
+            {/* Guide Modal */}
+            {showGuideModal && <FeatureGuide setShowModal={setShowGuideModal}/>}
         </div>
     );
 }

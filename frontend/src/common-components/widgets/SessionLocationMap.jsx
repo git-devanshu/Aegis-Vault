@@ -30,7 +30,7 @@ export default function SessionLocationMap({sessions}) {
                 fill={theme.hoverBg}
                 places={
                     sessions.map(session => ({
-                        name: session.device,
+                        name: `${session.device} - ${session.deviceLocation}`,
                         location: session.coordinates,
                         color: theme.primary
                     }))

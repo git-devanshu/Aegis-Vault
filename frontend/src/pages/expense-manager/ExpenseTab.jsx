@@ -241,7 +241,7 @@ export default function ExpenseTab({expenseData, trackerData, selectedAccount, s
                 <Text color={theme.text} fontSize={theme.textSize} textAlign='center'>
                     {DISPLAY.TEXT.CONFIRM_DELETE_EXPENSE}
                 </Text>
-                <ButtonGroup width='full' marginTop={theme.spacing} marginBottom={theme.marginL}>
+                <ButtonGroup width='full' marginTop={theme.spacing} marginBottom={theme.marginS}>
                     <ActionButton name={DISPLAY.BUTTONS.CANCEL} onClick={()=> setShowDeleteExpensePopup(false)} disabled={isLoading} />
                     <ActionButton name={DISPLAY.BUTTONS.DELETE} onClick={deleteExpense} isLoading={isLoading} disabled={isLoading} actionType='primary' />
                 </ButtonGroup>

@@ -22,6 +22,7 @@ import ExpenseVault from './pages/expense-manager/ExpenseVault';
 import InvestmentVault from './pages/investment-manager/InvestmentVault';
 import ThemeTest from './themes/ThemeTest';
 import PlannerVault from './pages/planning-manager/PlannerVault';
+import ContactUs from './pages/other/ContactUs';
 
 initializeLanguage();
 
@@ -48,15 +49,13 @@ export default function App() {
                     <Route path='/investment-manager' element={<ProtectedComponent component={<InvestmentVault />} />} />
                     <Route path='/active-sessions' element={<ProtectedComponent component={<Security />} />} />
                     <Route path='/planning-manager' element={<ProtectedComponent component={<PlannerVault />} />} />
-                    {/* <Route path='/vault/task' element={<ProtectedComponent component={<TaskVault />} />} /> */}
-                    {/* <Route path='/access-control' element={<ProtectedAdminComponent component={<AccessControlPage />} />} /> */}
                     <Route path='/settings' element={<ProtectedComponent component={<Settings />} />} />
-                    {/* <Route path='/about' element={<ProtectedComponent component={<About />} />} /> */}
                     <Route path='/quick-save' element={<ProtectedComponent component={<QuickSave />} />} />
+                    {/* <Route path='/contact-us' element={<ProtectedComponent component={<ContactUs />} />} /> */}
                     {/* <Route path='/' element={</>} /> */}
 
                     {/* Theme Test */}
-                    <Route path='/theme-test' element={<ThemeTest />} />
+                    {/* <Route path='/theme-test' element={<ThemeTest />} /> */}
 
                     {/* Fallback Route */}
                     <Route path='*' element={<NotFound />} />

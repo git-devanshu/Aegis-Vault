@@ -18,8 +18,8 @@ export default function ViewNotepadPopup({isOpen, onClose, notepad}) {
     }
 
     return (
-        <Popup isOpen={isOpen} onClose={onClose} title={DISPLAY.TEXT.NOTEPAD} bg={theme.bg} borderColor={theme.info}>
-            <Box maxHeight='500px' overflowY='auto' backgroundColor={theme.cardBg} borderRadius={theme.radius} padding={theme.paddingL} minHeight='250px'>
+        <Popup isOpen={isOpen} onClose={onClose} title={DISPLAY.TEXT.NOTEPAD} bg={theme.bg} borderColor={theme.info} takeFullHeight={true}>
+            <Box height='calc(100% - 50px)' overflowY='auto' backgroundColor={theme.cardBg} borderRadius={theme.radius} padding={theme.paddingL}>
                 {
                     notepad?.data?.trim() ? 
                         <Text color={theme.text} whiteSpace='pre-wrap'>

@@ -26,7 +26,9 @@
     },
     "QUICK_SAVE": {
         "DATA_EXPORTED": "expenses exported successfully",
-        "DATA_IMPORTED": "exported expenses imported successfully"
+        "DATA_IMPORTED": "exported expenses imported successfully",
+        "NOTE_SAVED": "Note saved to Quick Save",
+        "NO_DATA_AVAILABLE": "No data available in Quick Save"
     },
     "PLANNING_MANAGER": {
         "PENDING_ITEMS_COPIED": "pending items copied",

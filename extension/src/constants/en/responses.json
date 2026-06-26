@@ -1,0 +1,22 @@
+{
+    "PASSWORD_MANAGER":{
+
+        "USERNAME_COPIED": "Username copied.",
+
+        "PASSWORD_COPIED": "Password copied.",
+
+        "PASSWORD_AUTOFILLED": "Password autofilled.",
+
+        "PASSWORD_FIELD_NOT_FOUND": "Password field not found on this page."
+
+    },
+
+    "COMMON":{
+
+        "UNKNOWN_ERROR": "Something went wrong.",
+
+        "NETWORK_ERROR": "Unable to connect to the server."
+
+    }
+
+}

@@ -61,7 +61,7 @@ export default function SessionAgeGraph({sessions}) {
 
                         return (
                             <Flex key={session._id} direction='column' align='center' gap={theme.paddingS} flex='1'>
-                                <InfoTooltip label={session.device} placement='top'>
+                                <InfoTooltip label={`${session.device} (${session.deviceType})`} placement='top'>
                                     <div style={{height:'150px', width:'40px', backgroundColor:theme.accent, borderRadius:'10px', position:'relative', overflow:'hidden'}}>
                                         <div style={{position:'absolute', bottom:'0', left:'0', width:'100%', height:`${height}%`, backgroundColor:theme.primary, borderRadius:'10px', transition:'0.5s'}} />
                                     </div>

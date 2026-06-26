@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import toast from 'react-hot-toast';
 import { Flex, Text, InputGroup, InputLeftElement, InputRightElement, Input, IconButton, ButtonGroup, Divider } from '@chakra-ui/react';
-import { AtSignIcon, LockIcon, CopyIcon, ViewIcon, ViewOffIcon, DeleteIcon, EditIcon } from '@chakra-ui/icons';
+import { AtSignIcon, LockIcon, CopyIcon, ViewIcon, ViewOffIcon, DeleteIcon, EditIcon, CheckCircleIcon } from '@chakra-ui/icons';
 import { theme } from '../../themes/theme';
 import useLanguage from '../../hooks/useLanguage';
 import ActionButton from '../form/ActionButton';
@@ -31,6 +31,12 @@ export default function PasswordCard({labels, item, hideShowPasswordButton, disa
                 <Text backgroundColor={theme.hoverBg} fontSize={theme.smallTextSize} fontWeight={500} color={theme.text} borderRadius='5px' padding='0 5px'>
                     {DISPLAY.PASSWORD_LABELS[labels[item.labelIndex]] || labels[item.labelIndex]}
                 </Text>
+            </Flex>
+            <Flex align='center' gap={theme.marginS}>
+                <Text color={theme.textSecondary} fontSize={theme.smallTextSize}>
+                    {item.site} 
+                </Text>
+                {item.accessThroughExtension && <CheckCircleIcon fontSize='14px' color={theme.primary}/>}
             </Flex>
 
             <InputGroup>

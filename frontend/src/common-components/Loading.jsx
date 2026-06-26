@@ -1,5 +1,5 @@
 import React from 'react'
-import { Spinner, Flex, Text } from '@chakra-ui/react'
+import { Flex, Text } from '@chakra-ui/react'
 import { WarningIcon } from '@chakra-ui/icons';
 import useLanguage from '../hooks/useLanguage';
 import { theme } from '../themes/theme';

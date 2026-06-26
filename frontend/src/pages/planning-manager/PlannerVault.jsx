@@ -28,6 +28,7 @@ import ManageSchedulePopup from "../../common-components/popup/ManageSchedulePop
 import AddEventPopup from "../../common-components/popup/AddEventPopup";
 import AddNotesPopup from "../../common-components/popup/AddNotesPopup";
 import NotesTab from "./NotesTab";
+import FeatureGuide from "./FeatureGuide";
 
 
 export default function PlannerVault() {
@@ -52,6 +53,8 @@ export default function PlannerVault() {
     const [showManageSchedulePopup, setShowManageSchedulePopup] = useState(false);
     const [showAddEventPopup, setShowAddEventPopup] = useState(false);
     const [showAddNotePopup, setShowAddNotePopup] = useState(false);
+
+    const [showGuideModal, setShowGuideModal] = useState(false);
 
     const [error, setError] = useState(null);
     const [isLoading, setIsLoading] = useState(false); // use this to disable buttons not to show <Loading/>
@@ -239,7 +242,7 @@ export default function PlannerVault() {
             <CircleIconButton icon={<BsCalendarWeek/>} iconSize="18px" tooltip={DISPLAY.TOOLTIPS.MANAGE_SCHEDULE} ttPlacement="right" onClick={()=> setShowManageSchedulePopup(true)}/>
             <CircleIconButton icon={<AddIcon/>} tooltip={DISPLAY.TOOLTIPS.ADD_EVENT} ttPlacement="right" onClick={()=> setShowAddEventPopup(true) } actionType='primary' />
             <CircleIconButton icon={<RiStickyNoteAddLine/>} iconSize="18px" tooltip={DISPLAY.TOOLTIPS.ADD_NOTE} ttPlacement="right" onClick={()=> setShowAddNotePopup(true) }/>
-            <CircleIconButton icon={<FaInfo/>} tooltip={DISPLAY.TOOLTIPS.LEARN_MORE} ttPlacement="right" onClick={()=>{}}/>
+            <CircleIconButton icon={<FaInfo/>} tooltip={DISPLAY.TOOLTIPS.LEARN_MORE} ttPlacement="right" onClick={()=> setShowGuideModal(true)}/>
         </Flex>
     );
 
@@ -282,6 +285,9 @@ export default function PlannerVault() {
 
             {/* Add Note Popup */}
             <AddNotesPopup isOpen={showAddNotePopup} onClose={setShowAddNotePopup} noteMetadata={noteMetadata} refreshNoteMetadata={refreshNoteMetadata} setRefreshNoteMetadata={setRefreshNoteMetadata} />
+
+            {/* Guide Modal */}
+            {showGuideModal && <FeatureGuide setShowModal={setShowGuideModal}/>}
         </div>
     );
 }

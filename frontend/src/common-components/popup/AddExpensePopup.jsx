@@ -39,7 +39,7 @@ export default function AddExpensePopup({isOpen, onClose, selectedAccount, selec
     const tabs = [DISPLAY.LABELS.FILL_DETAILS, DISPLAY.LABELS.IMPORT];
     const [selectedTab, setSelectedTab] = useState(0);
 
-    const [quickSaveLogs, setQuickSaveLogs] = useState(JSON.parse(localStorage.getItem('aegis-saved-logs')) || []);
+    const [quickSaveLogs, setQuickSaveLogs] = useState(JSON.parse(localStorage.getItem('aegis-saved-expenses')) || []);
     const [showAddMultipleExpenseModal, setShowAddMultipleExpenseModal] = useState(false);
 
     const handleChange = (e) =>{
@@ -150,7 +150,7 @@ export default function AddExpensePopup({isOpen, onClose, selectedAccount, selec
             <TabGroup tabs={tabs} value={selectedTab} onChange={setSelectedTab}/>
 
             {/* Fill details */}
-            {selectedTab === 0 && <form style={{marginTop: theme.spacing, height: '397px'}}>
+            {selectedTab === 0 && <form style={{marginTop: theme.spacing, minHeight: '370px'}}>
                 <InputBox type='text' label={DISPLAY.LABELS.INCOME_SOURCE} value={selectedTracker?.name} readOnly={true} />
                 <DateInput value={expense.spentDate} name='spentDate' onChange={handleChange} label={DISPLAY.LABELS.SPENT_DATE} />
 
@@ -168,11 +168,11 @@ export default function AddExpensePopup({isOpen, onClose, selectedAccount, selec
                 <InputBox type='text' label={DISPLAY.LABELS.SPENT_AT} name='spentAt' value={expense.spentAt} onChange={handleChange} required maxLen={50} />
                 <InputBox type='number' label={DISPLAY.LABELS.AMOUNT} name='amount' value={expense.amount} onChange={handleChange} required min={0} />
 
-                <ActionButton name={DISPLAY.BUTTONS.ADD_EXPENSE} actionType='primary' isLoading={isLoading} disabled={isLoading || expense.amount <= 0} onClick={addExpense} customStyle={{marginBottom: theme.marginL}} />
+                <ActionButton name={DISPLAY.BUTTONS.ADD_EXPENSE} actionType='primary' isLoading={isLoading} disabled={isLoading || expense.amount <= 0} onClick={addExpense} customStyle={{marginBottom: theme.marginS}} />
             </form>}
             
             {/* Import */}
-            {selectedTab === 1 && <Flex alignItems='center' direction='column' style={{marginTop: theme.spacing, height: '397px'}}>
+            {selectedTab === 1 && <Flex alignItems='center' direction='column' style={{marginTop: theme.spacing, minHeight: '370px'}}>
                 <Text color={theme.text} fontSize={theme.textSize} align='center' marginBottom={theme.marginL}>{DISPLAY.TEXT.QUICKSAVE_EXPENSE_COUNT}: {quickSaveLogs.length}</Text>
                 <ActionButton onClick={()=> setShowAddMultipleExpenseModal(true) } name={DISPLAY.BUTTONS.IMPORT_FROM_QUICKSAVE} disabled={quickSaveLogs.length === 0} actionType='primary' customStyle={{width: 'fit-content', marginTop: theme.marginL, marginBottom: theme.spacing}}/>
 

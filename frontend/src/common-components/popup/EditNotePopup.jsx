@@ -12,6 +12,8 @@ import Popup from '../popup/Popup';
 import InputBox from '../form/InputBox';
 import Dropdown from '../form/Dropdown';
 import ActionButton from '../form/ActionButton';
+import PriorityIcon from '../../pages/planning-manager/PriorityIcon';
+import ColorPicker from '../form/ColorPicker';
 
 
 export default function EditNotePopup({isOpen, onClose, selectedNote, noteMetadata, refreshNoteMetadata, setRefreshNoteMetadata}) {
@@ -27,9 +29,10 @@ export default function EditNotePopup({isOpen, onClose, selectedNote, noteMetada
         title: '',
         priority: 'medium',
         tag: '',
-        color: '#0000ff',
         data: ''
     });
+
+    const [categoryColor, setCategoryColor] = useState('#0000ff');
 
     useEffect(() =>{
         if(!isOpen || !masterKey || !selectedNote.noteKey) return;
@@ -45,9 +48,9 @@ export default function EditNotePopup({isOpen, onClose, selectedNote, noteMetada
                         title: selectedNote?.title || '',
                         priority: selectedNote?.priority || 'medium',
                         tag: selectedNote?.tag || '',
-                        color: selectedNote?.color || '#0000ff',
                         data: decryptedNote.data || ''
                     });
+                    setCategoryColor(selectedNote?.color || '#0000ff');
                 },
                 defaultSuccessToast: false
             });
@@ -70,7 +73,7 @@ export default function EditNotePopup({isOpen, onClose, selectedNote, noteMetada
                     title: note.title.trim(),
                     priority: note.priority,
                     tag: note.tag.trim(),
-                    color: note.color,
+                    color: categoryColor,
                     noteKey: selectedNote.noteKey
                 };
             });
@@ -150,65 +153,26 @@ export default function EditNotePopup({isOpen, onClose, selectedNote, noteMetada
         });
     }
 
-    const basicColors = [
-        '#ff0000',
-        '#ffff00',
-        '#ffa500',
-        '#0000ff',
-        '#00ffff',
-        '#008000',
-        '#00ff00',
-        '#808080',
-        '#a52a2a',
-        '#000000',
-        '#ffffff'
-    ];
-
     return (
         <>
-            <Popup isOpen={isOpen} onClose={onClose} title={DISPLAY.TEXT.EDIT_NOTE} bg={theme.bg} borderColor={theme.success}>
-                <form style={{marginTop: theme.spacing}}>
+            <Popup isOpen={isOpen} onClose={onClose} title={DISPLAY.TEXT.EDIT_NOTE} bg={theme.bg} borderColor={theme.success} takeFullHeight={true}>
+                <form style={{height: '100%'}}>
                     <InputBox type='text' label={DISPLAY.LABELS.TITLE} name='title' value={note.title} onChange={handleChange} maxLen={60} />
 
                     <Grid templateColumns='1fr 1fr' gap={theme.paddingL} marginY='-10px'>
-                        <Box>
-                            <InputBox type='text' label={DISPLAY.LABELS.TAG} name='tag' value={note.tag} onChange={handleChange} maxLen={20} />
+                        <InputBox type='text' label={DISPLAY.LABELS.TAG} name='tag' value={note.tag} onChange={handleChange} maxLen={20} />
+                        <ColorPicker label={DISPLAY.LABELS.CATEGORY_COLOR} value={categoryColor} onChange={setCategoryColor} />
+                    </Grid>
 
-                            <Dropdown value={note.priority} onChange={e => setNote({...note, priority: e.target.value})}
-                                options={[
-                                    {label: DISPLAY.TEXT.LOW, value: 'low'},
-                                    {label: DISPLAY.TEXT.MEDIUM, value: 'medium'},
-                                    {label: DISPLAY.TEXT.HIGH, value: 'high'}
-                                ]}
-                            />
-                        </Box>
-
-                        <Box marginTop={theme.marginL} marginBottom={theme.spacing} padding={theme.paddingL} border={`1px solid ${theme.border}`} borderRadius={`calc(2 * ${theme.radius})`} position='relative'>
-                            <Text fontSize={theme.smallTextSize} color={theme.textSecondary} style={{position:'absolute', top:'-12px', left:'12px', background:theme.bg, padding:'0px 6px', zIndex:1}}>
-                                {DISPLAY.LABELS.CATEGORY_COLOR}
-                            </Text>
-
-                            <div style={{display:'flex', gap:theme.paddingS, flexWrap:'wrap', marginTop:theme.marginL}}>
-                                {
-                                    basicColors.map(color =>
-                                        <div
-                                            key={color}
-                                            onClick={()=> setNote({...note, color})}
-                                            style={{
-                                                width:'30px',
-                                                height:'30px',
-                                                borderRadius:'10px',
-                                                backgroundColor:color,
-                                                cursor:'pointer',
-                                                border: note.color === color
-                                                    ? `3px solid ${theme.primary}`
-                                                    : `1px solid ${theme.border}`
-                                            }}
-                                        />
-                                    )
-                                }
-                            </div>
-                        </Box>
+                    <Grid templateColumns='1fr 1fr' gap={theme.paddingL} alignItems='center' marginY='-10px'>
+                        <Dropdown value={note.priority} onChange={e => setNote({...note, priority: e.target.value})}
+                            options={[
+                                {label: DISPLAY.TEXT.LOW, value: 'low'},
+                                {label: DISPLAY.TEXT.MEDIUM, value: 'medium'},
+                                {label: DISPLAY.TEXT.HIGH, value: 'high'}
+                            ]}
+                        />
+                        <PriorityIcon priority={note.priority}/>
                     </Grid>
 
                     <Textarea
@@ -218,7 +182,7 @@ export default function EditNotePopup({isOpen, onClose, selectedNote, noteMetada
                         onChange={handleChange}
                         resize='vertical'
                         height='280px'
-                        maxLength={25000}
+                        maxLength={50000}
                         backgroundColor={theme.bg}
                         border={`1px solid ${theme.border}`}
                         borderRadius={`calc(2 * ${theme.radius})`}

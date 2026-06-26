@@ -4,7 +4,8 @@ const passwordSchema = new mongoose.Schema({
     userId : {type : mongoose.Schema.Types.ObjectId, required : true},
     passwordData : {type : String, required : true},
     labelIndex : {type : Number, required : true},
-    nonce : {type : String, required : true}
+    nonce : {type : String, required : true},
+    accessThroughExtension : {type: Boolean, default: true}
 });
 
 const Passwords = mongoose.model('passwords', passwordSchema, 'passwords');

@@ -171,7 +171,7 @@ export default function ManageSchedulePopup({isOpen, onClose, weeklySchedule, re
                     <InputBox label={DISPLAY.LABELS.END_TIME} type='time' name='endTime' value={newSchedule.endTime} onChange={handleNewScheduleChange}/>
                 </Grid>
 
-                <Grid templateColumns='1fr 1fr' gap={theme.paddingL} marginBottom={theme.marginS}>
+                <Grid templateColumns='1fr 1fr' gap={theme.paddingL} marginTop={theme.marginL} marginBottom={theme.marginS}>
                     <ActionButton name={DISPLAY.BUTTONS.SAVE_CHANGES} onClick={saveSchedule} isLoading={isLoading} disabled={isLoading}/>
                     <ActionButton name={DISPLAY.BUTTONS.ADD_SCHEDULE} onClick={addSchedule} actionType='primary' disabled={isLoading}/>
                 </Grid>

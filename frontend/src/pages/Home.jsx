@@ -4,10 +4,11 @@ import toast from 'react-hot-toast';
 import { Avatar, ButtonGroup, Divider, Flex, Heading, Menu, MenuButton, MenuList, Spacer, Text } from '@chakra-ui/react'
 import useLanguage, { getLanguageIcon, setLanguage } from "../hooks/useLanguage";
 import useTheme from '../hooks/useTheme';
-import SYSTEM_DATA from '../assets/system-data.json';
+import axios from 'axios';
 import { theme } from '../themes/theme';
 import { decodeToken, getAuthToken, getAuthUser, getDeviceDetails, removeAuthToken } from "../utility/helpers";
 import { apiRequest, validateAndStartLoading } from "../utility/api";
+import { ThreeDot } from "react-loading-indicators";
 
 import { LockIcon, BellIcon } from '@chakra-ui/icons';
 import { GiMoneyStack, GiGoldBar } from "react-icons/gi";
@@ -35,12 +36,39 @@ export default function Home() {
     const navigate = useNavigate();
 
     const [isLoading, setIsLoading] = useState(false);
+    const [error, setError] = useState(null);
 
     const [showLogoutPopup, setShowLogoutPopup] = useState(false);
     const [showProfilePopup, setShwoProfilePopup] = useState(false);
 
+
+    useEffect(()=>{
+        async function checkHealth(){
+            setIsLoading(true);
+            await apiRequest({
+                method: 'GET',
+                endpoint: '/api/health/secure',
+                setIsLoading,
+                defaultSuccessToast: false,
+                onSuccess: (res)=> {
+                    setError(null);
+                },
+                onError: (err)=> {
+                    setError(true);
+                }
+            });
+        }
+        checkHealth();
+    }, []);
+
     const navigateToVault = (path) =>{
         navigate(path);
+    }
+
+    const navigateToSettings = async(e) =>{
+        if(!error && !isLoading){
+            navigate('/settings');
+        }
     }
 
     const terminateSession = async(e) =>{
@@ -64,7 +92,7 @@ export default function Home() {
     
     const sidebar = (
         <Flex align='center' gap={theme.paddingL} direction={{base:'row', sm:'column'}} backgroundColor={theme.cardBg} borderRadius='35px'>
-            <CircleIconButton icon={<IoSettingsOutline/>} iconSize="18px" tooltip={DISPLAY.TOOLTIPS.SETTINGS} ttPlacement="right" onClick={()=> navigate('/settings')}/>
+            <CircleIconButton icon={<IoSettingsOutline/>} iconSize="18px" tooltip={DISPLAY.TOOLTIPS.SETTINGS} ttPlacement="right" onClick={navigateToSettings} />
             <CircleIconButton icon={aegisTheme === 'dark' ? <MdOutlineLightMode/> : <MdOutlineDarkMode/>} iconSize="18px" tooltip={DISPLAY.TOOLTIPS.THEME} ttPlacement="right" onClick={toggleAegisTheme}/>
             <CircleIconButton icon={<RiFileEditLine/>} iconSize="18px" tooltip={DISPLAY.TOOLTIPS.QUICK_SAVE} ttPlacement="right" onClick={()=> navigate('/quick-save')}/>
             <CircleIconButton icon={<FaInfo/>} tooltip={DISPLAY.TOOLTIPS.ABOUT_US} ttPlacement="right" onClick={()=>{}}/>
@@ -88,14 +116,30 @@ export default function Home() {
                     </Text>
 
                     <Flex width='100%'>
-                        <div style={{display:'grid', gridTemplateColumns:'repeat(auto-fit, 140px)', gap: theme.spacing, justifyContent: window.innerWidth < 480 ? 'center' : 'start', width:'100%'}}>
-                            <PrimaryVaultCard title={DISPLAY.LABELS.PASSWORDS} onClick={()=>navigateToVault('/password-manager')} icon={<LockIcon style={{height:'60px', width:'60px'}}/>} />
-                            <PrimaryVaultCard title={DISPLAY.LABELS.EXPENSES} onClick={()=>navigateToVault('/expense-manager')} icon={<GiMoneyStack style={{height:'70px', width:'70px'}}/>} />
-                            <PrimaryVaultCard title={DISPLAY.LABELS.INVESTMENTS} onClick={()=>navigateToVault('/investment-manager')} icon={<GiGoldBar style={{height:'70px', width:'70px'}}/>} />
-                            <PrimaryVaultCard title={DISPLAY.LABELS.PLANNER} onClick={()=>navigateToVault('/planning-manager')} icon={<BsCalendarRange style={{height:'70px', width:'70px'}}/>} />
-                            <VaultCard title={DISPLAY.LABELS.SECURITY} onClick={()=>navigateToVault('/active-sessions')} icon={<MdDevices style={{height:'70px', width:'70px'}}/>} />
-                            {/* <VaultCard title={DISPLAY.LABELS.NOTIFICATIONS} onClick={()=>navigateToVault('/notifications')} icon={<BellIcon style={{height:'60px', width:'60px'}}/>} /> */}
-                        </div>
+                        {isLoading && 
+                            <Flex direction='column' justify='center' align='center' gap={theme.marginL} paddingY={theme.spacing} margin='0 auto'>
+                                <ThreeDot variant="brick-stack" color={theme.primary} size="medium" />
+                                <Text color={theme.text} fontSize={theme.textSize}>
+                                    {DISPLAY.TEXT.LOADING_VAULTS}
+                                </Text>
+                            </Flex>
+                        }
+                        {error && 
+                            <div style={{width:'100%', display:'flex', marginTop:theme.spacing, justifyContent:'center'}}>
+                                <Text color={theme.textSecondary} fontSize={theme.smallTextSize} border={`1px solid ${theme.border}`} borderRadius={theme.radius} padding={`${theme.paddingS} ${theme.paddingL}`}>
+                                    {DISPLAY.TEXT.FAILED_TO_LOAD_VAULTS}
+                                </Text>
+                            </div>
+                        }
+                        {!error && !isLoading && 
+                            <div style={{display:'grid', gridTemplateColumns:'repeat(auto-fit, 140px)', gap: theme.spacing, justifyContent: window.innerWidth < 480 ? 'center' : 'start', width:'100%'}}>
+                                <PrimaryVaultCard title={DISPLAY.LABELS.PASSWORDS} onClick={()=>navigateToVault('/password-manager')} icon={<LockIcon style={{height:'60px', width:'60px'}}/>} />
+                                <PrimaryVaultCard title={DISPLAY.LABELS.EXPENSES} onClick={()=>navigateToVault('/expense-manager')} icon={<GiMoneyStack style={{height:'70px', width:'70px'}}/>} />
+                                <PrimaryVaultCard title={DISPLAY.LABELS.INVESTMENTS} onClick={()=>navigateToVault('/investment-manager')} icon={<GiGoldBar style={{height:'70px', width:'70px'}}/>} />
+                                <PrimaryVaultCard title={DISPLAY.LABELS.PLANNER} onClick={()=>navigateToVault('/planning-manager')} icon={<BsCalendarRange style={{height:'70px', width:'70px'}}/>} />
+                                <VaultCard title={DISPLAY.LABELS.SECURITY} onClick={()=>navigateToVault('/active-sessions')} icon={<MdDevices style={{height:'70px', width:'70px'}}/>} />
+                            </div>
+                        }
                     </Flex>
                 </div>
             </AppLayout>
@@ -105,7 +149,7 @@ export default function Home() {
                 <Text color={theme.text} fontSize={theme.textSize} textAlign='center'>
                     {DISPLAY.TEXT.CONFIRM_LOGOUT}
                 </Text>
-                <ButtonGroup width='full' marginTop={theme.spacing} marginBottom={theme.marginL}>
+                <ButtonGroup width='full' marginTop={theme.spacing} marginBottom={theme.marginS}>
                     <ActionButton name={DISPLAY.BUTTONS.CANCEL} onClick={()=> setShowLogoutPopup(false)} />
                     <ActionButton name={DISPLAY.BUTTONS.LOGOUT} onClick={terminateSession} actionType='primary' />
                 </ButtonGroup>
@@ -121,7 +165,7 @@ export default function Home() {
                     </div>
                 </div>
                 <Divider borderColor={theme.border} borderWidth='1px' />
-                <div style={{marginBottom: theme.marginL}}>
+                <div>
                     <Text color={theme.text} fontSize={theme.textSize} fontWeight={500} my={theme.marginL}>{DISPLAY.TEXT.SESSION_DETAILS}</Text>
                     <div style={{border: `2px solid ${theme.border}`, borderRadius: theme.radius, padding: theme.paddingL}}>
                         <div style={{display: 'flex', alignItems: 'center', gap: theme.paddingL}}>

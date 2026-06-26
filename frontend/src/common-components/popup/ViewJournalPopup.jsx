@@ -39,7 +39,7 @@ export default function ViewJournalPopup({isOpen, onClose, selectedJournal}) {
     }, [isOpen, selectedJournal, masterKey]);
 
     return (
-        <Popup isOpen={isOpen} onClose={onClose} title={DISPLAY.TEXT.JOURNAL} bg={theme.bg} borderColor={theme.info}>
+        <Popup isOpen={isOpen} onClose={onClose} title={DISPLAY.TEXT.JOURNAL} bg={theme.bg} borderColor={theme.info} takeFullHeight={true}>
             <Text color={theme.text} fontSize={theme.textSize} marginBottom={theme.marginL}>
                 { new Date(selectedJournal.date).toLocaleDateString(undefined, {day:'numeric', month:'long', year:'numeric'}) }
             </Text>
@@ -48,7 +48,7 @@ export default function ViewJournalPopup({isOpen, onClose, selectedJournal}) {
                 value={isLoading ? DISPLAY.TEXT.LOADING : journalContent}
                 isReadOnly
                 resize='vertical'
-                minHeight='400px'
+                minHeight='calc(100% - 39px)'
                 backgroundColor={theme.bg}
                 border={`1px solid ${theme.border}`}
                 borderRadius={`calc(2 * ${theme.radius})`}

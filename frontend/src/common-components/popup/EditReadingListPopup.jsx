@@ -34,7 +34,7 @@ export default function EditReadingListPopup({isOpen, onClose, readingList, refr
 
     useEffect(() =>{
         setUpdatedReadingList(JSON.parse(JSON.stringify(readingList)));
-    }, [readingList]);
+    }, [readingList, isOpen]);
 
     const handleNewItemChange = e =>{
         setNewItem({

@@ -165,7 +165,7 @@ export default function IncomeTab({trackerData, selectedAccount, accountDataArra
                 <Text color={theme.text} fontSize={theme.textSize} textAlign='center'>
                     {DISPLAY.TEXT.COMFIRM_DELETE_INCOME}
                 </Text>
-                <ButtonGroup width='full' marginTop={theme.spacing} marginBottom={theme.marginL}>
+                <ButtonGroup width='full' marginTop={theme.spacing} marginBottom={theme.marginS}>
                     <ActionButton name={DISPLAY.BUTTONS.CANCEL} onClick={()=> setShowDeleteTrackerPopup(false)} disabled={isLoading} />
                     <ActionButton name={DISPLAY.BUTTONS.DELETE} onClick={deleteTracker} isLoading={isLoading} disabled={isLoading} actionType='primary' />
                 </ButtonGroup>

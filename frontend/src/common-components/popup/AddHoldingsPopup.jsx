@@ -193,7 +193,7 @@ export default function AddHoldingsPopup({isOpen, onClose, selectedAccount, refr
                             goldAsset.totalPrice < ((parseFloat(goldAsset.weight) || 0) * (parseFloat(goldAsset.rate) || 0))
                         }
                         onClick={addGoldAsset}
-                        customStyle={{marginBottom: theme.marginL, marginTop: '-20px'}}
+                        customStyle={{marginBottom: theme.marginS, marginTop: '-20px'}}
                     />
                 </form>
             }
@@ -221,7 +221,7 @@ export default function AddHoldingsPopup({isOpen, onClose, selectedAccount, refr
                             stock.totalPrice < ((parseFloat(stock.units) || 0) * (parseFloat(stock.unitPrice) || 0))
                         }
                         onClick={addStock}
-                        customStyle={{marginBottom: theme.marginL, marginTop: '-20px'}}
+                        customStyle={{marginBottom: theme.marginS, marginTop: '-20px'}}
                     />
                 </form>
             }

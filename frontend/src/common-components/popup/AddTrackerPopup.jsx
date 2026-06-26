@@ -95,7 +95,7 @@ export default function AddTrackerPopup({isOpen, onClose, selectedAccount, refre
             <form>
                 <InputBox type='text' label={DISPLAY.LABELS.INCOME_SOURCE} name='name' value={tracker.name} onChange={handleChange} required maxLen={50}/>
                 <InputBox type='number' label={DISPLAY.LABELS.AMOUNT} name='amount' value={tracker.amount} onChange={handleChange} required min={0}/>
-                <ActionButton name={DISPLAY.BUTTONS.ADD_INCOME} actionType='primary' isLoading={isLoading} disabled={isLoading || tracker.amount <= 0} onClick={addTracker} customStyle={{marginBottom: theme.marginL}} />
+                <ActionButton name={DISPLAY.BUTTONS.ADD_INCOME} actionType='primary' isLoading={isLoading} disabled={isLoading || tracker.amount <= 0} onClick={addTracker} customStyle={{marginBottom: theme.marginS}} />
             </form>
         </Popup>
     );

@@ -256,7 +256,7 @@ export default function ViewFDPopup({isOpen, onClose, selectedFDGroup, selectedA
                 </Table>
             </Box>
 
-            <ButtonGroup marginTop={theme.spacing} marginBottom={theme.marginL} width='full'>
+            <ButtonGroup marginTop={theme.spacing} marginBottom={theme.marginS} width='full'>
                 {allowFDDeletion && <CircleIconButton icon={<DeleteIcon/>} onClick={()=>{ setShowDeleteFDPopup(true) }} tooltip={DISPLAY.TOOLTIPS.DELETE} />}
                 <ActionButton name={DISPLAY.BUTTONS.CLOSE} onClick={()=>{ setShowCloseFDPopup(true) }} isLoading={isLoading} disabled={isLoading || latestFD.status === 2}/>
                 <ActionButton name={DISPLAY.BUTTONS.ROLLOVER} onClick={()=>{ setShowRolloverFDPopup(true) }} isLoading={isLoading} disabled={isLoading || new Date(latestFD.maturityDate) > new Date() || latestFD.status === 2} actionType='primary'/>
@@ -270,14 +270,14 @@ export default function ViewFDPopup({isOpen, onClose, selectedFDGroup, selectedA
                 <InputBox type='text' label={DISPLAY.LABELS.INTEREST_RATE} name='rate' value={rolledFD.rate} onChange={handleRolloverFDChange} required />
                 <InputBox type='number' label={DISPLAY.LABELS.PERIOD_IN_DAYS} name='period' value={rolledFD.period} onChange={handleRolloverFDChange} required min={1} />
                 <DateInput value={rolledFD.startDate} name='startDate' onChange={handleRolloverFDChange} label={DISPLAY.LABELS.START_DATE} min={latestFD.maturityDate} />
-                <ActionButton name={DISPLAY.BUTTONS.ROLLOVER} actionType='primary' isLoading={isLoading} disabled={isLoading || rolledFD.principal <= 0 || parseFloat(rolledFD.rate) <= 0 || rolledFD.period <= 0} onClick={rolloverFixedDeposit} customStyle={{marginBottom: theme.marginL}} />
+                <ActionButton name={DISPLAY.BUTTONS.ROLLOVER} actionType='primary' isLoading={isLoading} disabled={isLoading || rolledFD.principal <= 0 || parseFloat(rolledFD.rate) <= 0 || rolledFD.period <= 0} onClick={rolloverFixedDeposit} customStyle={{marginBottom: theme.marginS}} />
             </form>
         </Popup>
 
         {/* Show Close FD Popup */}
         <Popup isOpen={showCloseFDPopup} onClose={setShowCloseFDPopup} title={`${DISPLAY.TEXT.CLOSE} ${DISPLAY.LABELS.FD} #${selectedFDGroup[0].fdIndex}`} bg={theme.bg} borderColor={theme.warning}>
             <DateInput value={closingDate} name='closingDate' onChange={(e)=> setClosingDate(e.target.value)} label={DISPLAY.LABELS.CLOSING_DATE} min={latestFD.startDate} />
-            <ActionButton name={DISPLAY.BUTTONS.CLOSE} actionType='primary' isLoading={isLoading} disabled={isLoading} onClick={closeFixedDeposit} customStyle={{marginBottom: theme.marginL}} />
+            <ActionButton name={DISPLAY.BUTTONS.CLOSE} actionType='primary' isLoading={isLoading} disabled={isLoading} onClick={closeFixedDeposit} customStyle={{marginBottom: theme.marginS}} />
         </Popup>
 
         {/* Show Delete FD Popup */}
@@ -285,7 +285,7 @@ export default function ViewFDPopup({isOpen, onClose, selectedFDGroup, selectedA
             <Text color={theme.text} fontSize={theme.textSize} textAlign='center'>
                 {DISPLAY.TEXT.CONFIRM_DELETE_FD}
             </Text>
-            <ButtonGroup width='full' marginTop={theme.spacing} marginBottom={theme.marginL}>
+            <ButtonGroup width='full' marginTop={theme.spacing} marginBottom={theme.marginS}>
                 <ActionButton name={DISPLAY.BUTTONS.CANCEL} onClick={()=> setShowDeleteFDPopup(false)} disabled={isLoading} />
                 <ActionButton name={DISPLAY.BUTTONS.DELETE} onClick={deleteFixedDeposit} isLoading={isLoading} disabled={isLoading || !allowFDDeletion} actionType='primary' />
             </ButtonGroup>

@@ -177,7 +177,7 @@ export default function Signup() {
             <Popup isOpen={showSuccessPopup} onClose={()=> setShowSuccessPopup(false)} title={DISPLAY.TEXT.IMPORTANT} borderColor={theme.warning}>
                 <Text align='center' color={theme.text}>{DISPLAY.TEXT.PASSKEY_DOWNLOADED}</Text>
                 <Text align='center' color={theme.warning} my={theme.marginL}>{DISPLAY.TEXT.DO_NOT_LOSE_PASSKEY}</Text>
-                <ActionButton name={DISPLAY.BUTTONS.UNDERSTAND} onClick={navigateToLogin} customStyle={{marginTop: theme.spacing, marginBottom: theme.marginL}}/>
+                <ActionButton name={DISPLAY.BUTTONS.UNDERSTAND} onClick={navigateToLogin} customStyle={{marginTop: theme.spacing, marginBottom: theme.marginS}}/>
             </Popup>
         </div>
     );

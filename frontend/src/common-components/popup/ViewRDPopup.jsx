@@ -195,7 +195,7 @@ export default function ViewRDPopup({isOpen, onClose, selectedRD, selectedAccoun
                 </Table>
             </Box>
 
-            <ButtonGroup marginTop={theme.spacing} marginBottom={theme.marginL} width='full'>
+            <ButtonGroup marginTop={theme.spacing} marginBottom={theme.marginS} width='full'>
                 {allowRDDeletion && <CircleIconButton icon={<DeleteIcon/>} onClick={()=>{ setShowDeleteRDPopup(true) }} tooltip={DISPLAY.TOOLTIPS.DELETE} />}
                 <ActionButton name={DISPLAY.BUTTONS.CLOSE} onClick={()=>{ setShowCloseRDPopup(true) }} isLoading={isLoading} disabled={isLoading || selectedRD.status === 1}/>
             </ButtonGroup>
@@ -204,7 +204,7 @@ export default function ViewRDPopup({isOpen, onClose, selectedRD, selectedAccoun
         {/* Show Close RD Popup */}
         <Popup isOpen={showCloseRDPopup} onClose={setShowCloseRDPopup} title={`${DISPLAY.TEXT.CLOSE} ${DISPLAY.LABELS.RD} #${selectedRD.rdIndex}`} bg={theme.bg} borderColor={theme.warning}>
             <DateInput value={closingDate} name='closingDate' onChange={(e)=> setClosingDate(e.target.value)} label={DISPLAY.LABELS.CLOSING_DATE} min={selectedRD.installmentDate} />
-            <ActionButton name={DISPLAY.BUTTONS.CLOSE} actionType='primary' isLoading={isLoading} disabled={isLoading} onClick={closeRecurringDeposit} customStyle={{marginBottom: theme.marginL}} />
+            <ActionButton name={DISPLAY.BUTTONS.CLOSE} actionType='primary' isLoading={isLoading} disabled={isLoading} onClick={closeRecurringDeposit} customStyle={{marginBottom: theme.marginS}} />
         </Popup>
 
         {/* Show Delete RD Popup */}
@@ -212,7 +212,7 @@ export default function ViewRDPopup({isOpen, onClose, selectedRD, selectedAccoun
             <Text color={theme.text} fontSize={theme.textSize} textAlign='center'>
                 {DISPLAY.TEXT.CONFIRM_DELETE_RD}
             </Text>
-            <ButtonGroup width='full' marginTop={theme.spacing} marginBottom={theme.marginL}>
+            <ButtonGroup width='full' marginTop={theme.spacing} marginBottom={theme.marginS}>
                 <ActionButton name={DISPLAY.BUTTONS.CANCEL} onClick={()=> setShowDeleteRDPopup(false)} disabled={isLoading} />
                 <ActionButton name={DISPLAY.BUTTONS.DELETE} onClick={deleteRecurringDeposit} isLoading={isLoading} disabled={isLoading || !allowRDDeletion} actionType='primary' />
             </ButtonGroup>

@@ -36,7 +36,7 @@ export default function EditWatchlistPopup({isOpen, onClose, watchlist, refreshC
 
     useEffect(() =>{
         setUpdatedWatchlist(JSON.parse(JSON.stringify(watchlist)));
-    }, [watchlist]);
+    }, [watchlist, isOpen]);
 
     const handleNewItemChange = e =>{
         setNewItem({

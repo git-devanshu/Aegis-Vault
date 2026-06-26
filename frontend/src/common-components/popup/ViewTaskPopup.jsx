@@ -172,7 +172,7 @@ export default function ViewTaskPopup({isOpen, onClose, task, setRefreshTasks, r
                 <Text color={theme.text} fontSize={theme.textSize} textAlign='center'>
                     {DISPLAY.TEXT.CONFIRM_DELETE_TASK}
                 </Text>
-                <ButtonGroup width='full' marginTop={theme.spacing} marginBottom={theme.marginL}>
+                <ButtonGroup width='full' marginTop={theme.spacing} marginBottom={theme.marginS}>
                     <ActionButton name={DISPLAY.BUTTONS.CANCEL} onClick={()=> setShowDeletePopup(false)} disabled={isLoading} />
                     <ActionButton name={DISPLAY.BUTTONS.DELETE} onClick={deleteTask} actionType='primary' disabled={isLoading} isLoading={isLoading} />
                 </ButtonGroup>
@@ -183,7 +183,7 @@ export default function ViewTaskPopup({isOpen, onClose, task, setRefreshTasks, r
                 <Text color={theme.text} fontSize={theme.textSize} textAlign='center'>
                     {DISPLAY.TEXT.COMFIRM_MARK_COMPLETE}
                 </Text>
-                <ButtonGroup width='full' marginTop={theme.spacing} marginBottom={theme.marginL}>
+                <ButtonGroup width='full' marginTop={theme.spacing} marginBottom={theme.marginS}>
                     <ActionButton name={DISPLAY.BUTTONS.CANCEL} onClick={()=> setShowCompletePopup(false)} disabled={isLoading} />
                     <ActionButton name={DISPLAY.BUTTONS.MARK_COMPLETED} onClick={markCompleted} actionType='primary' disabled={isLoading} isLoading={isLoading} />
                 </ButtonGroup>

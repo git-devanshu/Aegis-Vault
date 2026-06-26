@@ -30,7 +30,7 @@ export default function EditTripListPopup({isOpen, onClose, tripList, refreshCol
 
     useEffect(() =>{
         setUpdatedTripList(JSON.parse(JSON.stringify(tripList)));
-    }, [tripList]);
+    }, [tripList, isOpen]);
 
     const handleNewItemChange = e =>{
         setNewItem({

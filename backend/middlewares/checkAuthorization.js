@@ -34,7 +34,7 @@ const checkAuthorization = async(req, res, next) =>{
             return res.status(401).json({ message : RESPONSES.AUTH.UNAUTHORIZED, relogin: true });
         }
 
-        const existingUser = await Users.findById(req.id);
+        const existingUser = await Users.findById(req.id).lean();
         if(!existingUser?.isActive){
             return res.status(401).json({ message : RESPONSES.AUTH.ACCOUNT_DISABLED, relogin: true });
         }

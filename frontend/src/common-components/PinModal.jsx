@@ -15,18 +15,17 @@ import { createHash, decryptMasterKey } from "../utility/crypto";
 
 export default function PinModal() {
     const {DISPLAY, TOASTS} = useLanguage();
+    
     const {setMasterKey,
-        userSalt, setUserSalt,
-        setNewPassKeyGenerated,
-        setHideRemovedLabels,
-        hideShowPasswordButton, setHideShowPasswordButton,
-        disablePasswordModifications, setDisablePasswordModifications,
-        allowBankAccountDeletion, setAllowBankAccountDeletion,
-        allowIncomeTrackerDeletion, setAllowIncomeTrackerDeletion,
-        allowExpenseDeletion, setAllowExpenseDeletion,
-        allowNewCategoryCreation, setAllowNewCategoryCreation,
-        hideAccountSnapshotInAnalytics, setHideAccountSnapshotInAnalytics,
+        userSalt, setUserSalt, setNewPassKeyGenerated,
+        setHideRemovedLabels, setHideShowPasswordButton, setDisablePasswordModifications,
+        setAllowBankAccountDeletion,
+        setAllowIncomeTrackerDeletion, setAllowExpenseDeletion, setAllowNewCategoryCreation, setHideAccountSnapshotInAnalytics,
+        setHideAccountBalanceInCard, setAllowFDDeletion, setAllowRDDeletion, setAllowGoldAssetDeletion, setAllowStockDeletion, setHideClosedFD, setHideClosedRD, setHideSoldGoldAssets, setHideSoldStocks,
+        setDisableShoppingListModifications, setDisableFoodListModifications, setDisableWatchlistModifications, setDisableReadingListModifications, setDisableWishlistModifications, setDisableTodoListModifications, setDisableTripListModifications, setDisableNotepadModifications,
+        setUse12HourClockInSchedule, setDisableJournalModifications, setHideWeeklyScheduleItems, setHideHighPriorityTasks, setHideCompletedTasks, setHideHighPriorityNotes, setDisableNoteModifications
     } = useAppContext();
+
     const navigate = useNavigate();
     const [searchParams] = useSearchParams();
 
@@ -91,6 +90,32 @@ export default function PinModal() {
                     setAllowExpenseDeletion(res?.data?.userSettings?.allowExpenseDeletion);
                     setAllowNewCategoryCreation(res?.data?.userSettings?.allowNewCategoryCreation);
                     setHideAccountSnapshotInAnalytics(res?.data?.userSettings?.hideAccountSnapshotInAnalytics);
+
+                    setHideAccountBalanceInCard(res?.data?.userSettings?.hideAccountBalanceInCard);
+                    setAllowFDDeletion(res?.data?.userSettings?.allowFDDeletion);
+                    setAllowRDDeletion(res?.data?.userSettings?.allowRDDeletion);
+                    setAllowGoldAssetDeletion(res?.data?.userSettings?.allowGoldAssetDeletion);
+                    setAllowStockDeletion(res?.data?.userSettings?.allowStockDeletion);
+                    setHideClosedFD(res?.data?.userSettings?.hideClosedFD);
+                    setHideClosedRD(res?.data?.userSettings?.hideClosedRD);
+                    setHideSoldGoldAssets(res?.data?.userSettings?.hideSoldGoldAssets);
+                    setHideSoldStocks(res?.data?.userSettings?.hideSoldStocks);
+
+                    setDisableShoppingListModifications(res?.data?.userSettings?.disableShoppingListModifications);
+                    setDisableFoodListModifications(res?.data?.userSettings?.disableFoodListModifications);
+                    setDisableWatchlistModifications(res?.data?.userSettings?.disableWatchlistModifications);
+                    setDisableReadingListModifications(res?.data?.userSettings?.disableReadingListModifications);
+                    setDisableWishlistModifications(res?.data?.userSettings?.disableWishlistModifications);
+                    setDisableTodoListModifications(res?.data?.userSettings?.disableTodoListModifications);
+                    setDisableTripListModifications(res?.data?.userSettings?.disableTripListModifications);
+                    setDisableNotepadModifications(res?.data?.userSettings?.disableNotepadModifications);
+                    setUse12HourClockInSchedule(res?.data?.userSettings?.use12HourClockInSchedule);
+                    setDisableJournalModifications(res?.data?.userSettings?.disableJournalModifications);
+                    setHideWeeklyScheduleItems(res?.data?.userSettings?.hideWeeklyScheduleItems);
+                    setHideHighPriorityTasks(res?.data?.userSettings?.hideHighPriorityTasks);
+                    setHideCompletedTasks(res?.data?.userSettings?.hideCompletedTasks);
+                    setHideHighPriorityNotes(res?.data?.userSettings?.hideHighPriorityNotes);
+                    setDisableNoteModifications(res?.data?.userSettings?.disableNoteModifications);
                 }
             });
         }

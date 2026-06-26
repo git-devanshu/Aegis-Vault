@@ -201,7 +201,7 @@ export default function ViewGoldPopup({isOpen, onClose, selectedGoldAsset, selec
                 <Text color={theme.text} fontSize={theme.textSize} textAlign='center'>
                     {DISPLAY.TEXT.CONFIRM_DELETE_GOLD}
                 </Text>
-                <ButtonGroup width='full' marginTop={theme.spacing} marginBottom={theme.marginL}>
+                <ButtonGroup width='full' marginTop={theme.spacing} marginBottom={theme.marginS}>
                     <ActionButton name={DISPLAY.BUTTONS.CANCEL} onClick={()=> setShowDeleteGoldPopup(false)} />
                     <ActionButton name={DISPLAY.BUTTONS.DELETE} onClick={deleteGoldAsset} actionType='primary' disabled={isLoading || !allowGoldAssetDeletion} isLoading={isLoading} />
                 </ButtonGroup>
@@ -211,7 +211,7 @@ export default function ViewGoldPopup({isOpen, onClose, selectedGoldAsset, selec
             <Popup isOpen={showSellGoldPopup} onClose={()=> setShowSellGoldPopup(false)} title={DISPLAY.TEXT.SELL_GOLD_ASSET} borderColor={theme.warning} bg={theme.bg}>
                 <InputBox type='number' label={DISPLAY.LABELS.SELLING_PRICE} name='sellingPrice' value={sellingPrice} onChange={(e)=> setSellingPrice(Number(e.target.value))} required min={0} />
                 <DateInput value={sellingDate} name='sellingDate' onChange={(e)=> setSellingDate(e.target.value)} label={DISPLAY.LABELS.SELLING_DATE} min={selectedGoldAsset?.purchaseDate} />
-                <ActionButton name={DISPLAY.BUTTONS.MARK_AS_SOLD} actionType='primary' isLoading={isLoading} disabled={isLoading || sellingPrice <= 0} onClick={sellGoldAsset} customStyle={{marginBottom: theme.marginL, marginTop: '-20px'}} />
+                <ActionButton name={DISPLAY.BUTTONS.MARK_AS_SOLD} actionType='primary' isLoading={isLoading} disabled={isLoading || sellingPrice <= 0} onClick={sellGoldAsset} customStyle={{marginBottom: theme.marginS, marginTop: '-20px'}} />
             </Popup> 
         </>
     );

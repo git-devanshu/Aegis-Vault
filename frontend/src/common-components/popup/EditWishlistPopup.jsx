@@ -31,7 +31,7 @@ export default function EditWishlistPopup({isOpen, onClose, wishlist, refreshCol
 
     useEffect(() =>{
         setUpdatedWishlist(JSON.parse(JSON.stringify(wishlist)));
-    }, [wishlist]);
+    }, [wishlist, isOpen]);
 
     const handleNewItemChange = e =>{
         setNewItem({

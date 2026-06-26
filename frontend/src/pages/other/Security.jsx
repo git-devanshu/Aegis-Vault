@@ -27,6 +27,7 @@ import DeviceTypeStats from "../../common-components/widgets/DeviceTypeStats";
 import Loading from "../../common-components/Loading";
 import PinModal from "../../common-components/PinModal";
 import SessionLocationMap from "../../common-components/widgets/SessionLocationMap";
+import SecurityFeatureGuide from "./SecurityFeatureGuide";
 
 
 export default function Security() {
@@ -46,6 +47,8 @@ export default function Security() {
     const [showPasskeyDownloadedPopup, setShowPasskeyDownloadedPopup] = useState(false);
     const [showTerminatePopup, setShowTerminatePopup] = useState(false);
     const [showTerminateAllPopup, setShowTerminateAllPopup] = useState(false);
+
+    const [showGuideModal, setShowGuideModal] = useState(false);
 
     const [sessionIdToRemove, setSessionIdToRemove] = useState('');
 
@@ -147,7 +150,7 @@ export default function Security() {
         <Flex align='center' gap={theme.paddingL} direction={{base:'row', sm:'column'}} backgroundColor={theme.cardBg} borderRadius='35px'>
             <CircleIconButton icon={<MdRefresh/>} iconSize="18px" tooltip={DISPLAY.TOOLTIPS.REFRESH} ttPlacement="right" onClick={()=> setRefresh(!refresh)}/>
             <CircleIconButton icon={<TbDeviceDesktopOff/>} iconSize="18px" tooltip={DISPLAY.TOOLTIPS.LOGOUT_ALL} ttPlacement="right" onClick={()=>setShowTerminateAllPopup(true)}/>
-            <CircleIconButton icon={<FaInfo/>} tooltip={DISPLAY.TOOLTIPS.LEARN_MORE} ttPlacement="right" onClick={()=>{}}/>
+            <CircleIconButton icon={<FaInfo/>} tooltip={DISPLAY.TOOLTIPS.LEARN_MORE} ttPlacement="right" onClick={()=> setShowGuideModal(true) }/>
         </Flex>
     );
 
@@ -222,7 +225,7 @@ export default function Security() {
                 <Text color={theme.text} fontSize={theme.textSize} textAlign='center'>
                     {DISPLAY.TEXT.CONFIRM_LOGOUT}
                 </Text>
-                <ButtonGroup width='full' marginTop={theme.spacing} marginBottom={theme.marginL}>
+                <ButtonGroup width='full' marginTop={theme.spacing} marginBottom={theme.marginS}>
                     <ActionButton name={DISPLAY.BUTTONS.CANCEL} onClick={()=> setShowTerminatePopup(false)} />
                     <ActionButton name={DISPLAY.BUTTONS.TERMINATE} onClick={terminateSession} actionType='primary' />
                 </ButtonGroup>
@@ -233,7 +236,7 @@ export default function Security() {
                 <Text color={theme.text} fontSize={theme.textSize} textAlign='center'>
                     {DISPLAY.TEXT.CONFIRM_LOGOUT_ALL}
                 </Text>
-                <ButtonGroup width='full' marginTop={theme.spacing} marginBottom={theme.marginL}>
+                <ButtonGroup width='full' marginTop={theme.spacing} marginBottom={theme.marginS}>
                     <ActionButton name={DISPLAY.BUTTONS.CANCEL} onClick={()=> setShowTerminateAllPopup(false)} />
                     <ActionButton name={DISPLAY.BUTTONS.TERMINATE} onClick={terminateAllOtherSessions} actionType='primary' />
                 </ButtonGroup>
@@ -244,7 +247,7 @@ export default function Security() {
                 <Text color={theme.text} fontSize={theme.textSize} textAlign='center'>
                     {DISPLAY.TEXT.CONFIRM_REGENERATE}
                 </Text>
-                <ButtonGroup width='full' marginTop={theme.spacing} marginBottom={theme.marginL}>
+                <ButtonGroup width='full' marginTop={theme.spacing} marginBottom={theme.marginS}>
                     <ActionButton name={DISPLAY.BUTTONS.CANCEL} onClick={()=> setShowNewPasskeyPopup(false)} />
                     <ActionButton name={DISPLAY.BUTTONS.PROCEED} onClick={generateNewPasskey} actionType='primary' />
                 </ButtonGroup>
@@ -254,8 +257,11 @@ export default function Security() {
             <Popup isOpen={showPasskeyDownloadedPopup} onClose={()=> setShowPasskeyDownloadedPopup(false)} title={DISPLAY.TEXT.IMPORTANT} borderColor={theme.warning}>
                 <Text align='center' color={theme.text}>{DISPLAY.TEXT.PASSKEY_DOWNLOADED}</Text>
                 <Text align='center' color={theme.warning} my={theme.marginL}>{DISPLAY.TEXT.DO_NOT_LOSE_PASSKEY}</Text>
-                <ActionButton name={DISPLAY.BUTTONS.UNDERSTAND} onClick={()=> setShowPasskeyDownloadedPopup(false)} customStyle={{marginTop: theme.spacing, marginBottom: theme.marginL}}/>
+                <ActionButton name={DISPLAY.BUTTONS.UNDERSTAND} onClick={()=> setShowPasskeyDownloadedPopup(false)} customStyle={{marginTop: theme.spacing, marginBottom: theme.marginS}}/>
             </Popup>
+
+            {/* Guide Modal */}
+            {showGuideModal && <SecurityFeatureGuide setShowModal={setShowGuideModal}/> }
         </div>
     );
 }

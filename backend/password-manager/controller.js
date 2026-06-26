@@ -52,7 +52,7 @@ const fetchLabels = async(req, res) =>{
 const addPassword = async(req, res) =>{
     const {RESPONSES} = getLanguageConstants(req.lang);
     try{
-        const {passwordData, labelIndex, nonce} = req.body;
+        const {passwordData, labelIndex, nonce, accessThroughExtension} = req.body;
         if(!passwordData?.length || !nonce?.length){
             return res.status(400).json({ message : RESPONSES.COMMON.UNEXPECTED_ERROR });
         }
@@ -61,7 +61,8 @@ const addPassword = async(req, res) =>{
             userId: req.id,
             passwordData,
             labelIndex,
-            nonce
+            nonce,
+            accessThroughExtension
         });
         await newPassword.save();
         res.status(200).json({ message: RESPONSES.PASSWORD_MANAGER.PASSWORD_ADDED });
@@ -80,12 +81,12 @@ const addPassword = async(req, res) =>{
 const updatePassword = async(req, res) =>{
     const {RESPONSES} = getLanguageConstants(req.lang);
     try{
-        const {id, passwordData, labelIndex, nonce} = req.body;
+        const {id, passwordData, labelIndex, nonce, accessThroughExtension} = req.body;
         if(!id?.length || !passwordData?.length || !nonce?.length){
             return res.status(400).json({ message : RESPONSES.COMMON.UNEXPECTED_ERROR });
         }
 
-        const updatedPassword = await Passwords.findOneAndUpdate({_id: id, userId: req.id}, {passwordData, labelIndex, nonce});
+        const updatedPassword = await Passwords.findOneAndUpdate({_id: id, userId: req.id}, {passwordData, labelIndex, nonce, accessThroughExtension});
         if(!updatedPassword){
             return res.status(404).json({ message : RESPONSES.PASSWORD_MANAGER.PASSWORD_NOT_FOUND });
         }
@@ -152,6 +153,25 @@ const updateLabels = async(req, res) =>{
 
 
 /*
+* @P: GET /api/pm/passwords
+* Fetch all passwords of a user that are accessible through extension
+*/
+const fetchAllPasswords = async(req, res) =>{
+    const {RESPONSES} = getLanguageConstants(req.lang);
+    try{
+        const dataArray = await Passwords.find({ userId: req.id, accessThroughExtension: true }).lean();
+
+        const responseMessage = dataArray.length ? RESPONSES.COMMON.SUCCESS : RESPONSES.PASSWORD_MANAGER.NO_PASSWORD_ADDED;
+        return res.status(200).json({ message: responseMessage, dataArray });
+    }
+    catch(error){
+        console.log("Server error:", error);
+        return res.status(500).json({ message: RESPONSES.COMMON.SERVER_ERROR });
+    }
+};
+
+
+/*
 * @P: POST /api/pm
 * 
 */
@@ -174,5 +194,6 @@ module.exports = {
     addPassword,
     updatePassword,
     deletePassword,
-    updateLabels
+    updateLabels,
+    fetchAllPasswords
 };

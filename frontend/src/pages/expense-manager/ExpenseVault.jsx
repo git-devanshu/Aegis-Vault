@@ -31,6 +31,7 @@ import IncomeTab from "./IncomeTab";
 import ExpenseTab from "./ExpenseTab";
 import ExpenseAnalyticsModal from "./ExpenseAnalyticsModal";
 import CategoryTab from "./CategoryTab";
+import FeatureGuide from "./FeatureGuide";
 
 
 export default function ExpenseVault() {
@@ -60,7 +61,9 @@ export default function ExpenseVault() {
     const [showManageAccountModal, setShowManageAccountModal] = useState(false);
     const [showAddTrackerPopup, setShowAddTrackerPopup] = useState(false);
     const [showAddExpensePopup, setShowAddExpensePopup] = useState(false);
+
     const [showExpenseAnalytics, setShowExpenseAnalytics] = useState(false);
+    const [showGuideModal, setShowGuideModal] = useState(false);
 
     // for removing the master key after exiting the module
     useClearOnUnmount(clearMasterKey);
@@ -231,7 +234,7 @@ export default function ExpenseVault() {
             <CircleIconButton icon={<TbMoneybagPlus/>} iconSize="18px" tooltip={DISPLAY.TOOLTIPS.ADD_TRACKER} ttPlacement="right" onClick={()=> setShowAddTrackerPopup(true)}/>
             <CircleIconButton icon={<AddIcon/>} tooltip={DISPLAY.TOOLTIPS.ADD_EXPENSE} ttPlacement="right" onClick={()=> setShowAddExpensePopup(true)} actionType='primary' />
             <CircleIconButton icon={<RiBubbleChartLine/>} iconSize="18px" tooltip={DISPLAY.TOOLTIPS.ANALYTICS} ttPlacement="right" onClick={()=> setShowExpenseAnalytics(true) }/>
-            <CircleIconButton icon={<FaInfo/>} tooltip={DISPLAY.TOOLTIPS.LEARN_MORE} ttPlacement="right" onClick={()=>{}}/>
+            <CircleIconButton icon={<FaInfo/>} tooltip={DISPLAY.TOOLTIPS.LEARN_MORE} ttPlacement="right" onClick={()=> setShowGuideModal(true)}/>
         </Flex>
     );
 
@@ -294,6 +297,9 @@ export default function ExpenseVault() {
 
             {/* Show Analytics Modal */}
             {showExpenseAnalytics && <ExpenseAnalyticsModal onBack={()=> setShowExpenseAnalytics(false)} selectedAccount={selectedAccount} selectedTracker={selectedTracker} expenseData={expenseData} categoryData={categoryData} selectedTrackerIndex={selectedTrackerIndex} setSelectedTrackerIndex={setSelectedTrackerIndex} trackerDataOptions={trackerDataOptions} trackerData={trackerData} setSelectedTab={setSelectedTab} />}
+            
+            {/* Guide Modal */}
+            {showGuideModal && <FeatureGuide setShowModal={setShowGuideModal}/>}
         </div>
     );
 }

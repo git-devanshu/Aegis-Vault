@@ -6,7 +6,7 @@ export default function InfoTooltip({label, children, placement='bottom'}) {
     return (
         <Popover trigger='click' placement={placement} autoFocus={false}>
             <PopoverTrigger>
-                <div style={{display:'flex', alignItems:'center', width:'fit-content'}}>
+                <div style={{display:'flex', alignItems:'center', width:'fit-content', cursor: 'pointer'}}>
                     {children}
                 </div>
             </PopoverTrigger>

@@ -92,7 +92,7 @@ export default function AddBankAccountModal({onBack, refreshAccounts, setRefresh
 
     return (
         <div className="fullscreen-overlay">
-        <div className="common-page">
+        <div className="common-page" style={{display: 'flex', flexDirection: 'column', height: '100%'}}>
             <Flex align='center' justify='space-between' paddingBottom={theme.paddingL}>
                 <RiBankLine color={theme.primary} style={{marginLeft: theme.marginS, marginRight: theme.marginS}}/>
                 <Text color={theme.primary} fontSize={theme.text} fontWeight={500} align={{base: 'center', sm: 'left'}}>
@@ -103,7 +103,7 @@ export default function AddBankAccountModal({onBack, refreshAccounts, setRefresh
             </Flex>
             <Divider borderColor={theme.border} borderWidth='1px' />
 
-            <div className="common-container">
+            <div className="common-container" style={{display: 'flex', flexDirection: 'column', flex: 1, minHeight: 0}}>
                 <div style={{display: 'flex', alignItems: 'center', paddingBottom: theme.marginL, paddingTop: theme.spacing, margin: '0 auto', width:'fit-content'}}>
                     <Text color={theme.text} fontSize={theme.headingSize} textAlign='center'>
                         {DISPLAY.LABELS.ADD_BANK_ACCOUNT}
@@ -113,12 +113,14 @@ export default function AddBankAccountModal({onBack, refreshAccounts, setRefresh
                     </InfoTooltip>
                 </div>
                 
-                <form>
-                    <Dropdown value={account.countryCode} onChange={(e)=> setAccount({...account, countryCode: e.target.value})} options={countryOptions} />
-
-                    <InputBox type='text' placeholder={`🔎︎ ${DISPLAY.LABELS.SEARCH_BANK}`} name='searchQuery' value={searchQuery} onChange={(e)=> setSearchQuery(e.target.value)}/>
-
-                    <div style={{ border: `1px solid ${theme.border}`, borderRadius: `calc(${theme.radius} * 2)`, maxHeight: '150px', overflowY: 'auto', backgroundColor:theme.cardBg, scrollbarWidth: "none", marginBottom: theme.spacing}}>
+                <form style={{display: 'flex', flexDirection: 'column', flex: 1, minHeight: 0}}>
+                    <div style={{marginBottom: '-10px'}}>
+                        <Dropdown value={account.countryCode} onChange={(e)=> setAccount({...account, countryCode: e.target.value})} options={countryOptions} />
+                    </div>
+                    <div style={{marginBottom: '-10px'}}>
+                        <InputBox type='text' placeholder={`🔎︎ ${DISPLAY.LABELS.SEARCH_BANK}`} name='searchQuery' value={searchQuery} onChange={(e)=> setSearchQuery(e.target.value)}/>
+                    </div>
+                    <div style={{ border: `1px solid ${theme.border}`, borderRadius: `calc(${theme.radius} * 2)`, display: 'flex', flexDirection: 'column', flex: 1, minHeight: 0, overflowY: 'auto', backgroundColor:theme.cardBg, scrollbarWidth: "none", marginBottom: theme.spacing}}>
                         {
                             filteredBanks.map(([id, bank])=>(
                                 <Flex key={id} align='center' justify='space-between' padding={theme.paddingL} cursor='pointer' backgroundColor={account.bankId === id ? theme.hoverBg : 'transparent'} borderBottom={`1px solid ${theme.border}`} transition='0.2s' _hover={{backgroundColor:theme.hoverBg}} onClick={()=> setAccount({...account, bankId:id})} >
@@ -141,11 +143,13 @@ export default function AddBankAccountModal({onBack, refreshAccounts, setRefresh
                         }
                     </div>
 
-                    <InputBox type='text' label={DISPLAY.LABELS.ACCOUNT_NUMBER} name='accountNo' value={account.accountNo} onChange={(e)=> setAccount({...account, accountNo:e.target.value})} required maxLen={30} />
-
-                    <InputBox type='text' label={DISPLAY.LABELS.ACCOUNT_ALIAS} name='accountAlias' value={account.accountAlias} onChange={(e)=> setAccount({...account, accountAlias:e.target.value})} required maxLen={25} />
-
-                    <ActionButton name={DISPLAY.BUTTONS.ADD_ACCOUNT} onClick={addBankAccount} isLoading={isLoading} disabled={isLoading} actionType='primary' />
+                    <div style={{marginBottom: '-10px'}}>
+                        <InputBox type='text' label={DISPLAY.LABELS.ACCOUNT_NUMBER} name='accountNo' value={account.accountNo} onChange={(e)=> setAccount({...account, accountNo:e.target.value})} required maxLen={30} />
+                    </div>
+                    <div style={{marginBottom: '-10px'}}>
+                        <InputBox type='text' label={DISPLAY.LABELS.ACCOUNT_ALIAS} name='accountAlias' value={account.accountAlias} onChange={(e)=> setAccount({...account, accountAlias:e.target.value})} required maxLen={25} />
+                    </div>
+                    <ActionButton name={DISPLAY.BUTTONS.ADD_ACCOUNT} onClick={addBankAccount} isLoading={isLoading} disabled={isLoading} actionType='primary' customStyle={{marginBottom: theme.marginS}} />
                 </form>
             </div>
         </div>

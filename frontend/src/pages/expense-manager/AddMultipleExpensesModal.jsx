@@ -94,7 +94,7 @@ export default function AddMultipleExpensesModal({onBack, selectedAccount, selec
                             return account;
                         })
                     );
-                    localStorage.removeItem('aegis-saved-logs');
+                    localStorage.removeItem('aegis-saved-expenses');
                     setQuickSaveLogs([]);
                     setRefreshExpenses(!refreshExpenses);
                     onBack();

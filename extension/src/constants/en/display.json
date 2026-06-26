@@ -1,0 +1,32 @@
+{
+    "LABELS":{
+        "WELCOME": "Welcome Back",
+        "EMAIL": "Email",
+        "PASSWORD": "Password",
+        "ENTER_PIN": "Enter Security PIN",
+        "SEARCH": "Search passwords",
+        "PLATFORM": "Platform",
+        "SITE": "Website",
+        "USERNAME": "Username"
+    },
+
+    "BUTTONS":{
+        "LOGIN": "Login",
+        "UNLOCK": "Unlock",
+        "LOGOUT": "Logout"
+    },
+
+    "HEADINGS":{
+        "SUGGESTED_ACCOUNTS": "Suggested Accounts",
+        "SEARCH_RESULTS": "Search Results"
+    },
+
+    "TEXT":{
+        "PIN_REQUIRED": "Enter your security PIN to unlock your password vault.",
+        "SEARCH_PLACEHOLDER": "Search by platform or website...",
+        "NO_PASSWORD_FOUND": "No passwords found for this website.",
+        "NO_SEARCH_RESULTS": "No matching passwords found.",
+        "THEME": "Switch Theme",
+        "LOADING": "Loading, please wait..."
+    }
+}

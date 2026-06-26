@@ -97,6 +97,7 @@ export default function Settings() {
                     setAllowExpenseDeletion(res?.data?.userSettings?.allowExpenseDeletion);
                     setAllowNewCategoryCreation(res?.data?.userSettings?.allowNewCategoryCreation);
                     setHideAccountSnapshotInAnalytics(res?.data?.userSettings?.hideAccountSnapshotInAnalytics);
+                    
                     setHideAccountBalanceInCard(res?.data?.userSettings?.hideAccountBalanceInCard);
                     setAllowFDDeletion(res?.data?.userSettings?.allowFDDeletion);
                     setAllowRDDeletion(res?.data?.userSettings?.allowRDDeletion);
@@ -106,6 +107,7 @@ export default function Settings() {
                     setHideClosedRD(res?.data?.userSettings?.hideClosedRD);
                     setHideSoldGoldAssets(res?.data?.userSettings?.hideSoldGoldAssets);
                     setHideSoldStocks(res?.data?.userSettings?.hideSoldStocks);
+                    
                     setDisableShoppingListModifications(res?.data?.userSettings?.disableShoppingListModifications);
                     setDisableFoodListModifications(res?.data?.userSettings?.disableFoodListModifications);
                     setDisableWatchlistModifications(res?.data?.userSettings?.disableWatchlistModifications);

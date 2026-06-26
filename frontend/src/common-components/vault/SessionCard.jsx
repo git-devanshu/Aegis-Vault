@@ -7,6 +7,7 @@ import useLanguage from '../../hooks/useLanguage';
 import { Badge, Button, Divider, Flex, Text } from '@chakra-ui/react';
 import { IoDesktopOutline } from "react-icons/io5";
 import { HiMiniDevicePhoneMobile } from "react-icons/hi2";
+import { BiSolidExtension } from "react-icons/bi";
 import { getSessionExpiry } from "../../utility/helpers";
 
 import ActionButton from "../form/ActionButton";
@@ -38,7 +39,7 @@ export default function SessionCard({session, currentSessionId, onTerminate}) {
                 <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: theme.hoverBg, borderRadius: theme.radius, padding: theme.paddingL}}>
                     {
                         session.deviceType === 'desktop' ? <IoDesktopOutline size='25px' color={theme.textSecondary} /> 
-                        : <HiMiniDevicePhoneMobile size='25px' color={theme.textSecondary} />
+                        : session.deviceType === 'extension' ? <BiSolidExtension size='25px' color={theme.textSecondary} /> : <HiMiniDevicePhoneMobile size='25px' color={theme.textSecondary} />
                     }
                 </div>
 

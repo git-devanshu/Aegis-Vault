@@ -40,7 +40,7 @@ export default function ViewNotePopup({isOpen, onClose, selectedNote}) {
 
 
     return (
-        <Popup isOpen={isOpen} onClose={onClose} title={DISPLAY.TEXT.NOTE} bg={theme.bg} borderColor={selectedNote.color}>
+        <Popup isOpen={isOpen} onClose={onClose} title={DISPLAY.TEXT.NOTE} bg={theme.bg} borderColor={selectedNote.color} takeFullHeight={true}>
             <Text color={theme.text} fontSize={theme.headingSize} fontWeight={600}>
                 {selectedNote.title}
             </Text>
@@ -65,7 +65,7 @@ export default function ViewNotePopup({isOpen, onClose, selectedNote}) {
                 value={isLoading ? DISPLAY.TEXT.LOADING : noteData?.data || ''}
                 isReadOnly
                 resize='vertical'
-                minHeight='400px'
+                height='calc(100% - 105px)'
                 backgroundColor={theme.bg}
                 border={`1px solid ${theme.border}`}
                 borderRadius={`calc(2 * ${theme.radius})`}

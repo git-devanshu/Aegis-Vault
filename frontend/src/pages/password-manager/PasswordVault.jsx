@@ -25,6 +25,7 @@ import TabGroup from "../../common-components/navbar/TabGroup";
 import Dropdown from "../../common-components/form/Dropdown";
 import PasswordCard from "../../common-components/vault/PasswordCard";
 import AddEditPasswordPopup from "../../common-components/popup/AddEditPasswordPopup";
+import FeatureGuide from "./FeatureGuide";
 
 
 export default function PasswordVault() {
@@ -61,6 +62,8 @@ export default function PasswordVault() {
     const [showRemoveLabelPopup, setShowRemoveLabelPopup] = useState(false);
     const [showRecoverLabelPopup, setShowRecoverLabelPopup] = useState(false);
 
+    const [showGuideModal, setShowGuideModal] = useState(false);
+
     // for removing the master key after exiting the module
     useClearOnUnmount(clearMasterKey);
 
@@ -68,7 +71,7 @@ export default function PasswordVault() {
         if(!searchQuery.trim()) return data;
         const q = searchQuery.toLowerCase();
         return data.filter(item =>
-            item?.platform?.toLowerCase().includes(q)
+            item?.platform?.toLowerCase().includes(q) || item.site?.toLowerCase().includes(q)
         );
     }, [data, searchQuery, refreshPasswords]);
 
@@ -109,6 +112,7 @@ export default function PasswordVault() {
                         const decryptedData = JSON.parse(await decryptData(val.passwordData, val.nonce, masterKey));
                         decryptedData.id = val._id;
                         decryptedData.labelIndex = val.labelIndex;
+                        decryptedData.accessThroughExtension = val.accessThroughExtension;
                         passwordList.push(decryptedData);
                     }
                     setData(passwordList);
@@ -257,8 +261,8 @@ export default function PasswordVault() {
             <CircleIconButton icon={<MdRefresh/>} iconSize="18px" tooltip={DISPLAY.TOOLTIPS.REFRESH} ttPlacement="right" onClick={refreshPage}/>
             <CircleIconButton icon={<MdOutlineNewLabel/>} iconSize="18px" tooltip={DISPLAY.TOOLTIPS.CREATE_LABEL} ttPlacement="right" onClick={()=> setShowCreateLabelPopup(true)}/>
             <CircleIconButton icon={<AddIcon/>} tooltip={DISPLAY.TOOLTIPS.ADD_PASSWORD} ttPlacement="right" onClick={()=> setShowAddPasswordPopup(true)} actionType='primary' />
-            <CircleIconButton icon={<IoExtensionPuzzleOutline/>} tooltip={DISPLAY.TOOLTIPS.DOWNLOAD_EXTENSION} ttPlacement="right" onClick={()=>{}}/>
-            <CircleIconButton icon={<FaInfo/>} tooltip={DISPLAY.TOOLTIPS.LEARN_MORE} ttPlacement="right" onClick={()=>{}}/>
+            <CircleIconButton icon={<IoExtensionPuzzleOutline/>} tooltip={DISPLAY.TOOLTIPS.BROWSER_EXTENSION} ttPlacement="right" onClick={()=>{}}/>
+            <CircleIconButton icon={<FaInfo/>} tooltip={DISPLAY.TOOLTIPS.LEARN_MORE} ttPlacement="right" onClick={()=> setShowGuideModal(true)}/>
         </Flex>
     );
 
@@ -309,7 +313,7 @@ export default function PasswordVault() {
 
                 {/* Main Content for Password */}
                 {selectedTab === 0 && 
-                    <Grid templateColumns={{base:'1fr', md:'1fr 1fr', lg: '1fr 1fr 1fr'}} marginTop={`calc(${theme.marginL} * 2)`} width='100%' gap={theme.paddingL}>
+                    <Grid templateColumns={{base:'1fr', md:'1fr 1fr', lg: '1fr 1fr 1fr'}} width='100%' gap={theme.paddingL}>
                         {filteredData.map((item, index)=>
                             <div key={index}>
                                 <PasswordCard labels={labels}
@@ -334,7 +338,7 @@ export default function PasswordVault() {
                                 if(label.startsWith('*~Rem*')) return null;
                                 return (
                                     <div key={index}>
-                                        <Flex height='55.23px' backgroundColor={theme.cardBg} justify='space-between' align='center' border={`1px solid ${theme.border}`} borderRadius={`calc(${theme.radius} * 2)`} padding='7px' paddingLeft={theme.paddingL}>
+                                        <Flex height='55.23px' backgroundColor={theme.cardBg} justify='space-between' align='center' border={`1px solid ${theme.border}`} borderRadius={theme.radius} padding='7px' paddingLeft={theme.paddingL}>
                                             <Text color={theme.text} fontSize={theme.textSize}>
                                                 {DISPLAY.PASSWORD_LABELS[label] || label}
                                             </Text>
@@ -365,7 +369,7 @@ export default function PasswordVault() {
                                 if(!label.startsWith('*~Rem*')) return null;
                                 return (
                                     <div key={index}>
-                                        <Flex height='55.23px' backgroundColor={theme.cardBg} justify='space-between' align='center' border={`1px solid ${theme.border}`} borderRadius={`calc(${theme.radius} * 2)`} padding='7px' paddingLeft={theme.paddingL}>
+                                        <Flex height='55.23px' backgroundColor={theme.cardBg} justify='space-between' align='center' border={`1px solid ${theme.border}`} borderRadius={theme.radius} padding='7px' paddingLeft={theme.paddingL}>
                                             <Text color={theme.text} fontSize={theme.textSize}>
                                                 {label.replace("*~Rem*", '')}
                                             </Text>
@@ -391,7 +395,7 @@ export default function PasswordVault() {
                 <Text color={theme.text} fontSize={theme.textSize} textAlign='center'>
                     {DISPLAY.TEXT.CONFIRM_DELETE_PASSWORD}
                 </Text>
-                <ButtonGroup width='full' marginTop={theme.spacing} marginBottom={theme.marginL}>
+                <ButtonGroup width='full' marginTop={theme.spacing} marginBottom={theme.marginS}>
                     <ActionButton name={DISPLAY.BUTTONS.CANCEL} onClick={()=> setShowDeletePasswordPopup(false)} />
                     <ActionButton name={DISPLAY.BUTTONS.DELETE} onClick={deletePassword} actionType='primary' />
                 </ButtonGroup>
@@ -401,7 +405,7 @@ export default function PasswordVault() {
             <Popup isOpen={showCreateLabelPopup} onClose={()=> setShowCreateLabelPopup(false)} title={DISPLAY.TEXT.CREATE_LABEL} borderColor={theme.success} bg={theme.bg}>
                 <form>
                     <InputBox type='text' label={DISPLAY.LABELS.LABEL_NAME} name='labelName' value={labelName} onChange={(e)=> setLabelName(e.target.value)} required={true}/>
-                    <ActionButton name={DISPLAY.BUTTONS.CREATE} isLoading={isLoading} disabled={isLoading} onClick={createLabel} actionType='primary' customStyle={{marginBottom: theme.marginL}} />
+                    <ActionButton name={DISPLAY.BUTTONS.CREATE} isLoading={isLoading} disabled={isLoading} onClick={createLabel} actionType='primary' customStyle={{marginBottom: theme.marginS}} />
                 </form>
             </Popup>
             
@@ -409,7 +413,7 @@ export default function PasswordVault() {
             <Popup isOpen={showRenameLabelPopup} onClose={()=> setShowRenameLabelPopup(false)} title={DISPLAY.TEXT.RENAME_LABEL} borderColor={theme.success} bg={theme.bg}>
                 <form>
                     <InputBox type='text' label={DISPLAY.LABELS.LABEL_NAME} name='labelName' value={labelName} onChange={(e)=> setLabelName(e.target.value)} required={true}/>
-                    <ActionButton name={DISPLAY.BUTTONS.RENAME} isLoading={isLoading} disabled={isLoading} onClick={renameLabel} actionType='primary' customStyle={{marginBottom: theme.marginL}} />
+                    <ActionButton name={DISPLAY.BUTTONS.RENAME} isLoading={isLoading} disabled={isLoading} onClick={renameLabel} actionType='primary' customStyle={{marginBottom: theme.marginS}} />
                 </form>
             </Popup>
 
@@ -418,7 +422,7 @@ export default function PasswordVault() {
                 <Text color={theme.text} fontSize={theme.textSize} textAlign='center'>
                     {DISPLAY.TEXT.CONFIRM_REMOVE}
                 </Text>
-                <ButtonGroup width='full' marginTop={theme.spacing} marginBottom={theme.marginL}>
+                <ButtonGroup width='full' marginTop={theme.spacing} marginBottom={theme.marginS}>
                     <ActionButton name={DISPLAY.BUTTONS.CANCEL} onClick={()=> setShowRemoveLabelPopup(false)} />
                     <ActionButton name={DISPLAY.BUTTONS.REMOVE} onClick={removeLabel} actionType='primary' />
                 </ButtonGroup>
@@ -429,11 +433,14 @@ export default function PasswordVault() {
                 <Text color={theme.text} fontSize={theme.textSize} textAlign='center'>
                     {DISPLAY.TEXT.CONFIRM_RECOVER}
                 </Text>
-                <ButtonGroup width='full' marginTop={theme.spacing} marginBottom={theme.marginL}>
+                <ButtonGroup width='full' marginTop={theme.spacing} marginBottom={theme.marginS}>
                     <ActionButton name={DISPLAY.BUTTONS.CANCEL} onClick={()=> setShowRecoverLabelPopup(false)} />
                     <ActionButton name={DISPLAY.BUTTONS.RECOVER} onClick={recoverLabel} actionType='primary' />
                 </ButtonGroup>
             </Popup>
+
+            {/* Guide Modal */}
+            {showGuideModal && <FeatureGuide setShowModal={setShowGuideModal}/>}
         </div>
     );
 }

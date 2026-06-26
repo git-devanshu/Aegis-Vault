@@ -148,7 +148,7 @@ export default function AddDepositPopup({isOpen, onClose, selectedAccount, refre
 
                     <DateInput value={fd.startDate} name='startDate' onChange={handleFDChange} label={DISPLAY.LABELS.START_DATE} />
 
-                    <ActionButton name={DISPLAY.BUTTONS.ADD_FIXED_DEPOSIT} actionType='primary' isLoading={isLoading} disabled={isLoading || fd.principal <= 0 || parseFloat(fd.rate) <= 0 || fd.period <= 0} onClick={addNewFD} customStyle={{marginBottom: theme.marginL, marginTop: '-20px'}} />
+                    <ActionButton name={DISPLAY.BUTTONS.ADD_FIXED_DEPOSIT} actionType='primary' isLoading={isLoading} disabled={isLoading || fd.principal <= 0 || parseFloat(fd.rate) <= 0 || fd.period <= 0} onClick={addNewFD} customStyle={{marginBottom: theme.marginS, marginTop: '-20px'}} />
                 </form>
             }
 
@@ -163,7 +163,7 @@ export default function AddDepositPopup({isOpen, onClose, selectedAccount, refre
 
                     <DateInput value={rd.installmentDate} name='installmentDate' onChange={handleRDChange} label={DISPLAY.LABELS.INSTALLMENT_DATE} />
 
-                    <ActionButton name={DISPLAY.BUTTONS.ADD_RECURRING_DEPOSIT} actionType='primary' isLoading={isLoading} disabled={isLoading || rd.installment <= 0 || parseFloat(rd.rate) <= 0 || rd.period <= 0} onClick={addNewRD} customStyle={{marginBottom: theme.marginL, marginTop: '-20px'}} />
+                    <ActionButton name={DISPLAY.BUTTONS.ADD_RECURRING_DEPOSIT} actionType='primary' isLoading={isLoading} disabled={isLoading || rd.installment <= 0 || parseFloat(rd.rate) <= 0 || rd.period <= 0} onClick={addNewRD} customStyle={{marginBottom: theme.marginS, marginTop: '-20px'}} />
                 </form>
             }
         </Popup>
