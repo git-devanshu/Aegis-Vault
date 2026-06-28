@@ -7,6 +7,8 @@
         "SIGNUP": "Signup",
         "LOGIN": "Login",
         "WELCOME": "Welcome Back",
+        "RESET_PASSWORD": "Reset Password",
+        "RESET_PIN": "Reset Security Pin",
         "YOUR_VAULTS": "Your Vaults",
         "PASSWORDS": "Passwords",
         "EXPENSES": "Expenses",
@@ -115,7 +117,8 @@
         "SEARCH_NOTES": "Search Notes Title",
         "LAST_UPDATED": "Updated at",
         "CONTACT_US": "Contact Us",
-        "ACCESS_THROUGH_EXTENSION": "Access through Extension"
+        "ACCESS_THROUGH_EXTENSION": "Access through Extension",
+        "NEW_PASSWORD": "New Password"
     },
 
     "TEXT": {
@@ -416,7 +419,13 @@
         "HIDE_HIGH_PRIORITY_TASKS": "Hide High Priority Tasks",
         "HIDE_COMPLETED_TASKS": "Hide Completed Tasks",
         "HIDE_HIGH_PRIORITY_NOTES": "Hide High Priority Notes",
-        "DISABLE_NOTE_MODIFICATIONS": "Disable Note Modifications"
+        "DISABLE_NOTE_MODIFICATIONS": "Disable Note Modifications",
+        "HERO_SECTION_TAGLINE": "The Secure Vault for your Personal Data.",
+        "DONT_HIT_BACK": "Closing the tab or hitting back will exit you from the process.",
+        "ENTER_PASSKEY": "Copy your latest Pass Key and paste here.",
+        "DONT_REFRESH": "Do not refresh the page or close the tab.",
+        "ENTER_PASSWORD": "Enter your password for verification.",
+        "ENTER_NEW_PIN": "Set new Security Pin for your vaults."
     },
 
     "BUTTONS": {
@@ -480,7 +489,9 @@
         "MARK_COMPLETED": "Mark Completed",
         "ADD_JOURNAL": "Add Journal",
         "ADD_NOTE": "Add Note",
-        "ADD_PASSWORD": "Add Password"
+        "ADD_PASSWORD": "Add Password",
+        "RESET_PASSWORD": "Set New Password",
+        "RESET_PIN": "Set New Security Pin"
     },
 
     "PASSWORD_LABELS": {

@@ -5,15 +5,10 @@ import { useMemo } from 'react';
 import enDisplay from '../constants/en/display.json';
 
 
-/* TOASTS constants */
-import enResponses from '../constants/en/responses.json';
-
-
 
 const LANGUAGE_FILES = {
     en:{
-        DISPLAY: enDisplay,
-        RESPONSES: enResponses
+        DISPLAY: enDisplay
     }
 };
 

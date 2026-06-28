@@ -1,5 +1,5 @@
 import {useEffect, useMemo, useState} from "react";
-import { Box, Divider, Flex, Heading, Input, Text } from "@chakra-ui/react";
+import { Box, Divider, Flex, Heading, IconButton, Input, Text } from "@chakra-ui/react";
 import {theme} from "../themes/theme";
 import {useAppContext} from "../context/AppContext";
 import useLanguage from "../hooks/useLanguage";
@@ -11,6 +11,7 @@ import {apiRequest} from "../utility/api";
 import { ThreeDot } from "react-loading-indicators";
 
 import {MdOutlineLightMode, MdOutlineDarkMode} from 'react-icons/md';
+import {LuSquareArrowDownLeft} from 'react-icons/lu';
 
 import InputBox from "../components/form/InputBox";
 import TitleBar from "../components/TitleBar";
@@ -88,28 +89,22 @@ export default function Home(){
 
     const renderCard = (item)=>{
         return(
-            <Box key={item.id}
-                border={`1px solid ${theme.border}`}
-                borderRadius={theme.radius}
-                padding={theme.paddingL}
-                marginBottom={theme.marginS}
-                cursor="pointer"
-                background={theme.cardBg}
-                _hover={{
-                    background: theme.hoverBg
-                }}
-                onClick={()=> autofillPassword(item.password)}
+            <Flex justify="space-between" align='center' key={item.id}
+                border={`1px solid ${theme.border}`} borderRadius={theme.radius}
+                paddingX={theme.paddingL} marginBottom={theme.marginS}
+                paddingY='3px'
+                cursor="pointer" background={theme.cardBg}
             >
-                <Flex justify="space-between">
+                <Box>
                     <Text color={theme.text} fontSize={theme.text} fontWeight={500}>
                         {item.platform}
                     </Text>
-
                     <Text color={theme.textSecondary} fontSize={theme.smallTextSize}>
                         {item.username}
                     </Text>
-                </Flex>
-            </Box>
+                </Box>
+                <IconButton size='lg' onClick={()=> autofillPassword(item.password)} icon={<LuSquareArrowDownLeft/>} backgroundColor='transparent' color={theme.textSecondary} _hover={{backgroundColor: 'transparent', color: theme.text}}/>
+            </Flex>
         );
     };
 
@@ -133,7 +128,7 @@ export default function Home(){
                     <CircleIconButton icon={aegisTheme === 'dark' ? <MdOutlineLightMode/> : <MdOutlineDarkMode/>} tooltip={DISPLAY.TEXT.THEME} onClick={toggleAegisTheme}/>
                     <ActionButton name={DISPLAY.BUTTONS.LOGOUT} onClick={logoutFromExtension} customStyle={{width: 'fit-content'}} />
                 </TitleBar>
-                <Divider borderWidth='1px' color={theme.border} marginBottom={theme.marginL} />
+                <Divider borderWidth='1px' borderColor={theme.border} marginBottom={theme.marginL} />
 
                 {websiteMatches.length > 0 && (
                     <>
@@ -150,9 +145,16 @@ export default function Home(){
                     </div>
                 )}
 
-                <Divider borderWidth='1px' color={theme.border} marginY={theme.marginL} />
+                <Divider borderWidth='1px' borderColor={theme.border} marginY={theme.marginL} />
 
-                <InputBox placeholder={`🔎︎ ${DISPLAY.LABELS.SEARCH}`} type='text' name='search' value={search} onChange={(e)=> setSearch(e.target.value)}/>
+                <Input variant='flushed' size='sm' fontSize={theme.textSize} color={theme.text}
+                    placeholder={`🔎︎ ${DISPLAY.LABELS.SEARCH}`} type='text' name='search' value={search} onChange={(e)=> setSearch(e.target.value)}
+                    _focus={{
+                        borderColor:theme.primary,
+                        boxShadow: 'none'
+                    }}
+                    marginBottom={theme.marginL}
+                />
                 
                 {searchResults.map(renderCard)}
             </div>

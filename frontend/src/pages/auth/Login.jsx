@@ -94,7 +94,7 @@ export default function Login() {
                     {userSalt && <InputBox type='password' label={DISPLAY.LABELS.PASSWORD} name='password' value={user.password} onChange={handleChange} required={true} minLen={8} maxLen={30}/>}
                     
                     <Text color={theme.textSecondary} fontSize={theme.textSize} marginTop={theme.marginS} textAlign='center'>
-                        <a href="/" style={{textDecoration: 'underline'}}>{DISPLAY.TEXT.FORGOT_PASSWORD}</a>
+                        <a href="/reset-password" style={{textDecoration: 'underline'}}>{DISPLAY.TEXT.FORGOT_PASSWORD}</a>
                     </Text>
 
                     {!userSalt && <ActionButton name={DISPLAY.BUTTONS.NEXT} onClick={fetchUserSalt} isLoading={isLoading} disabled={isLoading} actionType='primary' customStyle={{marginTop: theme.spacing}}/>}

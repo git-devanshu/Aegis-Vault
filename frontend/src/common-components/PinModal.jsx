@@ -29,7 +29,7 @@ export default function PinModal() {
     const navigate = useNavigate();
     const [searchParams] = useSearchParams();
 
-    const [securityPin, setSecurityPin] = useState('123456');
+    const [securityPin, setSecurityPin] = useState('');
     const [isLoading, setIsLoading] = useState(false);
 
     // For detecting the ?salt url param and automatically calling pin verification api
@@ -44,17 +44,15 @@ export default function PinModal() {
     }, [searchParams]);
 
     const fetchUserSalt = async(e) =>{
+        if(securityPin.length !== 6) return;
         const {email} = getAuthUser();
-        const toastId = validateAndStartLoading({
-            loadingMessage: TOASTS.COMMON.LOADING, 
-            setIsLoading
-        });
+        setIsLoading(true);
         await apiRequest({
             method: 'GET',
             endpoint: `/api/ss/get-user-salt/${email}`,
-            toastId,
             setIsLoading,
             secure: false,
+            defaultSuccessToast: false,
             onSuccess: (res) =>{
                 setUserSalt(res.data.userSalt);
                 navigate(`?salt=${encodeURIComponent(res.data.userSalt)}`);
@@ -63,6 +61,7 @@ export default function PinModal() {
     }
 
     const verifySecurityPin = async(e) =>{
+        if(securityPin.length !== 6) return;
         const toastId = validateAndStartLoading({
             e,
             loadingMessage: TOASTS.COMMON.LOADING, 
@@ -142,7 +141,7 @@ export default function PinModal() {
                 <form>
                     <PinInputBox value={securityPin} onChange={(value) => setSecurityPin(value)} required={true} mask={true} autoFocus={true}/>
                     <Text color={theme.textSecondary} fontSize={theme.textSize} textAlign='center'>
-                        <a href="/" style={{textDecoration: 'underline'}}>{DISPLAY.TEXT.FORGOT_PIN}</a>
+                        <a href="/reset-pin" style={{textDecoration: 'underline'}}>{DISPLAY.TEXT.FORGOT_PIN}</a>
                     </Text>
                     <ButtonGroup width='full' marginTop={theme.spacing}>
                         <ActionButton name={DISPLAY.BUTTONS.BACK} onClick={()=>navigate('/home')} disabled={isLoading} />

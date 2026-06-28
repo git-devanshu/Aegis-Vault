@@ -9,14 +9,9 @@ import Home from "./pages/Home";
 
 
 export default function App(){
-
     const {
-        isAuthenticated,
-        setIsAuthenticated,
-
-        user,
-        setUser,
-
+        isAuthenticated, setIsAuthenticated,
+        user, setUser,
         isUnlocked
     } = useAppContext();
 
@@ -25,25 +20,20 @@ export default function App(){
     }, []);
 
     const checkAuthentication = async() =>{
-
         const token = await getAuthToken();
-    
         if(!token){
             setIsAuthenticated(false);
             return;
         }
     
         const authUser = await getAuthUser();
-    
         if(!authUser){
             setIsAuthenticated(false);
             return;
         }
     
         setUser(authUser);
-    
         setIsAuthenticated(true);
-    
     };
 
     if(isAuthenticated === null){
@@ -59,5 +49,4 @@ export default function App(){
     }
 
     return <Home />;
-
 }

@@ -20,7 +20,9 @@
         "SESSION_NOT_FOUND": "session not found",
         "LOGOUT_SUCCESSFUL": "device logged out successfully",
         "ALL_SESSIONS_TERMINATED": "logged out of all other devices",
-        "NEW_PASSKEY_GENERATED": "new passkey generated successfully"
+        "NEW_PASSKEY_GENERATED": "new passkey generated successfully",
+        "PASSWORD_CHANGED": "password changed successfully",
+        "PIN_CHANGED": "security pin changed successfully"
     },
     
     "CONFIG": {

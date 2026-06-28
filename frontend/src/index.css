@@ -71,3 +71,12 @@ html, body, #root{
         transform:rotate(360deg);
     }
 }
+
+@keyframes flashToPrimary{
+    0%, 100% {
+        background-color: var(--bg);
+    }
+    40%, 60% {
+        background-color: var(--primary);
+    }
+}

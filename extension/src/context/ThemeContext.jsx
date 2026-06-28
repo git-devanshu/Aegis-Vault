@@ -4,7 +4,7 @@ import { getStorage, saveStorage } from "../utility/helpers";
 export const ThemeContext = createContext();
 
 export default function ThemeProvider({ children }) {
-    const [aegisTheme, setAegisTheme] = useState("light");
+    const [aegisTheme, setAegisTheme] = useState("dark");
 
     useEffect(() => {
         async function loadTheme(){

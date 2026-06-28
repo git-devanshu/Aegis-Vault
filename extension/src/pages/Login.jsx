@@ -15,7 +15,7 @@ import { getDevice } from "../utility/helpers";
 
 
 export default function Login(){
-    const {DISPLAY, RESPONSES} = useLanguage();
+    const {DISPLAY} = useLanguage();
 
     const {setUser, setIsAuthenticated} = useAppContext();
 
@@ -123,8 +123,11 @@ export default function Login(){
                         isLoading={isLoading}
                         disabled={isLoading}
                         actionType="primary"
-                        customStyle={{marginBottom: theme.marginS}}
                     />
+
+                    <Text color={theme.textSecondary} fontSize={theme.textSize} marginTop={theme.marginL} marginBottom={theme.marginL} textAlign='center'>
+                        {DISPLAY.TEXT.NEW_USER} <span onClick={()=>{ chrome.tabs.create({ url: import.meta.env.VITE_AEGIS_CLIENT_URL }) }} style={{textDecoration: 'underline', cursor: 'pointer'}}>{DISPLAY.LABELS.SIGNUP}</span>
+                    </Text>
                 </form>
             </div>
         </div>

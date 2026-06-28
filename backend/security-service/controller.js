@@ -234,87 +234,133 @@ const verifySecurityPin = async(req, res) =>{
 
 
 /*
-* @P: POST /api/ss/verify-passkey
-* 
+* POST /api/ss/verify-passkey
+* Verify user's Pass Key and return pinEncryptedKey, pinSalt and pinNonce
 */
-// const verifyPassKey = async(req, res) =>{
-//     const {RESPONSES} = getLanguageConstants(req.lang);
-//     try{
-//         const { email, passKey } = req.body;
-//         if(!email?.length || !passKey?.length){
-//             return res.status(400).json({ message : "all fields are required" });
-//         }
+const verifyPassKey = async(req, res) =>{
+    const {RESPONSES} = getLanguageConstants(req.lang);
+    try{
+        const { email, passKeyHash } = req.body;
+        if(!email?.length || !passKeyHash?.length){
+            return res.status(400).json({ message : RESPONSES.COMMON.FIELD_REQUIRED });
+        }
 
-//         const existingUser = await Users.findOne({email});
-//         if(!existingUser){
-//             return res.status(404).json({ message : "user not found" });
-//         }
+        const existingUser = await Users.findOne({email}).lean();
+        if(!existingUser){
+            return res.status(404).json({ message : RESPONSES.AUTH.USER_NOT_FOUND });
+        }
 
-//         const isMatch = await bcrypt.compareSync(passKey, existingUser.passKey);
+        if(passKeyHash !== existingUser.passKeyHash.toString() || existingUser.passKeyHash === "0" || passKeyHash === "0"){
+            return res.status(400).json({ message : RESPONSES.AUTH.INVALID_CREDENTIALS });
+        }
 
-//         if(!isMatch || existingUser.passKey === "0" || passKey === "0"){
-//             return res.status(400).json({ message : "verification failed!" });
-//         }
+        const pinEncryptedKey = existingUser.pinEncryptedKey;
+        const pinSalt = existingUser.pinSalt;
+        const pinNonce = existingUser.pinNonce;
 
-//         const pinEncryptedKey = existingUser.pinEncryptedKey;
-//         const pinSalt = existingUser.pinSalt;
-//         const pinNonce = existingUser.pinNonce;
-
-//         res.status(200).json({ message : "verification successful", pinEncryptedKey, pinSalt, pinNonce });
-//     }
-//     catch(error){
-//         console.log('Server error: ', error);
-//         res.status(500).json({ message : RESPONSES.COMMON.SERVER_ERROR });
-//     }
-// }
-
-
-/*
-* @P: POST /api/ss/verify-user
-* 
-*/
-// const  = async(req, res) =>{
-//     const {RESPONSES} = getLanguageConstants(req.lang);
-//     try{
-
-//     }
-//     catch(error){
-//         console.log('Server error: ', error);
-//         res.status(500).json({ message : RESPONSES.COMMON.SERVER_ERROR });
-//     }
-// }
+        res.status(200).json({ message : RESPONSES.COMMON.SUCCESS, pinEncryptedKey, pinSalt, pinNonce });
+    }
+    catch(error){
+        console.log('Server error: ', error);
+        res.status(500).json({ message : RESPONSES.COMMON.SERVER_ERROR });
+    }
+}
 
 
 /*
 * POST /api/ss/reset-password
-* 
+* Verify security pin and save new password
 */
-// const  = async(req, res) =>{
-//     const {RESPONSES} = getLanguageConstants(req.lang);
-//     try{
+const setNewPassword = async(req, res) =>{
+    const {RESPONSES} = getLanguageConstants(req.lang);
+    try{
+        const { email, passwordEncryptedKey, passwordSalt, passwordNonce, passwordHash, pinHash } = req.body;
+        if(!email?.length || !pinHash?.length || !passwordEncryptedKey?.length || !passwordSalt?.length || !passwordNonce?.length || !passwordHash?.length){
+            return res.status(400).json({ message : RESPONSES.COMMON.UNEXPECTED_ERROR });
+        }
 
-//     }
-//     catch(error){
-//         console.log('Server error: ', error);
-//         res.status(500).json({ message : RESPONSES.COMMON.SERVER_ERROR });
-//     }
-// }
+        const existingUser = await Users.findOne({email});
+        if(!existingUser){
+            return res.status(404).json({ message : RESPONSES.AUTH.USER_NOT_FOUND });
+        }
+
+        if(pinHash !== existingUser.pinHash.toString()){
+            return res.status(400).json({ message : RESPONSES.AUTH.INVALID_CREDENTIALS });
+        }
+
+        existingUser.passwordHash = passwordHash;
+        existingUser.passwordEncryptedKey = passwordEncryptedKey;
+        existingUser.passwordSalt = passwordSalt;
+        existingUser.passwordNonce = passwordNonce;
+        await existingUser.save();
+
+        res.status(200).json({ message : RESPONSES.AUTH.PASSWORD_CHANGED });
+    }
+    catch(error){
+        console.log('Server error: ', error);
+        res.status(500).json({ message : RESPONSES.COMMON.SERVER_ERROR });
+    }
+}
+
+
+/*
+* @P: POST /api/ss/verify-user
+* Verify the email and password of the user
+*/
+const verifyUser = async(req, res) =>{
+    const {RESPONSES} = getLanguageConstants(req.lang);
+    try{
+        const {passwordHash} = req.body;
+        if(!passwordHash?.length){
+            return res.status(400).json({ message : RESPONSES.COMMON.UNEXPECTED_ERROR });
+        }
+
+        const existingUser = await Users.findOne({email: req.email}).lean();
+        if(!existingUser){
+            return res.status(404).json({ message : RESPONSES.AUTH.USER_NOT_FOUND });
+        }
+
+        if(passwordHash !== existingUser.passwordHash.toString()){
+            return res.status(400).json({ message : RESPONSES.AUTH.INVALID_CREDENTIALS });
+        }
+
+        const passwordEncryptedKey = existingUser.passwordEncryptedKey;
+        const passwordSalt = existingUser.passwordSalt;
+        const passwordNonce = existingUser.passwordNonce;
+
+        res.status(200).json({ message : RESPONSES.COMMON.SUCCESS, passwordEncryptedKey, passwordSalt, passwordNonce });
+    }
+    catch(error){
+        console.log('Server error: ', error);
+        res.status(500).json({ message : RESPONSES.COMMON.SERVER_ERROR });
+    }
+}
 
 
 /*
 * @P: POST /api/ss/reset-pin
-* 
+* Save new security pin of verified user
 */
-// const  = async(req, res) =>{
-//     const {RESPONSES} = getLanguageConstants(req.lang);
-//     try{
+const setNewSecurityPin = async(req, res) =>{
+    const {RESPONSES} = getLanguageConstants(req.lang);
+    try{
+        const {pinEncryptedKey, pinSalt, pinNonce, pinHash} = req.body;
+        if(!pinEncryptedKey?.length || !pinSalt?.length || !pinNonce?.length || !pinHash?.length){
+            return res.status(400).json({ message : RESPONSES.COMMON.UNEXPECTED_ERROR });
+        }
 
-//     }
-//     catch(error){
-//         console.log('Server error: ', error);
-//         res.status(500).json({ message : RESPONSES.COMMON.SERVER_ERROR });
-//     }
-// }
+        const updatedUser = await Users.findByIdAndUpdate(req.id, {pinEncryptedKey, pinSalt, pinNonce, pinHash});
+        if(!updatedUser){
+            return res.status(404).json({ message : RESPONSES.AUTH.USER_NOT_FOUND });
+        }
+
+        res.status(200).json({ message : RESPONSES.AUTH.PIN_CHANGED });
+    }
+    catch(error){
+        console.log('Server error: ', error);
+        res.status(500).json({ message : RESPONSES.COMMON.SERVER_ERROR });
+    }
+}
 
 
 /*
@@ -486,5 +532,9 @@ module.exports = {
     fetchAllUserSessions,
     terminateSession,
     terminateAllOtherSessions,
-    generateNewPassKey
+    generateNewPassKey,
+    verifyPassKey,
+    setNewPassword,
+    verifyUser,
+    setNewSecurityPin
 };

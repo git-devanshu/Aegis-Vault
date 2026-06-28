@@ -7,7 +7,8 @@
         "SEARCH": "Search passwords",
         "PLATFORM": "Platform",
         "SITE": "Website",
-        "USERNAME": "Username"
+        "USERNAME": "Username",
+        "SIGNUP": "Signup to Aegis"
     },
 
     "BUTTONS":{
@@ -27,6 +28,7 @@
         "NO_PASSWORD_FOUND": "No passwords found for this website.",
         "NO_SEARCH_RESULTS": "No matching passwords found.",
         "THEME": "Switch Theme",
-        "LOADING": "Loading, please wait..."
+        "LOADING": "Loading, please wait...",
+        "NEW_USER": "New User ?"
     }
 }

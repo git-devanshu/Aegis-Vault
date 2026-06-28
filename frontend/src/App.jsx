@@ -23,6 +23,8 @@ import InvestmentVault from './pages/investment-manager/InvestmentVault';
 import ThemeTest from './themes/ThemeTest';
 import PlannerVault from './pages/planning-manager/PlannerVault';
 import ContactUs from './pages/other/ContactUs';
+import ResetPassword from './pages/auth/ResetPassword';
+import ResetPin from './pages/auth/ResetPin';
 
 initializeLanguage();
 
@@ -38,8 +40,8 @@ export default function App() {
                     <Route path='/' element={ <AvoidAuthIfLoggedIn component={<Landing />} /> } />
                     <Route path='/signup' element={ <AvoidAuthIfLoggedIn component={<Signup />} /> } />
                     <Route path='/login' element={ <AvoidAuthIfLoggedIn component={<Login />} /> } />
-                    {/* <Route path='/reset-password' element={<ResetPassword />} /> */}
-                    {/* <Route path='/reset-pin' element={<ProtectedComponent component={<ResetPin />} />} /> */}
+                    <Route path='/reset-password' element={<ResetPassword />} />
+                    <Route path='/reset-pin' element={<ProtectedComponent component={<ResetPin />} />} />
                     {/* <Route path='/' element={</>} /> */}
 
                     {/* Main Routes */}
@@ -47,7 +49,7 @@ export default function App() {
                     <Route path='/password-manager' element={<ProtectedComponent component={<PasswordVault />} />} />
                     <Route path='/expense-manager' element={<ProtectedComponent component={<ExpenseVault />} />} />
                     <Route path='/investment-manager' element={<ProtectedComponent component={<InvestmentVault />} />} />
-                    <Route path='/active-sessions' element={<ProtectedComponent component={<Security />} />} />
+                    <Route path='/security' element={<ProtectedComponent component={<Security />} />} />
                     <Route path='/planning-manager' element={<ProtectedComponent component={<PlannerVault />} />} />
                     <Route path='/settings' element={<ProtectedComponent component={<Settings />} />} />
                     <Route path='/quick-save' element={<ProtectedComponent component={<QuickSave />} />} />

@@ -1,5 +1,5 @@
 const express = require('express');
-const { checkEmailAvailability, registerNewUser, getUserSaltFromEmail, loginUser, fetchAllUserSessions, terminateSession, terminateAllOtherSessions, generateNewPassKey, verifySecurityPin } = require('./controller');
+const { checkEmailAvailability, registerNewUser, getUserSaltFromEmail, loginUser, fetchAllUserSessions, terminateSession, terminateAllOtherSessions, generateNewPassKey, verifySecurityPin, verifyPassKey, setNewPassword, verifyUser, setNewSecurityPin } = require('./controller');
 const { checkAuthorization } = require('../middlewares/checkAuthorization');
 
 // endpoint prefix : /api/ss
@@ -18,5 +18,11 @@ ssRouter.delete('/user-session/:sessionId', checkAuthorization, terminateSession
 ssRouter.delete('/all-sessions', checkAuthorization, terminateAllOtherSessions);
 
 ssRouter.post('/new-passkey', checkAuthorization, generateNewPassKey);
+
+ssRouter.post('/verify-passkey', verifyPassKey);
+ssRouter.post('/reset-password', setNewPassword);
+
+ssRouter.post('/verify-user', checkAuthorization, verifyUser);
+ssRouter.post('/reset-pin', checkAuthorization, setNewSecurityPin);
 
 module.exports = {ssRouter};

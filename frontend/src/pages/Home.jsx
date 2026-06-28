@@ -137,7 +137,7 @@ export default function Home() {
                                 <PrimaryVaultCard title={DISPLAY.LABELS.EXPENSES} onClick={()=>navigateToVault('/expense-manager')} icon={<GiMoneyStack style={{height:'70px', width:'70px'}}/>} />
                                 <PrimaryVaultCard title={DISPLAY.LABELS.INVESTMENTS} onClick={()=>navigateToVault('/investment-manager')} icon={<GiGoldBar style={{height:'70px', width:'70px'}}/>} />
                                 <PrimaryVaultCard title={DISPLAY.LABELS.PLANNER} onClick={()=>navigateToVault('/planning-manager')} icon={<BsCalendarRange style={{height:'70px', width:'70px'}}/>} />
-                                <VaultCard title={DISPLAY.LABELS.SECURITY} onClick={()=>navigateToVault('/active-sessions')} icon={<MdDevices style={{height:'70px', width:'70px'}}/>} />
+                                <VaultCard title={DISPLAY.LABELS.SECURITY} onClick={()=>navigateToVault('/security')} icon={<MdDevices style={{height:'70px', width:'70px'}}/>} />
                             </div>
                         }
                     </Flex>

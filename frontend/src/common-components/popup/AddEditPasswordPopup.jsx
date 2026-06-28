@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
-import { Flex, Text } from '@chakra-ui/react';
+import { Divider, Flex, Text } from '@chakra-ui/react';
 import { theme } from '../../themes/theme';
 import useLanguage from '../../hooks/useLanguage';
 import useAppContext from '../../hooks/useAppContext';
@@ -138,7 +138,6 @@ export default function AddEditPasswordPopup({isOpen, onClose, editFlow=false, l
         <Popup isOpen={isOpen} onClose={onClose} title={editFlow ? DISPLAY.TEXT.EDIT_PASSWORD : DISPLAY.TEXT.ADD_PASSWORD} bg={theme.bg} borderColor={theme.success}>
             <form>
                 <InputBox type='text' label={DISPLAY.LABELS.PLATFORM} name='platform' value={formData.platform} onChange={handleChange} required maxLen={30}/>
-                <InputBox type='text' label={DISPLAY.LABELS.SITE} placeholder='abcd.com' name='site' value={formData.site} onChange={handleChange} required maxLen={100}/>
                 <InputBox type='text' label={DISPLAY.LABELS.USERNAME} name='username' value={formData.username} onChange={handleChange} required maxLen={50}/>
                 <InputBox type='text' label={DISPLAY.LABELS.PASSWORD} name='password' value={formData.password} onChange={handleChange} required maxLen={50}/>
 
@@ -157,19 +156,23 @@ export default function AddEditPasswordPopup({isOpen, onClose, editFlow=false, l
                     }
                 />
 
-                <Flex align='center' justify='space-between' marginTop='-5px'>
+                <Divider borderWidth='1px' borderColor={theme.border} marginTop='-5px' marginBottom={theme.marginL} />
+
+                <Flex align='center' justify='space-between' marginBottom={theme.spacing}>
                     <Text color={theme.text} fontSize={theme.textSize} marginLeft={theme.marginS}>
                         {DISPLAY.LABELS.ACCESS_THROUGH_EXTENSION}
                     </Text>
                     <ToggleSwitch value={accessThroughExtension} onChange={setAccessThroughExtension}/>
                 </Flex>
+
+                <InputBox type='text' label={DISPLAY.LABELS.SITE} placeholder='abcd.com' name='site' value={formData.site} onChange={handleChange} required={accessThroughExtension} maxLen={100}/>
                 
                 <ActionButton name={editFlow ? DISPLAY.BUTTONS.SAVE_CHANGES : DISPLAY.BUTTONS.ADD_PASSWORD}
                     actionType='primary'
                     isLoading={isLoading}
                     disabled={isLoading}
                     onClick={editFlow ? editPassword : addPassword}
-                    customStyle={{marginBottom: theme.marginS, marginTop: theme.spacing}}
+                    customStyle={{marginBottom: theme.marginS}}
                 />
             </form>
         </Popup>
