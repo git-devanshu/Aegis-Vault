@@ -5,6 +5,7 @@
         "LOADING": "loading, please wait...",
         "SUCCESS": "success"
     },
+
     "AUTH": {
         "CHECK_EMAIL_AVAL": "checking email availability, please wait...",
         "EMAIL_AVAILABLE": "this email id is available",
@@ -13,6 +14,7 @@
         "TERMINATING_SESSION": "logging out of the device, please wait...",
         "GENERATING_NEW_PASSKEY": "generating new passkey, please wait..."
     },
+
     "PASSWORD_MANAGER": {
         "USERNAME_COPIED": "username copied",
         "PASSWORD_COPIED": "password Copied",
@@ -20,16 +22,19 @@
         "CANNOT_CREATE_LABEL": "this label cannot be created",
         "LABEL_ALREADY_EXISTS": "this label is already created"
     },
+
     "EXPENSE_MANAGER": {
         "ADDING_ACCOUNT": "adding bank account, please wait...",
         "CATEGORY_ALREADY_EXISTS": "category with this name is already present"
     },
+
     "QUICK_SAVE": {
         "DATA_EXPORTED": "expenses exported successfully",
         "DATA_IMPORTED": "exported expenses imported successfully",
         "NOTE_SAVED": "Note saved to Quick Save",
         "NO_DATA_AVAILABLE": "No data available in Quick Save"
     },
+    
     "PLANNING_MANAGER": {
         "PENDING_ITEMS_COPIED": "pending items copied",
         "DATA_COPIED": "data copied to clipboard",

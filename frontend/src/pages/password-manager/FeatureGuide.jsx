@@ -16,6 +16,8 @@ import OpenCreatePasswordPopup from '../../assets/guide-images/open-create-passw
 import RemoveLabel from '../../assets/guide-images/remove-label.png';
 import RecoverLabel from '../../assets/guide-images/recover-label.png';
 import HideRemovedLabels from '../../assets/guide-images/hide-removed-labels.png';
+import SaveSite from '../../assets/guide-images/save-site.png';
+import ExtensionLogin from '../../assets/guide-images/extension-login.png';
 
 
 export default function FeatureGuide({setShowModal}) {
@@ -30,7 +32,8 @@ export default function FeatureGuide({setShowModal}) {
         DISPLAY.HELP_TEXT.CREATING_LABEL,
         DISPLAY.HELP_TEXT.REMOVE_LABEL,
         DISPLAY.HELP_TEXT.RECOVER_LABEL,
-        DISPLAY.HELP_TEXT.HIDE_REMOVED_LABELS
+        DISPLAY.HELP_TEXT.HIDE_REMOVED_LABELS,
+        DISPLAY.HELP_TEXT.BROWSER_EXTENSION
     ];
 
     useEffect(() =>{
@@ -214,6 +217,29 @@ export default function FeatureGuide({setShowModal}) {
                         </Text>
                         <Text fontSize='xl' color={theme.text} marginTop={theme.spacing} lineHeight='1.2'>
                             {DISPLAY.HELP_TEXT.HIDE_REMOVED_LABELS_SUBTITLE}
+                        </Text>
+                    </Box>
+                </Grid>
+            </GuideSection>
+
+
+            <GuideSection id='guide-section-7'>
+                <Text fontSize='4xl' color={theme.primary} textAlign='center' fontWeight={500} marginBottom={theme.spacing} lineHeight='1.2'>
+                    {DISPLAY.HELP_TEXT.BROWSER_EXTENSION}
+                </Text>
+
+                <Grid templateColumns={{base: '1fr', md: '1fr 1fr'}} padding={theme.spacing} gap={theme.spacing} placeItems='center'>
+                    <Box width='100%'>
+                        <Image src={ExtensionLogin} width={{base: '90%', md: '70%'}} margin='0 auto' border={`1px solid ${theme.border}`} borderRadius={theme.radius}/>
+                        <Text fontSize='xl' color={theme.text} textAlign='center' marginX={theme.marginL} marginTop={theme.spacing} lineHeight='1.2'>
+                            {DISPLAY.HELP_TEXT.EXTESION_USE_SUBTITLE}
+                        </Text>
+                    </Box>
+
+                    <Box width='100%'>
+                        <Image src={SaveSite} width={{base: '90%', md: '70%'}} margin='0 auto' border={`1px solid ${theme.border}`} borderRadius={theme.radius}/>
+                        <Text fontSize='xl' color={theme.text} textAlign='center' marginX={theme.marginL} marginTop={theme.spacing} lineHeight='1.2'>
+                            {DISPLAY.HELP_TEXT.PASSWORD_ACCESS_SUBTITLE}
                         </Text>
                     </Box>
                 </Grid>

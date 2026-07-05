@@ -1,5 +1,6 @@
 import { Flex } from "@chakra-ui/react";
 import React from "react";
+import {theme} from '../themes/theme';
 import { motion } from 'framer-motion';
 
 export default function GuideSection({id, children, justify='center', align='center'}) {

@@ -1,0 +1,44 @@
+{
+    "COMMON": {
+        "UNKNOWN_ERROR": "une erreur inconnue s'est produite",
+        "SOMETHING_WENT_WRONG": "une erreur s'est produite !",
+        "LOADING": "chargement en cours, veuillez patienter...",
+        "SUCCESS": "succès"
+    },
+
+    "AUTH": {
+        "CHECK_EMAIL_AVAL": "vérification de la disponibilité de l'email, veuillez patienter...",
+        "EMAIL_AVAILABLE": "cette adresse email est disponible",
+        "EMAIL_USED": "cet email est déjà utilisé",
+        "CREATING_USER": "création du nouvel utilisateur, veuillez patienter...",
+        "TERMINATING_SESSION": "déconnexion de l'appareil, veuillez patienter...",
+        "GENERATING_NEW_PASSKEY": "génération d'une nouvelle clé d'accès, veuillez patienter..."
+    },
+
+    "PASSWORD_MANAGER": {
+        "USERNAME_COPIED": "nom d'utilisateur copié",
+        "PASSWORD_COPIED": "mot de passe copié",
+        "UPDATING_LABELS": "mise à jour de la liste des étiquettes, veuillez patienter...",
+        "CANNOT_CREATE_LABEL": "cette étiquette ne peut pas être créée",
+        "LABEL_ALREADY_EXISTS": "cette étiquette existe déjà"
+    },
+
+    "EXPENSE_MANAGER": {
+        "ADDING_ACCOUNT": "ajout du compte bancaire, veuillez patienter...",
+        "CATEGORY_ALREADY_EXISTS": "une catégorie portant ce nom existe déjà"
+    },
+
+    "QUICK_SAVE": {
+        "DATA_EXPORTED": "dépenses exportées avec succès",
+        "DATA_IMPORTED": "dépenses exportées importées avec succès",
+        "NOTE_SAVED": "note enregistrée dans Quick Save",
+        "NO_DATA_AVAILABLE": "aucune donnée disponible dans Quick Save"
+    },
+    
+    "PLANNING_MANAGER": {
+        "PENDING_ITEMS_COPIED": "éléments en attente copiés",
+        "DATA_COPIED": "données copiées dans le presse-papiers",
+        "INVALID_TIME_RANGE": "plage horaire invalide",
+        "JOURNAL_ALREADY_EXISTS": "une entrée de journal existe déjà pour cette date"
+    }
+}

@@ -1,0 +1,44 @@
+{
+    "COMMON": {
+        "UNKNOWN_ERROR": "एक अज्ञात त्रुटि हुई है",
+        "SOMETHING_WENT_WRONG": "कुछ गड़बड़ हो गई!",
+        "LOADING": "लोड हो रहा है, कृपया प्रतीक्षा करें...",
+        "SUCCESS": "सफलता"
+    },
+
+    "AUTH": {
+        "CHECK_EMAIL_AVAL": "ईमेल उपलब्धता जांची जा रही है, कृपया प्रतीक्षा करें...",
+        "EMAIL_AVAILABLE": "यह ईमेल आईडी उपलब्ध है",
+        "EMAIL_USED": "यह ईमेल पहले से उपयोग में है",
+        "CREATING_USER": "नया यूज़र बनाया जा रहा है, कृपया प्रतीक्षा करें...",
+        "TERMINATING_SESSION": "डिवाइस से लॉगआउट किया जा रहा है, कृपया प्रतीक्षा करें...",
+        "GENERATING_NEW_PASSKEY": "नई पासकी जनरेट की जा रही है, कृपया प्रतीक्षा करें..."
+    },
+
+    "PASSWORD_MANAGER": {
+        "USERNAME_COPIED": "यूज़रनेम कॉपी किया गया",
+        "PASSWORD_COPIED": "पासवर्ड कॉपी किया गया",
+        "UPDATING_LABELS": "लेबल सूची अपडेट की जा रही है, कृपया प्रतीक्षा करें...",
+        "CANNOT_CREATE_LABEL": "यह लेबल नहीं बनाया जा सकता",
+        "LABEL_ALREADY_EXISTS": "यह लेबल पहले से बना हुआ है"
+    },
+
+    "EXPENSE_MANAGER": {
+        "ADDING_ACCOUNT": "बैंक खाता जोड़ा जा रहा है, कृपया प्रतीक्षा करें...",
+        "CATEGORY_ALREADY_EXISTS": "इस नाम की कैटेगरी पहले से मौजूद है"
+    },
+
+    "QUICK_SAVE": {
+        "DATA_EXPORTED": "खर्च सफलतापूर्वक एक्सपोर्ट किए गए",
+        "DATA_IMPORTED": "एक्सपोर्ट किए गए खर्च सफलतापूर्वक इम्पोर्ट किए गए",
+        "NOTE_SAVED": "नोट Quick Save में सेव किया गया",
+        "NO_DATA_AVAILABLE": "Quick Save में कोई डेटा उपलब्ध नहीं है"
+    },
+    
+    "PLANNING_MANAGER": {
+        "PENDING_ITEMS_COPIED": "पेंडिंग आइटम कॉपी किए गए",
+        "DATA_COPIED": "डेटा क्लिपबोर्ड पर कॉपी किया गया",
+        "INVALID_TIME_RANGE": "अमान्य समय सीमा",
+        "JOURNAL_ALREADY_EXISTS": "इस तारीख के लिए जर्नल पहले से मौजूद है"
+    }
+}

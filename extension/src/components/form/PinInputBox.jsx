@@ -8,7 +8,7 @@ export default function PinInputBox({value, onChange, mask, autoFocus, onKeyDown
     const { DISPLAY } = useLanguage();
 
     return (
-        <div style={{display: 'grid', placeItems: 'center', marginTop: theme.marginL, marginBottom: theme.spacing, width:'100%', position:'relative', border:`1px solid ${theme.border}`, borderRadius:'12px'}}
+        <div style={{display: 'grid', placeItems: 'center', marginTop: theme.marginL, marginBottom: theme.spacing, width:'100%', position:'relative', border:`1px solid ${theme.border}`, borderRadius:'10px'}}
             onFocus={(e)=>{
                 e.currentTarget.style.borderColor = theme.primary;
                 e.currentTarget.style.boxShadow = `0 0 0 0.5px ${theme.primary}`;

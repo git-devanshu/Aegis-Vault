@@ -1,0 +1,34 @@
+{
+    "LABELS":{
+        "WELCOME": "Willkommen zurück",
+        "EMAIL": "E-Mail",
+        "PASSWORD": "Passwort",
+        "ENTER_PIN": "Sicherheits-PIN eingeben",
+        "SEARCH": "Passwörter suchen",
+        "PLATFORM": "Plattform",
+        "SITE": "Webseite",
+        "USERNAME": "Benutzername",
+        "SIGNUP": "Bei Aegis registrieren",
+        "SETTINGS": "Einstellungen"
+    },
+    "BUTTONS":{
+        "LOGIN": "Anmelden",
+        "UNLOCK": "Entsperren",
+        "LOGOUT": "Abmelden"
+    },
+    "HEADINGS":{
+        "SUGGESTED_ACCOUNTS": "Vorgeschlagene Konten",
+        "SEARCH_RESULTS": "Suchergebnisse"
+    },
+    "TEXT":{
+        "PIN_REQUIRED": "Geben Sie Ihren Sicherheits-PIN ein, um Ihren Passwort-Tresor zu entsperren.",
+        "SEARCH_PLACEHOLDER": "Nach Plattform oder Webseite suchen...",
+        "NO_PASSWORD_FOUND": "Keine Passwörter für diese Webseite gefunden.",
+        "NO_SEARCH_RESULTS": "Keine passenden Passwörter gefunden.",
+        "THEME": "Design wechseln",
+        "LOADING": "Wird geladen, bitte warten...",
+        "NEW_USER": "Neuer Benutzer?",
+        "DARK_THEME": "Dunkles Design verwenden",
+        "CHANGE_LANGUAGE": "Sprache ändern"
+    }
+}

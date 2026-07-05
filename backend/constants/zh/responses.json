@@ -1,0 +1,104 @@
+{
+    "COMMON": {
+        "SERVER_ERROR": "出错了",
+        "FIELD_REQUIRED": "请填写所有必填字段",
+        "UNEXPECTED_ERROR": "发生了意外错误",
+        "SUCCESS": "成功"
+    },
+
+    "AUTH": {
+        "SESSION_EXPIRED": "您的会话已过期",
+        "UNAUTHORIZED": "不允许执行此操作",
+        "EMAIL_EXISTS": "该邮箱已被使用",
+        "SIGNUP_SUCCESS": "注册成功",
+        "LOGIN_SUCCESS": "登录成功",
+        "USER_NOT_FOUND": "该用户不存在",
+        "ACCOUNT_DISABLED": "该用户已被管理员封禁",
+        "INVALID_CREDENTIALS": "提供的凭证无效",
+        "PIN_VERIFIED": "安全密码验证成功",
+        "SESSION_LIMIT_REACHED": "已达到会话创建上限",
+        "SESSION_NOT_FOUND": "未找到会话",
+        "LOGOUT_SUCCESSFUL": "设备已成功登出",
+        "ALL_SESSIONS_TERMINATED": "已从所有其他设备登出",
+        "NEW_PASSKEY_GENERATED": "新通行密钥生成成功",
+        "PASSWORD_CHANGED": "密码修改成功",
+        "PIN_CHANGED": "安全密码修改成功"
+    },
+    
+    "CONFIG": {
+        "SETTINGS_SAVED": "用户设置保存成功"
+    },
+
+    "PASSWORD_MANAGER": {
+        "NO_PASSWORD_ADDED": "此标签下未添加任何密码",
+        "PASSWORD_ADDED": "密码添加成功",
+        "PASSWORD_UPDATED": "密码更新成功",
+        "PASSWORD_DELETED": "密码删除成功",
+        "PASSWORD_NOT_FOUND": "未找到密码",
+        "LABELS_NOT_FOUND": "未找到标签",
+        "LABELS_LIST_UPDATED": "标签列表已更新"
+    },
+
+    "ACCOUNTS_LAYER": {
+        "ACCOUNT_ADDED": "银行账户添加成功",
+        "ACCOUNT_DELETED": "银行账户删除成功",
+        "ACCOUNT_NOT_FOUND": "未找到银行账户",
+        "ERROR_UPDATING_BALANCE": "更新账户余额时出错"
+    },
+
+    "EXPENSE_MANAGER": {
+        "NO_TRACKER_ADDED": "此账户尚未添加收入",
+        "NO_EXPENSE_ADDED": "此收入尚未添加支出",
+        "TRACKER_ADDED": "收入已添加到账户",
+        "EXPENSE_ADDED": "支出添加成功",
+        "TRACKER_NOT_FOUND": "在此账户中未找到该收入",
+        "TRACKER_DELETED": "收入及其所有支出已成功删除",
+        "EXPENSE_DELETED": "支出删除成功",
+        "EXPENSES_TRANSFERRED": "所有支出转移成功",
+        "CANNOT_DELETE_TRACKER": "无法删除此收入",
+        "CATEGORIES_UPDATED": "分类列表更新成功",
+        "LIMITS_UPDATED": "这些分类的预算已更新"
+    },
+
+    "INVESTMENT_MANAGER": {
+        "NO_FD_ADDED" : "此账户尚未添加定期存款",
+        "NO_RD_ADDED" : "此账户尚未添加零存整取存款",
+        "NO_GOLD_ASSET_ADDED" : "此账户尚未添加黄金资产",
+        "NO_STOCK_ADDED" : "此账户尚未添加股票",
+        "FD_ADDED" : "定期存款添加成功",
+        "RD_ADDED" : "零存整取存款添加成功",
+        "GOLD_ASSET_ADDED" : "黄金资产添加成功",
+        "STOCK_ADDED" : "股票添加成功",
+        "FD_CLOSED" : "定期存款关闭成功",
+        "FD_ROLLED_OVER" : "定期存款展期成功",
+        "FD_NOT_FOUND": "未找到定期存款",
+        "FD_DELETED": "定期存款删除成功",
+        "RD_NOT_FOUND": "未找到零存整取存款",
+        "RD_CLOSED": "零存整取存款关闭成功",
+        "RD_DELETED": "零存整取存款删除成功",
+        "GOLD_ASSET_SOLD": "黄金资产出售成功",
+        "GOLD_ASSET_DELETED": "黄金资产删除成功",
+        "STOCK_NOT_FOUND": "未找到股票",
+        "STOCK_SOLD": "股票出售成功",
+        "STOCK_DELETED": "股票删除成功"
+    },
+
+    "PLANNING_MANAGER": {
+        "COLLECTION_UPDATED": "合集数据更新成功",
+        "COLLECTION_NOT_FOUND": "该合集不存在",
+        "SCHEDULE_NOT_FOUND": "未找到日程",
+        "SCHEDULE_UPDATED": "日程更新成功",
+        "TASK_CREATED": "任务创建成功",
+        "TASK_DELETED": "任务删除成功",
+        "TASK_NOT_FOUND": "未找到任务",
+        "TASK_COMPLETED": "任务已标记为完成",
+        "JOURNAL_ADDED": "日记添加成功",
+        "JOURNAL_NOT_FOUND": "未找到日记",
+        "JOURNAL_UPDATED": "日记更新成功",
+        "JOURNAL_DELETED": "日记删除成功",
+        "NOTE_ADDED": "笔记添加成功",
+        "NOTE_UPDATED": "笔记更新成功",
+        "NOTE_DELETED": "笔记删除成功",
+        "NOTE_NOT_FOUND": "未找到笔记"
+    }
+}

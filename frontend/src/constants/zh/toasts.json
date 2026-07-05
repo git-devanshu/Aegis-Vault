@@ -1,0 +1,44 @@
+{
+    "COMMON": {
+        "UNKNOWN_ERROR": "发生未知错误",
+        "SOMETHING_WENT_WRONG": "出错了！",
+        "LOADING": "加载中，请稍候...",
+        "SUCCESS": "成功"
+    },
+
+    "AUTH": {
+        "CHECK_EMAIL_AVAL": "正在检查邮箱是否可用，请稍候...",
+        "EMAIL_AVAILABLE": "该邮箱可以使用",
+        "EMAIL_USED": "该邮箱已被使用",
+        "CREATING_USER": "正在创建新用户，请稍候...",
+        "TERMINATING_SESSION": "正在退出设备登录，请稍候...",
+        "GENERATING_NEW_PASSKEY": "正在生成新通行密钥，请稍候..."
+    },
+
+    "PASSWORD_MANAGER": {
+        "USERNAME_COPIED": "用户名已复制",
+        "PASSWORD_COPIED": "密码已复制",
+        "UPDATING_LABELS": "正在更新标签列表，请稍候...",
+        "CANNOT_CREATE_LABEL": "无法创建此标签",
+        "LABEL_ALREADY_EXISTS": "此标签已存在"
+    },
+
+    "EXPENSE_MANAGER": {
+        "ADDING_ACCOUNT": "正在添加银行账户，请稍候...",
+        "CATEGORY_ALREADY_EXISTS": "该名称的分类已存在"
+    },
+
+    "QUICK_SAVE": {
+        "DATA_EXPORTED": "支出导出成功",
+        "DATA_IMPORTED": "已导出的支出导入成功",
+        "NOTE_SAVED": "笔记已保存到 Quick Save",
+        "NO_DATA_AVAILABLE": "Quick Save 中没有可用数据"
+    },
+    
+    "PLANNING_MANAGER": {
+        "PENDING_ITEMS_COPIED": "待办事项已复制",
+        "DATA_COPIED": "数据已复制到剪贴板",
+        "INVALID_TIME_RANGE": "时间范围无效",
+        "JOURNAL_ALREADY_EXISTS": "该日期的日记已存在"
+    }
+}

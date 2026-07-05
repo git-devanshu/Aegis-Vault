@@ -1,0 +1,104 @@
+{
+    "COMMON": {
+        "SERVER_ERROR": "algo salió mal",
+        "FIELD_REQUIRED": "complete todos los campos obligatorios",
+        "UNEXPECTED_ERROR": "se produjo un error inesperado",
+        "SUCCESS": "éxito"
+    },
+
+    "AUTH": {
+        "SESSION_EXPIRED": "su sesión ha expirado",
+        "UNAUTHORIZED": "esta acción no está permitida",
+        "EMAIL_EXISTS": "este correo electrónico ya está en uso",
+        "SIGNUP_SUCCESS": "registro exitoso",
+        "LOGIN_SUCCESS": "inicio de sesión exitoso",
+        "USER_NOT_FOUND": "este usuario no existe",
+        "ACCOUNT_DISABLED": "este usuario ha sido bloqueado por el administrador",
+        "INVALID_CREDENTIALS": "las credenciales proporcionadas no son válidas",
+        "PIN_VERIFIED": "verificación del pin de seguridad exitosa",
+        "SESSION_LIMIT_REACHED": "se alcanzó el límite de creación de sesiones",
+        "SESSION_NOT_FOUND": "sesión no encontrada",
+        "LOGOUT_SUCCESSFUL": "dispositivo cerró sesión correctamente",
+        "ALL_SESSIONS_TERMINATED": "se cerró la sesión en todos los demás dispositivos",
+        "NEW_PASSKEY_GENERATED": "nueva clave de acceso generada correctamente",
+        "PASSWORD_CHANGED": "contraseña cambiada correctamente",
+        "PIN_CHANGED": "pin de seguridad cambiado correctamente"
+    },
+    
+    "CONFIG": {
+        "SETTINGS_SAVED": "configuración del usuario guardada correctamente"
+    },
+
+    "PASSWORD_MANAGER": {
+        "NO_PASSWORD_ADDED": "no se ha agregado ninguna contraseña bajo esta etiqueta",
+        "PASSWORD_ADDED": "contraseña agregada correctamente",
+        "PASSWORD_UPDATED": "contraseña actualizada correctamente",
+        "PASSWORD_DELETED": "contraseña eliminada correctamente",
+        "PASSWORD_NOT_FOUND": "contraseña no encontrada",
+        "LABELS_NOT_FOUND": "etiquetas no encontradas",
+        "LABELS_LIST_UPDATED": "lista de etiquetas actualizada"
+    },
+
+    "ACCOUNTS_LAYER": {
+        "ACCOUNT_ADDED": "cuenta bancaria agregada correctamente",
+        "ACCOUNT_DELETED": "cuenta bancaria eliminada correctamente",
+        "ACCOUNT_NOT_FOUND": "cuenta bancaria no encontrada",
+        "ERROR_UPDATING_BALANCE": "error al actualizar el saldo de la cuenta"
+    },
+
+    "EXPENSE_MANAGER": {
+        "NO_TRACKER_ADDED": "no se ha agregado ningún ingreso a esta cuenta",
+        "NO_EXPENSE_ADDED": "no se ha agregado ningún gasto a este ingreso",
+        "TRACKER_ADDED": "ingreso agregado a la cuenta",
+        "EXPENSE_ADDED": "gasto agregado correctamente",
+        "TRACKER_NOT_FOUND": "no se encontró este ingreso en esta cuenta",
+        "TRACKER_DELETED": "el ingreso y todos sus gastos se eliminaron correctamente",
+        "EXPENSE_DELETED": "gasto eliminado correctamente",
+        "EXPENSES_TRANSFERRED": "todos los gastos se transfirieron correctamente",
+        "CANNOT_DELETE_TRACKER": "no se puede eliminar este ingreso",
+        "CATEGORIES_UPDATED": "lista de categorías actualizada correctamente",
+        "LIMITS_UPDATED": "presupuesto actualizado para estas categorías"
+    },
+
+    "INVESTMENT_MANAGER": {
+        "NO_FD_ADDED" : "no se ha agregado ningún depósito a plazo fijo a esta cuenta",
+        "NO_RD_ADDED" : "no se ha agregado ningún depósito recurrente a esta cuenta",
+        "NO_GOLD_ASSET_ADDED" : "no se ha agregado ningún activo en oro a esta cuenta",
+        "NO_STOCK_ADDED" : "no se han agregado acciones a esta cuenta",
+        "FD_ADDED" : "depósito a plazo fijo agregado correctamente",
+        "RD_ADDED" : "depósito recurrente agregado correctamente",
+        "GOLD_ASSET_ADDED" : "activo en oro agregado correctamente",
+        "STOCK_ADDED" : "acción agregada correctamente",
+        "FD_CLOSED" : "depósito a plazo fijo cerrado correctamente",
+        "FD_ROLLED_OVER" : "depósito a plazo fijo renovado correctamente",
+        "FD_NOT_FOUND": "depósito a plazo fijo no encontrado",
+        "FD_DELETED": "depósito a plazo fijo eliminado correctamente",
+        "RD_NOT_FOUND": "depósito recurrente no encontrado",
+        "RD_CLOSED": "depósito recurrente cerrado correctamente",
+        "RD_DELETED": "depósito recurrente eliminado correctamente",
+        "GOLD_ASSET_SOLD": "activo en oro vendido correctamente",
+        "GOLD_ASSET_DELETED": "activo en oro eliminado correctamente",
+        "STOCK_NOT_FOUND": "acción no encontrada",
+        "STOCK_SOLD": "acción vendida correctamente",
+        "STOCK_DELETED": "acción eliminada correctamente"
+    },
+
+    "PLANNING_MANAGER": {
+        "COLLECTION_UPDATED": "datos de la colección actualizados correctamente",
+        "COLLECTION_NOT_FOUND": "esta colección no existe",
+        "SCHEDULE_NOT_FOUND": "horario no encontrado",
+        "SCHEDULE_UPDATED": "horario actualizado correctamente",
+        "TASK_CREATED": "tarea creada correctamente",
+        "TASK_DELETED": "tarea eliminada correctamente",
+        "TASK_NOT_FOUND": "tarea no encontrada",
+        "TASK_COMPLETED": "tarea marcada como completada",
+        "JOURNAL_ADDED": "entrada de diario agregada correctamente",
+        "JOURNAL_NOT_FOUND": "entrada de diario no encontrada",
+        "JOURNAL_UPDATED": "entrada de diario actualizada correctamente",
+        "JOURNAL_DELETED": "entrada de diario eliminada correctamente",
+        "NOTE_ADDED": "nota agregada correctamente",
+        "NOTE_UPDATED": "nota actualizada correctamente",
+        "NOTE_DELETED": "nota eliminada correctamente",
+        "NOTE_NOT_FOUND": "nota no encontrada"
+    }
+}

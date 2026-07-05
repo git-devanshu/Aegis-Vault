@@ -4,20 +4,63 @@ import SYSTEM_DATA from '../assets/system-data.json';
 
 
 /* DISPLAY constants */
+import deDisplay from '../constants/de/display.json';
 import enDisplay from '../constants/en/display.json';
+import esDisplay from '../constants/es/display.json';
+import frDisplay from '../constants/fr/display.json';
+import hiDisplay from '../constants/hi/display.json';
+import jaDisplay from '../constants/ja/display.json';
+import ruDisplay from '../constants/ru/display.json';
+import zhDisplay from '../constants/zh/display.json';
 
 
 /* TOASTS constants */
+import deToasts from '../constants/de/toasts.json';
 import enToasts from '../constants/en/toasts.json';
+import esToasts from '../constants/es/toasts.json';
+import frToasts from '../constants/fr/toasts.json';
+import hiToasts from '../constants/hi/toasts.json';
+import jaToasts from '../constants/ja/toasts.json';
+import ruToasts from '../constants/ru/toasts.json';
+import zhToasts from '../constants/zh/toasts.json';
 
 
 
 const LANGUAGE_FILES = {
-    en:{
+    de: {
+        DISPLAY: deDisplay,
+        TOASTS: deToasts
+    },
+    en: {
         DISPLAY: enDisplay,
         TOASTS: enToasts
+    },
+    es: {
+        DISPLAY: esDisplay,
+        TOASTS: esToasts
+    },
+    fr: {
+        DISPLAY: frDisplay,
+        TOASTS: frToasts
+    },
+    hi: {
+        DISPLAY: hiDisplay,
+        TOASTS: hiToasts
+    },
+    ja: {
+        DISPLAY: jaDisplay,
+        TOASTS: jaToasts
+    },
+    ru: {
+        DISPLAY: ruDisplay,
+        TOASTS: ruToasts
+    },
+    zh: {
+        DISPLAY: zhDisplay,
+        TOASTS: zhToasts
     }
 };
+
 
 /* For usage in .jsx files */
 export default function useLanguage() {
@@ -57,8 +100,8 @@ export function getLanguageIcon(language) {
 }
 
 /* Set Language */
-export function setLanguage(language) {
-    localStorage.setItem('aegis-language', language);
+export function setLanguage(code) {
+    localStorage.setItem('aegis-language', code);
 }
 
 /* Get selected name */

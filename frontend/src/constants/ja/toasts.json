@@ -1,0 +1,44 @@
+{
+    "COMMON": {
+        "UNKNOWN_ERROR": "不明なエラーが発生しました",
+        "SOMETHING_WENT_WRONG": "問題が発生しました！",
+        "LOADING": "読み込み中です、しばらくお待ちください...",
+        "SUCCESS": "成功"
+    },
+
+    "AUTH": {
+        "CHECK_EMAIL_AVAL": "メールアドレスの利用可否を確認しています、しばらくお待ちください...",
+        "EMAIL_AVAILABLE": "このメールアドレスは使用可能です",
+        "EMAIL_USED": "このメールアドレスは既に使用されています",
+        "CREATING_USER": "新しいユーザーを作成しています、しばらくお待ちください...",
+        "TERMINATING_SESSION": "デバイスをログアウトしています、しばらくお待ちください...",
+        "GENERATING_NEW_PASSKEY": "新しいパスキーを生成しています、しばらくお待ちください..."
+    },
+
+    "PASSWORD_MANAGER": {
+        "USERNAME_COPIED": "ユーザー名をコピーしました",
+        "PASSWORD_COPIED": "パスワードをコピーしました",
+        "UPDATING_LABELS": "ラベルリストを更新しています、しばらくお待ちください...",
+        "CANNOT_CREATE_LABEL": "このラベルは作成できません",
+        "LABEL_ALREADY_EXISTS": "このラベルは既に作成されています"
+    },
+
+    "EXPENSE_MANAGER": {
+        "ADDING_ACCOUNT": "銀行口座を追加しています、しばらくお待ちください...",
+        "CATEGORY_ALREADY_EXISTS": "この名前のカテゴリーは既に存在します"
+    },
+
+    "QUICK_SAVE": {
+        "DATA_EXPORTED": "支出のエクスポートに成功しました",
+        "DATA_IMPORTED": "エクスポートした支出のインポートに成功しました",
+        "NOTE_SAVED": "メモをQuick Saveに保存しました",
+        "NO_DATA_AVAILABLE": "Quick Saveに利用可能なデータがありません"
+    },
+    
+    "PLANNING_MANAGER": {
+        "PENDING_ITEMS_COPIED": "保留中の項目をコピーしました",
+        "DATA_COPIED": "データをクリップボードにコピーしました",
+        "INVALID_TIME_RANGE": "無効な時間範囲です",
+        "JOURNAL_ALREADY_EXISTS": "この日付の日記は既に存在します"
+    }
+}

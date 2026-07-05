@@ -1,0 +1,34 @@
+{
+    "LABELS":{
+        "WELCOME": "Content de vous revoir",
+        "EMAIL": "Email",
+        "PASSWORD": "Mot de passe",
+        "ENTER_PIN": "Entrez le code PIN de sécurité",
+        "SEARCH": "Rechercher des mots de passe",
+        "PLATFORM": "Plateforme",
+        "SITE": "Site web",
+        "USERNAME": "Nom d'utilisateur",
+        "SIGNUP": "S'inscrire à Aegis",
+        "SETTINGS": "Paramètres"
+    },
+    "BUTTONS":{
+        "LOGIN": "Connexion",
+        "UNLOCK": "Déverrouiller",
+        "LOGOUT": "Déconnexion"
+    },
+    "HEADINGS":{
+        "SUGGESTED_ACCOUNTS": "Comptes suggérés",
+        "SEARCH_RESULTS": "Résultats de recherche"
+    },
+    "TEXT":{
+        "PIN_REQUIRED": "Entrez votre code PIN de sécurité pour déverrouiller votre coffre-fort de mots de passe.",
+        "SEARCH_PLACEHOLDER": "Rechercher par plateforme ou site web...",
+        "NO_PASSWORD_FOUND": "Aucun mot de passe trouvé pour ce site web.",
+        "NO_SEARCH_RESULTS": "Aucun mot de passe correspondant trouvé.",
+        "THEME": "Changer de thème",
+        "LOADING": "Chargement en cours, veuillez patienter...",
+        "NEW_USER": "Nouvel utilisateur ?",
+        "DARK_THEME": "Utiliser le thème sombre",
+        "CHANGE_LANGUAGE": "Changer de langue"
+    }
+}

@@ -1,5 +1,5 @@
 import {useState} from "react";
-import {Flex, Heading, Text} from "@chakra-ui/react";
+import {Box, CloseButton, Flex, Heading, IconButton, Spacer, Text} from "@chakra-ui/react";
 import { ThreeDot } from "react-loading-indicators";
 
 import {theme} from "../themes/theme";
@@ -7,9 +7,12 @@ import useLanguage from "../hooks/useLanguage";
 import {useAppContext} from "../context/AppContext";
 import {apiRequest} from "../utility/api";
 import {createHash, decryptData, decryptMasterKey} from "../utility/crypto";
+import { IoSettingsOutline } from "react-icons/io5";
 
 import PinInputBox from "../components/form/PinInputBox";
 import ActionButton from "../components/form/ActionButton";
+import SettingsModal from "./SettingsModal";
+
 
 
 export default function Unlock(){
@@ -24,6 +27,8 @@ export default function Unlock(){
 
     const [securityPin, setSecurityPin] = useState("");
     const [isLoading, setIsLoading] = useState(false);
+
+    const [showSettingsModal, setShowSettingsModal] = useState(false);
 
     const handleUnlock = async(e) =>{
         e.preventDefault();
@@ -92,12 +97,16 @@ export default function Unlock(){
     }
     
     return(
-        <div className="auth-page">
-            <div className="auth-container">
-                <Heading color={theme.primary} size="sm" textAlign="center" marginBottom={theme.marginL}>
+        <div className="common-page" style={{position: 'relative'}}>
+            <Flex align='center' paddingX={theme.paddingL} paddingY={theme.paddingS} borderBottom={`1px solid ${theme.border}`} width='100%'>
+                <Heading color={theme.primary} size="sm" textAlign="center">
                     ⛉ Aegis
                 </Heading>
+                <Spacer/>
+                <IconButton aria-label="Settings" icon={<IoSettingsOutline />} onClick={()=> setShowSettingsModal(true)} size='sm' variant='ghost' color={theme.text} _hover={{backgroundColor: 'transparent'}} />
+            </Flex>
 
+            <Box padding={theme.paddingL} width='100%'>
                 <Text color={theme.text} fontSize={theme.headingSize} textAlign="center" marginBottom={theme.marginS}>
                     {DISPLAY.LABELS.ENTER_PIN}
                 </Text>
@@ -124,7 +133,9 @@ export default function Unlock(){
                         customStyle={{marginBottom: theme.marginS}}
                     />
                 </form>
-            </div>
+            </Box>
+
+            {showSettingsModal && <SettingsModal setShowModal={setShowSettingsModal} />}
         </div>
     );
 }

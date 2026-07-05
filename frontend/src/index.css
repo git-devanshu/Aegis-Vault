@@ -61,6 +61,17 @@ html, body, #root{
 }
 
 
+.dot-grid-bg {
+    background-image: radial-gradient(
+        circle at center,
+        var(--border) 1px,
+        transparent 1px
+    );
+    background-size: 14px 14px;
+    background-position: 0 0;
+}
+
+
 /* -------------------------------------------- */
 
 @keyframes spin{

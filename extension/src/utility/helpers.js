@@ -118,12 +118,20 @@ export function normalizeWebsite(site){
     if(!site){
         return "";
     }
-    return site
-        .trim()
-        .toLowerCase()
-        .replace(/^https?:\/\//, "")
-        .replace(/^www\./, "")
-        .split("/")[0];
+    site = site.trim().toLowerCase();
+    try{
+        if(!site.startsWith("http://") && !site.startsWith("https://")){
+            site = `https://${site}`;
+        }
+        return new URL(site).hostname.replace(/^www\./, "");
+    }
+    catch{
+        return site
+            .replace(/^www\./, "")
+            .split("/")[0]
+            .split("?")[0]
+            .split("#")[0];
+    }
 }
 
 

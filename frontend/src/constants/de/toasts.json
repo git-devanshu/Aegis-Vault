@@ -1,0 +1,44 @@
+{
+    "COMMON": {
+        "UNKNOWN_ERROR": "ein unbekannter Fehler ist aufgetreten",
+        "SOMETHING_WENT_WRONG": "etwas ist schiefgelaufen!",
+        "LOADING": "wird geladen, bitte warten...",
+        "SUCCESS": "erfolgreich"
+    },
+
+    "AUTH": {
+        "CHECK_EMAIL_AVAL": "E-Mail-Verfügbarkeit wird geprüft, bitte warten...",
+        "EMAIL_AVAILABLE": "diese E-Mail-Adresse ist verfügbar",
+        "EMAIL_USED": "diese E-Mail-Adresse wird bereits verwendet",
+        "CREATING_USER": "neuer Benutzer wird erstellt, bitte warten...",
+        "TERMINATING_SESSION": "Gerät wird abgemeldet, bitte warten...",
+        "GENERATING_NEW_PASSKEY": "neuer Passkey wird generiert, bitte warten..."
+    },
+
+    "PASSWORD_MANAGER": {
+        "USERNAME_COPIED": "Benutzername kopiert",
+        "PASSWORD_COPIED": "Passwort kopiert",
+        "UPDATING_LABELS": "Label-Liste wird aktualisiert, bitte warten...",
+        "CANNOT_CREATE_LABEL": "dieses Label kann nicht erstellt werden",
+        "LABEL_ALREADY_EXISTS": "dieses Label wurde bereits erstellt"
+    },
+
+    "EXPENSE_MANAGER": {
+        "ADDING_ACCOUNT": "Bankkonto wird hinzugefügt, bitte warten...",
+        "CATEGORY_ALREADY_EXISTS": "eine Kategorie mit diesem Namen existiert bereits"
+    },
+
+    "QUICK_SAVE": {
+        "DATA_EXPORTED": "Ausgaben erfolgreich exportiert",
+        "DATA_IMPORTED": "exportierte Ausgaben erfolgreich importiert",
+        "NOTE_SAVED": "Notiz in Quick Save gespeichert",
+        "NO_DATA_AVAILABLE": "keine Daten in Quick Save verfügbar"
+    },
+    
+    "PLANNING_MANAGER": {
+        "PENDING_ITEMS_COPIED": "ausstehende Einträge kopiert",
+        "DATA_COPIED": "Daten in die Zwischenablage kopiert",
+        "INVALID_TIME_RANGE": "ungültiger Zeitraum",
+        "JOURNAL_ALREADY_EXISTS": "für dieses Datum existiert bereits ein Journaleintrag"
+    }
+}

@@ -1,0 +1,34 @@
+{
+    "LABELS":{
+        "WELCOME": "欢迎回来",
+        "EMAIL": "邮箱",
+        "PASSWORD": "密码",
+        "ENTER_PIN": "输入安全密码",
+        "SEARCH": "搜索密码",
+        "PLATFORM": "平台",
+        "SITE": "网站",
+        "USERNAME": "用户名",
+        "SIGNUP": "注册 Aegis",
+        "SETTINGS": "设置"
+    },
+    "BUTTONS":{
+        "LOGIN": "登录",
+        "UNLOCK": "解锁",
+        "LOGOUT": "登出"
+    },
+    "HEADINGS":{
+        "SUGGESTED_ACCOUNTS": "推荐账户",
+        "SEARCH_RESULTS": "搜索结果"
+    },
+    "TEXT":{
+        "PIN_REQUIRED": "输入您的安全密码以解锁密码库。",
+        "SEARCH_PLACEHOLDER": "按平台或网站搜索...",
+        "NO_PASSWORD_FOUND": "未找到该网站的密码。",
+        "NO_SEARCH_RESULTS": "未找到匹配的密码。",
+        "THEME": "切换主题",
+        "LOADING": "加载中，请稍候...",
+        "NEW_USER": "新用户？",
+        "DARK_THEME": "使用深色主题",
+        "CHANGE_LANGUAGE": "更改语言"
+    }
+}

@@ -1,14 +1,24 @@
 {
     "manifest_version": 3,
-
     "name": "Aegis Password Manager",
     "description": "Password Manager extension for your Aegis vault.",
     "version": "1.0.0",
 
-    "action": {
-        "default_popup": "index.html",
-        "default_title": "Aegis Password Manager"
+    "action": {},
+
+    "background": {
+        "service_worker": "background.js"
     },
+
+    "content_scripts": [
+        {
+            "matches": ["<all_urls>"],
+            "js": [
+                "content/autofill.js",
+                "content/popup-injector.js"
+            ]
+        }
+    ],
 
     "permissions": [
         "storage",
@@ -19,6 +29,17 @@
     "host_permissions": [
         "<all_urls>"
     ],
+
+    "web_accessible_resources": [
+        {
+            "resources": ["assets/*", "index.html"],
+            "matches": ["<all_urls>"]
+        }
+    ],
+
+    "content_security_policy": {
+        "extension_pages": "script-src 'self'; object-src 'self';"
+    },
 
     "icons": {
         "16": "assets/icon16.png",

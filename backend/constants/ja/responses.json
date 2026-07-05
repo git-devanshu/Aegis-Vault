@@ -1,0 +1,104 @@
+{
+    "COMMON": {
+        "SERVER_ERROR": "問題が発生しました",
+        "FIELD_REQUIRED": "必須項目をすべて入力してください",
+        "UNEXPECTED_ERROR": "予期しないエラーが発生しました",
+        "SUCCESS": "成功"
+    },
+
+    "AUTH": {
+        "SESSION_EXPIRED": "セッションの有効期限が切れました",
+        "UNAUTHORIZED": "この操作は許可されていません",
+        "EMAIL_EXISTS": "このメールアドレスは既に使用されています",
+        "SIGNUP_SUCCESS": "登録が完了しました",
+        "LOGIN_SUCCESS": "ログインに成功しました",
+        "USER_NOT_FOUND": "このユーザーは存在しません",
+        "ACCOUNT_DISABLED": "このユーザーは管理者によりブロックされています",
+        "INVALID_CREDENTIALS": "入力された認証情報が無効です",
+        "PIN_VERIFIED": "セキュリティPINの確認に成功しました",
+        "SESSION_LIMIT_REACHED": "セッション作成の上限に達しました",
+        "SESSION_NOT_FOUND": "セッションが見つかりません",
+        "LOGOUT_SUCCESSFUL": "デバイスのログアウトに成功しました",
+        "ALL_SESSIONS_TERMINATED": "他のすべてのデバイスからログアウトしました",
+        "NEW_PASSKEY_GENERATED": "新しいパスキーの生成に成功しました",
+        "PASSWORD_CHANGED": "パスワードの変更に成功しました",
+        "PIN_CHANGED": "セキュリティPINの変更に成功しました"
+    },
+    
+    "CONFIG": {
+        "SETTINGS_SAVED": "ユーザー設定の保存に成功しました"
+    },
+
+    "PASSWORD_MANAGER": {
+        "NO_PASSWORD_ADDED": "このラベルにはパスワードが追加されていません",
+        "PASSWORD_ADDED": "パスワードの追加に成功しました",
+        "PASSWORD_UPDATED": "パスワードの更新に成功しました",
+        "PASSWORD_DELETED": "パスワードの削除に成功しました",
+        "PASSWORD_NOT_FOUND": "パスワードが見つかりません",
+        "LABELS_NOT_FOUND": "ラベルが見つかりません",
+        "LABELS_LIST_UPDATED": "ラベルリストを更新しました"
+    },
+
+    "ACCOUNTS_LAYER": {
+        "ACCOUNT_ADDED": "銀行口座の追加に成功しました",
+        "ACCOUNT_DELETED": "銀行口座の削除に成功しました",
+        "ACCOUNT_NOT_FOUND": "銀行口座が見つかりません",
+        "ERROR_UPDATING_BALANCE": "口座残高の更新中にエラーが発生しました"
+    },
+
+    "EXPENSE_MANAGER": {
+        "NO_TRACKER_ADDED": "この口座には収入が追加されていません",
+        "NO_EXPENSE_ADDED": "この収入には支出が追加されていません",
+        "TRACKER_ADDED": "口座に収入を追加しました",
+        "EXPENSE_ADDED": "支出の追加に成功しました",
+        "TRACKER_NOT_FOUND": "この口座内にこの収入が見つかりません",
+        "TRACKER_DELETED": "収入とそのすべての支出の削除に成功しました",
+        "EXPENSE_DELETED": "支出の削除に成功しました",
+        "EXPENSES_TRANSFERRED": "すべての支出の移動に成功しました",
+        "CANNOT_DELETE_TRACKER": "この収入は削除できません",
+        "CATEGORIES_UPDATED": "カテゴリーリストの更新に成功しました",
+        "LIMITS_UPDATED": "これらのカテゴリーの予算を更新しました"
+    },
+
+    "INVESTMENT_MANAGER": {
+        "NO_FD_ADDED" : "この口座には定期預金が追加されていません",
+        "NO_RD_ADDED" : "この口座には積立預金が追加されていません",
+        "NO_GOLD_ASSET_ADDED" : "この口座には金資産が追加されていません",
+        "NO_STOCK_ADDED" : "この口座には株式が追加されていません",
+        "FD_ADDED" : "定期預金の追加に成功しました",
+        "RD_ADDED" : "積立預金の追加に成功しました",
+        "GOLD_ASSET_ADDED" : "金資産の追加に成功しました",
+        "STOCK_ADDED" : "株式の追加に成功しました",
+        "FD_CLOSED" : "定期預金の解約に成功しました",
+        "FD_ROLLED_OVER" : "定期預金の継続手続きに成功しました",
+        "FD_NOT_FOUND": "定期預金が見つかりません",
+        "FD_DELETED": "定期預金の削除に成功しました",
+        "RD_NOT_FOUND": "積立預金が見つかりません",
+        "RD_CLOSED": "積立預金の解約に成功しました",
+        "RD_DELETED": "積立預金の削除に成功しました",
+        "GOLD_ASSET_SOLD": "金資産の売却に成功しました",
+        "GOLD_ASSET_DELETED": "金資産の削除に成功しました",
+        "STOCK_NOT_FOUND": "株式が見つかりません",
+        "STOCK_SOLD": "株式の売却に成功しました",
+        "STOCK_DELETED": "株式の削除に成功しました"
+    },
+
+    "PLANNING_MANAGER": {
+        "COLLECTION_UPDATED": "コレクションデータの更新に成功しました",
+        "COLLECTION_NOT_FOUND": "このコレクションは存在しません",
+        "SCHEDULE_NOT_FOUND": "スケジュールが見つかりません",
+        "SCHEDULE_UPDATED": "スケジュールの更新に成功しました",
+        "TASK_CREATED": "タスクの作成に成功しました",
+        "TASK_DELETED": "タスクの削除に成功しました",
+        "TASK_NOT_FOUND": "タスクが見つかりません",
+        "TASK_COMPLETED": "タスクを完了としてマークしました",
+        "JOURNAL_ADDED": "日記の追加に成功しました",
+        "JOURNAL_NOT_FOUND": "日記が見つかりません",
+        "JOURNAL_UPDATED": "日記の更新に成功しました",
+        "JOURNAL_DELETED": "日記の削除に成功しました",
+        "NOTE_ADDED": "メモの追加に成功しました",
+        "NOTE_UPDATED": "メモの更新に成功しました",
+        "NOTE_DELETED": "メモの削除に成功しました",
+        "NOTE_NOT_FOUND": "メモが見つかりません"
+    }
+}

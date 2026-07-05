@@ -8,7 +8,8 @@
         "PLATFORM": "Platform",
         "SITE": "Website",
         "USERNAME": "Username",
-        "SIGNUP": "Signup to Aegis"
+        "SIGNUP": "Signup to Aegis",
+        "SETTINGS": "Settings"
     },
 
     "BUTTONS":{
@@ -29,6 +30,8 @@
         "NO_SEARCH_RESULTS": "No matching passwords found.",
         "THEME": "Switch Theme",
         "LOADING": "Loading, please wait...",
-        "NEW_USER": "New User ?"
+        "NEW_USER": "New User ?",
+        "DARK_THEME": "Use Dark Theme",
+        "CHANGE_LANGUAGE": "Change Language"
     }
 }

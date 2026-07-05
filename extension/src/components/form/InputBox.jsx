@@ -14,7 +14,7 @@ export default function InputBox({type, placeholder, label, name, value, onChang
 
             <Input variant='unstyled' size='sm' fontSize={theme.textSize}
                 type={type} placeholder={placeholder} name={name} value={value} onChange={onChange} required={required} readOnly={readOnly} minLength={minLen} maxLength={maxLen} min={min} max={max}
-                width='100%' border={`1px solid ${theme.border}`} borderRadius='12px' padding={theme.paddingS} paddingLeft='12px' color={theme.text}
+                width='100%' border={`1px solid ${theme.border}`} borderRadius='10px' padding={theme.paddingS} paddingLeft='12px' color={theme.text}
                 _focus={{
                     borderColor:theme.primary,
                     boxShadow:`0 0 0 0.1px ${theme.primary}`

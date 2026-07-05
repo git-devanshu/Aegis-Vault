@@ -1,0 +1,104 @@
+{
+    "COMMON": {
+        "SERVER_ERROR": "etwas ist schiefgelaufen",
+        "FIELD_REQUIRED": "bitte alle Pflichtfelder ausfüllen",
+        "UNEXPECTED_ERROR": "ein unerwarteter Fehler ist aufgetreten",
+        "SUCCESS": "erfolgreich"
+    },
+
+    "AUTH": {
+        "SESSION_EXPIRED": "Ihre Sitzung ist abgelaufen",
+        "UNAUTHORIZED": "diese Aktion ist nicht erlaubt",
+        "EMAIL_EXISTS": "diese E-Mail-Adresse wird bereits verwendet",
+        "SIGNUP_SUCCESS": "Registrierung erfolgreich",
+        "LOGIN_SUCCESS": "Anmeldung erfolgreich",
+        "USER_NOT_FOUND": "dieser Benutzer existiert nicht",
+        "ACCOUNT_DISABLED": "dieser Benutzer wurde vom Administrator gesperrt",
+        "INVALID_CREDENTIALS": "die angegebenen Anmeldedaten sind ungültig",
+        "PIN_VERIFIED": "Sicherheits-PIN erfolgreich verifiziert",
+        "SESSION_LIMIT_REACHED": "Limit für Sitzungserstellung erreicht",
+        "SESSION_NOT_FOUND": "Sitzung nicht gefunden",
+        "LOGOUT_SUCCESSFUL": "Gerät erfolgreich abgemeldet",
+        "ALL_SESSIONS_TERMINATED": "von allen anderen Geräten abgemeldet",
+        "NEW_PASSKEY_GENERATED": "neuer Passkey erfolgreich generiert",
+        "PASSWORD_CHANGED": "Passwort erfolgreich geändert",
+        "PIN_CHANGED": "Sicherheits-PIN erfolgreich geändert"
+    },
+    
+    "CONFIG": {
+        "SETTINGS_SAVED": "Benutzereinstellungen erfolgreich gespeichert"
+    },
+
+    "PASSWORD_MANAGER": {
+        "NO_PASSWORD_ADDED": "unter diesem Label wurden keine Passwörter hinzugefügt",
+        "PASSWORD_ADDED": "Passwort erfolgreich hinzugefügt",
+        "PASSWORD_UPDATED": "Passwort erfolgreich aktualisiert",
+        "PASSWORD_DELETED": "Passwort erfolgreich gelöscht",
+        "PASSWORD_NOT_FOUND": "Passwort nicht gefunden",
+        "LABELS_NOT_FOUND": "Labels nicht gefunden",
+        "LABELS_LIST_UPDATED": "Label-Liste aktualisiert"
+    },
+
+    "ACCOUNTS_LAYER": {
+        "ACCOUNT_ADDED": "Bankkonto erfolgreich hinzugefügt",
+        "ACCOUNT_DELETED": "Bankkonto erfolgreich gelöscht",
+        "ACCOUNT_NOT_FOUND": "Bankkonto nicht gefunden",
+        "ERROR_UPDATING_BALANCE": "Fehler beim Aktualisieren des Kontostands"
+    },
+
+    "EXPENSE_MANAGER": {
+        "NO_TRACKER_ADDED": "diesem Konto wurde kein Einkommen hinzugefügt",
+        "NO_EXPENSE_ADDED": "diesem Einkommen wurden keine Ausgaben hinzugefügt",
+        "TRACKER_ADDED": "Einkommen zum Konto hinzugefügt",
+        "EXPENSE_ADDED": "Ausgabe erfolgreich hinzugefügt",
+        "TRACKER_NOT_FOUND": "dieses Einkommen wurde in diesem Konto nicht gefunden",
+        "TRACKER_DELETED": "Einkommen und alle zugehörigen Ausgaben erfolgreich gelöscht",
+        "EXPENSE_DELETED": "Ausgabe erfolgreich gelöscht",
+        "EXPENSES_TRANSFERRED": "alle Ausgaben erfolgreich übertragen",
+        "CANNOT_DELETE_TRACKER": "dieses Einkommen kann nicht entfernt werden",
+        "CATEGORIES_UPDATED": "Kategorienliste erfolgreich aktualisiert",
+        "LIMITS_UPDATED": "Budget für diese Kategorien aktualisiert"
+    },
+
+    "INVESTMENT_MANAGER": {
+        "NO_FD_ADDED" : "diesem Konto wurde kein Festgeld hinzugefügt",
+        "NO_RD_ADDED" : "diesem Konto wurde kein Sparplan hinzugefügt",
+        "NO_GOLD_ASSET_ADDED" : "diesem Konto wurde kein Goldbestand hinzugefügt",
+        "NO_STOCK_ADDED" : "diesem Konto wurden keine Aktien hinzugefügt",
+        "FD_ADDED" : "Festgeld erfolgreich hinzugefügt",
+        "RD_ADDED" : "Sparplan erfolgreich hinzugefügt",
+        "GOLD_ASSET_ADDED" : "Goldbestand erfolgreich hinzugefügt",
+        "STOCK_ADDED" : "Aktie erfolgreich hinzugefügt",
+        "FD_CLOSED" : "Festgeld erfolgreich aufgelöst",
+        "FD_ROLLED_OVER" : "Festgeld erfolgreich verlängert",
+        "FD_NOT_FOUND": "Festgeld nicht gefunden",
+        "FD_DELETED": "Festgeld erfolgreich gelöscht",
+        "RD_NOT_FOUND": "Sparplan nicht gefunden",
+        "RD_CLOSED": "Sparplan erfolgreich aufgelöst",
+        "RD_DELETED": "Sparplan erfolgreich gelöscht",
+        "GOLD_ASSET_SOLD": "Goldbestand erfolgreich verkauft",
+        "GOLD_ASSET_DELETED": "Goldbestand erfolgreich gelöscht",
+        "STOCK_NOT_FOUND": "Aktie nicht gefunden",
+        "STOCK_SOLD": "Aktie erfolgreich verkauft",
+        "STOCK_DELETED": "Aktie erfolgreich gelöscht"
+    },
+
+    "PLANNING_MANAGER": {
+        "COLLECTION_UPDATED": "Sammlungsdaten erfolgreich aktualisiert",
+        "COLLECTION_NOT_FOUND": "diese Sammlung existiert nicht",
+        "SCHEDULE_NOT_FOUND": "Zeitplan nicht gefunden",
+        "SCHEDULE_UPDATED": "Zeitplan erfolgreich aktualisiert",
+        "TASK_CREATED": "Aufgabe erfolgreich erstellt",
+        "TASK_DELETED": "Aufgabe erfolgreich gelöscht",
+        "TASK_NOT_FOUND": "Aufgabe nicht gefunden",
+        "TASK_COMPLETED": "Aufgabe als erledigt markiert",
+        "JOURNAL_ADDED": "Journaleintrag erfolgreich hinzugefügt",
+        "JOURNAL_NOT_FOUND": "Journaleintrag nicht gefunden",
+        "JOURNAL_UPDATED": "Journaleintrag erfolgreich aktualisiert",
+        "JOURNAL_DELETED": "Journaleintrag erfolgreich gelöscht",
+        "NOTE_ADDED": "Notiz erfolgreich hinzugefügt",
+        "NOTE_UPDATED": "Notiz erfolgreich aktualisiert",
+        "NOTE_DELETED": "Notiz erfolgreich gelöscht",
+        "NOTE_NOT_FOUND": "Notiz nicht gefunden"
+    }
+}

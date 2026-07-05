@@ -1,0 +1,29 @@
+{
+    "SUPPORTED_LANGUAGES": [
+        {
+            "code": "en",
+            "name": "English"
+        }, {
+            "code": "hi",
+            "name": "हिन्दी"
+        }, {
+            "code": "ru",
+            "name": "Русский"
+        }, {
+            "code": "fr",
+            "name": "Français"
+        }, {
+            "code": "de",
+            "name": "Deutsch"
+        }, {
+            "code": "zh",
+            "name": "中文"
+        }, {
+            "code": "ja",
+            "name": "日本語"
+        }, {
+            "code": "es",
+            "name": "Español"
+        }
+    ]
+}

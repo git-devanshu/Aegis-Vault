@@ -1,0 +1,44 @@
+{
+    "COMMON": {
+        "UNKNOWN_ERROR": "se ha producido un error desconocido",
+        "SOMETHING_WENT_WRONG": "¡algo salió mal!",
+        "LOADING": "cargando, por favor espere...",
+        "SUCCESS": "éxito"
+    },
+
+    "AUTH": {
+        "CHECK_EMAIL_AVAL": "verificando disponibilidad del correo, por favor espere...",
+        "EMAIL_AVAILABLE": "este correo electrónico está disponible",
+        "EMAIL_USED": "este correo electrónico ya está en uso",
+        "CREATING_USER": "creando nuevo usuario, por favor espere...",
+        "TERMINATING_SESSION": "cerrando sesión en el dispositivo, por favor espere...",
+        "GENERATING_NEW_PASSKEY": "generando nueva clave de acceso, por favor espere..."
+    },
+
+    "PASSWORD_MANAGER": {
+        "USERNAME_COPIED": "nombre de usuario copiado",
+        "PASSWORD_COPIED": "contraseña copiada",
+        "UPDATING_LABELS": "actualizando lista de etiquetas, por favor espere...",
+        "CANNOT_CREATE_LABEL": "esta etiqueta no se puede crear",
+        "LABEL_ALREADY_EXISTS": "esta etiqueta ya ha sido creada"
+    },
+
+    "EXPENSE_MANAGER": {
+        "ADDING_ACCOUNT": "agregando cuenta bancaria, por favor espere...",
+        "CATEGORY_ALREADY_EXISTS": "ya existe una categoría con este nombre"
+    },
+
+    "QUICK_SAVE": {
+        "DATA_EXPORTED": "gastos exportados correctamente",
+        "DATA_IMPORTED": "gastos exportados importados correctamente",
+        "NOTE_SAVED": "nota guardada en Quick Save",
+        "NO_DATA_AVAILABLE": "no hay datos disponibles en Quick Save"
+    },
+    
+    "PLANNING_MANAGER": {
+        "PENDING_ITEMS_COPIED": "elementos pendientes copiados",
+        "DATA_COPIED": "datos copiados al portapapeles",
+        "INVALID_TIME_RANGE": "rango de tiempo no válido",
+        "JOURNAL_ALREADY_EXISTS": "ya existe una entrada de diario para esta fecha"
+    }
+}

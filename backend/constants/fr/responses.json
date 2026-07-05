@@ -1,0 +1,104 @@
+{
+    "COMMON": {
+        "SERVER_ERROR": "une erreur s'est produite",
+        "FIELD_REQUIRED": "veuillez remplir tous les champs obligatoires",
+        "UNEXPECTED_ERROR": "une erreur inattendue s'est produite",
+        "SUCCESS": "succès"
+    },
+
+    "AUTH": {
+        "SESSION_EXPIRED": "votre session a expiré",
+        "UNAUTHORIZED": "cette action n'est pas autorisée",
+        "EMAIL_EXISTS": "cet email est déjà utilisé",
+        "SIGNUP_SUCCESS": "inscription réussie",
+        "LOGIN_SUCCESS": "connexion réussie",
+        "USER_NOT_FOUND": "cet utilisateur n'existe pas",
+        "ACCOUNT_DISABLED": "cet utilisateur a été bloqué par l'administrateur",
+        "INVALID_CREDENTIALS": "les identifiants fournis sont invalides",
+        "PIN_VERIFIED": "vérification du code pin de sécurité réussie",
+        "SESSION_LIMIT_REACHED": "limite de création de sessions atteinte",
+        "SESSION_NOT_FOUND": "session introuvable",
+        "LOGOUT_SUCCESSFUL": "appareil déconnecté avec succès",
+        "ALL_SESSIONS_TERMINATED": "déconnecté de tous les autres appareils",
+        "NEW_PASSKEY_GENERATED": "nouvelle clé d'accès générée avec succès",
+        "PASSWORD_CHANGED": "mot de passe modifié avec succès",
+        "PIN_CHANGED": "code pin de sécurité modifié avec succès"
+    },
+    
+    "CONFIG": {
+        "SETTINGS_SAVED": "paramètres utilisateur enregistrés avec succès"
+    },
+
+    "PASSWORD_MANAGER": {
+        "NO_PASSWORD_ADDED": "aucun mot de passe n'est ajouté sous cette étiquette",
+        "PASSWORD_ADDED": "mot de passe ajouté avec succès",
+        "PASSWORD_UPDATED": "mot de passe mis à jour avec succès",
+        "PASSWORD_DELETED": "mot de passe supprimé avec succès",
+        "PASSWORD_NOT_FOUND": "mot de passe introuvable",
+        "LABELS_NOT_FOUND": "étiquettes introuvables",
+        "LABELS_LIST_UPDATED": "liste des étiquettes mise à jour"
+    },
+
+    "ACCOUNTS_LAYER": {
+        "ACCOUNT_ADDED": "compte bancaire ajouté avec succès",
+        "ACCOUNT_DELETED": "compte bancaire supprimé avec succès",
+        "ACCOUNT_NOT_FOUND": "compte bancaire introuvable",
+        "ERROR_UPDATING_BALANCE": "erreur lors de la mise à jour du solde du compte"
+    },
+
+    "EXPENSE_MANAGER": {
+        "NO_TRACKER_ADDED": "aucun revenu n'est ajouté à ce compte",
+        "NO_EXPENSE_ADDED": "aucune dépense n'est ajoutée à ce revenu",
+        "TRACKER_ADDED": "revenu ajouté au compte",
+        "EXPENSE_ADDED": "dépense ajoutée avec succès",
+        "TRACKER_NOT_FOUND": "ce revenu est introuvable dans ce compte",
+        "TRACKER_DELETED": "le revenu et toutes ses dépenses ont été supprimés avec succès",
+        "EXPENSE_DELETED": "dépense supprimée avec succès",
+        "EXPENSES_TRANSFERRED": "toutes les dépenses ont été transférées avec succès",
+        "CANNOT_DELETE_TRACKER": "impossible de supprimer ce revenu",
+        "CATEGORIES_UPDATED": "liste des catégories mise à jour avec succès",
+        "LIMITS_UPDATED": "budget mis à jour pour ces catégories"
+    },
+
+    "INVESTMENT_MANAGER": {
+        "NO_FD_ADDED" : "aucun dépôt à terme n'est ajouté à ce compte",
+        "NO_RD_ADDED" : "aucun dépôt récurrent n'est ajouté à ce compte",
+        "NO_GOLD_ASSET_ADDED" : "aucun actif en or n'est ajouté à ce compte",
+        "NO_STOCK_ADDED" : "aucune action n'est ajoutée à ce compte",
+        "FD_ADDED" : "dépôt à terme ajouté avec succès",
+        "RD_ADDED" : "dépôt récurrent ajouté avec succès",
+        "GOLD_ASSET_ADDED" : "actif en or ajouté avec succès",
+        "STOCK_ADDED" : "action ajoutée avec succès",
+        "FD_CLOSED" : "dépôt à terme clôturé avec succès",
+        "FD_ROLLED_OVER" : "dépôt à terme reconduit avec succès",
+        "FD_NOT_FOUND": "dépôt à terme introuvable",
+        "FD_DELETED": "dépôt à terme supprimé avec succès",
+        "RD_NOT_FOUND": "dépôt récurrent introuvable",
+        "RD_CLOSED": "dépôt récurrent clôturé avec succès",
+        "RD_DELETED": "dépôt récurrent supprimé avec succès",
+        "GOLD_ASSET_SOLD": "actif en or vendu avec succès",
+        "GOLD_ASSET_DELETED": "actif en or supprimé avec succès",
+        "STOCK_NOT_FOUND": "action introuvable",
+        "STOCK_SOLD": "action vendue avec succès",
+        "STOCK_DELETED": "action supprimée avec succès"
+    },
+
+    "PLANNING_MANAGER": {
+        "COLLECTION_UPDATED": "données de la collection mises à jour avec succès",
+        "COLLECTION_NOT_FOUND": "cette collection n'existe pas",
+        "SCHEDULE_NOT_FOUND": "emploi du temps introuvable",
+        "SCHEDULE_UPDATED": "emploi du temps mis à jour avec succès",
+        "TASK_CREATED": "tâche créée avec succès",
+        "TASK_DELETED": "tâche supprimée avec succès",
+        "TASK_NOT_FOUND": "tâche introuvable",
+        "TASK_COMPLETED": "tâche marquée comme terminée",
+        "JOURNAL_ADDED": "entrée de journal ajoutée avec succès",
+        "JOURNAL_NOT_FOUND": "entrée de journal introuvable",
+        "JOURNAL_UPDATED": "entrée de journal mise à jour avec succès",
+        "JOURNAL_DELETED": "entrée de journal supprimée avec succès",
+        "NOTE_ADDED": "note ajoutée avec succès",
+        "NOTE_UPDATED": "note mise à jour avec succès",
+        "NOTE_DELETED": "note supprimée avec succès",
+        "NOTE_NOT_FOUND": "note introuvable"
+    }
+}

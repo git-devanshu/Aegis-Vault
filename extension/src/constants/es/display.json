@@ -1,0 +1,34 @@
+{
+    "LABELS":{
+        "WELCOME": "Bienvenido de nuevo",
+        "EMAIL": "Correo electrónico",
+        "PASSWORD": "Contraseña",
+        "ENTER_PIN": "Ingrese el PIN de seguridad",
+        "SEARCH": "Buscar contraseñas",
+        "PLATFORM": "Plataforma",
+        "SITE": "Sitio web",
+        "USERNAME": "Nombre de usuario",
+        "SIGNUP": "Regístrate en Aegis",
+        "SETTINGS": "Configuración"
+    },
+    "BUTTONS":{
+        "LOGIN": "Iniciar sesión",
+        "UNLOCK": "Desbloquear",
+        "LOGOUT": "Cerrar sesión"
+    },
+    "HEADINGS":{
+        "SUGGESTED_ACCOUNTS": "Cuentas sugeridas",
+        "SEARCH_RESULTS": "Resultados de búsqueda"
+    },
+    "TEXT":{
+        "PIN_REQUIRED": "Ingrese su PIN de seguridad para desbloquear su bóveda de contraseñas.",
+        "SEARCH_PLACEHOLDER": "Buscar por plataforma o sitio web...",
+        "NO_PASSWORD_FOUND": "No se encontraron contraseñas para este sitio web.",
+        "NO_SEARCH_RESULTS": "No se encontraron contraseñas coincidentes.",
+        "THEME": "Cambiar tema",
+        "LOADING": "Cargando, por favor espere...",
+        "NEW_USER": "¿Nuevo usuario?",
+        "DARK_THEME": "Usar tema oscuro",
+        "CHANGE_LANGUAGE": "Cambiar idioma"
+    }
+}

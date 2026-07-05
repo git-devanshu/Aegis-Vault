@@ -1,17 +1,19 @@
 import {useState} from "react";
-import {Flex, Heading, Text} from "@chakra-ui/react";
+import {Box, CloseButton, Flex, Heading, IconButton, Spacer, Text} from "@chakra-ui/react";
 import {theme} from "../themes/theme";
 import {createHash} from "../utility/crypto";
 import {getAuthUser, saveAuthToken} from "../utility/token";
 import {apiRequest} from "../utility/api";
 import {useAppContext} from "../context/AppContext";
 import useLanguage from "../hooks/useLanguage";
+import { getDevice } from "../utility/helpers";
+import { IoSettingsOutline } from "react-icons/io5";
 
 import { ThreeDot } from "react-loading-indicators";
 
 import InputBox from "../components/form/InputBox";
 import ActionButton from "../components/form/ActionButton";
-import { getDevice } from "../utility/helpers";
+import SettingsModal from "./SettingsModal";
 
 
 export default function Login(){
@@ -25,6 +27,8 @@ export default function Login(){
     });
 
     const [isLoading, setIsLoading] = useState(false);
+
+    const [showSettingsModal, setShowSettingsModal] = useState(false);
 
     const handleChange = (e) =>{
         const {name, value} = e.target;
@@ -86,13 +90,17 @@ export default function Login(){
     }
 
     return(
-        <div className="auth-page">
-            <div className="auth-container">
-                <Heading color={theme.primary} size="sm" textAlign="center" marginBottom={theme.marginL}>
+        <div className="common-page" style={{position: 'relative'}}>
+            <Flex align='center' paddingX={theme.paddingL} paddingY={theme.paddingS} borderBottom={`1px solid ${theme.border}`} width='100%'>
+                <Heading color={theme.primary} size="sm" textAlign="center">
                     ⛉ Aegis
                 </Heading>
+                <Spacer/>
+                <IconButton aria-label="Settings" icon={<IoSettingsOutline />} onClick={()=> setShowSettingsModal(true)} size='sm' variant='ghost' color={theme.text} _hover={{backgroundColor: 'transparent'}} />
+            </Flex>
 
-                <Text color={theme.text} fontSize={theme.headingSize} textAlign="center" marginBottom={theme.spacing}>
+            <Box padding={theme.paddingL} width='100%'>
+                <Text color={theme.text} fontSize={theme.headingSize} textAlign="center" marginBottom={theme.marginL}>
                     {DISPLAY.LABELS.WELCOME}
                 </Text>
 
@@ -129,7 +137,9 @@ export default function Login(){
                         {DISPLAY.TEXT.NEW_USER} <span onClick={()=>{ chrome.tabs.create({ url: import.meta.env.VITE_AEGIS_CLIENT_URL }) }} style={{textDecoration: 'underline', cursor: 'pointer'}}>{DISPLAY.LABELS.SIGNUP}</span>
                     </Text>
                 </form>
-            </div>
+            </Box>
+
+            {showSettingsModal && <SettingsModal setShowModal={setShowSettingsModal} />}
         </div>
     );
 }
