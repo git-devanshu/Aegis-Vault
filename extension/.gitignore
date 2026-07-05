@@ -12,6 +12,7 @@ dist
 dist-ssr
 *.local
 .env
+aegis-password-manager-extension-v1.0.0.zip
 
 # Editor directories and files
 .vscode/*

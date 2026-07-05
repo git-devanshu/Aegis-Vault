@@ -22,7 +22,7 @@ require('dotenv').config();
 * Returns true or false, toast messages should be handled on client side as per use
 */
 const checkEmailAvailability = async(req, res) =>{
-    const {RESPONSES} = getLanguageConstants(req.lang);
+    const {RESPONSES} = getLanguageConstants(req.headers['x-aegis-language']);
     try{
         const email = req.params.email;
         if(!email?.length){
@@ -44,7 +44,7 @@ const checkEmailAvailability = async(req, res) =>{
 * Register a new user with privilege 'user'
 */
 const registerNewUser = async(req, res) =>{
-    const {RESPONSES} = getLanguageConstants(req.lang);
+    const {RESPONSES} = getLanguageConstants(req.headers['x-aegis-language']);
     try{
         const { 
             email, name, 
@@ -119,7 +119,7 @@ const registerNewUser = async(req, res) =>{
 * Returns the userSalt for the user if the email exists
 */
 const getUserSaltFromEmail = async(req, res) =>{
-    const {RESPONSES} = getLanguageConstants(req.lang);
+    const {RESPONSES} = getLanguageConstants(req.headers['x-aegis-language']);
     try{
         const email = req.params.email;
         if(!email?.length){
@@ -145,7 +145,7 @@ const getUserSaltFromEmail = async(req, res) =>{
 * Login to existing account, create session and return signed jwt
 */
 const loginUser = async(req, res) =>{
-    const {RESPONSES} = getLanguageConstants(req.lang);
+    const {RESPONSES} = getLanguageConstants(req.headers['x-aegis-language']);
     try{
         const { email, passwordHash, deviceType, device } = req.body;
         if(!email?.length || !passwordHash?.length || !device?.length){
@@ -238,7 +238,7 @@ const verifySecurityPin = async(req, res) =>{
 * Verify user's Pass Key and return pinEncryptedKey, pinSalt and pinNonce
 */
 const verifyPassKey = async(req, res) =>{
-    const {RESPONSES} = getLanguageConstants(req.lang);
+    const {RESPONSES} = getLanguageConstants(req.headers['x-aegis-language']);
     try{
         const { email, passKeyHash } = req.body;
         if(!email?.length || !passKeyHash?.length){
@@ -272,7 +272,7 @@ const verifyPassKey = async(req, res) =>{
 * Verify security pin and save new password
 */
 const setNewPassword = async(req, res) =>{
-    const {RESPONSES} = getLanguageConstants(req.lang);
+    const {RESPONSES} = getLanguageConstants(req.headers['x-aegis-language']);
     try{
         const { email, passwordEncryptedKey, passwordSalt, passwordNonce, passwordHash, pinHash } = req.body;
         if(!email?.length || !pinHash?.length || !passwordEncryptedKey?.length || !passwordSalt?.length || !passwordNonce?.length || !passwordHash?.length){
