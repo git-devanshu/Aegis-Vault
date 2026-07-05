@@ -244,6 +244,10 @@ export default function PasswordVault() {
         setRefreshLabels(!refreshLabels);
     }
 
+    const openExtensionPage = () =>{
+        window.open(import.meta.env.VITE_EXTENSION_URL, "_blank");
+    };
+
     if(!masterKey){
         return <PinModal/>
     }
@@ -261,7 +265,7 @@ export default function PasswordVault() {
             <CircleIconButton icon={<MdRefresh/>} iconSize="18px" tooltip={DISPLAY.TOOLTIPS.REFRESH} ttPlacement="right" onClick={refreshPage}/>
             <CircleIconButton icon={<MdOutlineNewLabel/>} iconSize="18px" tooltip={DISPLAY.TOOLTIPS.CREATE_LABEL} ttPlacement="right" onClick={()=> setShowCreateLabelPopup(true)}/>
             <CircleIconButton icon={<AddIcon/>} tooltip={DISPLAY.TOOLTIPS.ADD_PASSWORD} ttPlacement="right" onClick={()=> setShowAddPasswordPopup(true)} actionType='primary' />
-            <CircleIconButton icon={<IoExtensionPuzzleOutline/>} tooltip={DISPLAY.TOOLTIPS.BROWSER_EXTENSION} ttPlacement="right" onClick={()=>{}}/>
+            <CircleIconButton icon={<IoExtensionPuzzleOutline/>} tooltip={DISPLAY.TOOLTIPS.BROWSER_EXTENSION} ttPlacement="right" onClick={openExtensionPage}/>
             <CircleIconButton icon={<FaInfo/>} tooltip={DISPLAY.TOOLTIPS.LEARN_MORE} ttPlacement="right" onClick={()=> setShowGuideModal(true)}/>
         </Flex>
     );
