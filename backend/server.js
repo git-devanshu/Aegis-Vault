@@ -15,10 +15,24 @@ const {checkAuthorization} = require('./middlewares/checkAuthorization');
 
 const app = express();
 
+const allowedOrigins = [
+    process.env.CLEINT_ORIGIN,
+    process.env.EXTENSION_ORIGIN
+];
+
 app.use(cors({
-    origin: process.env.ORIGIN,
+    origin(origin, callback){
+        if(!origin){
+            return callback(null, true);
+        }
+        if(allowedOrigins.includes(origin)){
+            return callback(null, true);
+        }
+        callback(new Error("Not allowed by CORS"));
+    },
     credentials: true
 }));
+
 app.use(express.json());
 app.use(express.urlencoded());
 
