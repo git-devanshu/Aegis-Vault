@@ -12,6 +12,7 @@ import Dropdown from "../../common-components/form/Dropdown";
 import InputBox from "../../common-components/form/InputBox";
 import ViewGoldPopup from "../../common-components/popup/ViewGoldPopup";
 import ViewStockPopup from "../../common-components/popup/ViewStockPopup";
+import SearchBox from "../../common-components/form/SearchBox";
 
 
 export default function HoldingsTab({selectedAccount, goldAssetData, refreshGoldAssets, setRefreshGoldAssets, stockData, refreshStocks, setRefreshStocks}) {
@@ -66,7 +67,7 @@ export default function HoldingsTab({selectedAccount, goldAssetData, refreshGold
                 </div>
                 {/* Search Holding */}
                 <div style={{width:'100%', marginBottom:'-10px', marginTop: '-10px'}}>
-                    <InputBox placeholder={`🔎︎ ${DISPLAY.LABELS.SEARCH_HOLDINGS}`} type='text' name='searchQuery' value={searchQuery} onChange={(e)=> setSearchQuery(e.target.value)}/>
+                    <SearchBox placeholder={DISPLAY.LABELS.SEARCH_HOLDINGS} name='searchQuery' value={searchQuery} onChange={e => setSearchQuery(e.target.value)} maxLen={100} />
                 </div>
             </Grid>
 

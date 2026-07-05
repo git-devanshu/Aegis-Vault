@@ -22,6 +22,7 @@ import Popup from "../../common-components/popup/Popup";
 import CircleIconButton from "../../common-components/form/CircleIconButton";
 import Dropdown from "../../common-components/form/Dropdown";
 import ExpenseTransferModal from "./ExpenseTransferModal";
+import SearchBox from "../../common-components/form/SearchBox";
 
 
 export default function ExpenseTab({expenseData, trackerData, selectedAccount, selectedTrackerIndex, setSelectedTrackerIndex, categoryData, accountDataArray, setAccountData, refreshExpenses, setRefreshExpenses, trackerDataOptions, selectedTracker}) {
@@ -178,7 +179,7 @@ export default function ExpenseTab({expenseData, trackerData, selectedAccount, s
                 </Flex>
                 <Flex align='center' gap={theme.marginL}>
                     <div style={{width:'100%', marginBottom:'-10px', marginTop: '-10px'}}>
-                        <InputBox placeholder={`🔎︎ ${DISPLAY.LABELS.SEARCH_EXPENSE}`} type='text' name='searchQuery' value={searchQuery} onChange={(e)=> setSearchQuery(e.target.value)}/>
+                        <SearchBox placeholder={DISPLAY.LABELS.SEARCH_EXPENSE} name='searchQuery' value={searchQuery} onChange={e => setSearchQuery(e.target.value)} maxLen={100} />
                     </div>
                     <div style={{marginBottom: '8px'}}>
                         <CircleIconButton icon={<RiFileTransferLine/>}

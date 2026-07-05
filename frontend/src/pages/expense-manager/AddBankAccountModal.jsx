@@ -16,6 +16,7 @@ import InputBox from "../../common-components/form/InputBox";
 import ActionButton from "../../common-components/form/ActionButton";
 import Dropdown from "../../common-components/form/Dropdown";
 import InfoTooltip from '../../common-components/popup/InfoTooltip';
+import SearchBox from "../../common-components/form/SearchBox";
 
 
 export default function AddBankAccountModal({onBack, refreshAccounts, setRefreshAccounts}) {
@@ -118,7 +119,7 @@ export default function AddBankAccountModal({onBack, refreshAccounts, setRefresh
                         <Dropdown value={account.countryCode} onChange={(e)=> setAccount({...account, countryCode: e.target.value})} options={countryOptions} />
                     </div>
                     <div style={{marginBottom: '-10px'}}>
-                        <InputBox type='text' placeholder={`🔎︎ ${DISPLAY.LABELS.SEARCH_BANK}`} name='searchQuery' value={searchQuery} onChange={(e)=> setSearchQuery(e.target.value)}/>
+                        <SearchBox placeholder={DISPLAY.LABELS.SEARCH_BANK} name='searchQuery' value={searchQuery} onChange={e => setSearchQuery(e.target.value)} maxLen={100} />
                     </div>
                     <div style={{ border: `1px solid ${theme.border}`, borderRadius: `calc(${theme.radius} * 2)`, display: 'flex', flexDirection: 'column', flex: 1, minHeight: 0, overflowY: 'auto', backgroundColor:theme.cardBg, scrollbarWidth: "none", marginBottom: theme.spacing}}>
                         {

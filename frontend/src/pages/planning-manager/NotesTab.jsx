@@ -13,6 +13,7 @@ import ViewJournalPopup from "../../common-components/popup/ViewJournalPopup";
 import EditJournalPopup from "../../common-components/popup/EditJournalPopup";
 import ViewNotePopup from "../../common-components/popup/ViewNotePopup";
 import EditNotePopup from "../../common-components/popup/EditNotePopup";
+import SearchBox from "../../common-components/form/SearchBox";
 
 
 export default function NotesTab({noteMetadata, journalMetadata, refreshJournalMetadata, setRefreshJournalMetadata, refreshNoteMetadata, setRefreshNoteMetadata}) {
@@ -58,7 +59,7 @@ export default function NotesTab({noteMetadata, journalMetadata, refreshJournalM
                     />
                 </div>
                 <div style={{marginTop:'-10px', marginBottom: '-10px'}}>
-                    <InputBox placeholder={`🔎︎ ${DISPLAY.LABELS.SEARCH_NOTES}`} type='text' name='search' value={search} onChange={e => setSearch(e.target.value)} maxLen={50} />
+                    <SearchBox placeholder={DISPLAY.LABELS.SEARCH_NOTES} name='search' value={search} onChange={e => setSearch(e.target.value)} maxLen={50} />
                 </div>
             </Grid>
 

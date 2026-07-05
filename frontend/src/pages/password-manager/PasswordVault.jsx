@@ -26,6 +26,7 @@ import Dropdown from "../../common-components/form/Dropdown";
 import PasswordCard from "../../common-components/vault/PasswordCard";
 import AddEditPasswordPopup from "../../common-components/popup/AddEditPasswordPopup";
 import FeatureGuide from "./FeatureGuide";
+import SearchBox from "../../common-components/form/SearchBox";
 
 
 export default function PasswordVault() {
@@ -304,7 +305,7 @@ export default function PasswordVault() {
                             />
                         </div>
                         <div style={{marginTop:'-10px', marginBottom: '-10px'}}>
-                            <InputBox type='text' placeholder={`🔎︎ ${DISPLAY.LABELS.SEARCH_PASSWORD}`} name='searchQuery' value={searchQuery} onChange={(e)=> setSearchQuery(e.target.value)}/>
+                            <SearchBox placeholder={DISPLAY.LABELS.SEARCH_PASSWORD} name='searchQuery' value={searchQuery} onChange={e => setSearchQuery(e.target.value)} maxLen={100} />
                         </div>
                     </Grid>
                 }

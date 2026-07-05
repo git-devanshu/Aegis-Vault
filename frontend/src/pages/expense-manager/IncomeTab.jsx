@@ -15,6 +15,7 @@ import ActionButton from "../../common-components/form/ActionButton";
 import Popup from "../../common-components/popup/Popup";
 import CircleIconButton from "../../common-components/form/CircleIconButton";
 import Dropdown from "../../common-components/form/Dropdown";
+import SearchBox from "../../common-components/form/SearchBox";
 
 
 export default function IncomeTab({trackerData, selectedAccount, accountDataArray, setAccountData, refreshTrackers, setRefreshTrackers, selectedTrackerIndex}) {
@@ -122,7 +123,7 @@ export default function IncomeTab({trackerData, selectedAccount, accountDataArra
             <Grid templateColumns={{base: '1fr', md: '1fr 1fr'}} gap={theme.marginL} marginTop={theme.spacing}>
                 {/* Search by Tracker Name */}
                 <div style={{marginBottom: '-10px', marginTop: '-10px'}}>
-                    <InputBox placeholder={`🔎︎ ${DISPLAY.LABELS.SEARCH_INCOME}`} type='text' name='searchQuery' value={searchQuery} onChange={(e)=> setSearchQuery(e.target.value)}/>
+                    <SearchBox placeholder={DISPLAY.LABELS.SEARCH_INCOME} name='searchQuery' value={searchQuery} onChange={e => setSearchQuery(e.target.value)} maxLen={100} />
                 </div>
                 {/* Sorting Dropdown */}
                 <div style={{marginBottom: '-10px', marginTop: '-10px'}}>
