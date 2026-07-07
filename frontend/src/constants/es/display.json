@@ -212,7 +212,7 @@
         "DELETE_INCOME": "Eliminar ingresos",
         "COMFIRM_DELETE_INCOME": "Si hay gastos asociados a este ingreso, no se eliminará. ¿Continuar?",
         "QUICKSAVE_EXPENSE_COUNT": "Número de gastos en guardado rápido",
-        "EXCEL_UPLOAD_INFO": "Por favor, sube un archivo Excel que cumpla con este formato exacto.",
+        "EXCEL_UPLOAD_INFO": "Suba el archivo Excel con estos nombres de columna",
         "ASSIGN_CATEGORIES": "Asignar categorías a todos los gastos",
         "DELETE_EXPENSE": "Eliminar gasto",
         "CONFIRM_DELETE_EXPENSE": "¿Estás seguro de que deseas eliminar este gasto?",

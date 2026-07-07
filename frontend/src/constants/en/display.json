@@ -212,7 +212,7 @@
         "DELETE_INCOME": "Delete Income",
         "COMFIRM_DELETE_INCOME": "This income will not be deleted if there are expenses under it. Do you want to continue ?",
         "QUICKSAVE_EXPENSE_COUNT": "Expenses present in Quick Save",
-        "EXCEL_UPLOAD_INFO": "Upload the excel in this format",
+        "EXCEL_UPLOAD_INFO": "Upload the excel with these column names",
         "ASSIGN_CATEGORIES": "Assign categories to all the expenses",
         "DELETE_EXPENSE": "Delete Expense",
         "CONFIRM_DELETE_EXPENSE": "Are you sure you want to delete this expense ?",

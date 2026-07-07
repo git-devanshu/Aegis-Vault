@@ -212,7 +212,7 @@
         "DELETE_INCOME": "Удалить доход",
         "COMFIRM_DELETE_INCOME": "Если к этому доходу привязаны расходы, он не будет удален. Продолжить?",
         "QUICKSAVE_EXPENSE_COUNT": "Расходы в быстром сохранении",
-        "EXCEL_UPLOAD_INFO": "Загрузите файл Excel в данном формате",
+        "EXCEL_UPLOAD_INFO": "Загрузите файл Excel с этими именами столбцов",
         "ASSIGN_CATEGORIES": "Назначить категории для всех расходов",
         "DELETE_EXPENSE": "Удалить расход",
         "CONFIRM_DELETE_EXPENSE": "Вы уверены, что хотите удалить этот расход?",

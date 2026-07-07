@@ -212,7 +212,7 @@
         "DELETE_INCOME": "Supprimer le revenu",
         "COMFIRM_DELETE_INCOME": "Si des dépenses sont associées à ce revenu, il ne sera pas supprimé. Continuer ?",
         "QUICKSAVE_EXPENSE_COUNT": "Nombre de dépenses en enregistrement rapide",
-        "EXCEL_UPLOAD_INFO": "Veuillez téléverser un fichier Excel respectant ce format précis.",
+        "EXCEL_UPLOAD_INFO": "Téléchargez le fichier Excel avec ces noms de colonnes",
         "ASSIGN_CATEGORIES": "Attribuer des catégories à toutes les dépenses",
         "DELETE_EXPENSE": "Supprimer la dépense",
         "CONFIRM_DELETE_EXPENSE": "Êtes-vous sûr de vouloir supprimer cette dépense ?",

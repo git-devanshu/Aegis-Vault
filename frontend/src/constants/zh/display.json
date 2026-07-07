@@ -212,7 +212,7 @@
         "DELETE_INCOME": "删除收入",
         "COMFIRM_DELETE_INCOME": "如果此收入当前有关联的支出，则无法删除。是否继续？",
         "QUICKSAVE_EXPENSE_COUNT": "快速保存中的支出数量",
-        "EXCEL_UPLOAD_INFO": "请上传一个与此格式完全一致的 Excel 文件。",
+        "EXCEL_UPLOAD_INFO": "请上传包含这些列名的 Excel 文件",
         "ASSIGN_CATEGORIES": "为所有支出分配类别",
         "DELETE_EXPENSE": "删除支出",
         "CONFIRM_DELETE_EXPENSE": "您确定要删除此支出吗？",

@@ -212,7 +212,7 @@
         "DELETE_INCOME": "आय हटाएं",
         "COMFIRM_DELETE_INCOME": "यदि इस आय के अंतर्गत खर्चे मौजूद हैं, तो इसे हटाया नहीं जाएगा। क्या आप जारी रखना चाहते हैं?",
         "QUICKSAVE_EXPENSE_COUNT": "Quick Save में मौजूद खर्चे",
-        "EXCEL_UPLOAD_INFO": "इस फॉर्मेट में एक्सेल फ़ाइल अपलोड करें",
+        "EXCEL_UPLOAD_INFO": "इस कॉलम नामों के साथ एक्सेल फ़ाइल अपलोड करें",
         "ASSIGN_CATEGORIES": "सभी खर्चों को श्रेणियाँ असाइन करें",
         "DELETE_EXPENSE": "खर्च हटाएं",
         "CONFIRM_DELETE_EXPENSE": "क्या आप वाकई इस खर्च को हटाना चाहते हैं?",

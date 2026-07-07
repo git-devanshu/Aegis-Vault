@@ -125,10 +125,10 @@ export default function AddExpensePopup({isOpen, onClose, selectedAccount, selec
     
             const formattedLogs = jsonData
                 .map(row =>({
-                    spentAt: String(row['spent At'] || '').trim(),
-                    amount: Number(row['amount']) || 0,
-                    spentDate: row['date'] 
-                        ? new Date(row['date']).toLocaleDateString('en-CA')
+                    spentAt: String(row['SpentAt'] || '').trim(),
+                    amount: Number(row['Amount']) || 0,
+                    spentDate: row['Date'] 
+                        ? new Date(row['Date']).toLocaleDateString('en-CA')
                         : new Date().toLocaleDateString('en-CA'),
                     categoryIndex: 0
                 }))
@@ -180,7 +180,7 @@ export default function AddExpensePopup({isOpen, onClose, selectedAccount, selec
 
                 <Text color={theme.text} fontSize={theme.textSize} align='center' marginTop={theme.marginL}>{DISPLAY.TEXT.EXCEL_UPLOAD_INFO}:</Text>
                 <Text color={theme.textSecondary} fontSize={theme.smallTextSize} align='center' marginTop={theme.marginS} marginBottom={theme.marginL}>
-                    [{DISPLAY.LABELS.SPENT_AT}] [{DISPLAY.LABELS.AMOUNT}] [{DISPLAY.LABELS.DATE}](YYYY-MM-DD)
+                    [SpentAt] [Amount] [Date](YYYY-MM-DD)
                 </Text>
 
                 <label style={{display:'flex', justifyContent:'center', width:'100%', cursor:'pointer'}}>

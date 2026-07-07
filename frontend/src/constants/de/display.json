@@ -212,7 +212,7 @@
         "DELETE_INCOME": "Einnahme löschen",
         "COMFIRM_DELETE_INCOME": "Wenn unter dieser Einnahme Ausgaben existieren, wird sie nicht gelöscht. Möchten Sie fortfahren?",
         "QUICKSAVE_EXPENSE_COUNT": "Ausgaben in Quick Save",
-        "EXCEL_UPLOAD_INFO": "Laden Sie die Excel-Datei in diesem Format hoch",
+        "EXCEL_UPLOAD_INFO": "Laden Sie die Excel-Datei mit diesen Spaltennamen hoch",
         "ASSIGN_CATEGORIES": "Kategorien für alle Ausgaben zuweisen",
         "DELETE_EXPENSE": "Ausgabe löschen",
         "CONFIRM_DELETE_EXPENSE": "Sind Sie sicher, dass Sie diese Ausgabe löschen möchten?",

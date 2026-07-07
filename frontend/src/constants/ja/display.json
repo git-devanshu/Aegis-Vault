@@ -212,7 +212,7 @@
         "DELETE_INCOME": "収入を削除",
         "COMFIRM_DELETE_INCOME": "この収入に関連付けられた支出がある場合、削除できません。続行しますか？",
         "QUICKSAVE_EXPENSE_COUNT": "クイックセーブされた支出の数",
-        "EXCEL_UPLOAD_INFO": "この正確なフォーマットに一致するExcelファイルをアップロードしてください。",
+        "EXCEL_UPLOAD_INFO": "これらの列名を持つ Excel ファイルをアップロードしてください",
         "ASSIGN_CATEGORIES": "すべての支出にカテゴリーを割り当てる",
         "DELETE_EXPENSE": "支出を削除",
         "CONFIRM_DELETE_EXPENSE": "この支出を削除してもよろしいですか？",
