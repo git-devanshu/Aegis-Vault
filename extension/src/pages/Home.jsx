@@ -1,5 +1,5 @@
 import {useEffect, useMemo, useState} from "react";
-import { Box, CloseButton, Divider, Flex, Heading, IconButton, Input, Spacer, Text } from "@chakra-ui/react";
+import { Box, CloseButton, Divider, Flex, Heading, IconButton, Input, InputGroup, InputLeftElement, Spacer, Text } from "@chakra-ui/react";
 import {theme} from "../themes/theme";
 import {useAppContext} from "../context/AppContext";
 import useLanguage from "../hooks/useLanguage";
@@ -20,6 +20,7 @@ import TitleBar from "../components/TitleBar";
 import ActionButton from "../components/form/ActionButton";
 import CircleIconButton from "../components/form/CircleIconButton";
 import SettingsModal from "./SettingsModal";
+import { SearchIcon } from "@chakra-ui/icons";
 
 
 export default function Home(){
@@ -125,11 +126,15 @@ export default function Home(){
             <Divider borderWidth='1px' borderColor={theme.border} />
 
             <Box padding={theme.paddingL} width='100%'>
-                <Input variant='flushed' size='sm' fontSize={theme.textSize} color={theme.text}
-                    placeholder={`🔎︎ ${DISPLAY.LABELS.SEARCH}`} type='text' name='search' value={search} onChange={(e)=> setSearch(e.target.value)}
-                    _focus={{ borderColor:theme.primary, boxShadow: 'none' }}
-                    marginBottom={theme.marginL}
-                />
+                <InputGroup marginBottom={theme.marginL} size='sm'>
+                    <InputLeftElement>
+                        <SearchIcon color={theme.textSecondary} size='14px' />
+                    </InputLeftElement>
+                    <Input variant='flushed' size='sm' fontSize={theme.textSize} color={theme.text}
+                        placeholder={DISPLAY.LABELS.SEARCH} type='text' name='search' value={search} onChange={(e)=> setSearch(e.target.value)}
+                        _focus={{ borderColor:theme.primary, boxShadow: 'none' }}
+                    />
+                </InputGroup>
                 
                 {searchResults.map(renderCard)}
             </Box>

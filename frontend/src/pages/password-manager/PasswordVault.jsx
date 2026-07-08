@@ -332,6 +332,7 @@ export default function PasswordVault() {
                                 />
                             </div>
                         )}
+                        <div style={{height: '140px'}}></div>
                     </Grid>
                 }
 
@@ -358,6 +359,7 @@ export default function PasswordVault() {
                                 );
                             })
                         }
+                        <div style={{height: '140px'}}></div>
                     </Grid>
                     
                     {!hideRemovedLabels && <>
@@ -384,6 +386,7 @@ export default function PasswordVault() {
                                     </div>
                                 )}
                             )}
+                            <div style={{height: '140px'}}></div>
                         </Grid>
                     </>}
                 </>}
