@@ -15,7 +15,7 @@ import ActionButton from '../form/ActionButton';
 import ToggleSwitch from '../form/ToggleSwitch';
 
 
-export default function AddEditPasswordPopup({isOpen, onClose, editFlow=false, labels=[], passwordData=null, refresh, setRefresh}) {
+export default function AddEditPasswordPopup({isOpen, onClose, editFlow=false, labels=[], passwordData=null, refresh, setRefresh, selectedLabelIndex}) {
     const {DISPLAY, TOASTS} = useLanguage();
     const {masterKey} = useAppContext();
 
@@ -25,7 +25,7 @@ export default function AddEditPasswordPopup({isOpen, onClose, editFlow=false, l
         site: passwordData?.site || '',
         username: passwordData?.username || '',
         password: passwordData?.password || '',
-        labelIndex: passwordData?.labelIndex || 0
+        labelIndex: passwordData?.labelIndex || selectedLabelIndex
     });
 
     const [accessThroughExtension, setAccessThroughExtension] = useState(passwordData?.accessThroughExtension);
@@ -38,7 +38,7 @@ export default function AddEditPasswordPopup({isOpen, onClose, editFlow=false, l
             site: passwordData?.site || '',
             username: passwordData?.username || '',
             password: passwordData?.password || '',
-            labelIndex: passwordData?.labelIndex || 0
+            labelIndex: passwordData?.labelIndex || selectedLabelIndex
         });
         setAccessThroughExtension(passwordData?.accessThroughExtension);
     }, [passwordData, isOpen]);
@@ -80,7 +80,7 @@ export default function AddEditPasswordPopup({isOpen, onClose, editFlow=false, l
                         site: '',
                         username: '',
                         password: '',
-                        labelIndex: 0
+                        labelIndex: selectedLabelIndex
                     });
                 }
             })
@@ -122,7 +122,7 @@ export default function AddEditPasswordPopup({isOpen, onClose, editFlow=false, l
                         site: '',
                         username: '',
                         password: '',
-                        labelIndex: 0
+                        labelIndex: selectedLabelIndex
                     });
                 }
             })

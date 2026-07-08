@@ -5,7 +5,7 @@ const passwordSchema = new mongoose.Schema({
     passwordData : {type : String, required : true},
     labelIndex : {type : Number, required : true},
     nonce : {type : String, required : true},
-    accessThroughExtension : {type: Boolean, default: true}
+    accessThroughExtension : {type: Boolean, default: false}
 });
 
 const Passwords = mongoose.model('passwords', passwordSchema, 'passwords');
