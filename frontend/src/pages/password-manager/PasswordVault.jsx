@@ -393,10 +393,10 @@ export default function PasswordVault() {
             </AppLayout>
 
             {/* Add new password popup */}
-            <AddEditPasswordPopup isOpen={showAddPasswordPopup} onClose={()=> setShowAddPasswordPopup(false)} labels={labels} refresh={refreshPasswords} setRefresh={setRefreshPasswords} />
+            <AddEditPasswordPopup isOpen={showAddPasswordPopup} onClose={()=> setShowAddPasswordPopup(false)} labels={labels} refresh={refreshPasswords} setRefresh={setRefreshPasswords} selectedLabelIndex={selectedLabelIndex} />
 
             {/* Update password popup */}
-            <AddEditPasswordPopup isOpen={showEditPasswordPopup} onClose={()=> setShowEditPasswordPopup(false)} editFlow={true} labels={labels} passwordData={passwordToBeUpdated} refresh={refreshPasswords} setRefresh={setRefreshPasswords} />
+            <AddEditPasswordPopup isOpen={showEditPasswordPopup} onClose={()=> setShowEditPasswordPopup(false)} editFlow={true} labels={labels} passwordData={passwordToBeUpdated} refresh={refreshPasswords} setRefresh={setRefreshPasswords} selectedLabelIndex={selectedLabelIndex} />
             
             {/* Delete password popup */}
             <Popup isOpen={showDeletePasswordPopup} onClose={()=> setShowDeletePasswordPopup(false)} title={DISPLAY.TEXT.DELETE_PASSWORD} borderColor={theme.warning}>
