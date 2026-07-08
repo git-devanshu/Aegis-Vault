@@ -181,7 +181,7 @@ export default function EditNotePopup({isOpen, onClose, selectedNote, noteMetada
                         placeholder={DISPLAY.TEXT.WRITE_HERE}
                         onChange={handleChange}
                         resize='vertical'
-                        height='280px'
+                        height='calc(100% - 250px)'
                         maxLength={50000}
                         backgroundColor={theme.bg}
                         border={`1px solid ${theme.border}`}

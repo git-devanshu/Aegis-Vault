@@ -72,6 +72,7 @@ export default function ViewNotePopup({isOpen, onClose, selectedNote}) {
                 color={theme.text}
                 _hover={{borderColor: theme.border, boxShadow: 'none'}}
                 _focus={{borderColor: theme.primary, boxShadow: 'none'}}
+                overflowY='scroll'
             />
         </Popup>
     );

@@ -55,6 +55,7 @@ export default function ViewJournalPopup({isOpen, onClose, selectedJournal}) {
                 color={theme.text}
                 _hover={{borderColor: theme.border, boxShadow: 'none'}}
                 _focus={{borderColor: theme.primary, boxShadow: 'none'}}
+                overflowY='scroll'
             />
         </Popup>
     );
