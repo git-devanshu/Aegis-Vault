@@ -87,7 +87,7 @@ export default function Home(){
 
     if(isLoading){
         return(
-            <Flex direction='column' justify='center' align='center' gap={theme.marginL} paddingY={theme.spacing}>
+            <Flex direction='column' justify='center' align='center' gap={theme.marginL} paddingY={theme.spacing} backgroundColor={theme.bg}>
                 <ThreeDot variant="brick-stack" color={theme.primary} size="medium" />
                 <Text color={theme.text} fontSize={theme.headingSize}>
                     {DISPLAY.TEXT.LOADING}
@@ -118,7 +118,9 @@ export default function Home(){
                         <Text color={theme.text} fontSize={theme.textSize} marginBottom={theme.marginS}>
                             {DISPLAY.HEADINGS.SUGGESTED_ACCOUNTS}
                         </Text>
-                        {websiteMatches.map(renderCard)}
+                        <div style={{maxHeight: '240px', overflowY: 'auto'}}>
+                            {websiteMatches.map(renderCard)}
+                        </div>
                     </>
                 }
             </Box>
@@ -135,8 +137,9 @@ export default function Home(){
                         _focus={{ borderColor:theme.primary, boxShadow: 'none' }}
                     />
                 </InputGroup>
-                
-                {searchResults.map(renderCard)}
+                <div style={{maxHeight: '240px', overflowY: 'auto'}}>
+                    {searchResults.map(renderCard)}
+                </div>
             </Box>
 
             {showSettingsModal && <SettingsModal setShowModal={setShowSettingsModal} />}

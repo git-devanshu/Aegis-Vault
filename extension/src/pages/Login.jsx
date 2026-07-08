@@ -80,7 +80,7 @@ export default function Login(){
 
     if(isLoading){
         return(
-            <Flex direction='column' justify='center' align='center' gap={theme.marginL} paddingY={theme.spacing}>
+            <Flex direction='column' justify='center' align='center' gap={theme.marginL} paddingY={theme.spacing} backgroundColor={theme.bg}>
                 <ThreeDot variant="brick-stack" color={theme.primary} size="medium" />
                 <Text color={theme.text} fontSize={theme.headingSize}>
                     {DISPLAY.TEXT.LOADING}
