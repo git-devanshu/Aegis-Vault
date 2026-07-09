@@ -229,12 +229,12 @@ export default function ExpenseVault() {
     }
 
     const sidebar = (
-        <Flex align='center' gap={theme.paddingL} direction={{base:'row', sm:'column'}} backgroundColor={theme.cardBg} borderRadius='35px'>
-            <CircleIconButton icon={<MdRefresh/>} iconSize="18px" tooltip={DISPLAY.TOOLTIPS.REFRESH} ttPlacement="right" onClick={refreshPage}/>
-            <CircleIconButton icon={<TbMoneybagPlus/>} iconSize="18px" tooltip={DISPLAY.TOOLTIPS.ADD_TRACKER} ttPlacement="right" onClick={()=> setShowAddTrackerPopup(true)}/>
-            <CircleIconButton icon={<AddIcon/>} tooltip={DISPLAY.TOOLTIPS.ADD_EXPENSE} ttPlacement="right" onClick={()=> setShowAddExpensePopup(true)} actionType='primary' />
-            <CircleIconButton icon={<RiBubbleChartLine/>} iconSize="18px" tooltip={DISPLAY.TOOLTIPS.ANALYTICS} ttPlacement="right" onClick={()=> setShowExpenseAnalytics(true) }/>
-            <CircleIconButton icon={<FaInfo/>} tooltip={DISPLAY.TOOLTIPS.LEARN_MORE} ttPlacement="right" onClick={()=> setShowGuideModal(true)}/>
+        <Flex align='center' width='full' justify='space-around' gap={theme.paddingL} direction={{base:'row', sm:'column'}} backgroundColor={theme.cardBg} borderRadius='35px'>
+            <CircleIconButton icon={<MdRefresh/>} iconSize="18px" sidebarIconSize='24px' forSidebar tooltip={DISPLAY.TOOLTIPS.REFRESH} ttPlacement="right" onClick={refreshPage}/>
+            <CircleIconButton icon={<TbMoneybagPlus/>} iconSize="18px" sidebarIconSize='24px' forSidebar tooltip={DISPLAY.TOOLTIPS.ADD_TRACKER} ttPlacement="right" onClick={()=> setShowAddTrackerPopup(true)}/>
+            <CircleIconButton icon={<AddIcon/>} tooltip={DISPLAY.TOOLTIPS.ADD_EXPENSE} ttPlacement="right" sidebarIconSize='24px' forSidebar onClick={()=> setShowAddExpensePopup(true)} actionType='primary' />
+            <CircleIconButton icon={<RiBubbleChartLine/>} iconSize="18px" sidebarIconSize='24px' forSidebar tooltip={DISPLAY.TOOLTIPS.ANALYTICS} ttPlacement="right" onClick={()=> setShowExpenseAnalytics(true) }/>
+            <CircleIconButton icon={<FaInfo/>} tooltip={DISPLAY.TOOLTIPS.LEARN_MORE} ttPlacement="right" sidebarIconSize='20px' forSidebar onClick={()=> setShowGuideModal(true)}/>
         </Flex>
     );
 

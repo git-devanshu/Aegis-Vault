@@ -39,6 +39,7 @@
         "PENDING_ITEMS_COPIED": "éléments en attente copiés",
         "DATA_COPIED": "données copiées dans le presse-papiers",
         "INVALID_TIME_RANGE": "plage horaire invalide",
-        "JOURNAL_ALREADY_EXISTS": "une entrée de journal existe déjà pour cette date"
+        "JOURNAL_ALREADY_EXISTS": "une entrée de journal existe déjà pour cette date",
+        "SELECT_ATLEAST_ONE_DAY": "Veuillez sélectionner au moins un jour"
     }
 }

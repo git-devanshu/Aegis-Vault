@@ -39,6 +39,7 @@
         "PENDING_ITEMS_COPIED": "保留中の項目をコピーしました",
         "DATA_COPIED": "データをクリップボードにコピーしました",
         "INVALID_TIME_RANGE": "無効な時間範囲です",
-        "JOURNAL_ALREADY_EXISTS": "この日付の日記は既に存在します"
+        "JOURNAL_ALREADY_EXISTS": "この日付の日記は既に存在します",
+        "SELECT_ATLEAST_ONE_DAY": "少なくとも1日を選択してください"
     }
 }

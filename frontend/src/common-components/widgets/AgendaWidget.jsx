@@ -4,7 +4,7 @@ import useLanguage from "../../hooks/useLanguage";
 import useAppContext from "../../hooks/useAppContext";
 import { formatTime } from "../../utility/helpers";
 
-import { Box, Flex, Text, Badge, Grid } from '@chakra-ui/react';
+import { Box, Flex, Text, Textarea, Grid } from '@chakra-ui/react';
 
 import Popup from "../popup/Popup";
 import ViewTaskPopup from "../popup/ViewTaskPopup";
@@ -182,13 +182,19 @@ export default function AgendaWidget({selectedDate, weeklySchedule, taskData, re
             <ViewTaskPopup isOpen={showTaskDetailsPopup} onClose={setShowTaskDetailsPopup} task={selectedTask} setRefreshTasks={setRefreshTasks} refreshTasks={refreshTasks} />
 
             {/* Schedule Details Popup */}
-            <Popup isOpen={showScheduleDetailsPopup} onClose={()=> setShowScheduleDetailsPopup(false)} title={DISPLAY.TEXT.SCHEDULE} borderColor={theme.info}>
+            <Popup isOpen={showScheduleDetailsPopup} onClose={()=> setShowScheduleDetailsPopup(false)} title={DISPLAY.TEXT.SCHEDULE} bg={theme.bg} borderColor={theme.info}>
                 <Text color={theme.text} fontSize={theme.textSize} fontWeight={500} textAlign='left'>
                     {DISPLAY.LABELS.TITLE} : {selectedSchedule.title}
                 </Text>
-                <Text color={theme.textSecondary} fontSize={theme.textSize} marginTop={theme.marginS} marginBottom={theme.marginS}>
+                <Text color={theme.textSecondary} fontSize={theme.smallTextSize} marginTop={theme.marginS} marginBottom={theme.marginS}>
                     {formatTime(selectedSchedule.startTime, use12HourClockInSchedule)} - {formatTime(selectedSchedule.endTime, use12HourClockInSchedule)}
                 </Text>
+                <Textarea name='details' value={selectedSchedule.details} isReadOnly
+                    resize='none' height='fit-content' maxHeight='360px' overflowY='scroll'
+                    backgroundColor={theme.cardBg} border='none' borderRadius={theme.radius} color={theme.text}
+                    _hover={{boxShadow: 'none'}}
+                    _focus={{boxShadow: 'none'}}
+                />
             </Popup>
         </Box>
     );

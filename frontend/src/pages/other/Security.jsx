@@ -147,10 +147,10 @@ export default function Security() {
     }
 
     const sidebar = (
-        <Flex align='center' gap={theme.paddingL} direction={{base:'row', sm:'column'}} backgroundColor={theme.cardBg} borderRadius='35px'>
-            <CircleIconButton icon={<MdRefresh/>} iconSize="18px" tooltip={DISPLAY.TOOLTIPS.REFRESH} ttPlacement="right" onClick={()=> setRefresh(!refresh)}/>
-            <CircleIconButton icon={<TbDeviceDesktopOff/>} iconSize="18px" tooltip={DISPLAY.TOOLTIPS.LOGOUT_ALL} ttPlacement="right" onClick={()=>setShowTerminateAllPopup(true)}/>
-            <CircleIconButton icon={<FaInfo/>} tooltip={DISPLAY.TOOLTIPS.LEARN_MORE} ttPlacement="right" onClick={()=> setShowGuideModal(true) }/>
+        <Flex align='center' width='full' justify='space-around' gap={theme.paddingL} direction={{base:'row', sm:'column'}} backgroundColor={theme.cardBg} borderRadius='35px'>
+            <CircleIconButton icon={<MdRefresh/>} iconSize="18px" sidebarIconSize='24px' forSidebar tooltip={DISPLAY.TOOLTIPS.REFRESH} ttPlacement="right" onClick={()=> setRefresh(!refresh)}/>
+            <CircleIconButton icon={<TbDeviceDesktopOff/>} iconSize="18px" sidebarIconSize='24px' forSidebar tooltip={DISPLAY.TOOLTIPS.LOGOUT_ALL} ttPlacement="right" onClick={()=>setShowTerminateAllPopup(true)}/>
+            <CircleIconButton icon={<FaInfo/>} tooltip={DISPLAY.TOOLTIPS.LEARN_MORE} ttPlacement="right" sidebarIconSize='20px' forSidebar onClick={()=> setShowGuideModal(true) }/>
         </Flex>
     );
 

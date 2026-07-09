@@ -11,10 +11,6 @@ import JournalCard from "../../common-components/widgets/JournalCard";
 export default function CalendarTab({journalMetadata, weeklySchedule, taskData, refreshJournalMetadata, setRefreshJournalMetadata, refreshTasks, setRefreshTasks, selectedDate, setSelectedDate, setShowAddEventPopup}) {
     if(!journalMetadata || !weeklySchedule) return null;
 
-    const {
-        disableJournalModifications, hideWeeklyScheduleItems, hideHighPriorityTasks, hideCompletedTasks,
-    } = useAppContext();
-
     return (
         <>
             <Grid templateColumns={{base:'1fr', md:'1fr 3fr'}} gap={theme.paddingL} marginTop={theme.spacing} alignItems='start'>

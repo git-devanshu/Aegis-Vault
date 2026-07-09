@@ -262,12 +262,12 @@ export default function PasswordVault() {
     }
 
     const sidebar = (
-        <Flex align='center' gap={theme.paddingL} direction={{base:'row', sm:'column'}} backgroundColor={theme.cardBg} borderRadius='35px'>
-            <CircleIconButton icon={<MdRefresh/>} iconSize="18px" tooltip={DISPLAY.TOOLTIPS.REFRESH} ttPlacement="right" onClick={refreshPage}/>
-            <CircleIconButton icon={<MdOutlineNewLabel/>} iconSize="18px" tooltip={DISPLAY.TOOLTIPS.CREATE_LABEL} ttPlacement="right" onClick={()=> setShowCreateLabelPopup(true)}/>
-            <CircleIconButton icon={<AddIcon/>} tooltip={DISPLAY.TOOLTIPS.ADD_PASSWORD} ttPlacement="right" onClick={()=> setShowAddPasswordPopup(true)} actionType='primary' />
-            <CircleIconButton icon={<IoExtensionPuzzleOutline/>} tooltip={DISPLAY.TOOLTIPS.BROWSER_EXTENSION} ttPlacement="right" onClick={openExtensionPage}/>
-            <CircleIconButton icon={<FaInfo/>} tooltip={DISPLAY.TOOLTIPS.LEARN_MORE} ttPlacement="right" onClick={()=> setShowGuideModal(true)}/>
+        <Flex align='center' width='full' justify='space-around' gap={theme.paddingL} direction={{base:'row', sm:'column'}} backgroundColor={theme.cardBg} borderRadius='35px'>
+            <CircleIconButton icon={<MdRefresh/>} iconSize="18px" sidebarIconSize='24px' forSidebar tooltip={DISPLAY.TOOLTIPS.REFRESH} ttPlacement="right" onClick={refreshPage}/>
+            <CircleIconButton icon={<MdOutlineNewLabel/>} iconSize="18px" sidebarIconSize='24px' forSidebar tooltip={DISPLAY.TOOLTIPS.CREATE_LABEL} ttPlacement="right" onClick={()=> setShowCreateLabelPopup(true)}/>
+            <CircleIconButton icon={<AddIcon/>} tooltip={DISPLAY.TOOLTIPS.ADD_PASSWORD} sidebarIconSize='24px' forSidebar ttPlacement="right" onClick={()=> setShowAddPasswordPopup(true)} actionType='primary' />
+            <CircleIconButton icon={<IoExtensionPuzzleOutline/>} tooltip={DISPLAY.TOOLTIPS.BROWSER_EXTENSION} iconSize="18px" sidebarIconSize='24px' forSidebar ttPlacement="right" onClick={openExtensionPage}/>
+            <CircleIconButton icon={<FaInfo/>} tooltip={DISPLAY.TOOLTIPS.LEARN_MORE} sidebarIconSize='20px' forSidebar ttPlacement="right" onClick={()=> setShowGuideModal(true)}/>
         </Flex>
     );
 
@@ -359,7 +359,6 @@ export default function PasswordVault() {
                                 );
                             })
                         }
-                        <div style={{height: '140px'}}></div>
                     </Grid>
                     
                     {!hideRemovedLabels && <>
@@ -386,9 +385,9 @@ export default function PasswordVault() {
                                     </div>
                                 )}
                             )}
-                            <div style={{height: '140px'}}></div>
                         </Grid>
                     </>}
+                    <div style={{height: '140px'}}></div>
                 </>}
             </AppLayout>
 

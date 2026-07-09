@@ -111,6 +111,7 @@ export default function NotesTab({noteMetadata, journalMetadata, refreshJournalM
                         )}
                     )}
                     <div style={{height: '140px'}}></div>
+                    <div style={{height: '140px'}}></div>
                 </Grid>
             }
 

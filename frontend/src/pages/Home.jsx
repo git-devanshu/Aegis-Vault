@@ -91,12 +91,12 @@ export default function Home() {
     }
     
     const sidebar = (
-        <Flex align='center' gap={theme.paddingL} direction={{base:'row', sm:'column'}} backgroundColor={theme.cardBg} borderRadius='35px'>
-            <CircleIconButton icon={<IoSettingsOutline/>} iconSize="18px" tooltip={DISPLAY.TOOLTIPS.SETTINGS} ttPlacement="right" onClick={navigateToSettings} />
-            <CircleIconButton icon={aegisTheme === 'dark' ? <MdOutlineLightMode/> : <MdOutlineDarkMode/>} iconSize="18px" tooltip={DISPLAY.TOOLTIPS.THEME} ttPlacement="right" onClick={toggleAegisTheme}/>
-            <CircleIconButton icon={<RiFileEditLine/>} iconSize="18px" tooltip={DISPLAY.TOOLTIPS.QUICK_SAVE} ttPlacement="right" onClick={()=> navigate('/quick-save')}/>
-            <CircleIconButton icon={<FaInfo/>} tooltip={DISPLAY.TOOLTIPS.ABOUT_US} ttPlacement="right" onClick={()=>{}}/>
-            <CircleIconButton icon={<RiLogoutCircleRLine color={theme.error}/>} iconSize="18px" tooltip={DISPLAY.TOOLTIPS.LOGOUT} ttPlacement="right" onClick={()=> setShowLogoutPopup(true)}/>
+        <Flex align='center' width='full' justify='space-around' gap={theme.paddingL} direction={{base:'row', sm:'column'}} backgroundColor={theme.cardBg} borderRadius='35px'>
+            <CircleIconButton icon={<IoSettingsOutline/>} iconSize="18px" sidebarIconSize='24px' tooltip={DISPLAY.TOOLTIPS.SETTINGS} ttPlacement="right" onClick={navigateToSettings} forSidebar />
+            <CircleIconButton icon={aegisTheme === 'dark' ? <MdOutlineLightMode/> : <MdOutlineDarkMode/>} iconSize="18px" sidebarIconSize='24px' tooltip={DISPLAY.TOOLTIPS.THEME} ttPlacement="right" onClick={toggleAegisTheme} forSidebar />
+            <CircleIconButton icon={<RiFileEditLine/>} iconSize="18px" sidebarIconSize='24px' tooltip={DISPLAY.TOOLTIPS.QUICK_SAVE} ttPlacement="right" onClick={()=> navigate('/quick-save')} forSidebar />
+            <CircleIconButton icon={<FaInfo/>} tooltip={DISPLAY.TOOLTIPS.ABOUT_US} ttPlacement="right" sidebarIconSize='20px' onClick={()=>{}} forSidebar />
+            <CircleIconButton icon={<RiLogoutCircleRLine color={theme.error}/>} iconSize="18px" sidebarIconSize='24px' tooltip={DISPLAY.TOOLTIPS.LOGOUT} ttPlacement="right" onClick={()=> setShowLogoutPopup(true)} forSidebar/>
         </Flex>
     );
 

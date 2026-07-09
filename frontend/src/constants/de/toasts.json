@@ -39,6 +39,7 @@
         "PENDING_ITEMS_COPIED": "ausstehende Einträge kopiert",
         "DATA_COPIED": "Daten in die Zwischenablage kopiert",
         "INVALID_TIME_RANGE": "ungültiger Zeitraum",
-        "JOURNAL_ALREADY_EXISTS": "für dieses Datum existiert bereits ein Journaleintrag"
+        "JOURNAL_ALREADY_EXISTS": "für dieses Datum existiert bereits ein Journaleintrag",
+        "SELECT_ATLEAST_ONE_DAY": "Bitte wählen Sie mindestens einen Tag aus"
     }
 }

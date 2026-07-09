@@ -39,6 +39,7 @@
         "PENDING_ITEMS_COPIED": "待办事项已复制",
         "DATA_COPIED": "数据已复制到剪贴板",
         "INVALID_TIME_RANGE": "时间范围无效",
-        "JOURNAL_ALREADY_EXISTS": "该日期的日记已存在"
+        "JOURNAL_ALREADY_EXISTS": "该日期的日记已存在",
+        "SELECT_ATLEAST_ONE_DAY": "请至少选择一天"
     }
 }

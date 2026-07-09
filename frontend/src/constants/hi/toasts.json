@@ -39,6 +39,7 @@
         "PENDING_ITEMS_COPIED": "पेंडिंग आइटम कॉपी किए गए",
         "DATA_COPIED": "डेटा क्लिपबोर्ड पर कॉपी किया गया",
         "INVALID_TIME_RANGE": "अमान्य समय सीमा",
-        "JOURNAL_ALREADY_EXISTS": "इस तारीख के लिए जर्नल पहले से मौजूद है"
+        "JOURNAL_ALREADY_EXISTS": "इस तारीख के लिए जर्नल पहले से मौजूद है",
+        "SELECT_ATLEAST_ONE_DAY": "कृपया कम से कम एक दिन चुनें"
     }
 }

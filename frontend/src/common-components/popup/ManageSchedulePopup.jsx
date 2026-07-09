@@ -6,16 +6,15 @@ import useAppContext from "../../hooks/useAppContext";
 import { encryptData } from '../../utility/crypto';
 import { apiRequest, validateAndStartLoading } from '../../utility/api';
 
-import { Flex, Text, Box, Grid, Divider } from '@chakra-ui/react';
+import { Flex, Text, Box, Grid, Divider, Textarea } from '@chakra-ui/react';
 import { DeleteIcon } from '@chakra-ui/icons';
 
 import Popup from "../popup/Popup";
 import InputBox from "../form/InputBox";
-import DateInput from "../form/DateInput";
 import ActionButton from "../form/ActionButton";
 import CircleIconButton from "../form/CircleIconButton";
 import Dropdown from "../form/Dropdown";
-
+import Tickbox from "../form/Tickbox";
 
 export default function ManageSchedulePopup({isOpen, onClose, weeklySchedule, refreshSchedule, setRefreshSchedule}) {
     const {DISPLAY, TOASTS} = useLanguage();
@@ -25,11 +24,32 @@ export default function ManageSchedulePopup({isOpen, onClose, weeklySchedule, re
     const [scheduleData, setScheduleData] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
 
+    const [selectedDays, setSelectedDays] = useState({
+        monday: false,
+        tuesday: false,
+        wednesday: false,
+        thursday: false,
+        friday: false,
+        saturday: false,
+        sunday: false
+    });
+
     const [newSchedule, setNewSchedule] = useState({
         title: '',
         startTime: '',
-        endTime: ''
+        endTime: '',
+        details: ''
     });
+
+    const dayLabels = {
+        monday: DISPLAY.TEXT.MONDAY,
+        tuesday: DISPLAY.TEXT.TUESDAY,
+        wednesday: DISPLAY.TEXT.WEDNESDAY,
+        thursday: DISPLAY.TEXT.THURSDAY,
+        friday: DISPLAY.TEXT.FRIDAY,
+        saturday: DISPLAY.TEXT.SATURDAY,
+        sunday: DISPLAY.TEXT.SUNDAY
+    };
 
     useEffect(() =>{
         if(!weeklySchedule) return;
@@ -43,6 +63,13 @@ export default function ManageSchedulePopup({isOpen, onClose, weeklySchedule, re
         });
     }
 
+    const handleCheckboxChange = (day) => {
+        setSelectedDays(prev => ({
+            ...prev,
+            [day]: !prev[day]
+        }));
+    };
+
     const addSchedule = e =>{
         e.preventDefault();
         if(!newSchedule.title.trim() || !newSchedule.startTime || !newSchedule.endTime) return;
@@ -50,25 +77,58 @@ export default function ManageSchedulePopup({isOpen, onClose, weeklySchedule, re
             toast.error(TOASTS.PLANNING_MANAGER.INVALID_TIME_RANGE);
             return;
         }
-        setScheduleData([
-            ...scheduleData,
-            {
-                title: newSchedule.title.trim(),
-                startTime: newSchedule.startTime,
-                endTime: newSchedule.endTime
-            }
-        ].sort((a, b) => a.startTime.localeCompare(b.startTime)));
+
+        const daysToAddTo = Object.keys(selectedDays).filter(day => selectedDays[day]);
+
+        if(daysToAddTo.length === 0){
+            toast.error(TOASTS.PLANNING_MANAGER.SELECT_ATLEAST_ONE_DAY);
+            return;
+        }
+
+        const updatedSchedulePayload = JSON.parse(JSON.stringify(weeklySchedule || {}));
+
+        daysToAddTo.forEach(day => {
+            const currentDayData = updatedSchedulePayload[day] || [];
+            const updatedDayData = [
+                ...currentDayData,
+                {
+                    title: newSchedule.title.trim(),
+                    startTime: newSchedule.startTime,
+                    endTime: newSchedule.endTime,
+                    details: newSchedule.details
+                }
+            ].sort((a, b) => a.startTime.localeCompare(b.startTime));
+            
+            updatedSchedulePayload[day] = updatedDayData;
+        });
+
+        setScheduleData(updatedSchedulePayload[selectedDay] || []);
+
+        daysToAddTo.forEach(day => {
+            if(weeklySchedule) weeklySchedule[day] = updatedSchedulePayload[day];
+        });
+
         setNewSchedule({
             title: '',
             startTime: '',
-            endTime: ''
+            endTime: '',
+            details: ''
+        });
+        setSelectedDays({
+            monday: false,
+            tuesday: false,
+            wednesday: false,
+            thursday: false,
+            friday: false,
+            saturday: false,
+            sunday: false
         });
     }
 
     const deleteSchedule = index =>{
-        setScheduleData(
-            scheduleData.filter((_, i) => i !== index)
-        );
+        const updated = scheduleData.filter((_, i) => i !== index);
+        setScheduleData(updated);
+        if(weeklySchedule) weeklySchedule[selectedDay] = updated;
     }
 
     const saveSchedule = async(e) =>{
@@ -144,14 +204,16 @@ export default function ManageSchedulePopup({isOpen, onClose, weeklySchedule, re
                 }
                 {
                     scheduleData.map((schedule, index) =>
-                        <Flex key={index} align='center' gap={theme.paddingL} padding={theme.paddingL} marginBottom={theme.marginS} bgColor={theme.cardBg} borderRadius={theme.radius}>
+                        <Flex key={index} align='start' gap={theme.paddingL} padding={theme.paddingL} marginBottom={theme.marginS} bgColor={theme.cardBg} borderRadius={theme.radius}>
                             <Flex flex={1} direction='column'>
                                 <Text color={theme.text} fontSize={theme.textSize}>
                                     {schedule.title}
                                 </Text>
-
                                 <Text color={theme.textSecondary} fontSize={theme.smallTextSize}>
                                     {schedule.startTime} - {schedule.endTime}
+                                </Text>
+                                <Text color={theme.textSecondary} fontSize={theme.smallTextSize} marginTop={theme.marginS} noOfLines={2}>
+                                    {schedule.details}
                                 </Text>
                             </Flex>
 
@@ -167,9 +229,26 @@ export default function ManageSchedulePopup({isOpen, onClose, weeklySchedule, re
                 <InputBox label={DISPLAY.LABELS.TITLE} type='text' name='title' value={newSchedule.title} onChange={handleNewScheduleChange} maxLen={60} />
 
                 <Grid templateColumns='1fr 1fr' gap={theme.paddingL} marginTop='-10px' marginBottom='-10px'>
-                    <InputBox label={DISPLAY.LABELS.START_TIME} type='time' name='startTime' value={newSchedule.startTime} onChange={handleNewScheduleChange}/>
-                    <InputBox label={DISPLAY.LABELS.END_TIME} type='time' name='endTime' value={newSchedule.endTime} onChange={handleNewScheduleChange}/>
+                    <InputBox label={DISPLAY.LABELS.START_TIME} type='time' name='startTime' value={newSchedule.startTime} onChange={handleNewScheduleChange} max={newSchedule.endTime || undefined}/>
+                    <InputBox label={DISPLAY.LABELS.END_TIME} type='time' name='endTime' value={newSchedule.endTime} onChange={handleNewScheduleChange} min={newSchedule.startTime || undefined}/>
                 </Grid>
+
+                <Textarea name='details' value={newSchedule.details} placeholder={DISPLAY.LABELS.FILL_DETAILS}
+                    onChange={handleNewScheduleChange} resize='vertical' height='80px' maxLength={500}
+                    backgroundColor={theme.bg} border={`1px solid ${theme.border}`} borderRadius={`calc(2 * ${theme.radius})`} color={theme.text}
+                    _hover={{borderColor: theme.border, boxShadow: 'none'}}
+                    _focus={{borderColor: theme.primary, boxShadow: 'none'}}
+                />
+
+                <Flex direction='row' justify='space-between' wrap='wrap' marginTop={theme.paddingL} paddingX={theme.paddingS} marginBottom='5px' gap='10px'>
+                    {Object.keys(selectedDays).map((day) => (
+                        <Tickbox key={day} isChecked={selectedDays[day]} onChange={() => handleCheckboxChange(day)}>
+                            <Text color={theme.text} fontSize={theme.smallTextSize}>
+                                {dayLabels[day]?.substring(0,3)}
+                            </Text>
+                        </Tickbox>
+                    ))}
+                </Flex>
 
                 <Grid templateColumns='1fr 1fr' gap={theme.paddingL} marginTop={theme.marginL} marginBottom={theme.marginS}>
                     <ActionButton name={DISPLAY.BUTTONS.SAVE_CHANGES} onClick={saveSchedule} isLoading={isLoading} disabled={isLoading}/>

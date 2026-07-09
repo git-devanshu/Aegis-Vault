@@ -16,7 +16,7 @@ export default function ViewTaskPopup({isOpen, onClose, task, setRefreshTasks, r
     if(!task) return null;
 
     const {DISPLAY, TOASTS} = useLanguage();
-    const {masterKey} = useAppContext();
+    const {masterKey, use12HourClockInSchedule} = useAppContext();
 
     const [showDeletePopup, setShowDeletePopup] = useState(false);
     const [showCompletePopup, setShowCompletePopup] = useState(false);
@@ -151,7 +151,7 @@ export default function ViewTaskPopup({isOpen, onClose, task, setRefreshTasks, r
                     </Text>
 
                     <Text color={theme.textSecondary} fontSize={theme.smallTextSize}>
-                        {DISPLAY.TEXT.TIME} : {formatTime(task.startTime, true)} - {formatTime(task.endTime, true)}
+                        {DISPLAY.TEXT.TIME} : {formatTime(task.startTime, use12HourClockInSchedule)} - {formatTime(task.endTime, use12HourClockInSchedule)}
                     </Text>
                 </Grid>
 

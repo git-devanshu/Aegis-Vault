@@ -39,6 +39,7 @@
         "PENDING_ITEMS_COPIED": "elementos pendientes copiados",
         "DATA_COPIED": "datos copiados al portapapeles",
         "INVALID_TIME_RANGE": "rango de tiempo no válido",
-        "JOURNAL_ALREADY_EXISTS": "ya existe una entrada de diario para esta fecha"
+        "JOURNAL_ALREADY_EXISTS": "ya existe una entrada de diario para esta fecha",
+        "SELECT_ATLEAST_ONE_DAY": "Por favor, seleccione al menos un día"
     }
 }
