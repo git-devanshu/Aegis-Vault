@@ -147,7 +147,7 @@ export default function ViewTaskPopup({isOpen, onClose, task, setRefreshTasks, r
 
                 <Grid templateColumns='1fr 1fr' gap={theme.paddingL} marginBottom={theme.marginL}>
                     <Text color={theme.textSecondary} fontSize={theme.smallTextSize}>
-                        {DISPLAY.LABELS.DATE} : {task.taskDate}
+                        {DISPLAY.LABELS.DATE} : {new Date(task.taskDate).toLocaleDateString()}
                     </Text>
 
                     <Text color={theme.textSecondary} fontSize={theme.smallTextSize}>
@@ -155,7 +155,7 @@ export default function ViewTaskPopup({isOpen, onClose, task, setRefreshTasks, r
                     </Text>
                 </Grid>
 
-                <Box backgroundColor={theme.cardBg} borderRadius={theme.radius} padding={theme.paddingL} marginBottom={theme.marginL}>
+                <Box backgroundColor={theme.cardBg} maxHeight='50vh' overflowY='scroll' borderRadius={theme.radius} padding={theme.paddingL} marginBottom={theme.marginL}>
                     <Text color={theme.text} whiteSpace='pre-wrap'>
                         {decryptedDescription || DISPLAY.TEXT.NO_DESCRIPTION}
                     </Text>

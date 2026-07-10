@@ -100,6 +100,14 @@ export default function AddEventPopup({isOpen, onClose, selectedDate, refreshTas
                 onSuccess: () =>{
                     setRefreshTasks(!refreshTasks);
                     onClose(false);
+                    setTask({
+                        name: '',
+                        priority: 'medium',
+                        taskDate: selectedDate,
+                        startTime: '',
+                        endTime: '',
+                        description: ''
+                    });
                 }
             });
         }

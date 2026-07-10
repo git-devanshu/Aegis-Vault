@@ -113,7 +113,7 @@ export default function AgendaWidget({selectedDate, weeklySchedule, taskData, re
     }
 
     return (
-        <Box>
+        <Box width='100%' overflowX='scroll'>
             <Text color={theme.text} fontSize={theme.textSize} fontWeight={600} marginBottom={theme.marginL}>
                 { new Date(selectedDate).toLocaleDateString(undefined, {weekday:'long', day:'numeric', month:'long'}) }
             </Text>
@@ -126,7 +126,7 @@ export default function AgendaWidget({selectedDate, weeklySchedule, taskData, re
                 </div>
             }
 
-            <Grid templateColumns={`70px repeat(${laneCount}, minmax(220px, 1fr))`} gridAutoRows='65px' overflowX='auto' overflowY='auto' paddingTop={theme.spacing}>
+            <Grid templateColumns={`70px repeat(${laneCount}, minmax(220px, 1fr))`} gridAutoRows='65px' paddingTop={theme.spacing}>
                 {
                     timelinePoints.map((time, index) =>
                         <React.Fragment key={time}>
@@ -190,7 +190,7 @@ export default function AgendaWidget({selectedDate, weeklySchedule, taskData, re
                     {formatTime(selectedSchedule.startTime, use12HourClockInSchedule)} - {formatTime(selectedSchedule.endTime, use12HourClockInSchedule)}
                 </Text>
                 <Textarea name='details' value={selectedSchedule.details} isReadOnly
-                    resize='none' height='fit-content' maxHeight='360px' overflowY='scroll'
+                    resize='none' height='fit-content' maxHeight='50vh' overflowY='scroll'
                     backgroundColor={theme.cardBg} border='none' borderRadius={theme.radius} color={theme.text}
                     _hover={{boxShadow: 'none'}}
                     _focus={{boxShadow: 'none'}}

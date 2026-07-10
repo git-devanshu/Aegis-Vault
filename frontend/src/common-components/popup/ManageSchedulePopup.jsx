@@ -241,14 +241,22 @@ export default function ManageSchedulePopup({isOpen, onClose, weeklySchedule, re
                 />
 
                 <Flex direction='row' justify='space-between' wrap='wrap' marginTop={theme.paddingL} paddingX={theme.paddingS} marginBottom='5px' gap='10px'>
-                    {Object.keys(selectedDays).map((day) => (
-                        <Tickbox key={day} isChecked={selectedDays[day]} onChange={() => handleCheckboxChange(day)}>
+                    
+                </Flex>
+
+                <Grid templateColumns='repeat(7, 1fr)' border={`1px solid ${theme.border}`} alignItems='stretch' borderRadius={`calc(2 * ${theme.radius})`} gap='1px' backgroundColor={theme.border}>
+                    {Object.keys(selectedDays).map((day, index) => (
+                        <Flex justify='center' align='center' direction='column' backgroundColor={theme.bg} paddingBottom={theme.paddingS} 
+                            borderTopRightRadius={index === 6 ? `calc(2 * ${theme.radius})` : 0} borderBottomRightRadius={index === 6 ? `calc(2 * ${theme.radius})` : 0}
+                            borderTopLeftRadius={index === 0 ? `calc(2 * ${theme.radius})` : 0} borderBottomLeftRadius={index === 0 ? `calc(2 * ${theme.radius})` : 0}
+                        >
                             <Text color={theme.text} fontSize={theme.smallTextSize}>
                                 {dayLabels[day]?.substring(0,3)}
                             </Text>
-                        </Tickbox>
+                            <Tickbox key={day} isChecked={selectedDays[day]} onChange={() => handleCheckboxChange(day)} />
+                        </Flex>
                     ))}
-                </Flex>
+                </Grid>
 
                 <Grid templateColumns='1fr 1fr' gap={theme.paddingL} marginTop={theme.marginL} marginBottom={theme.marginS}>
                     <ActionButton name={DISPLAY.BUTTONS.SAVE_CHANGES} onClick={saveSchedule} isLoading={isLoading} disabled={isLoading}/>
