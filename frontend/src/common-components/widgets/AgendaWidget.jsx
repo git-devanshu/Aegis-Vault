@@ -189,12 +189,11 @@ export default function AgendaWidget({selectedDate, weeklySchedule, taskData, re
                 <Text color={theme.textSecondary} fontSize={theme.smallTextSize} marginTop={theme.marginS} marginBottom={theme.marginS}>
                     {formatTime(selectedSchedule.startTime, use12HourClockInSchedule)} - {formatTime(selectedSchedule.endTime, use12HourClockInSchedule)}
                 </Text>
-                <Textarea name='details' value={selectedSchedule.details} isReadOnly
-                    resize='none' height='fit-content' maxHeight='50vh' overflowY='scroll'
-                    backgroundColor={theme.cardBg} border='none' borderRadius={theme.radius} color={theme.text}
-                    _hover={{boxShadow: 'none'}}
-                    _focus={{boxShadow: 'none'}}
-                />
+                <Box backgroundColor={theme.cardBg} maxHeight='50vh' overflowY='scroll' borderRadius={theme.radius} padding={theme.paddingL}>
+                    <Text color={theme.text} whiteSpace='pre-wrap'>
+                        {selectedSchedule.details}
+                    </Text>
+                </Box>
             </Popup>
         </Box>
     );
