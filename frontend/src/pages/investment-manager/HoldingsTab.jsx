@@ -137,7 +137,7 @@ export default function HoldingsTab({selectedAccount, goldAssetData, refreshGold
                         )}
                     )}
                     
-                    <div style={{height:'140px'}}></div>
+                    <div style={{height:'60px'}}></div>
                 </Grid>
             }
 
@@ -202,7 +202,7 @@ export default function HoldingsTab({selectedAccount, goldAssetData, refreshGold
                         )}
                     )}
 
-                    <div style={{height:'140px'}}></div>
+                    <div style={{height:'60px'}}></div>
                 </Grid>
             }
 

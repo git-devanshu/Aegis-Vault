@@ -210,7 +210,7 @@ export const downloadAnalyticsReport = ({analytics, selectedAccount, selectedTra
 
     doc.setFontSize(10);
     doc.text(
-        `${DISPLAY.LABELS.GENERATED_ON}: ${new Date().toLocaleString(country.locale)}`,
+        `${DISPLAY.LABELS.GENERATED_ON}: ${new Date().toLocaleString()}`,
         14,
         currentY
     );
@@ -387,7 +387,7 @@ export const downloadExpenseStatement = ({expenseData, categoryData, selectedTra
 
     doc.setFontSize(10);
     doc.text(
-        `${DISPLAY.LABELS.GENERATED_ON}: ${new Date().toLocaleString(country.locale)}`,
+        `${DISPLAY.LABELS.GENERATED_ON}: ${new Date().toLocaleString()}`,
         14,
         currentY
     );

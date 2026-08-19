@@ -23,7 +23,7 @@ export default function AddEventPopup({isOpen, onClose, selectedDate, refreshTas
 
     const [isLoading, setIsLoading] = useState(false);
 
-    const tabs = [DISPLAY.TEXT.TASK, DISPLAY.TEXT.JOURNAL];
+    const tabs = [DISPLAY.TEXT.TASK, DISPLAY.TEXT.JOURNAL, DISPLAY.TEXT.DUE_DATE];
     const [selectedTab, setSelectedTab] = useState(0);
 
     const [task, setTask] = useState({
@@ -244,6 +244,11 @@ export default function AddEventPopup({isOpen, onClose, selectedDate, refreshTas
                             customStyle={{ marginBottom: theme.marginS, marginTop: theme.marginL }}
                         />
                     </form>
+                }
+
+                {/* Due Date */}
+                {selectedTab === 2 &&
+                    <form style={{marginTop: theme.spacing, height: 'calc(100% - 67px)'}}></form>
                 }
             </Box>
         </Popup>

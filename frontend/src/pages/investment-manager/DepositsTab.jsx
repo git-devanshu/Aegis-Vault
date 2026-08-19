@@ -215,7 +215,7 @@ export default function DepositsTab({selectedAccount, groupedFDData, refreshFDs,
                             </Box>
                         );
                     })}
-                    <div style={{height: '140px'}}></div>
+                    <div style={{height: '60px'}}></div>
                 </Grid>
             }
 
@@ -289,7 +289,7 @@ export default function DepositsTab({selectedAccount, groupedFDData, refreshFDs,
                             );
                         })
                     }
-                    <div style={{height: '140px'}}></div>
+                    <div style={{height: '60px'}}></div>
                 </Grid>
             }
 

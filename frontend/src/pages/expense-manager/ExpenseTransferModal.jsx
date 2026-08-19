@@ -69,7 +69,7 @@ export default function ExpenseTransferModal({onBack, expenseData, trackerData, 
         doc.setFontSize(18);
         doc.text(DISPLAY.TEXT.SELECTED_EXPENSES, 14, 20);
         doc.setFontSize(10);
-        doc.text(`${DISPLAY.LABELS.GENERATED_ON}: ${new Date().toLocaleString(country.locale)}`, 14, 28);
+        doc.text(`${DISPLAY.LABELS.GENERATED_ON}: ${new Date().toLocaleString()}`, 14, 28);
     
         autoTable(doc, {
             startY: 38,

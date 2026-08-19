@@ -33,7 +33,7 @@ export default function DeviceTypeStats({sessions}) {
                     </Text>
                 </Flex>
                 
-                <Text color='#0F172A' fontSize='36px' fontWeight={600} marginLeft={theme.marginS}>
+                <Text color='#0F172A' fontSize='32px' fontWeight={600} marginLeft={theme.marginS}>
                     {getMobileSessions()}
                 </Text>
             </Flex>
@@ -47,7 +47,7 @@ export default function DeviceTypeStats({sessions}) {
                         {DISPLAY.TEXT.DESKTOP_SESSIONS}
                     </Text>
                 </Flex>
-                <Text color={theme.text} fontSize='36px' fontWeight={600} marginLeft={theme.marginS}>
+                <Text color={theme.text} fontSize='32px' fontWeight={600} marginLeft={theme.marginS}>
                     {getDesktopSessions()}
                 </Text>
             </Flex>

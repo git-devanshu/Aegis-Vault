@@ -158,7 +158,7 @@ export default function IncomeTab({trackerData, selectedAccount, accountDataArra
                         </div>
                     ))
                 }
-                <div style={{height: '140px'}}></div>
+                <div style={{height: '60px'}}></div>
             </Grid>
 
             {/* Delete Tracker Popup */}

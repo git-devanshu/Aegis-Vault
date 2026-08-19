@@ -175,7 +175,9 @@ export default function Home() {
                             
                             <div>
                                 <Text color={theme.text} fontSize={theme.textSize}>{device}</Text>
-                                <Text color={theme.textSecondary} fontSize={theme.smallTextSize}>{DISPLAY.TEXT.EXPIRY}: {new Date(decodeToken(getAuthToken()).exp * 1000).toLocaleString('en-GB')}</Text>
+                                <Text color={theme.textSecondary} fontSize={theme.smallTextSize}>
+                                    {DISPLAY.TEXT.EXPIRY}: {new Date(decodeToken(getAuthToken()).exp * 1000).toLocaleString()}
+                                </Text>
                             </div>
                         </div>
                     </div>

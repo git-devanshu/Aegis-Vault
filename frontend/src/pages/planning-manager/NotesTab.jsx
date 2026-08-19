@@ -110,8 +110,8 @@ export default function NotesTab({noteMetadata, journalMetadata, refreshJournalM
                             </Flex>
                         )}
                     )}
-                    <div style={{height: '140px'}}></div>
-                    <div style={{height: '140px'}}></div>
+                    <div style={{height: '60px'}}></div>
+                    <div style={{height: '60px'}}></div>
                 </Grid>
             }
 
@@ -150,7 +150,7 @@ export default function NotesTab({noteMetadata, journalMetadata, refreshJournalM
                             </Flex>
                         </Flex>
                     )}
-                    <div style={{height: '140px'}}></div>
+                    <div style={{height: '60px'}}></div>
                 </Grid>
             }
 

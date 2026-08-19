@@ -332,7 +332,7 @@ export default function PasswordVault() {
                                 />
                             </div>
                         )}
-                        <div style={{height: '140px'}}></div>
+                        <div style={{height: '60px'}}></div>
                     </Grid>
                 }
 
@@ -387,7 +387,7 @@ export default function PasswordVault() {
                             )}
                         </Grid>
                     </>}
-                    <div style={{height: '140px'}}></div>
+                    <div style={{height: '60px'}}></div>
                 </>}
             </AppLayout>
 

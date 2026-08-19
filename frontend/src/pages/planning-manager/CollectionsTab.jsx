@@ -269,7 +269,7 @@ export default function CollectionsTab({collectionData, refreshCollections, setR
                 {collectionData.map(collection =>
                     <CollectionCard key={collection.type} collection={collection} />
                 )}
-                <div style={{height: '140px'}}></div>
+                <div style={{height: '60px'}}></div>
             </Grid>
 
             {/* View Shopping List Popup */}

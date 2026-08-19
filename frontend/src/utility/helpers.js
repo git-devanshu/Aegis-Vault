@@ -93,7 +93,7 @@ export function getDeviceDetails() {
 export function getSessionExpiry(createdAt) {
     return new Date(
         new Date(createdAt).getTime() + 30 * 24 * 60 * 60 * 1000
-    ).toLocaleString('en-GB');
+    ).toLocaleString();
 }
 
 

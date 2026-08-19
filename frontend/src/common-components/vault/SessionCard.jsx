@@ -63,7 +63,7 @@ export default function SessionCard({session, currentSessionId, onTerminate}) {
                     }
                 </Text>
                 <Text color={theme.textSecondary} fontSize={theme.smallTextSize} marginLeft={theme.marginS}>
-                    {DISPLAY.TEXT.LOGGED_IN}: {new Date(session.createdAt).toLocaleString('en-GB')}
+                    {DISPLAY.TEXT.LOGGED_IN}: {new Date(session.createdAt).toLocaleString()}
                     {isNewSession(session.createdAt) && 
                         <span style={{color: theme.text, fontSize: theme.smallTextSize, backgroundColor: theme.hoverBg, borderRadius: '5px', padding: '1px 5px 2px 5px', marginLeft: theme.marginL, fontWeight: 500}}>{DISPLAY.TEXT.NEW}</span>
                     }

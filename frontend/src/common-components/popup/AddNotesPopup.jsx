@@ -60,7 +60,7 @@ export default function AddNotesPopup({isOpen, onClose, noteMetadata, refreshNot
             ];
             const notePayload = {
                 data: note.data,
-                updatedAt: new Date().toISOString()
+                updatedAt: new Date()
             };
             const {encryptedData: metadataData, nonce: metadataNonce} = await encryptData(JSON.stringify(metadataPayload), masterKey);
             const {encryptedData: noteData, nonce} = await encryptData(JSON.stringify(notePayload), masterKey);

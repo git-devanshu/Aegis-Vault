@@ -206,7 +206,7 @@ export default function ExpenseTab({expenseData, trackerData, selectedAccount, s
                             <ExpenseCard key={expense.id} expense={expense}/>
                         ))
                     }
-                    <div style={{height:'140px'}}></div>
+                    <div style={{height:'60px'}}></div>
                 </Grid>
             }
 
@@ -233,7 +233,7 @@ export default function ExpenseTab({expenseData, trackerData, selectedAccount, s
                             )
                         })
                     }
-                    <div style={{height:'140px'}}></div>
+                    <div style={{height:'60px'}}></div>
                 </div>
             }
 

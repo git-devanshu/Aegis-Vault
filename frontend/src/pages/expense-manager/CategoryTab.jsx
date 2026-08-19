@@ -226,7 +226,7 @@ export default function CategoryTab({expenseData, selectedTracker, selectedAccou
                         </Flex>
                     )}
                 )}
-                <div style={{height: '140px'}}></div>
+                <div style={{height: '60px'}}></div>
             </Grid>
 
             {/* Popup for creating custom category */}

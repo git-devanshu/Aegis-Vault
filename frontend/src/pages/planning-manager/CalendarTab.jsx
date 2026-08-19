@@ -22,7 +22,7 @@ export default function CalendarTab({journalMetadata, weeklySchedule, taskData, 
                     <AgendaWidget selectedDate={selectedDate} weeklySchedule={weeklySchedule} taskData={taskData} setRefreshTasks={setRefreshTasks} refreshTasks={refreshTasks} />
 
                     {/* Journal Card */}
-                    <div style={{height: '260px'}}>
+                    <div style={{height: '190px'}}>
                         <JournalCard selectedDate={selectedDate} journalMetadata={journalMetadata} setShowAddEventPopup={setShowAddEventPopup} refreshJournalMetadata={refreshJournalMetadata} setRefreshJournalMetadata={setRefreshJournalMetadata} />
                     </div>
                 </Grid>
