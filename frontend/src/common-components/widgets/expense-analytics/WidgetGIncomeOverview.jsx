@@ -40,7 +40,7 @@ export default function WidgetGIncomeOverview({country, analytics}) {
             <Grid templateColumns={{base:'1fr', md:'1fr 1fr'}} gap={theme.marginL}>
                 <Flex direction='column' gap={theme.marginL}>
                     <Grid templateColumns='1fr 1fr' gap={theme.marginL} height='100%'>
-                        <MetricCard title={DISPLAY.TEXT.INCOME_AMOUNT} value={`${country.currency.symbol} ${analytics.incomeAmount.toLocaleString(country.locale)}`} numericValue={analytics.incomeAmount} Icon={TbMoneybag} referenceValue={analytics.totalAccountIncome} refText={DISPLAY.TEXT.TOTAL_INCOME} refColor={theme.success} />
+                        <MetricCard title={DISPLAY.TEXT.INCOME_AMOUNT} value={`${country.currency.symbol} ${analytics.incomeAmount.toLocaleString(country.locale)}`} numericValue={analytics.incomeAmount} Icon={TbMoneybag} referenceValue={analytics.totalIncome} refText={DISPLAY.TEXT.TOTAL_INCOME} refColor={theme.success} />
                         <MetricCard title={DISPLAY.TEXT.TOTAL_SPENT} value={`${country.currency.symbol} ${analytics.totalExpense.toLocaleString(country.locale)}`} numericValue={analytics.totalExpense} Icon={TbMoneybagMove} referenceValue={analytics.incomeAmount} refText={DISPLAY.TEXT.INCOME_AMOUNT} refColor={theme.error}/>
                     </Grid>
                 </Flex>

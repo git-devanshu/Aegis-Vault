@@ -4,16 +4,15 @@ import {getCategoryDisplayName} from './helpers'
 
 export default function getExpenseAnalyticsMetrics({expenseData, categoryData, selectedTracker, selectedAccount, DISPLAY}){
 
-    const totalIncome = Number(selectedAccount?.totalIncome || 0);
-    const totalExpense = expenseData.reduce((sum, expense)=> sum + Number(expense.amount), 0);
-    const totalAccountIncome = Number(selectedAccount?.totalIncome || 0);
-    const totalAccountExpense = Number(selectedAccount?.totalExpense || 0);
+    const totalIncome = Number(selectedAccount?.totalIncome || 0); // total income in the account
+    const totalExpense = expenseData.reduce((sum, expense)=> sum + Number(expense.amount), 0); // this is expenses of the tracker
+    const totalAccountExpense = Number(selectedAccount?.totalExpense || 0); // total expenses of the account
 
     const currentBalance = totalIncome - totalAccountExpense;
 
     const percentageConsumed = totalIncome ? (totalAccountExpense / totalIncome) * 100 : 0;
 
-    const incomeAmount = Number(selectedTracker?.amount || 0);
+    const incomeAmount = Number(selectedTracker?.amount || 0); // income of the tracker
 
     const transactionCount = expenseData.length;
 
@@ -144,7 +143,6 @@ export default function getExpenseAnalyticsMetrics({expenseData, categoryData, s
     return {
         totalIncome,
         totalExpense,
-        totalAccountIncome,
         totalAccountExpense,
 
         currentBalance,

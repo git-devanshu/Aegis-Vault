@@ -58,7 +58,7 @@ export default function WidgetAAccountSnapshot({selectedAccount, analytics}) {
             <Grid templateColumns={{base: '1fr', md: '1fr 1fr', lg: '1fr 1fr 1fr 1fr'}} gap={theme.marginL}>
                 <PrimaryMetricCard title={DISPLAY.TEXT.TOTAL_BALANCE} value={`${country.currency.symbol} ${analytics.currentBalance.toLocaleString(country.locale)}`} Icon={PiWalletFill} />
                 <MetricCard title={DISPLAY.TEXT.TOTAL_INCOME} value={`${country.currency.symbol} ${analytics.totalIncome.toLocaleString(country.locale)}`} Icon={TbMoneybagHeart}/>
-                <MetricCard title={DISPLAY.TEXT.TOTAL_EXPENSE} value={`${country.currency.symbol} ${analytics.totalExpense.toLocaleString(country.locale)}`} Icon={GiMoneyStack}/>
+                <MetricCard title={DISPLAY.TEXT.TOTAL_EXPENSE} value={`${country.currency.symbol} ${analytics.totalAccountExpense.toLocaleString(country.locale)}`} Icon={GiMoneyStack}/>
                 <MetricCard title={DISPLAY.TEXT.SPENDING} value={`${analytics.percentageConsumed.toFixed(1)}%`} Icon={RiPercentFill}/>
             </Grid>
         </Box>
