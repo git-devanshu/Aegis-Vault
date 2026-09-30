@@ -1,15 +1,15 @@
 import React from 'react';
-import { Flex, Text, Grid, Image, Box } from '@chakra-ui/react';
+import { Flex, Text, Grid, Image, Box, Spacer } from '@chakra-ui/react';
 import { theme } from '../../themes/theme';
 import BANKS from '../../assets/banks.json';
 import { getContrastColor } from '../../utility/helpers';
 import useLanguage from '../../hooks/useLanguage';
-import { MdSwapHorizontalCircle } from "react-icons/md";
+import { MdCreditCard, MdSwapHorizontalCircle } from "react-icons/md";
 import { TbMoneybag } from "react-icons/tb";
 import { GiMoneyStack } from 'react-icons/gi';
 
 
-export default function BankAccountCard({account, setShowManageAccountModal, showIncomeAndExpense=true, hideAccountBalanceInCard=false}) {
+export default function BankAccountCard({account, setShowManageAccountModal, showIncomeAndExpense=true, hideAccountBalanceInCard=false, creditCardButtonAction, showCreditCardSwitch=true}) {
     if(!account) return null;
     const {DISPLAY} = useLanguage();
     
@@ -21,7 +21,7 @@ export default function BankAccountCard({account, setShowManageAccountModal, sho
 
     return (
         <div>
-            <div style={{ backgroundColor: bank.color, borderRadius: `calc(${theme.radius} * 2)`, padding:theme.paddingL, color: textColor, minHeight: '220px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', boxShadow: '0 2px 8px rgba(0,0,0,0.18)' }}>
+            <div style={{ backgroundColor: bank.color, borderRadius: `calc(${theme.radius} * 2)`, padding:theme.paddingL, color: textColor, width: '100%', aspectRatio: '1.65', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', boxShadow: '0 2px 8px rgba(0,0,0,0.18)' }}>
                 <Flex gap={theme.paddingL} align='center'>
                     <Image src={bank.logo} alt={bank.bankName} width='48px' height='48px' borderRadius='4px' />
                     <div>
@@ -37,14 +37,20 @@ export default function BankAccountCard({account, setShowManageAccountModal, sho
                 {!hideAccountBalanceInCard && <Text fontSize={`calc(${theme.headingSize} * 1.5)`} fontWeight={600}>
                     {formattedBalance}
                 </Text>}
-                <Text letterSpacing='1px' fontSize={theme.headingSize} fontFamily='math' fontWeight={600}>
+                <Text letterSpacing='1px' fontSize={theme.headingSize} fontFamily='monospace' fontWeight={600}>
                     {maskedAccountNo}
                 </Text>
 
-                <Flex justify='space-between' align='center' marginTop={theme.marginS}>
+                <Flex align='center' gap='10px' marginTop={theme.marginS}>
                     <Text fontSize={theme.textSize} fontWeight={500} opacity={0.9}>
                         {account.accountAlias}
                     </Text>
+                    <Spacer/>
+                    {showCreditCardSwitch && 
+                        <Box onClick={creditCardButtonAction} backgroundColor={theme.bg} borderRadius='25px' padding='6px 10px' gap='5px' cursor='pointer' _hover={{backgroundColor: theme.cardBg}}>
+                            <MdCreditCard style={{fontSize:'22px', color:theme.text}} />
+                        </Box>
+                    }
                     <Box onClick={()=> setShowManageAccountModal(true)} display='flex' alignItems='center' backgroundColor={theme.bg} borderRadius='25px' padding='6px 10px' gap='5px' cursor='pointer' _hover={{backgroundColor: theme.cardBg}}>
                         <MdSwapHorizontalCircle style={{fontSize:'20px', color:theme.text}}/>
                         <Text fontSize={theme.textSize} color={theme.text}>

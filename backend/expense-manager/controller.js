@@ -1,6 +1,8 @@
 const {ExpenseCategories} = require('../models/expenseCategories');
 const {ExpenseTrackers} = require('../models/expenseTrackers');
 const {Expenses} = require('../models/expenses');
+const {CreditCardSpendings} = require('../models/creditCardSpendings');
+const {CreditCards} = require('../models/creditCards');
 const {getLanguageConstants} = require('../utility/language');
 const {updateBankAccount} = require('../accounts-layer/helper');
 
@@ -372,19 +374,275 @@ const updateExpenseLimits = async(req, res) =>{
 
 
 /*
-* POST /api/em/
-* 
+* POST /api/em/credit-card
+* Add a new credit card for a specific bank account
 */
-// const  = async(req, res) =>{
-//     const {RESPONSES} = getLanguageConstants(req.lang);
-//     try{
+const addNewCreditCard = async(req, res) =>{
+    const {RESPONSES} = getLanguageConstants(req.lang);
+    try{
+        const {accountIndex, cardsData, billingCycleData, cardsDataNonce, billingCycleDataNonce} = req.body;
+        const accountIndexNumber = Number(accountIndex);
+ 
+        if(Number.isNaN(accountIndexNumber) || !cardsData?.length || !billingCycleData?.length || !cardsDataNonce?.length || !billingCycleDataNonce?.length){
+            return res.status(400).json({ message : RESPONSES.COMMON.UNEXPECTED_ERROR });
+        }
 
-//     }
-//     catch(error){
-//         console.log('Server error: ', error);
-//         res.status(500).json({ message : RESPONSES.COMMON.SERVER_ERROR });
-//     }
-// }
+        const highestAccountCreditCard = await CreditCards.findOne({userId: req.id, accountIndex: accountIndexNumber}).sort({ccIndex: -1});
+        const ccIndex = highestAccountCreditCard ? highestAccountCreditCard.ccIndex + 1 : 0;
+
+        const newCreditCard = new CreditCards({
+            userId: req.id,
+            accountIndex: accountIndexNumber,
+            ccIndex,
+            cardsData,
+            billingCycleData,
+            cardsDataNonce,
+            billingCycleDataNonce
+        });
+        await newCreditCard.save();
+
+        res.status(200).json({ message : RESPONSES.EXPENSE_MANAGER.CREDIT_CARD_ADDED });
+    }
+    catch(error){
+        console.log('Server error: ', error);
+        res.status(500).json({ message : RESPONSES.COMMON.SERVER_ERROR });
+    }
+}
+
+
+/*
+* PUT /api/em/credit-card
+* Update the addon/companion cards, billing cycle or spending limit for already existing credit card
+*/
+const updateCreditCardsDetails = async(req, res) =>{
+    const {RESPONSES} = getLanguageConstants(req.lang);
+    try{
+        const {accountIndex, ccIndex, cardsData, billingCycleData, cardsDataNonce, billingCycleDataNonce} = req.body;
+        const accountIndexNumber = Number(accountIndex);
+        const ccIndexNumber = Number(ccIndex);
+        
+        if(Number.isNaN(accountIndexNumber) || Number.isNaN(ccIndexNumber) || !cardsData?.length || !billingCycleData?.length || !cardsDataNonce?.length || !billingCycleDataNonce?.length){
+            return res.status(400).json({ message : RESPONSES.COMMON.UNEXPECTED_ERROR });
+        }
+
+        const updatedCreditCard = await CreditCards.findOneAndUpdate({
+            userId: req.id,
+            accountIndex: accountIndexNumber,
+            ccIndex: ccIndexNumber
+        }, {
+            cardsData, 
+            billingCycleData, 
+            cardsDataNonce, 
+            billingCycleDataNonce
+        }
+    );
+    if(!updatedCreditCard){
+        return res.status(404).json({ message: RESPONSES.EXPENSE_MANAGER.CARD_NOT_FOUND });
+    }
+
+    res.status(200).json({ message: RESPONSES.EXPENSE_MANAGER.CARD_UPDATED });
+    }
+    catch(error){
+        console.log('Server error: ', error);
+        res.status(500).json({ message : RESPONSES.COMMON.SERVER_ERROR });
+    }
+}
+
+
+/*
+* DELETE /api/em/credit-card/{cardId}
+* Delete a credit card with all its addon cards only if it has no spendings under it
+*/
+const deleteCreditCard = async(req, res) =>{
+    const {RESPONSES} = getLanguageConstants(req.lang);
+    try{
+        const cardId = req.params.cardId;
+        if(!cardId){
+            return res.status(400).json({ message : RESPONSES.COMMON.UNEXPECTED_ERROR });
+        }
+
+        const creditCard = await CreditCards.findOne({_id: cardId, userId: req.id});
+        if(!creditCard){
+            return res.status(404).json({ message : RESPONSES.EXPENSE_MANAGER.CARD_NOT_FOUND });
+        }
+
+        const presentSpendings = await CreditCardSpendings.exists({userId: req.id, accountIndex: creditCard.accountIndex, ccIndex: creditCard.ccIndex});
+        if(presentSpendings){
+            return res.status(409).json({ message : RESPONSES.EXPENSE_MANAGER.CANNOT_DELETE_CARD });
+        }
+
+        await creditCard.deleteOne();
+        res.status(200).json({ message : RESPONSES.EXPENSE_MANAGER.CARD_DELETED });
+    }
+    catch(error){
+        console.log('Server error: ', error);
+        res.status(500).json({ message : RESPONSES.COMMON.SERVER_ERROR });
+    }
+}
+
+
+/*
+* GET /api/em/credit-card/{accountIndex}
+* Fetch all credit cards for a specific bank account
+*/
+const fetchAllAccountCreditCards = async(req, res) =>{
+    const {RESPONSES} = getLanguageConstants(req.lang);
+    try{
+        const accountIndex = Number(req.params.accountIndex);
+        if(Number.isNaN(accountIndex)){
+            return res.status(400).json({ message : RESPONSES.COMMON.UNEXPECTED_ERROR });
+        }
+
+        const creditCardData = await CreditCards.find({ userId: req.id, accountIndex }).sort({ccIndex: -1});
+        const responseMessage = !creditCardData?.length ? RESPONSES.EXPENSE_MANAGER.NO_CARD_ADDED : RESPONSES.COMMON.SUCCESS;
+        res.status(200).json({ message : responseMessage, creditCardData });
+    }
+    catch(error){
+        console.log('Server error: ', error);
+        res.status(500).json({ message : RESPONSES.COMMON.SERVER_ERROR });
+    }
+}
+
+
+/*
+* GET /api/em/credit-card-spendings/{ccIndex}/{accountIndex}
+* Fetch all spendings of a specific credit card of a specific bank account
+*/
+const fetchAllCardCreditCardSpendings = async(req, res) =>{
+    const {RESPONSES} = getLanguageConstants(req.lang);
+    try{
+        const ccIndex = Number(req.params.ccIndex);
+        const accountIndex = Number(req.params.accountIndex);
+        if(Number.isNaN(ccIndex) || Number.isNaN(accountIndex)){
+            return res.status(400).json({ message : RESPONSES.COMMON.UNEXPECTED_ERROR });
+        }
+
+        const spendingData = await CreditCardSpendings.find({ userId: req.id, ccIndex, accountIndex });
+        const responseMessage = !spendingData?.length ? RESPONSES.EXPENSE_MANAGER.NO_SPENDINGS_ADDED : RESPONSES.COMMON.SUCCESS;
+        res.status(200).json({ message : responseMessage, spendingData });
+    }
+    catch(error){
+        console.log('Server error: ', error);
+        res.status(500).json({ message : RESPONSES.COMMON.SERVER_ERROR });
+    }
+}
+
+
+/*
+* POST /api/em/credit-card-spendings
+* Add a spending under a specific credit card
+*/
+const addCreditCardSpending = async(req, res) =>{
+    const {RESPONSES} = getLanguageConstants(req.lang);
+    try{
+        const {accountIndex, ccIndex, categoryIndex, spendingData, nonce} = req.body;
+        const accountIndexNumber = Number(accountIndex);
+        const ccIndexNumber = Number(ccIndex);
+        const categoryIndexNumber = Number(categoryIndex);
+
+        if(Number.isNaN(accountIndexNumber) || Number.isNaN(ccIndexNumber) || Number.isNaN(categoryIndexNumber) || !spendingData?.length || !nonce?.length){
+            return res.status(400).json({ message : RESPONSES.COMMON.UNEXPECTED_ERROR });
+        }
+
+        const newSpending = new CreditCardSpendings({
+            userId: req.id,
+            accountIndex: accountIndexNumber,
+            ccIndex: ccIndexNumber,
+            categoryIndex: categoryIndexNumber,
+            spendingData,
+            nonce
+        });
+        await newSpending.save();
+
+        res.status(200).json({ message : RESPONSES.EXPENSE_MANAGER.SPENDING_ADDED });
+    }
+    catch(error){
+        console.log('Server error: ', error);
+        res.status(500).json({ message : RESPONSES.COMMON.SERVER_ERROR });
+    }
+}
+
+
+/*
+* DELETE /api/em/credit-card-spendings/{spendingId}
+* Delete credit card spending of a specific credit card
+*/
+const deleteCreditCardSpending = async(req, res) =>{
+    const {RESPONSES} = getLanguageConstants(req.lang);
+    try{
+        const spendingId = req.params.spendingId;
+        if(!spendingId){
+            return res.status(400).json({ message : RESPONSES.COMMON.UNEXPECTED_ERROR });
+        }
+
+        const deletedSpending = await CreditCardSpendings.findOneAndDelete({ _id: spendingId, userId: req.id });
+        if(!deletedSpending){
+            return res.status(404).json({ message : RESPONSES.EXPENSE_MANAGER.SPENDING_NOT_FOUND });
+        }
+
+        res.status(200).json({ message : RESPONSES.EXPENSE_MANAGER.SPENDING_DELETED });
+    }
+    catch(error){
+        console.log('Server error: ', error);
+        res.status(500).json({ message : RESPONSES.COMMON.SERVER_ERROR });
+    }
+}
+
+
+/*
+* POST /api/em/credit-card/pay-bill
+* Pay the credit card bill by marking those spendings as paid and add expenses for them under a tracker
+*/
+const payCreditCardBill = async(req, res) =>{
+    const {RESPONSES} = getLanguageConstants(req.lang);
+    try{
+        const {spendingIDs, expenses, accountData, accountNonce} = req.body;
+        if(!Array.isArray(spendingIDs) || !Array.isArray(expenses) || !spendingIDs?.length || !expenses?.length || !accountData?.length || !accountNonce?.length || spendingIDs.length !== expenses.length){
+            return res.status(400).json({ message : RESPONSES.COMMON.UNEXPECTED_ERROR });
+        }
+
+        const formattedExpenses = [];
+        for(const expense of expenses){
+            const { accountIndex, trackerIndex, categoryIndex, expenseData, nonce } = expense;
+            const accountIndexNumber = Number(accountIndex);
+            const trackerIndexNumber = Number(trackerIndex);
+            const categoryIndexNumber = Number(categoryIndex);
+
+            if(Number.isNaN(accountIndexNumber) || Number.isNaN(trackerIndexNumber) || Number.isNaN(categoryIndexNumber) || !expenseData?.length || !nonce?.length){
+                return res.status(400).json({ message: RESPONSES.COMMON.UNEXPECTED_ERROR });
+            }
+
+            formattedExpenses.push({
+                userId: req.id,
+                accountIndex: accountIndexNumber,
+                trackerIndex: trackerIndexNumber,
+                categoryIndex: categoryIndexNumber,
+                expenseData,
+                nonce
+            });
+        }
+
+        const isAccountUpdated = await updateBankAccount(req.id, accountData, Number(expenses[0].accountIndex), accountNonce);
+        if(!isAccountUpdated){
+            return res.status(500).json({ message: RESPONSES.ACCOUNTS_LAYER.ERROR_UPDATING_BALANCE });
+        }
+
+        await Expenses.insertMany(formattedExpenses);
+
+        await CreditCardSpendings.updateMany({
+                _id: { $in: spendingIDs }
+            }, {
+                $set: { paymentDue: false }
+            }
+        );
+
+        res.status(200).json({ message: RESPONSES.EXPENSE_MANAGER.BILL_PAID });
+    }
+    catch(error){
+        console.log('Server error: ', error);
+        res.status(500).json({ message : RESPONSES.COMMON.SERVER_ERROR });
+    }
+}
 
 
 /*
@@ -417,7 +675,6 @@ const updateExpenseLimits = async(req, res) =>{
 //         res.status(500).json({ message : RESPONSES.COMMON.SERVER_ERROR });
 //     }
 // }
-
 
 
 module.exports = {
@@ -431,5 +688,13 @@ module.exports = {
     deleteExpense,
     transferExpenses,
     updateExpenseCategories,
-    updateExpenseLimits
+    updateExpenseLimits,
+    addNewCreditCard,
+    updateCreditCardsDetails,
+    deleteCreditCard,
+    fetchAllAccountCreditCards,
+    fetchAllCardCreditCardSpendings,
+    addCreditCardSpending,
+    deleteCreditCardSpending,
+    payCreditCardBill
 };

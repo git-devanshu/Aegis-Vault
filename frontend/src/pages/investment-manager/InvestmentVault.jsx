@@ -296,7 +296,7 @@ export default function InvestmentVault() {
             <AppLayout sidebar={sidebar}>
                 <Grid templateColumns={{base:'1fr', md:'1fr 2fr'}} width='100%' gap={theme.paddingL}>
                     {/* Account Details */}
-                    <BankAccountCard account={selectedAccount} setShowManageAccountModal={setShowManageAccountModal} showIncomeAndExpense={false} hideAccountBalanceInCard={hideAccountBalanceInCard}/>
+                    <BankAccountCard account={selectedAccount} setShowManageAccountModal={setShowManageAccountModal} showIncomeAndExpense={false} hideAccountBalanceInCard={hideAccountBalanceInCard} showCreditCardSwitch={false}/>
 
                     <div>
                         <TabGroup tabs={tabs} value={selectedTab} onChange={setSelectedTab}/>

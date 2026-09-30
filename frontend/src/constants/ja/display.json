@@ -118,7 +118,17 @@
         "LAST_UPDATED": "最終更新日",
         "CONTACT_US": "お問い合わせ",
         "ACCESS_THROUGH_EXTENSION": "拡張機能からのアクセス",
-        "NEW_PASSWORD": "新しいパスワード"
+        "NEW_PASSWORD": "新しいパスワード",
+        "CARDS": "カード",
+        "SWITCH_CARD": "クレジットカードを切り替え",
+        "ADD_CARD": "新しいクレジットカードを追加",
+        "CARD_NAME": "カード名",
+        "CARD_NUMBER": "カード番号",
+        "SPENDING_LIMIT": "利用限度額",
+        "BILLING_DATE": "請求日",
+        "PAYMENT_NETWORK": "決済ネットワークを選択",
+        "MANAGE_CARD": "カードを管理",
+        "PAY_CREDIT_CARD_BILL": "クレジットカードの請求を支払い"
     },
     
     "TEXT": {
@@ -501,7 +511,20 @@
         "NOTES": "メモ",
         "SECURITY": "セキュリティ",
         "NOTIFICATIONS": "通知",
-        "SETTINGS": "設定"
+        "SETTINGS": "設定",
+        "CREDIT_CARDS": "クレジットカード",
+        "CREDIT_CARD_SPENDINGS": "クレジットカード支出",
+        "TOTAL_BUDGET": "総予算",
+        "BILLING_CYCLE": "請求サイクル",
+        "CREDIT_LIMIT": "利用限度額",
+        "OUTSTANDING_AMOUNT": "未払い残高",
+        "DELETE_CARD": "クレジットカードを削除",
+        "CONFIRM_DELETE_CARD": "このカードを完全に削除してもよろしいですか？",
+        "COMPANION_CARDS": "追加カード",
+        "ADD_SPENDING": "支出を追加",
+        "DELETE_SPENDING": "支出を削除",
+        "CONFIRM_DELETE_SPENDING": "この支出を削除してもよろしいですか？",
+        "BILL_PAYMENT_NOTE": "このカードの請求を支払うと、選択した収入の下でこれらの支出が経費に追加されます。"
     },
 
     "BUTTONS": {
@@ -568,7 +591,10 @@
         "ADD_PASSWORD": "パスワードを追加",
         "RESET_PASSWORD": "パスワードをリセット",
         "RESET_PIN": "PINをリセット",
-        "GET_STARTED": "今すぐ始める"
+        "GET_STARTED": "今すぐ始める",
+        "ADD_CARD": "カードを追加",
+        "ADD_SPENDING": "支出を追加",
+        "PAY_BILL": "請求を支払い"
     },
 
     "PASSWORD_LABELS": {
@@ -772,7 +798,15 @@
         "QUICK_SAVE_EXPENSE": "これらの支出はこのデバイスにローカルで保存されます。インターネットに接続したら、忘れずに口座へインポートしてください。",
         "IMPORT_FROM_QUICKSAVE": "ローカルのクイックセーブエントリをメインデータベースに転送します",
         "CLEAR_NOTEPAD": "メモ帳に含まれるすべてのテキストを消去",
-        "SAVE_TO_QUICKSAVE": "現在のテキストをクイックセーブモジュールに書き出し（エクスポート）"
+        "SAVE_TO_QUICKSAVE": "現在のテキストをクイックセーブモジュールに書き出し（エクスポート）",
+        "ADD_NEW_CARD": "新しいカードを追加",
+        "DELETE_CURRENT_CARD": "現在のカードを削除",
+        "SWITCH_CARD": "カードを切り替え",
+        "MANAGE_CARD": "カードを管理",
+        "SHOW_ONLY_UNPAID": "未払いを表示",
+        "SHOW_ALL": "すべての支出を表示",
+        "PAY_BILL": "請求 को 支払い",
+        "ADD_SPENDING": "支出を追加"
     },
 
     "DEFAULT_EXPENSE_CATEGORIES": {

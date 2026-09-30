@@ -57,7 +57,18 @@
         "EXPENSES_TRANSFERRED": "すべての支出の移動に成功しました",
         "CANNOT_DELETE_TRACKER": "この収入は削除できません",
         "CATEGORIES_UPDATED": "カテゴリーリストの更新に成功しました",
-        "LIMITS_UPDATED": "これらのカテゴリーの予算を更新しました"
+        "LIMITS_UPDATED": "これらのカテゴリーの予算を更新しました",
+        "CREDIT_CARD_ADDED": "新しいクレジットカードが正常に追加されました",
+        "CARD_NOT_FOUND": "このアカウントにクレジットカードが見つかりません",
+        "CARD_UPDATED": "クレジットカード情報が正常に更新されました",
+        "CANNOT_DELETE_CARD": "このクレジットカードは削除できません",
+        "CARD_DELETED": "クレジットカードが正常に削除されました",
+        "NO_CARD_ADDED": "このアカウントに追加されたクレジットカードはありません",
+        "NO_SPENDINGS_ADDED": "このカードに追加された支出はありません",
+        "SPENDING_ADDED": "支出が正常に追加されました",
+        "SPENDING_NOT_FOUND": "このカードに支出が見つかりません",
+        "SPENDING_DELETED": "支出が正常に削除されました",
+        "BILL_PAID": "クレジットカードの請求が正常に支払われました"
     },
 
     "INVESTMENT_MANAGER": {

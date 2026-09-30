@@ -57,7 +57,18 @@
         "EXPENSES_TRANSFERRED": "toutes les dépenses ont été transférées avec succès",
         "CANNOT_DELETE_TRACKER": "impossible de supprimer ce revenu",
         "CATEGORIES_UPDATED": "liste des catégories mise à jour avec succès",
-        "LIMITS_UPDATED": "budget mis à jour pour ces catégories"
+        "LIMITS_UPDATED": "budget mis à jour pour ces catégories",
+        "CREDIT_CARD_ADDED": "Nouvelle carte de crédit ajoutée avec succès",
+        "CARD_NOT_FOUND": "Carte de crédit introuvable dans ce compte",
+        "CARD_UPDATED": "Données de la carte de crédit mises à jour avec succès",
+        "CANNOT_DELETE_CARD": "Impossible de supprimer cette carte de crédit",
+        "CARD_DELETED": "Carte de crédit supprimée avec succès",
+        "NO_CARD_ADDED": "Aucune carte de crédit ajoutée à ce compte",
+        "NO_SPENDINGS_ADDED": "Aucune dépense ajoutée à cette carte",
+        "SPENDING_ADDED": "Dépense ajoutée avec succès",
+        "SPENDING_NOT_FOUND": "Dépense introuvable sur cette carte",
+        "SPENDING_DELETED": "Dépense supprimée avec succès",
+        "BILL_PAID": "Facture de carte de crédit payée avec succès"
     },
 
     "INVESTMENT_MANAGER": {

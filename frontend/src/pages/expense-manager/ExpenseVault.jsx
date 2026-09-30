@@ -32,6 +32,8 @@ import ExpenseTab from "./ExpenseTab";
 import ExpenseAnalyticsModal from "./ExpenseAnalyticsModal";
 import CategoryTab from "./CategoryTab";
 import FeatureGuide from "./FeatureGuide";
+import CardsModal from "./CardsModal";
+import AddNewCreditCardPopup from "../../common-components/popup/AddNewCreditCardPopup";
 
 
 export default function ExpenseVault() {
@@ -43,14 +45,19 @@ export default function ExpenseVault() {
     const [trackerData, setTrackerData] = useState(null);
     const [expenseData, setExpenseData] = useState(null);
     const [categoryData, setCategoryData] = useState(null);
+    const [creditCardData, setCreditCardData] = useState(null);
+    const [spendingData, setSpendingData] = useState(null);
 
     const [selectedAccountIndex, setSelectedAccountIndex] = useState(null);
     const [selectedTrackerIndex, setSelectedTrackerIndex] = useState(null);
+    const [selectedCCIndex, setSelectedCCIndex] = useState(null);
 
     const [refreshAccounts, setRefreshAccounts] = useState(false);
     const [refreshTrackers, setRefreshTrackers] = useState(false);
     const [refreshExpenses, setRefreshExpenses] = useState(false);
     const [refreshCategories, setRefreshCategories] = useState(false);
+    const [refreshCreditCards, setRefreshCreditCards] = useState(false);
+    const [refreshSpendings, setRefreshSpendings] = useState(false);
 
     const [error, setError] = useState(null);
     const [isLoading, setIsLoading] = useState(false); // use this to disable buttons not to show <Loading/>
@@ -59,8 +66,10 @@ export default function ExpenseVault() {
     const tabs = [DISPLAY.LABELS.INCOME, DISPLAY.LABELS.EXPENSES, DISPLAY.LABELS.CATEGORIES];
 
     const [showManageAccountModal, setShowManageAccountModal] = useState(false);
+    const [showCardsModal, setShowCardsModal] = useState(false);
     const [showAddTrackerPopup, setShowAddTrackerPopup] = useState(false);
     const [showAddExpensePopup, setShowAddExpensePopup] = useState(false);
+    const [showAddNewCardPopup, setShowAddNewCardPopup] = useState(false);
 
     const [showExpenseAnalytics, setShowExpenseAnalytics] = useState(false);
     const [showGuideModal, setShowGuideModal] = useState(false);
@@ -72,6 +81,7 @@ export default function ExpenseVault() {
     useEffect(() =>{
         if(!masterKey) return;
         setSelectedTrackerIndex(null);
+        setSelectedCCIndex(null);
         async function fetchAccountData(){
             setIsLoading(true);
             await apiRequest({
@@ -197,11 +207,82 @@ export default function ExpenseVault() {
         fetchCategoryData();
     }, [refreshCategories, masterKey]);
 
+    // for fetching credit card data
+    useEffect(()=> {
+        if(!masterKey || selectedAccountIndex === null) return;
+        async function fetchCreditCardData(){
+            setIsLoading(true);
+            await apiRequest({
+                method: 'GET',
+                endpoint: `/api/em/credit-card/${selectedAccountIndex}`,
+                setIsLoading,
+                onSuccess: async(res) =>{
+                    const decryptedCards = [];
+                    for(const card of res?.data?.creditCardData){
+                        const decryptedCardsData = JSON.parse(await decryptData(card.cardsData, card.cardsDataNonce, masterKey));
+                        const decryptedBillingCycleData = JSON.parse(await decryptData(card.billingCycleData, card.billingCycleDataNonce, masterKey)); // treating this object as main object 
+                        decryptedBillingCycleData.cardsData = decryptedCardsData;
+                        decryptedBillingCycleData.ccIndex = card.ccIndex;
+                        decryptedBillingCycleData.accountIndex = card.accountIndex;
+                        decryptedBillingCycleData.id = card._id;
+                        decryptedCards.push(decryptedBillingCycleData);
+                    }
+                    setCreditCardData(decryptedCards);
+                    if(decryptedCards.length){
+                        setSelectedCCIndex(decryptedCards[0].ccIndex);
+                    }
+                    else{
+                        setSelectedCCIndex(null);
+                        setSpendingData([]);
+                    }
+                },
+                onError: (err)=> {
+                    setError(err);
+                },
+                defaultSuccessToast: false
+            });
+        }
+        fetchCreditCardData();
+    }, [refreshCreditCards, selectedAccountIndex, masterKey]);
+
+    // for fetching credit card spending data
+    useEffect(()=> {
+        if(!masterKey || selectedAccountIndex === null || selectedCCIndex === null) return;
+        async function fetchCreditCardSpendingData(){
+            setIsLoading(true);
+            await apiRequest({
+                method: 'GET',
+                endpoint: `/api/em/credit-card-spendings/${selectedCCIndex}/${selectedAccountIndex}`,
+                setIsLoading,
+                onSuccess: async(res) =>{
+                    const decryptedSpendings = [];
+                    for(const val of res?.data?.spendingData){
+                        const decryptedSpendingData = JSON.parse(await decryptData(val.spendingData, val.nonce, masterKey));
+                        decryptedSpendingData.ccIndex = val.ccIndex;
+                        decryptedSpendingData.paymentDue = val.paymentDue;
+                        decryptedSpendingData.categoryIndex = val.categoryIndex;
+                        decryptedSpendingData.accountIndex = val.accountIndex;
+                        decryptedSpendingData.id = val._id;
+                        decryptedSpendings.push(decryptedSpendingData);
+                    }
+                    setSpendingData(decryptedSpendings);
+                },
+                onError: (err)=> {
+                    setError(err);
+                },
+                defaultSuccessToast: false
+            });
+        }
+        fetchCreditCardSpendingData();
+    }, [refreshSpendings, selectedCCIndex, selectedAccountIndex, masterKey]);
+
     const refreshPage = (e) =>{
         setRefreshAccounts(!refreshAccounts);
         setRefreshTrackers(!refreshTrackers);
         setRefreshExpenses(!refreshExpenses);
         setRefreshCategories(!refreshCategories);
+        setRefreshCreditCards(!refreshCreditCards);
+        setRefreshSpendings(!refreshSpendings);
     }
 
     if(!masterKey){
@@ -224,8 +305,21 @@ export default function ExpenseVault() {
         return <Loading data={DISPLAY.TEXT.CATEGORIES} error={error}/>
     }
 
+    if(!creditCardData){
+        return <Loading data={DISPLAY.TEXT.CREDIT_CARDS} error={error}/>
+    }
+
+    if(!spendingData){
+        return <Loading data={DISPLAY.TEXT.CREDIT_CARD_SPENDINGS} error={error}/>
+    }
+
     if(accountData.length === 0){
         return <AddBankAccountModal onBack={()=> navigate('/home')} refreshAccounts={refreshAccounts} setRefreshAccounts={setRefreshAccounts}/>
+    }
+
+    const creditCardButtonAction = () =>{
+        if(!creditCardData.length) setShowAddNewCardPopup(true);
+        else setShowCardsModal(true);
     }
 
     const sidebar = (
@@ -244,6 +338,10 @@ export default function ExpenseVault() {
 
     const selectedTracker = trackerData.find(tracker =>
         tracker.trackerIndex === selectedTrackerIndex
+    );
+
+    const selectedCreditCard = creditCardData.find(card =>
+        card.ccIndex === selectedCCIndex
     );
 
     const trackerDataOptions = trackerData.map(tracker =>({
@@ -266,7 +364,7 @@ export default function ExpenseVault() {
             <AppLayout sidebar={sidebar}>
                 <Grid templateColumns={{base:'1fr', md:'1fr 2fr'}} width='100%' gap={theme.paddingL}>
                     {/* Account Details */}
-                    <BankAccountCard account={selectedAccount} setShowManageAccountModal={setShowManageAccountModal}/>
+                    <BankAccountCard account={selectedAccount} setShowManageAccountModal={setShowManageAccountModal} creditCardButtonAction={creditCardButtonAction}/>
 
                     <div>
                         <TabGroup tabs={tabs} value={selectedTab} onChange={setSelectedTab}/>
@@ -298,6 +396,12 @@ export default function ExpenseVault() {
             {/* Show Analytics Modal */}
             {showExpenseAnalytics && <ExpenseAnalyticsModal onBack={()=> setShowExpenseAnalytics(false)} selectedAccount={selectedAccount} selectedTracker={selectedTracker} expenseData={expenseData} categoryData={categoryData} selectedTrackerIndex={selectedTrackerIndex} setSelectedTrackerIndex={setSelectedTrackerIndex} trackerDataOptions={trackerDataOptions} trackerData={trackerData} setSelectedTab={setSelectedTab} />}
             
+            {/* Show Cards Modal */}
+            {showCardsModal && <CardsModal creditCardData={creditCardData} spendingData={spendingData} selectedAccount={selectedAccount} selectedCreditCard={selectedCreditCard} categoryData={categoryData} refreshCreditCards={refreshCreditCards} setRefreshCreditCards={setRefreshCreditCards} refreshSpendings={refreshSpendings} setRefreshSpendings={setRefreshSpendings} onBack={()=> setShowCardsModal(false)} selectedCCIndex={selectedCCIndex} setSelectedCCIndex={setSelectedCCIndex} trackerDataOptions={trackerDataOptions} setAccountData={setAccountData} accountDataArray={accountData} />}
+
+            {/* Add New Credit Card Popup */}
+            <AddNewCreditCardPopup showAddNewCardPopup={showAddNewCardPopup} setShowAddNewCardPopup={setShowAddNewCardPopup} refreshCreditCards={refreshCreditCards} setRefreshCreditCards={setRefreshCreditCards} selectedAccount={selectedAccount} />
+
             {/* Guide Modal */}
             {showGuideModal && <FeatureGuide setShowModal={setShowGuideModal}/>}
         </div>

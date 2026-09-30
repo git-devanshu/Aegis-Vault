@@ -118,7 +118,17 @@
         "LAST_UPDATED": "Zuletzt aktualisiert",
         "CONTACT_US": "Kontaktieren Sie uns",
         "ACCESS_THROUGH_EXTENSION": "Über Extension zugreifen",
-        "NEW_PASSWORD": "Neues Passwort"
+        "NEW_PASSWORD": "Neues Passwort",
+        "CARDS": "Karten",
+        "SWITCH_CARD": "Kreditkarte wechseln",
+        "ADD_CARD": "Neue Kreditkarte hinzufügen",
+        "CARD_NAME": "Kartenname",
+        "CARD_NUMBER": "Kartennummer",
+        "SPENDING_LIMIT": "Ausgabenlimit",
+        "BILLING_DATE": "Abrechnungsdatum",
+        "PAYMENT_NETWORK": "Zahlungsnetzwerk auswählen",
+        "MANAGE_CARD": "Karte verwalten",
+        "PAY_CREDIT_CARD_BILL": "Kreditkartenrechnung bezahlen"
     },
 
     "TEXT": {
@@ -501,7 +511,20 @@
         "NOTES": "Notizen",
         "SECURITY": "Sicherheit",
         "NOTIFICATIONS": "Benachrichtigungen",
-        "SETTINGS": "Einstellungen"
+        "SETTINGS": "Einstellungen",
+        "CREDIT_CARDS": "Kreditkarten",
+        "CREDIT_CARD_SPENDINGS": "Kreditkartenausgaben",
+        "TOTAL_BUDGET": "Gesamtbudget",
+        "BILLING_CYCLE": "Abrechnungszyklus",
+        "CREDIT_LIMIT": "Kreditlimit",
+        "OUTSTANDING_AMOUNT": "Offener Betrag",
+        "DELETE_CARD": "Kreditkarte löschen",
+        "CONFIRM_DELETE_CARD": "Sind Sie sicher, dass Sie diese Karte vollständig löschen möchten?",
+        "COMPANION_CARDS": "Zusatzkarten",
+        "ADD_SPENDING": "Ausgabe hinzufügen",
+        "DELETE_SPENDING": "Ausgabe löschen",
+        "CONFIRM_DELETE_SPENDING": "Sind Sie sicher, dass Sie diese Ausgabe löschen möchten?",
+        "BILL_PAYMENT_NOTE": "Durch das Bezahlen der Rechnung für diese Karte werden diese Ausgaben unter dem folgenden ausgewählten Einkommen zu den Ausgaben hinzugefügt."
     },
 
     "BUTTONS": {
@@ -568,7 +591,10 @@
         "ADD_PASSWORD": "Passwort hinzufügen",
         "RESET_PASSWORD": "Neues Passwort festlegen",
         "RESET_PIN": "Neue Security Pin festlegen",
-        "GET_STARTED": "Loslegen"
+        "GET_STARTED": "Loslegen",
+        "ADD_CARD": "Karte hinzufügen",
+        "ADD_SPENDING": "Ausgabe hinzufügen",
+        "PAY_BILL": "Rechnung bezahlen"
     },
 
     "PASSWORD_LABELS": {
@@ -772,7 +798,15 @@
         "QUICK_SAVE_EXPENSE": "Diese Ausgaben sind keinem Konto zugeordnet. Sie müssen sie später in den Expense Manager importieren.",
         "IMPORT_FROM_QUICKSAVE": "Aus Quick Save importieren",
         "CLEAR_NOTEPAD": "Notizblock leeren",
-        "SAVE_TO_QUICKSAVE": "In Quick Save exportieren"
+        "SAVE_TO_QUICKSAVE": "In Quick Save exportieren",
+        "ADD_NEW_CARD": "Neue Karte hinzufügen",
+        "DELETE_CURRENT_CARD": "Aktuelle Karte löschen",
+        "SWITCH_CARD": "Karte wechseln",
+        "MANAGE_CARD": "Karte verwalten",
+        "SHOW_ONLY_UNPAID": "Fällige Zahlungen anzeigen",
+        "SHOW_ALL": "Alle Ausgaben anzeigen",
+        "PAY_BILL": "Rechnung bezahlen",
+        "ADD_SPENDING": "Ausgabe hinzufügen"
     },
 
     "DEFAULT_EXPENSE_CATEGORIES": {

@@ -141,7 +141,7 @@ export default function ExpenseTab({expenseData, trackerData, selectedAccount, s
                     <Icon color={theme.text} size='20px' style={{marginRight: theme.marginL}}/>
                 </Flex>
 
-                <div style={{padding: theme.paddingL, paddingTop: '0px'}}>
+                <div style={{padding: theme.paddingL, paddingTop: theme.paddingS}}>
                     <Flex align='center' justify='space-between'>
                         <div>
                             <Text color={theme.text} fontSize={theme.textSize}>

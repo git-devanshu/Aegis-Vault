@@ -165,6 +165,14 @@
         "NOTEPAD"
     ],
 
+    "PAYMENT_CARD_NETWORKS": [
+        "AMEX",
+        "MASTERCARD",
+        "VISA",
+        "DINERSCLUB",
+        "RUPAY"
+    ],
+
     "SUPPORTED_LANGUAGES": [
         {
             "code": "en",

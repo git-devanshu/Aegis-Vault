@@ -217,3 +217,29 @@ export function getCurrentDate(type){
         return yy + '-' + (mm+1).toString(10).padStart(2, '0') + '-' + dd.toString(10).padStart(2, '0');
     }
 }
+
+
+// calculate the billing date of current month based on billing cycle
+export function getLatestBillingDate(billingDate) {
+    const day = parseInt(billingDate.replace("D", ""), 10);
+
+    if(isNaN(day) || day < 1 || day > 31){
+        throw new Error("Invalid billing date");
+    }
+
+    const today = new Date();
+
+    const getBillingDate = (year, month) => {
+        const lastDay = new Date(year, month + 1, 0).getDate();
+        const actualDay = Math.min(day, lastDay);
+        return new Date(year, month, actualDay);
+    };
+
+    let billingDateForMonth = getBillingDate(today.getFullYear(), today.getMonth());
+    if(today > billingDateForMonth){
+        billingDateForMonth = getBillingDate(today.getFullYear(), today.getMonth() + 1);
+    }
+
+    return billingDateForMonth;
+}
+

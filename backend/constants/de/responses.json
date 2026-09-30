@@ -57,7 +57,18 @@
         "EXPENSES_TRANSFERRED": "alle Ausgaben erfolgreich übertragen",
         "CANNOT_DELETE_TRACKER": "dieses Einkommen kann nicht entfernt werden",
         "CATEGORIES_UPDATED": "Kategorienliste erfolgreich aktualisiert",
-        "LIMITS_UPDATED": "Budget für diese Kategorien aktualisiert"
+        "LIMITS_UPDATED": "Budget für diese Kategorien aktualisiert",
+        "CREDIT_CARD_ADDED": "Neue Kreditkarte erfolgreich hinzugefügt",
+        "CARD_NOT_FOUND": "Kreditkarte in diesem Konto nicht gefunden",
+        "CARD_UPDATED": "Kreditkartendaten erfolgreich aktualisiert",
+        "CANNOT_DELETE_CARD": "Diese Kreditkarte kann nicht gelöscht werden",
+        "CARD_DELETED": "Kreditkarte erfolgreich gelöscht",
+        "NO_CARD_ADDED": "Keine Kreditkarte zu diesem Konto hinzugefügt",
+        "NO_SPENDINGS_ADDED": "Keine Ausgaben für diese Karte hinzugefügt",
+        "SPENDING_ADDED": "Ausgabe erfolgreich hinzugefügt",
+        "SPENDING_NOT_FOUND": "Ausgabe auf dieser Karte nicht gefunden",
+        "SPENDING_DELETED": "Ausgabe erfolgreich gelöscht",
+        "BILL_PAID": "Rechnung für Kreditkarte erfolgreich bezahlt"
     },
 
     "INVESTMENT_MANAGER": {

@@ -57,7 +57,18 @@
         "EXPENSES_TRANSFERRED": "所有支出转移成功",
         "CANNOT_DELETE_TRACKER": "无法删除此收入",
         "CATEGORIES_UPDATED": "分类列表更新成功",
-        "LIMITS_UPDATED": "这些分类的预算已更新"
+        "LIMITS_UPDATED": "这些分类的预算已更新",
+        "CREDIT_CARD_ADDED": "已成功添加新信用卡",
+        "CARD_NOT_FOUND": "在此账户中未找到该信用卡",
+        "CARD_UPDATED": "信用卡信息已成功更新",
+        "CANNOT_DELETE_CARD": "无法删除此信用卡",
+        "CARD_DELETED": "信用卡已成功删除",
+        "NO_CARD_ADDED": "此账户未添加任何信用卡",
+        "NO_SPENDINGS_ADDED": "此卡未添加任何支出",
+        "SPENDING_ADDED": "已成功添加支出",
+        "SPENDING_NOT_FOUND": "在此卡上未找到该支出",
+        "SPENDING_DELETED": "支出已成功删除",
+        "BILL_PAID": "信用卡账单已成功支付"
     },
 
     "INVESTMENT_MANAGER": {

@@ -118,7 +118,17 @@
         "LAST_UPDATED": "Dernière mise à jour",
         "CONTACT_US": "Nous contacter",
         "ACCESS_THROUGH_EXTENSION": "Accès via l'extension",
-        "NEW_PASSWORD": "Nouveau mot de passe"
+        "NEW_PASSWORD": "Nouveau mot de passe",
+        "CARDS": "Cartes",
+        "SWITCH_CARD": "Changer de carte de crédit",
+        "ADD_CARD": "Ajouter une nouvelle carte de crédit",
+        "CARD_NAME": "Nom de la carte",
+        "CARD_NUMBER": "Numéro de carte",
+        "SPENDING_LIMIT": "Plafond de dépenses",
+        "BILLING_DATE": "Date de facturation",
+        "PAYMENT_NETWORK": "Sélectionner le réseau de paiement",
+        "MANAGE_CARD": "Gérer la carte",
+        "PAY_CREDIT_CARD_BILL": "Payer la facture de carte de crédit"
     },
 
     "TEXT": {
@@ -501,7 +511,20 @@
         "NOTES": "Notes",
         "SECURITY": "Sécurité",
         "NOTIFICATIONS": "Notifications",
-        "SETTINGS": "Paramètres"
+        "SETTINGS": "Paramètres",
+        "CREDIT_CARDS": "Cartes de crédit",
+        "CREDIT_CARD_SPENDINGS": "Dépenses de carte de crédit",
+        "TOTAL_BUDGET": "Budget total",
+        "BILLING_CYCLE": "Cycle de facturation",
+        "CREDIT_LIMIT": "Limite de crédit",
+        "OUTSTANDING_AMOUNT": "Montant restant dû",
+        "DELETE_CARD": "Supprimer la carte de crédit",
+        "CONFIRM_DELETE_CARD": "Êtes-vous sûr de vouloir supprimer définitivement cette carte ?",
+        "COMPANION_CARDS": "Cartes secondaires",
+        "ADD_SPENDING": "Ajouter une dépense",
+        "DELETE_SPENDING": "Supprimer la dépense",
+        "CONFIRM_DELETE_SPENDING": "Êtes-vous sûr de vouloir supprimer cette dépense ?",
+        "BILL_PAYMENT_NOTE": "Le paiement de la facture de cette carte ajoutera ces dépenses aux charges sous le revenu sélectionné suivant."
     },
 
     "BUTTONS": {
@@ -568,7 +591,10 @@
         "ADD_PASSWORD": "Ajouter un mot de passe",
         "RESET_PASSWORD": "Réinitialiser le mot de passe",
         "RESET_PIN": "Réinitialiser le code PIN",
-        "GET_STARTED": "Commencer"
+        "GET_STARTED": "Commencer",
+        "ADD_CARD": "Ajouter une carte",
+        "ADD_SPENDING": "Ajouter une dépense",
+        "PAY_BILL": "Payer la facture"
     },
 
     "PASSWORD_LABELS": {
@@ -772,7 +798,15 @@
         "QUICK_SAVE_EXPENSE": "Ces dépenses sont stockées localement sur cet appareil. Pensez à les importer vers votre compte dès que vous aurez accès à Internet.",
         "IMPORT_FROM_QUICKSAVE": "Transférer les entrées locales du module rapide vers la base de données principale",
         "CLEAR_NOTEPAD": "Effacer l'intégralité du texte contenu dans le bloc-notes",
-        "SAVE_TO_QUICKSAVE": "Exporter le texte actuel vers le module d'enregistrement rapide"
+        "SAVE_TO_QUICKSAVE": "Exporter le texte actuel vers le module d'enregistrement rapide",
+        "ADD_NEW_CARD": "Ajouter une nouvelle carte",
+        "DELETE_CURRENT_CARD": "Supprimer la carte actuelle",
+        "SWITCH_CARD": "Changer de carte",
+        "MANAGE_CARD": "Gérer la carte",
+        "SHOW_ONLY_UNPAID": "Afficher les paiements dus",
+        "SHOW_ALL": "Afficher toutes les dépenses",
+        "PAY_BILL": "Payer la facture",
+        "ADD_SPENDING": "Ajouter une dépense"
     },
 
     "DEFAULT_EXPENSE_CATEGORIES": {

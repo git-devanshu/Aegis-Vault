@@ -5,7 +5,8 @@ import { theme } from '../../themes/theme';
 import SYSTEM_DATA from '../../assets/system-data.json'
 import BANKS from '../../assets/banks.json';
 import { CATEGORY_ICONS } from '../../assets/categoryIcons';
-import { Text, Flex, ButtonGroup, Grid } from '@chakra-ui/react'
+import { Text, Flex, ButtonGroup, Grid, Spacer } from '@chakra-ui/react'
+import { GrStatusInfo } from "react-icons/gr";
 import { createHash, createPassKey, decryptData, encryptData } from '../../utility/crypto';
 import { validateAndStartLoading, apiRequest } from "../../utility/api";
 import { getCategoryDisplayName } from "../../utility/helpers";
@@ -63,6 +64,11 @@ export default function CategoryTab({expenseData, selectedTracker, selectedAccou
             };
         });
     }, [categoryData, expenseData, selectedTracker]);
+
+    const totalBudget = useMemo(()=>{
+        console.log(selectedTracker);
+        return selectedTracker?.limitsData.reduce((sum, limit)=> sum + limit.limit, 0);
+    }, [selectedTracker]);
 
     const getCategoryIcon = (category) =>{
         return CATEGORY_ICONS[category.icon];
@@ -188,6 +194,13 @@ export default function CategoryTab({expenseData, selectedTracker, selectedAccou
                     </ButtonGroup>
                 </div>
             </Grid>
+
+            <Flex alignItems='center' padding={theme.paddingL} marginTop={theme.paddingL} border={`1px solid ${theme.border}`} borderRadius={`calc(${theme.radius} * 2)`} bgColor={theme.cardBg}>
+                <GrStatusInfo fontSize='18px' color={theme.textSecondary} style={{marginRight: theme.marginL}} />
+                <Text fontSize={theme.textSize} color={theme.textSecondary}>{DISPLAY.TEXT.TOTAL_BUDGET}</Text>
+                <Spacer/>
+                <Text fontSize={theme.textSize} color={theme.text} fontWeight={500}>{country.currency.symbol} {totalBudget.toLocaleString(country.locale)}</Text>
+            </Flex>
 
             <Grid templateColumns={{base: '1fr', md: '1fr 1fr'}} gap={theme.marginL} marginTop={theme.marginL} alignItems='start'>
                 {categoryData.map((category) => {

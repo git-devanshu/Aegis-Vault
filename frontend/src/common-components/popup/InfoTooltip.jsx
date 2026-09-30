@@ -2,7 +2,7 @@ import { Popover, PopoverTrigger, PopoverContent, PopoverArrow, PopoverBody } fr
 import { theme } from '../../themes/theme';
 
 
-export default function InfoTooltip({label, children, placement='bottom'}) {
+export default function InfoTooltip({label, children, placement='bottom', maxWidth='250px'}) {
     return (
         <Popover trigger='click' placement={placement} autoFocus={false}>
             <PopoverTrigger>
@@ -11,7 +11,7 @@ export default function InfoTooltip({label, children, placement='bottom'}) {
                 </div>
             </PopoverTrigger>
 
-            <PopoverContent bg={theme.hoverBg} width='fit-content' maxWidth='250px'>
+            <PopoverContent bg={theme.hoverBg} width='fit-content' maxWidth={maxWidth}>
                 <PopoverArrow bg={theme.hoverBg} />
                 <PopoverBody color={theme.textSecondary} fontSize={theme.smallTextSize} padding={theme.paddingS}>
                     {label}

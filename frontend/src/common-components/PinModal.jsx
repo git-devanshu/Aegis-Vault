@@ -29,7 +29,7 @@ export default function PinModal() {
     const navigate = useNavigate();
     const [searchParams] = useSearchParams();
 
-    const [securityPin, setSecurityPin] = useState('');
+    const [securityPin, setSecurityPin] = useState('444444');
     const [isLoading, setIsLoading] = useState(false);
 
     // For detecting the ?salt url param and automatically calling pin verification api

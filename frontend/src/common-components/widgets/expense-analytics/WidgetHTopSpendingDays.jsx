@@ -32,7 +32,7 @@ export default function WidgetHTopSpendingDays({country, analytics}) {
                                 </Text>
 
                                 <Text color={theme.textSecondary} fontSize={theme.smallTextSize}>
-                                    {day.percentage.toFixed(2)}% ({DISPLAY.TEXT.INCOME_AMOUNT})
+                                    {day.percentage.toFixed(2)}%
                                 </Text>
                             </div>
 

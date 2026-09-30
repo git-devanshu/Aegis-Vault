@@ -118,7 +118,17 @@
         "LAST_UPDATED": "Updated at",
         "CONTACT_US": "Contact Us",
         "ACCESS_THROUGH_EXTENSION": "Access through Extension",
-        "NEW_PASSWORD": "New Password"
+        "NEW_PASSWORD": "New Password",
+        "CARDS": "Cards",
+        "SWITCH_CARD": "Switch Credit Card",
+        "ADD_CARD": "Add New Credit Card",
+        "CARD_NAME": "Card Name",
+        "CARD_NUMBER": "Card Number",
+        "SPENDING_LIMIT": "Spending Limit",
+        "BILLING_DATE": "Billing Date",
+        "PAYMENT_NETWORK": "Select Payment Network",
+        "MANAGE_CARD": "Manage Card",
+        "PAY_CREDIT_CARD_BILL": "Pay Credit Card Bill"
     },
 
     "TEXT": {
@@ -501,7 +511,20 @@
         "FOOTER_ABOUT": "About",
         "FOOTER_SUPPORT": "Support",
         "FOOTER_RIGHTS_RESERVED": "© Aegis.",
-        "FOOTER_PRIVACY": "Privacy"
+        "FOOTER_PRIVACY": "Privacy",
+        "CREDIT_CARDS": "Credit Cards",
+        "CREDIT_CARD_SPENDINGS": "Credit Card Spendings",
+        "TOTAL_BUDGET": "Total Budget",
+        "BILLING_CYCLE": "Billing Cycle",
+        "CREDIT_LIMIT": "Credit Limit",
+        "OUTSTANDING_AMOUNT": "Outstanding Amount",
+        "DELETE_CARD": "Delete Credit Card",
+        "CONFIRM_DELETE_CARD": "Are you sure you want to delete this card completely ?",
+        "COMPANION_CARDS": "Companion Cards",
+        "ADD_SPENDING": "Add Spending",
+        "DELETE_SPENDING": "Delete Spending",
+        "CONFIRM_DELETE_SPENDING": "Are you sure you want to delete this spending ?",
+        "BILL_PAYMENT_NOTE": "Paying the bill for this card will add these spendings in expenses under the following selected income."
     },
 
     "BUTTONS": {
@@ -568,7 +591,10 @@
         "ADD_PASSWORD": "Add Password",
         "RESET_PASSWORD": "Set New Password",
         "RESET_PIN": "Set New Security Pin",
-        "GET_STARTED": "Get Started"
+        "GET_STARTED": "Get Started",
+        "ADD_CARD": "Add Card",
+        "ADD_SPENDING": "Add Spending",
+        "PAY_BILL": "Pay Bill"
     },
 
     "PASSWORD_LABELS": {
@@ -772,7 +798,15 @@
         "QUICK_SAVE_EXPENSE": "These expenses are not saved to any of your account. You need to import them later in Expense Manager.",
         "IMPORT_FROM_QUICKSAVE": "Import From Quick Save",
         "CLEAR_NOTEPAD": "Clear Notepad",
-        "SAVE_TO_QUICKSAVE": "Export to Quick Save"
+        "SAVE_TO_QUICKSAVE": "Export to Quick Save",
+        "ADD_NEW_CARD": "Add New Card",
+        "DELETE_CURRENT_CARD": "Delete Current Card",
+        "SWITCH_CARD": "Switch Card",
+        "MANAGE_CARD": "Manage Card",
+        "SHOW_ONLY_UNPAID": "Show Payment Due",
+        "SHOW_ALL": "Show All Expenses",
+        "PAY_BILL": "Pay Bill",
+        "ADD_SPENDING": "Add Spending"
     },
 
     "DEFAULT_EXPENSE_CATEGORIES": {

@@ -9,6 +9,8 @@ const {RecurringDeposits} = require('../models/recurringDeposits');
 const {Stocks} = require('../models/stocks');
 const {Settings} = require('../models/settings');
 const {getLanguageConstants} = require('../utility/language');
+const { CreditCards } = require('../models/creditCards');
+const { CreditCardSpendings } = require('../models/creditCardSpendings');
 
 require('dotenv').config();
 
@@ -87,7 +89,9 @@ const deleteBankAccount = async(req, res) =>{
             FixedDeposits.deleteMany({ userId: req.id, accountIndex }),
             RecurringDeposits.deleteMany({ userId: req.id, accountIndex }),
             Stocks.deleteMany({ userId: req.id, accountIndex }),
-            GoldAssets.deleteMany({ userId: req.id, accountIndex})
+            GoldAssets.deleteMany({ userId: req.id, accountIndex}),
+            CreditCards.deleteMany({ userId: req.id, accountIndex }),
+            CreditCardSpendings.deleteMany({ userId: req.id, accountIndex })
         ]);
 
         res.status(200).json({ message : RESPONSES.ACCOUNTS_LAYER.ACCOUNT_DELETED });

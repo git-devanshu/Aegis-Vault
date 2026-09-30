@@ -57,7 +57,18 @@
         "EXPENSES_TRANSFERRED": "todos los gastos se transfirieron correctamente",
         "CANNOT_DELETE_TRACKER": "no se puede eliminar este ingreso",
         "CATEGORIES_UPDATED": "lista de categorías actualizada correctamente",
-        "LIMITS_UPDATED": "presupuesto actualizado para estas categorías"
+        "LIMITS_UPDATED": "presupuesto actualizado para estas categorías",
+        "CREDIT_CARD_ADDED": "Nueva tarjeta de crédito añadida con éxito",
+        "CARD_NOT_FOUND": "Tarjeta de crédito no encontrada en esta cuenta",
+        "CARD_UPDATED": "Datos de la tarjeta de crédito actualizados con éxito",
+        "CANNOT_DELETE_CARD": "No se puede eliminar esta tarjeta de crédito",
+        "CARD_DELETED": "Tarjeta de crédito eliminada con éxito",
+        "NO_CARD_ADDED": "No hay tarjetas de crédito añadidas a esta cuenta",
+        "NO_SPENDINGS_ADDED": "No hay gastos añadidos a esta tarjeta",
+        "SPENDING_ADDED": "Gasto añadido con éxito",
+        "SPENDING_NOT_FOUND": "Gasto no encontrado en esta tarjeta",
+        "SPENDING_DELETED": "Gasto eliminado con éxito",
+        "BILL_PAID": "Factura de tarjeta de crédito pagada con éxito"
     },
 
     "INVESTMENT_MANAGER": {

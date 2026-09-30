@@ -118,7 +118,17 @@
         "LAST_UPDATED": "最后更新",
         "CONTACT_US": "联系我们",
         "ACCESS_THROUGH_EXTENSION": "通过扩展程序访问",
-        "NEW_PASSWORD": "新密码"
+        "NEW_PASSWORD": "新密码",
+        "CARDS": "卡片",
+        "SWITCH_CARD": "切换信用卡",
+        "ADD_CARD": "添加新信用卡",
+        "CARD_NAME": "卡片名称",
+        "CARD_NUMBER": "卡号",
+        "SPENDING_LIMIT": "支出限额",
+        "BILLING_DATE": "账单日",
+        "PAYMENT_NETWORK": "选择支付网络",
+        "MANAGE_CARD": "管理卡片",
+        "PAY_CREDIT_CARD_BILL": "支付信用卡账单"
     },
     
     "TEXT": {
@@ -501,7 +511,20 @@
         "NOTES": "笔记",
         "SECURITY": "安全",
         "NOTIFICATIONS": "通知",
-        "SETTINGS": "设置"
+        "SETTINGS": "设置",
+        "CREDIT_CARDS": "信用卡",
+        "CREDIT_CARD_SPENDINGS": "信用卡支出",
+        "TOTAL_BUDGET": "总预算",
+        "BILLING_CYCLE": "账单周期",
+        "CREDIT_LIMIT": "信用额度",
+        "OUTSTANDING_AMOUNT": "未还金额",
+        "DELETE_CARD": "删除信用卡",
+        "CONFIRM_DELETE_CARD": "您确定要彻底删除这张卡吗？",
+        "COMPANION_CARDS": "附属卡",
+        "ADD_SPENDING": "添加支出",
+        "DELETE_SPENDING": "删除支出",
+        "CONFIRM_DELETE_SPENDING": "您确定要删除这项支出吗？",
+        "BILL_PAYMENT_NOTE": "支付该卡账单将把这些支出添加到所选收入项下的支出中。"
     },
 
     "BUTTONS": {
@@ -568,7 +591,10 @@
         "ADD_PASSWORD": "添加密码",
         "RESET_PASSWORD": "重置密码",
         "RESET_PIN": "重置 PIN 码",
-        "GET_STARTED": "开始使用"
+        "GET_STARTED": "开始使用",
+        "ADD_CARD": "添加卡片",
+        "ADD_SPENDING": "添加支出",
+        "PAY_BILL": "支付账单"
     },
 
     "PASSWORD_LABELS": {
@@ -772,7 +798,15 @@
         "QUICK_SAVE_EXPENSE": "这些支出保存在此设备的本地。请记得在连接互联网后及时将它们导入到您的账户中。",
         "IMPORT_FROM_QUICKSAVE": "将快速保存模块的本地记录传输到主数据库中",
         "CLEAR_NOTEPAD": "清除便签本中包含的全部文本",
-        "SAVE_TO_QUICKSAVE": "将当前文本导出到快速保存模块中"
+        "SAVE_TO_QUICKSAVE": "将当前文本导出到快速保存模块中",
+        "ADD_NEW_CARD": "添加新卡片",
+        "DELETE_CURRENT_CARD": "删除当前卡片",
+        "SWITCH_CARD": "切换卡片",
+        "MANAGE_CARD": "管理卡片",
+        "SHOW_ONLY_UNPAID": "显示应付款项",
+        "SHOW_ALL": "显示所有支出",
+        "PAY_BILL": "支付账单",
+        "ADD_SPENDING": "添加支出"
     },
 
     "DEFAULT_EXPENSE_CATEGORIES": {

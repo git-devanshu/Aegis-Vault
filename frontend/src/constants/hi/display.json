@@ -118,7 +118,17 @@
         "LAST_UPDATED": "अपडेट किया गया",
         "CONTACT_US": "हमसे संपर्क करें",
         "ACCESS_THROUGH_EXTENSION": "Extension के ज़रिए एक्सेस करें",
-        "NEW_PASSWORD": "नया पासवर्ड"
+        "NEW_PASSWORD": "नया पासवर्ड",
+        "CARDS": "कार्ड्स",
+        "SWITCH_CARD": "क्रेडिट कार्ड बदलें",
+        "ADD_CARD": "नया क्रेडिट कार्ड जोड़ें",
+        "CARD_NAME": "कार्ड का नाम",
+        "CARD_NUMBER": "कार्ड नंबर",
+        "SPENDING_LIMIT": "खर्च की सीमा",
+        "BILLING_DATE": "बिलिंग तिथि",
+        "PAYMENT_NETWORK": "भुगतान नेटवर्क चुनें",
+        "MANAGE_CARD": "कार्ड का प्रबंधन करें",
+        "PAY_CREDIT_CARD_BILL": "क्रेडिट कार्ड का बिल चुकाएं"
     },
 
     "TEXT": {
@@ -501,7 +511,20 @@
         "NOTES": "नोट्स",
         "SECURITY": "सुरक्षा",
         "NOTIFICATIONS": "नोटिफिकेशन",
-        "SETTINGS": "सेटिंग्स"
+        "SETTINGS": "सेटिंग्स",
+        "CREDIT_CARDS": "क्रेडिट कार्ड्स",
+        "CREDIT_CARD_SPENDINGS": "क्रेडिट कार्ड के खर्च",
+        "TOTAL_BUDGET": "कुल बजट",
+        "BILLING_CYCLE": "बिलिंग चक्र",
+        "CREDIT_LIMIT": "क्रेडिट सीमा",
+        "OUTSTANDING_AMOUNT": "बकाया राशि",
+        "DELETE_CARD": "क्रेडिट कार्ड हटाएँ",
+        "CONFIRM_DELETE_CARD": "क्या आप वाकई इस कार्ड को पूरी तरह से हटाना चाहते हैं?",
+        "COMPANION_CARDS": "कंपैनियन कार्ड्स",
+        "ADD_SPENDING": "खर्च जोड़ें",
+        "DELETE_SPENDING": "खर्च हटाएँ",
+        "CONFIRM_DELETE_SPENDING": "क्या आप वाकई इस खर्च को हटाना चाहते हैं?",
+        "BILL_PAYMENT_NOTE": "इस कार्ड का बिल चुकाने से यह खर्च निम्नलिखित चयनित आय के तहत खर्चों में जोड़ दिया जाएगा।"
     },
 
     "BUTTONS": {
@@ -568,7 +591,10 @@
         "ADD_PASSWORD": "पासवर्ड जोड़ें",
         "RESET_PASSWORD": "नया पासवर्ड सेट करें",
         "RESET_PIN": "नया Security Pin सेट करें",
-        "GET_STARTED": "शुरू करें"
+        "GET_STARTED": "शुरू करें",
+        "ADD_CARD": "कार्ड जोड़ें",
+        "ADD_SPENDING": "खर्च जोड़ें",
+        "PAY_BILL": "बिल चुकाएं"
     },
 
     "PASSWORD_LABELS": {
@@ -772,7 +798,15 @@
         "QUICK_SAVE_EXPENSE": "ये खर्चे आपके किसी भी खाते में सहेजे नहीं गए हैं। आपको इन्हें बाद में Expense Manager में इंपोर्ट करना होगा।",
         "IMPORT_FROM_QUICKSAVE": "Quick Save से इंपोर्ट करें",
         "CLEAR_NOTEPAD": "नोटपैड साफ़ करें",
-        "SAVE_TO_QUICKSAVE": "Quick Save में एक्सपोर्ट करें"
+        "SAVE_TO_QUICKSAVE": "Quick Save में एक्सपोर्ट करें",
+        "ADD_NEW_CARD": "नया कार्ड जोड़ें",
+        "DELETE_CURRENT_CARD": "वर्तमान कार्ड हटाएँ",
+        "SWITCH_CARD": "कार्ड बदलें",
+        "MANAGE_CARD": "कार्ड का प्रबंधन करें",
+        "SHOW_ONLY_UNPAID": "देय भुगतान दिखाएं",
+        "SHOW_ALL": "सभी खर्च दिखाएं",
+        "PAY_BILL": "बिल चुकाएं",
+        "ADD_SPENDING": "खर्च जोड़ें"
     },
 
     "DEFAULT_EXPENSE_CATEGORIES": {
