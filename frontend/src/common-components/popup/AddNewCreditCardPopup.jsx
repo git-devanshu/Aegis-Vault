@@ -17,7 +17,7 @@ import DINERSCLUB from '../../assets/card-network-logos/DINERSCLUB.png';
 import Popup from "./Popup";
 import InputBox from "../form/InputBox";
 import ActionButton from "../form/ActionButton";
-import BillingDatePicker from "../form/BillingdatePicker";
+import BillingDatePicker from "../form/BillingDatePicker";
 
 
 export default function AddNewCreditCardPopup({showAddNewCardPopup, setShowAddNewCardPopup, refreshCreditCards, setRefreshCreditCards, selectedAccount}) {
