@@ -18,13 +18,12 @@ export default function AddSpendingPopup({showAddSpendingPopup, setShowAddSpendi
     const {DISPLAY, TOASTS} = useLanguage();
     const {masterKey} = useAppContext();
 
-    const defaultSpendingPayload = {
+    const [spending, setSpending] = useState({
         amount: 0,
         spentAt: '',
         spentDate: new Date().toLocaleDateString('en-CA'),
         cardUsed: `${selectedCreditCard.cardsData[0].cardName} - ${selectedCreditCard.cardsData[0].network}`
-    };
-    const [spending, setSpending] = useState(defaultSpendingPayload);
+    });
     const [selectedCategoryIndex, setSelectedCategoryIndex] = useState(0);
 
     const [isLoading, setIsLoading] = useState(false);
@@ -34,6 +33,15 @@ export default function AddSpendingPopup({showAddSpendingPopup, setShowAddSpendi
             ...spending,
             [e.target.name]: e.target.name === 'amount' ? Number(e.target.value) : e.target.value
         });
+    }
+
+    const resetSpending = () =>{
+        setSpending({
+            ...spending,
+            amount: 0,
+            spentAt: '',
+            spentDate: new Date().toLocaleDateString('en-CA')
+        })
     }
 
     const addSpending = async(e) =>{
@@ -59,9 +67,8 @@ export default function AddSpendingPopup({showAddSpendingPopup, setShowAddSpendi
                 setIsLoading,
                 onSuccess: (res) =>{
                     setRefreshSpendings(!refreshSpendings);
-                    setSelectedCategoryIndex(0);
                     setShowAddSpendingPopup(false);
-                    setSpending(defaultSpendingPayload);
+                    resetSpending();
                 }
             });
         }
@@ -73,7 +80,7 @@ export default function AddSpendingPopup({showAddSpendingPopup, setShowAddSpendi
     }
 
     return (
-        <Popup isOpen={showAddSpendingPopup} onClose={()=> { setSpending(defaultSpendingPayload); setShowAddSpendingPopup(false); }} title={DISPLAY.TEXT.ADD_SPENDING} bg={theme.bg} borderColor={theme.success}>
+        <Popup isOpen={showAddSpendingPopup} onClose={()=> { resetSpending(); setShowAddSpendingPopup(false); }} title={DISPLAY.TEXT.ADD_SPENDING} bg={theme.bg} borderColor={theme.success}>
             <form style={{marginTop: theme.spacing}}>
                 <div style={{marginTop: '-20px'}}>
                     <Dropdown value={spending.cardUsed} onChange={(e)=> setSpending({...spending, cardUsed: e.target.value})}

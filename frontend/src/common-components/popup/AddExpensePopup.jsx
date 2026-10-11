@@ -99,7 +99,6 @@ export default function AddExpensePopup({isOpen, onClose, selectedAccount, selec
                         spentAt: '',
                         spentDate: new Date().toLocaleDateString('en-CA')
                     });
-                    setSelectedCategoryIndex(0);
                 }
             });
         }
