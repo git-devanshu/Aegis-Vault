@@ -17,7 +17,6 @@ import Tickbox from "../../common-components/form/Tickbox";
 export default function ExpenseTransferModal({onBack, expenseData, trackerData, selectedTracker, country, refreshExpenses, setRefreshExpenses}){
     const {DISPLAY, TOASTS} = useLanguage();
 
-    const [targetTrackerIndex, setTargetTrackerIndex] = useState('');
     const [selectedRows, setSelectedRows] = useState(new Set());
     const [isLoading, setIsLoading] = useState(false);
 
@@ -30,6 +29,8 @@ export default function ExpenseTransferModal({onBack, expenseData, trackerData, 
             })),
         [trackerData, selectedTracker, country]
     );
+
+    const [targetTrackerIndex, setTargetTrackerIndex] = useState(trackerOptions[0].value);
 
     const handleSelectAll = () =>{
         if(selectedRows.size === expenseData.length){
