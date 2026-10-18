@@ -19,7 +19,7 @@ export default function AppLayout({sidebar, children}) {
                 bg={theme.cardBg}
                 border={{base:'none', sm:`1px solid ${theme.border}`}}
                 borderTop={{base:`1px solid ${theme.border}`, sm:'none'}}
-                borderRadius={{base:'0', sm:'25px'}}
+                borderRadius={{base:'0', sm:'30px'}}
                 p={{base:'10px 16px', sm:'8px'}}
                 m={{base:'0', sm:theme.marginL}}
                 width={{base:'100%', sm:'fit-content'}}
