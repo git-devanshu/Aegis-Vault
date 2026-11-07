@@ -17,7 +17,7 @@ import InputBox from "../../common-components/form/InputBox";
 import { getCategoryDisplayName } from "../../utility/helpers";
 
 
-export default function AddMultipleExpensesModal({onBack, selectedAccount, selectedTracker, categoryData, refreshExpenses, setRefreshExpenses, accountDataArray, setAccountData, quickSaveLogs, setQuickSaveLogs}) {
+export default function AddMultipleExpensesModal({onBack, selectedAccount, selectedTracker, categoryData, refreshExpenses, setRefreshExpenses, accountDataArray, setAccountData, quickSaveLogs, setQuickSaveLogs, selectedExpenseGroupIndex}) {
     if(!selectedAccount || !selectedTracker){
         return null;
     }
@@ -94,7 +94,9 @@ export default function AddMultipleExpensesModal({onBack, selectedAccount, selec
                             return account;
                         })
                     );
-                    localStorage.removeItem('aegis-saved-expenses');
+                    const savedExpenses = JSON.parse(localStorage.getItem("aegis-saved-expenses")) || {};
+                    savedExpenses[selectedExpenseGroupIndex] = [];
+                    localStorage.setItem("aegis-saved-expenses", JSON.stringify(savedExpenses));
                     setQuickSaveLogs([]);
                     setRefreshExpenses(!refreshExpenses);
                     onBack();

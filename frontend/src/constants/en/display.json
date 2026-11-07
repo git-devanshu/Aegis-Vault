@@ -524,7 +524,10 @@
         "ADD_SPENDING": "Add Spending",
         "DELETE_SPENDING": "Delete Spending",
         "CONFIRM_DELETE_SPENDING": "Are you sure you want to delete this spending ?",
-        "BILL_PAYMENT_NOTE": "Paying the bill for this card will add these spendings in expenses under the following selected income."
+        "BILL_PAYMENT_NOTE": "Paying the bill for this card will add these spendings in expenses under the following selected income.",
+        "EXPENSE_GROUPS": "Expense Groups",
+        "ADD_GROUP_TO_START": "Add an expense group to start entering expenses.",
+        "ADD_NEW_ROW": "add new row"
     },
 
     "BUTTONS": {
@@ -594,7 +597,9 @@
         "GET_STARTED": "Get Started",
         "ADD_CARD": "Add Card",
         "ADD_SPENDING": "Add Spending",
-        "PAY_BILL": "Pay Bill"
+        "PAY_BILL": "Pay Bill",
+        "ADD_ROW": "Add Row",
+        "ADD": "Add"
     },
 
     "PASSWORD_LABELS": {
@@ -806,7 +811,8 @@
         "SHOW_ONLY_UNPAID": "Show Payment Due",
         "SHOW_ALL": "Show All Expenses",
         "PAY_BILL": "Pay Bill",
-        "ADD_SPENDING": "Add Spending"
+        "ADD_SPENDING": "Add Spending",
+        "REMOVE_EXPENSES_BEFORE_DELETE": "Remove expenses before deleting group"
     },
 
     "DEFAULT_EXPENSE_CATEGORIES": {

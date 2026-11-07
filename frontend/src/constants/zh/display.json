@@ -524,7 +524,10 @@
         "ADD_SPENDING": "添加支出",
         "DELETE_SPENDING": "删除支出",
         "CONFIRM_DELETE_SPENDING": "您确定要删除这项支出吗？",
-        "BILL_PAYMENT_NOTE": "支付该卡账单将把这些支出添加到所选收入项下的支出中。"
+        "BILL_PAYMENT_NOTE": "支付该卡账单将把这些支出添加到所选收入项下的支出中。",
+        "EXPENSE_GROUPS": "支出分组",
+        "ADD_GROUP_TO_START": "添加支出分组以开始记录支出。",
+        "ADD_NEW_ROW": "添加新行"
     },
 
     "BUTTONS": {
@@ -594,7 +597,9 @@
         "GET_STARTED": "开始使用",
         "ADD_CARD": "添加卡片",
         "ADD_SPENDING": "添加支出",
-        "PAY_BILL": "支付账单"
+        "PAY_BILL": "支付账单",
+        "ADD_ROW": "添加行",
+        "ADD": "添加"
     },
 
     "PASSWORD_LABELS": {
@@ -806,7 +811,8 @@
         "SHOW_ONLY_UNPAID": "显示应付款项",
         "SHOW_ALL": "显示所有支出",
         "PAY_BILL": "支付账单",
-        "ADD_SPENDING": "添加支出"
+        "ADD_SPENDING": "添加支出",
+        "REMOVE_EXPENSES_BEFORE_DELETE": "删除分组前请先移除支出"
     },
 
     "DEFAULT_EXPENSE_CATEGORIES": {

@@ -23,7 +23,7 @@ export default function AddEventPopup({isOpen, onClose, selectedDate, refreshTas
 
     const [isLoading, setIsLoading] = useState(false);
 
-    const tabs = [DISPLAY.TEXT.TASK, DISPLAY.TEXT.JOURNAL, DISPLAY.TEXT.DUE_DATE];
+    const tabs = [DISPLAY.TEXT.TASK, DISPLAY.TEXT.JOURNAL];
     const [selectedTab, setSelectedTab] = useState(0);
 
     const [task, setTask] = useState({

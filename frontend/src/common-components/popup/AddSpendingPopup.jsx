@@ -39,8 +39,7 @@ export default function AddSpendingPopup({showAddSpendingPopup, setShowAddSpendi
         setSpending({
             ...spending,
             amount: 0,
-            spentAt: '',
-            spentDate: new Date().toLocaleDateString('en-CA')
+            spentAt: ''
         })
     }
 

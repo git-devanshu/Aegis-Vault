@@ -524,7 +524,10 @@
         "ADD_SPENDING": "支出を追加",
         "DELETE_SPENDING": "支出を削除",
         "CONFIRM_DELETE_SPENDING": "この支出を削除してもよろしいですか？",
-        "BILL_PAYMENT_NOTE": "このカードの請求を支払うと、選択した収入の下でこれらの支出が経費に追加されます。"
+        "BILL_PAYMENT_NOTE": "このカードの請求を支払うと、選択した収入の下でこれらの支出が経費に追加されます。",
+        "EXPENSE_GROUPS": "支出グループ",
+        "ADD_GROUP_TO_START": "支出の入力を開始するには、支出グループを追加してください。",
+        "ADD_NEW_ROW": "新しい行を追加"
     },
 
     "BUTTONS": {
@@ -594,7 +597,9 @@
         "GET_STARTED": "今すぐ始める",
         "ADD_CARD": "カードを追加",
         "ADD_SPENDING": "支出を追加",
-        "PAY_BILL": "請求を支払い"
+        "PAY_BILL": "請求を支払い",
+        "ADD_ROW": "行を追加",
+        "ADD": "追加"
     },
 
     "PASSWORD_LABELS": {
@@ -806,7 +811,8 @@
         "SHOW_ONLY_UNPAID": "未払いを表示",
         "SHOW_ALL": "すべての支出を表示",
         "PAY_BILL": "請求 को 支払い",
-        "ADD_SPENDING": "支出を追加"
+        "ADD_SPENDING": "支出を追加",
+        "REMOVE_EXPENSES_BEFORE_DELETE": "グループを削除する前に支出を削除してください"
     },
 
     "DEFAULT_EXPENSE_CATEGORIES": {

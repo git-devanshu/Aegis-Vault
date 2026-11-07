@@ -524,7 +524,10 @@
         "ADD_SPENDING": "खर्च जोड़ें",
         "DELETE_SPENDING": "खर्च हटाएँ",
         "CONFIRM_DELETE_SPENDING": "क्या आप वाकई इस खर्च को हटाना चाहते हैं?",
-        "BILL_PAYMENT_NOTE": "इस कार्ड का बिल चुकाने से यह खर्च निम्नलिखित चयनित आय के तहत खर्चों में जोड़ दिया जाएगा।"
+        "BILL_PAYMENT_NOTE": "इस कार्ड का बिल चुकाने से यह खर्च निम्नलिखित चयनित आय के तहत खर्चों में जोड़ दिया जाएगा।",
+        "EXPENSE_GROUPS": "खर्च समूह",
+        "ADD_GROUP_TO_START": "खर्च दर्ज करना शुरू करने के लिए एक खर्च समूह जोड़ें।",
+        "ADD_NEW_ROW": "नई पंक्ति जोड़ें"
     },
 
     "BUTTONS": {
@@ -594,7 +597,9 @@
         "GET_STARTED": "शुरू करें",
         "ADD_CARD": "कार्ड जोड़ें",
         "ADD_SPENDING": "खर्च जोड़ें",
-        "PAY_BILL": "बिल चुकाएं"
+        "PAY_BILL": "बिल चुकाएं",
+        "ADD_ROW": "पंक्ति जोड़ें",
+        "ADD": "जोड़ें"
     },
 
     "PASSWORD_LABELS": {
@@ -806,7 +811,8 @@
         "SHOW_ONLY_UNPAID": "देय भुगतान दिखाएं",
         "SHOW_ALL": "सभी खर्च दिखाएं",
         "PAY_BILL": "बिल चुकाएं",
-        "ADD_SPENDING": "खर्च जोड़ें"
+        "ADD_SPENDING": "खर्च जोड़ें",
+        "REMOVE_EXPENSES_BEFORE_DELETE": "समूह हटाने से पहले खर्चों को हटाएं"
     },
 
     "DEFAULT_EXPENSE_CATEGORIES": {

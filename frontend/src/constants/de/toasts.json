@@ -32,7 +32,11 @@
         "DATA_EXPORTED": "Ausgaben erfolgreich exportiert",
         "DATA_IMPORTED": "exportierte Ausgaben erfolgreich importiert",
         "NOTE_SAVED": "Notiz in Quick Save gespeichert",
-        "NO_DATA_AVAILABLE": "keine Daten in Quick Save verfügbar"
+        "NO_DATA_AVAILABLE": "keine Daten in Quick Save verfügbar",
+        "GROUP_ALREADY_EXISTS": "Gruppe existiert bereits",
+        "INVALID_EXPENSES_WARNING": "Bitte unvollständige Ausgabenzeilen vervollständigen oder entfernen",
+        "EXPENSES_SAVED": "Ausgaben erfolgreich gespeichert",
+        "EXPENSE_SAVE_ERROR": "Ausgaben konnten nicht gespeichert werden"
     },
     
     "PLANNING_MANAGER": {

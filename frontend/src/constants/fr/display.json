@@ -524,7 +524,10 @@
         "ADD_SPENDING": "Ajouter une dépense",
         "DELETE_SPENDING": "Supprimer la dépense",
         "CONFIRM_DELETE_SPENDING": "Êtes-vous sûr de vouloir supprimer cette dépense ?",
-        "BILL_PAYMENT_NOTE": "Le paiement de la facture de cette carte ajoutera ces dépenses aux charges sous le revenu sélectionné suivant."
+        "BILL_PAYMENT_NOTE": "Le paiement de la facture de cette carte ajoutera ces dépenses aux charges sous le revenu sélectionné suivant.",
+        "EXPENSE_GROUPS": "Groupes de dépenses",
+        "ADD_GROUP_TO_START": "Ajoutez un groupe de dépenses pour commencer à saisir des dépenses.",
+        "ADD_NEW_ROW": "Ajouter une nouvelle ligne"
     },
 
     "BUTTONS": {
@@ -594,7 +597,9 @@
         "GET_STARTED": "Commencer",
         "ADD_CARD": "Ajouter une carte",
         "ADD_SPENDING": "Ajouter une dépense",
-        "PAY_BILL": "Payer la facture"
+        "PAY_BILL": "Payer la facture",
+        "ADD_ROW": "Ajouter une ligne",
+        "ADD": "Ajouter"
     },
 
     "PASSWORD_LABELS": {
@@ -806,7 +811,8 @@
         "SHOW_ONLY_UNPAID": "Afficher les paiements dus",
         "SHOW_ALL": "Afficher toutes les dépenses",
         "PAY_BILL": "Payer la facture",
-        "ADD_SPENDING": "Ajouter une dépense"
+        "ADD_SPENDING": "Ajouter une dépense",
+        "REMOVE_EXPENSES_BEFORE_DELETE": "Supprimez les dépenses avant de supprimer le groupe"
     },
 
     "DEFAULT_EXPENSE_CATEGORIES": {

@@ -32,7 +32,11 @@
         "DATA_EXPORTED": "expenses exported successfully",
         "DATA_IMPORTED": "exported expenses imported successfully",
         "NOTE_SAVED": "Note saved to Quick Save",
-        "NO_DATA_AVAILABLE": "No data available in Quick Save"
+        "NO_DATA_AVAILABLE": "No data available in Quick Save",
+        "GROUP_ALREADY_EXISTS": "Group already exists",
+        "INVALID_EXPENSES_WARNING": "Please complete or remove incomplete expense rows",
+        "EXPENSES_SAVED": "expenses saved successfully",
+        "EXPENSE_SAVE_ERROR": "Unable to save expenses"
     },
     
     "PLANNING_MANAGER": {

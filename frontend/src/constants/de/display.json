@@ -524,7 +524,10 @@
         "ADD_SPENDING": "Ausgabe hinzufügen",
         "DELETE_SPENDING": "Ausgabe löschen",
         "CONFIRM_DELETE_SPENDING": "Sind Sie sicher, dass Sie diese Ausgabe löschen möchten?",
-        "BILL_PAYMENT_NOTE": "Durch das Bezahlen der Rechnung für diese Karte werden diese Ausgaben unter dem folgenden ausgewählten Einkommen zu den Ausgaben hinzugefügt."
+        "BILL_PAYMENT_NOTE": "Durch das Bezahlen der Rechnung für diese Karte werden diese Ausgaben unter dem folgenden ausgewählten Einkommen zu den Ausgaben hinzugefügt.",
+        "EXPENSE_GROUPS": "Ausgabengruppen",
+        "ADD_GROUP_TO_START": "Fügen Sie eine Ausgabengruppe hinzu, um mit der Eingabe von Ausgaben zu beginnen.",
+        "ADD_NEW_ROW": "Neue Zeile hinzufügen"
     },
 
     "BUTTONS": {
@@ -594,7 +597,9 @@
         "GET_STARTED": "Loslegen",
         "ADD_CARD": "Karte hinzufügen",
         "ADD_SPENDING": "Ausgabe hinzufügen",
-        "PAY_BILL": "Rechnung bezahlen"
+        "PAY_BILL": "Rechnung bezahlen",
+        "ADD_ROW": "Zeile hinzufügen",
+        "ADD": "Hinzufügen"
     },
 
     "PASSWORD_LABELS": {
@@ -806,7 +811,8 @@
         "SHOW_ONLY_UNPAID": "Fällige Zahlungen anzeigen",
         "SHOW_ALL": "Alle Ausgaben anzeigen",
         "PAY_BILL": "Rechnung bezahlen",
-        "ADD_SPENDING": "Ausgabe hinzufügen"
+        "ADD_SPENDING": "Ausgabe hinzufügen",
+        "REMOVE_EXPENSES_BEFORE_DELETE": "Entfernen Sie die Ausgaben, bevor Sie die Gruppe löschen"
     },
 
     "DEFAULT_EXPENSE_CATEGORIES": {

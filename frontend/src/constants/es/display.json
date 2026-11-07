@@ -524,7 +524,10 @@
         "ADD_SPENDING": "Añadir gasto",
         "DELETE_SPENDING": "Eliminar gasto",
         "CONFIRM_DELETE_SPENDING": "¿Está seguro de que desea eliminar este gasto?",
-        "BILL_PAYMENT_NOTE": "Al pagar la factura de esta tarjeta, estos gastos se añadirán a los gastos bajo el siguiente ingreso seleccionado."
+        "BILL_PAYMENT_NOTE": "Al pagar la factura de esta tarjeta, estos gastos se añadirán a los gastos bajo el siguiente ingreso seleccionado.",
+        "EXPENSE_GROUPS": "Grupos de gastos",
+        "ADD_GROUP_TO_START": "Añada un grupo de gastos para comenzar a registrar gastos.",
+        "ADD_NEW_ROW": "Añadir nueva fila"
     },
 
     "BUTTONS": {
@@ -594,7 +597,9 @@
         "GET_STARTED": "Comenzar",
         "ADD_CARD": "Añadir tarjeta",
         "ADD_SPENDING": "Añadir gasto",
-        "PAY_BILL": "Pagar factura"
+        "PAY_BILL": "Pagar factura",
+        "ADD_ROW": "Añadir fila",
+        "ADD": "Añadir"
     },
 
     "PASSWORD_LABELS": {
@@ -806,7 +811,8 @@
         "SHOW_ONLY_UNPAID": "Mostrar pagos pendientes",
         "SHOW_ALL": "Mostrar todos los gastos",
         "PAY_BILL": "Pagar factura",
-        "ADD_SPENDING": "Añadir gasto"
+        "ADD_SPENDING": "Añadir gasto",
+        "REMOVE_EXPENSES_BEFORE_DELETE": "Elimine los gastos antes de eliminar el grupo"
     },
 
     "DEFAULT_EXPENSE_CATEGORIES": {

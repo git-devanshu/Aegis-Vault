@@ -32,7 +32,11 @@
         "DATA_EXPORTED": "支出导出成功",
         "DATA_IMPORTED": "已导出的支出导入成功",
         "NOTE_SAVED": "笔记已保存到 Quick Save",
-        "NO_DATA_AVAILABLE": "Quick Save 中没有可用数据"
+        "NO_DATA_AVAILABLE": "Quick Save 中没有可用数据",
+        "GROUP_ALREADY_EXISTS": "分组已存在",
+        "INVALID_EXPENSES_WARNING": "请补充完整或删除未填写完整的支出行",
+        "EXPENSES_SAVED": "支出已成功保存",
+        "EXPENSE_SAVE_ERROR": "无法保存支出"
     },
     
     "PLANNING_MANAGER": {

@@ -32,7 +32,11 @@
         "DATA_EXPORTED": "支出のエクスポートに成功しました",
         "DATA_IMPORTED": "エクスポートした支出のインポートに成功しました",
         "NOTE_SAVED": "メモをQuick Saveに保存しました",
-        "NO_DATA_AVAILABLE": "Quick Saveに利用可能なデータがありません"
+        "NO_DATA_AVAILABLE": "Quick Saveに利用可能なデータがありません",
+        "GROUP_ALREADY_EXISTS": "グループは既に存在します",
+        "INVALID_EXPENSES_WARNING": "不完全な支出の行を入力するか削除してください",
+        "EXPENSES_SAVED": "支出が正常に保存されました",
+        "EXPENSE_SAVE_ERROR": "支出を保存できませんでした"
     },
     
     "PLANNING_MANAGER": {

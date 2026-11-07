@@ -32,7 +32,11 @@
         "DATA_EXPORTED": "खर्च सफलतापूर्वक एक्सपोर्ट किए गए",
         "DATA_IMPORTED": "एक्सपोर्ट किए गए खर्च सफलतापूर्वक इम्पोर्ट किए गए",
         "NOTE_SAVED": "नोट Quick Save में सेव किया गया",
-        "NO_DATA_AVAILABLE": "Quick Save में कोई डेटा उपलब्ध नहीं है"
+        "NO_DATA_AVAILABLE": "Quick Save में कोई डेटा उपलब्ध नहीं है",
+        "GROUP_ALREADY_EXISTS": "समूह पहले से मौजूद है",
+        "INVALID_EXPENSES_WARNING": "कृपया अधूरी खर्च पंक्तियों को पूरा करें या हटाएं",
+        "EXPENSES_SAVED": "खर्च सफलतापूर्वक सहेजे गए",
+        "EXPENSE_SAVE_ERROR": "खर्च सहेजने में असमर्थ"
     },
     
     "PLANNING_MANAGER": {

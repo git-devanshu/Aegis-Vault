@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import { theme } from '../../themes/theme';
 import useLanguage from '../../hooks/useLanguage';
@@ -38,7 +38,10 @@ export default function AddExpensePopup({isOpen, onClose, selectedAccount, selec
     const tabs = [DISPLAY.LABELS.FILL_DETAILS, DISPLAY.LABELS.IMPORT];
     const [selectedTab, setSelectedTab] = useState(0);
 
-    const [quickSaveLogs, setQuickSaveLogs] = useState(JSON.parse(localStorage.getItem('aegis-saved-expenses')) || []);
+    const [quickSaveLogs, setQuickSaveLogs] = useState([]);
+    const [savedExpenses, setSavedExpenses] = useState({});
+    const [expenseGroups, setExpenseGroups] = useState([]);
+    const [selectedExpenseGroupIndex, setSelectedExpenseGroupIndex] = useState("");
     const [showAddMultipleExpenseModal, setShowAddMultipleExpenseModal] = useState(false);
 
     const handleChange = (e) =>{
@@ -47,6 +50,20 @@ export default function AddExpensePopup({isOpen, onClose, selectedAccount, selec
             [e.target.name]: e.target.name === 'amount' ? Number(e.target.value) : e.target.value
         });
     }
+
+    useEffect(() => {
+        if (!isOpen || selectedTab !== 1) return;
+        const groups = JSON.parse(localStorage.getItem("aegis-quicksave-groups")) || [];
+        const expenses = JSON.parse(localStorage.getItem("aegis-saved-expenses")) || {};
+    
+        setExpenseGroups(groups);
+        setSavedExpenses(expenses);
+        setSelectedExpenseGroupIndex(prev =>
+            prev !== "" && Number(prev) < groups.length ? prev : groups.length ? "0" : ""
+        );
+    }, [isOpen, selectedTab]);
+
+    const selectedGroupExpenses = selectedExpenseGroupIndex !== "" ? savedExpenses[selectedExpenseGroupIndex] || [] : [];
 
     const addExpense = async(e) =>{
         const toastId = validateAndStartLoading({
@@ -95,9 +112,9 @@ export default function AddExpensePopup({isOpen, onClose, selectedAccount, selec
                     onClose(false);
                     setRefreshExpenses(!refreshExpenses);
                     setExpense({
+                        ...expense,
                         amount: 0,
-                        spentAt: '',
-                        spentDate: new Date().toLocaleDateString('en-CA')
+                        spentAt: ''
                     });
                 }
             });
@@ -143,6 +160,15 @@ export default function AddExpensePopup({isOpen, onClose, selectedAccount, selec
         }
     }
 
+    const importFromQuickSave = () => {
+        if (selectedGroupExpenses.length === 0) return;
+        setQuickSaveLogs(selectedGroupExpenses.map(expense => ({
+            ...expense,
+            categoryIndex: 0
+        })));
+        setShowAddMultipleExpenseModal(true);
+    };
+
     return (
         <Popup isOpen={isOpen} onClose={onClose} title={DISPLAY.TEXT.ADD_EXPENSE} bg={theme.bg} borderColor={theme.success}>
             <TabGroup tabs={tabs} value={selectedTab} onChange={setSelectedTab}/>
@@ -171,8 +197,21 @@ export default function AddExpensePopup({isOpen, onClose, selectedAccount, selec
             
             {/* Import */}
             {selectedTab === 1 && <Flex alignItems='center' direction='column' style={{marginTop: theme.spacing, minHeight: '370px'}}>
-                <Text color={theme.text} fontSize={theme.textSize} align='center' marginBottom={theme.marginL}>{DISPLAY.TEXT.QUICKSAVE_EXPENSE_COUNT}: {quickSaveLogs.length}</Text>
-                <ActionButton onClick={()=> setShowAddMultipleExpenseModal(true) } name={DISPLAY.BUTTONS.IMPORT_FROM_QUICKSAVE} disabled={quickSaveLogs.length === 0} actionType='primary' customStyle={{width: 'fit-content', marginTop: theme.marginL, marginBottom: theme.spacing}}/>
+                <div style={{width: '70%'}}>
+                    <Dropdown
+                        value={selectedExpenseGroupIndex}
+                        onChange={e => setSelectedExpenseGroupIndex(e.target.value)}
+                        options={expenseGroups.map((group, index) => ({
+                            label: group,
+                            value: String(index)
+                        }))}
+                        placeholder={DISPLAY.TEXT.EXPENSE_GROUPS}
+                    />
+                </div>
+                <Text color={theme.text} fontSize={theme.textSize} align='center' marginBottom={theme.marginL}>
+                    {DISPLAY.TEXT.QUICKSAVE_EXPENSE_COUNT}: {selectedGroupExpenses.length}
+                </Text>
+                <ActionButton onClick={importFromQuickSave} name={DISPLAY.BUTTONS.IMPORT_FROM_QUICKSAVE} disabled={selectedGroupExpenses.length === 0} actionType='primary' customStyle={{width: 'fit-content', marginTop: theme.marginL, marginBottom: theme.spacing}} />
 
                 <Divider borderColor={theme.border} borderWidth='1px' marginTop={theme.marginL} marginBottom={theme.marginL}/>
 
@@ -197,7 +236,7 @@ export default function AddExpensePopup({isOpen, onClose, selectedAccount, selec
             </Flex>}
 
             {showAddMultipleExpenseModal && 
-                <AddMultipleExpensesModal onBack={()=> setShowAddMultipleExpenseModal(false) } selectedAccount={selectedAccount} selectedTracker={selectedTracker} categoryData={categoryData} refreshExpenses={refreshExpenses} setRefreshExpenses={setRefreshExpenses} accountDataArray={accountDataArray} setAccountData={setAccountData} quickSaveLogs={quickSaveLogs} setQuickSaveLogs={setQuickSaveLogs} />
+                <AddMultipleExpensesModal onBack={()=> setShowAddMultipleExpenseModal(false) } selectedAccount={selectedAccount} selectedTracker={selectedTracker} categoryData={categoryData} refreshExpenses={refreshExpenses} setRefreshExpenses={setRefreshExpenses} accountDataArray={accountDataArray} setAccountData={setAccountData} quickSaveLogs={quickSaveLogs} setQuickSaveLogs={setQuickSaveLogs} selectedExpenseGroupIndex={selectedExpenseGroupIndex} />
             }
         </Popup>
     );

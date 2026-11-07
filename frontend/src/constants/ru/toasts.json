@@ -32,7 +32,11 @@
         "DATA_EXPORTED": "расходы успешно экспортированы",
         "DATA_IMPORTED": "экспортированные расходы успешно импортированы",
         "NOTE_SAVED": "заметка сохранена в Quick Save",
-        "NO_DATA_AVAILABLE": "в Quick Save нет доступных данных"
+        "NO_DATA_AVAILABLE": "в Quick Save нет доступных данных",
+        "GROUP_ALREADY_EXISTS": "Группа уже существует",
+        "INVALID_EXPENSES_WARNING": "Пожалуйста, заполните или удалите незавершенные строки расходов",
+        "EXPENSES_SAVED": "Расходы успешно сохранены",
+        "EXPENSE_SAVE_ERROR": "Не удалось сохранить расходы"
     },
     
     "PLANNING_MANAGER": {
