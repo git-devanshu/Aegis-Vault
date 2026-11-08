@@ -36,7 +36,7 @@ export default function CardsModal({creditCardData, spendingData, selectedAccoun
 
     const country = BANKS.country[selectedAccount.countryCode];
 
-    const [showOnlyUnpaidExpenses, setShowOnlyUnpaidExpenses] = useState(false);
+    const [showOnlyUnpaidExpenses, setShowOnlyUnpaidExpenses] = useState(true);
 
     const [searchQuery, setSearchQuery] = useState('');
     const [isLoading, setIsLoading] = useState(false);

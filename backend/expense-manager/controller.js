@@ -646,6 +646,49 @@ const payCreditCardBill = async(req, res) =>{
 
 
 /*
+* POST /api/em/credit-card-spendings/multiple
+* Add multiple spendings under a specific credit card
+*/
+const addMultipleCreditCardSpendings = async(req, res) =>{
+    const {RESPONSES} = getLanguageConstants(req.lang);
+    try{
+        const {spendings} = req.body;
+        if(!Array.isArray(spendings) || !spendings.length){
+            return res.status(400).json({ message: RESPONSES.COMMON.UNEXPECTED_ERROR });
+        }
+
+        const formattedSpendings = [];
+        for(const spending of spendings){
+            const {accountIndex, ccIndex, categoryIndex, spendingData, nonce} = spending;
+            const accountIndexNumber = Number(accountIndex);
+            const ccIndexNumber = Number(ccIndex);
+            const categoryIndexNumber = Number(categoryIndex);
+
+            if(Number.isNaN(accountIndexNumber) || Number.isNaN(ccIndexNumber) || Number.isNaN(categoryIndexNumber) || !spendingData?.length || !nonce?.length){
+                return res.status(400).json({ message: RESPONSES.COMMON.UNEXPECTED_ERROR });
+            }
+
+            formattedSpendings.push({
+                userId: req.id,
+                accountIndex: accountIndexNumber,
+                ccIndex: ccIndexNumber,
+                categoryIndex: categoryIndexNumber,
+                spendingData,
+                nonce
+            });
+        }
+
+        await CreditCardSpendings.insertMany(formattedSpendings);
+        res.status(200).json({ message: RESPONSES.EXPENSE_MANAGER.SPENDING_ADDED });
+    }
+    catch(error){
+        console.log('Server error: ', error);
+        res.status(500).json({ message: RESPONSES.COMMON.SERVER_ERROR });
+    }
+}
+
+
+/*
 * POST /api/em/
 * 
 */
@@ -696,5 +739,6 @@ module.exports = {
     fetchAllCardCreditCardSpendings,
     addCreditCardSpending,
     deleteCreditCardSpending,
-    payCreditCardBill
+    payCreditCardBill,
+    addMultipleCreditCardSpendings
 };

@@ -1,5 +1,5 @@
 const express = require('express');
-const { fetchAllAccountTrackers, fetchAllTrackerExpenses, fetchAllUserCategories, addIncomeTracker, deleteIncomeTracker, addExpense, deleteExpense, transferExpenses, addMultipleExpenses, updateExpenseCategories, updateExpenseLimits, addNewCreditCard, updateCreditCardsDetails, deleteCreditCard, fetchAllAccountCreditCards, fetchAllCardCreditCardSpendings, addCreditCardSpending, deleteCreditCardSpending, payCreditCardBill } = require('./controller');
+const { fetchAllAccountTrackers, fetchAllTrackerExpenses, fetchAllUserCategories, addIncomeTracker, deleteIncomeTracker, addExpense, deleteExpense, transferExpenses, addMultipleExpenses, updateExpenseCategories, updateExpenseLimits, addNewCreditCard, updateCreditCardsDetails, deleteCreditCard, fetchAllAccountCreditCards, fetchAllCardCreditCardSpendings, addCreditCardSpending, deleteCreditCardSpending, payCreditCardBill, addMultipleCreditCardSpendings } = require('./controller');
 const { checkAuthorization } = require('../middlewares/checkAuthorization');
 
 // endpoint prefix : /api/em
@@ -29,5 +29,6 @@ emRouter.post('/credit-card/pay-bill', checkAuthorization, payCreditCardBill);
 emRouter.get('/credit-card-spendings/:ccIndex/:accountIndex', checkAuthorization, fetchAllCardCreditCardSpendings);
 emRouter.post('/credit-card-spendings', checkAuthorization, addCreditCardSpending);
 emRouter.delete('/credit-card-spendings/:spendingId', checkAuthorization, deleteCreditCardSpending);
+emRouter.post('/credit-card-spendings/multiple', checkAuthorization, addMultipleCreditCardSpendings);
 
 module.exports = {emRouter};
