@@ -236,7 +236,7 @@ export default function AddExpensePopup({isOpen, onClose, selectedAccount, selec
             </Flex>}
 
             {showAddMultipleExpenseModal && 
-                <AddMultipleExpensesModal onBack={()=> setShowAddMultipleExpenseModal(false) } selectedAccount={selectedAccount} selectedTracker={selectedTracker} categoryData={categoryData} refreshExpenses={refreshExpenses} setRefreshExpenses={setRefreshExpenses} accountDataArray={accountDataArray} setAccountData={setAccountData} quickSaveLogs={quickSaveLogs} setQuickSaveLogs={setQuickSaveLogs} selectedExpenseGroupIndex={selectedExpenseGroupIndex} />
+                <AddMultipleExpensesModal onBack={()=> setShowAddMultipleExpenseModal(false) } selectedAccount={selectedAccount} selectedTracker={selectedTracker} categoryData={categoryData} refreshExpenses={refreshExpenses} setRefreshExpenses={setRefreshExpenses} accountDataArray={accountDataArray} setAccountData={setAccountData} quickSaveLogs={quickSaveLogs} setQuickSaveLogs={setQuickSaveLogs} selectedExpenseGroupIndex={selectedExpenseGroupIndex} setSavedExpenses={setSavedExpenses} />
             }
         </Popup>
     );

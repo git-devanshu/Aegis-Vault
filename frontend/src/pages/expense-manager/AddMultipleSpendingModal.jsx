@@ -82,7 +82,7 @@ export default function AddMultipleSpendingModal({onBack, selectedCreditCard, ca
                         const savedExpenses = JSON.parse(localStorage.getItem("aegis-saved-expenses")) || {};
                         savedExpenses[selectedExpenseGroupIndex] = [];
                         localStorage.setItem("aegis-saved-expenses", JSON.stringify(savedExpenses));
-                        setSavedExpenses?.(savedExpenses);
+                        setSavedExpenses(savedExpenses);
                     }
 
                     setQuickSaveLogs([]);
