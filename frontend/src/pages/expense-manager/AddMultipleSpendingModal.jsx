@@ -77,7 +77,7 @@ export default function AddMultipleSpendingModal({onBack, selectedCreditCard, ca
                 },
                 toastId,
                 setIsLoading,
-                onSuccess: () => {
+                onSuccess: (res) => {
                     if (isQuickSaveImport && selectedExpenseGroupIndex !== "") {
                         const savedExpenses = JSON.parse(localStorage.getItem("aegis-saved-expenses")) || {};
                         savedExpenses[selectedExpenseGroupIndex] = [];

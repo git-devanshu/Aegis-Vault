@@ -82,7 +82,7 @@ export default function AddMultipleExpensesModal({onBack, selectedAccount, selec
                 },
                 toastId,
                 setIsLoading,
-                onSuccess: () =>{
+                onSuccess: (res) =>{
                     const updatedAccountForUI = {
                         ...selectedAccount,
                         totalExpense: selectedAccount.totalExpense + totalExpenseAmount
