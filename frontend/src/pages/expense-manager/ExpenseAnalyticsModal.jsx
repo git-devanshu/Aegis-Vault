@@ -50,6 +50,12 @@ export default function ExpenseAnalyticsModal({onBack, selectedAccount, selected
         }),
         [expenseData, categoryData, selectedTracker, selectedAccount]
     );
+
+    const sortedExpenses = useMemo(()=>{
+        return [...expenseData].sort((a, b)=>
+                new Date(b.spentDate) - new Date(a.spentDate)
+            );
+    }, [expenseData]);
     
     return (
         <div className="fullscreen-overlay">
@@ -116,7 +122,7 @@ export default function ExpenseAnalyticsModal({onBack, selectedAccount, selected
                 <GridItem colStart={{lg:3}}>
                     <ActionButton name={DISPLAY.BUTTONS.DOWNLOAD_STATEMENT} icon={<DownloadIcon/>}
                         onClick={()=> downloadExpenseStatement({
-                            expenseData,
+                            expenseData: sortedExpenses,
                             categoryData,
                             selectedTracker,
                             bank,
