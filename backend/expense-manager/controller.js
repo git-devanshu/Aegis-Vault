@@ -597,6 +597,7 @@ const payCreditCardBill = async(req, res) =>{
     const {RESPONSES} = getLanguageConstants(req.lang);
     try{
         const {spendingIDs, expenses, accountData, accountNonce} = req.body;
+        console.log(spendingIDs, expenses, accountData, accountNonce);
         if(!Array.isArray(spendingIDs) || !Array.isArray(expenses) || !spendingIDs?.length || !expenses?.length || !accountData?.length || !accountNonce?.length || spendingIDs.length !== expenses.length){
             return res.status(400).json({ message : RESPONSES.COMMON.UNEXPECTED_ERROR });
         }
