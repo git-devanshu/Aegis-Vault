@@ -86,7 +86,7 @@ export default function UpdateAccountPopup({showUpdateAccountPopup, setShowUpdat
             {/* @NonProduction */}
             <Text color={theme.text} fontSize={theme.textSize} ml={theme.marginL} mb={theme.spacing}>{bank.bankName}</Text>
             <form>
-                <InputBox type='number' label={DISPLAY.LABELS.ACCOUNT_NUMBER} value={accountNumber} onChange={(e)=> setAccountNumber(e.target.value)} required={true} min={1} />
+                <InputBox type='text' label={DISPLAY.LABELS.ACCOUNT_NUMBER} value={accountNumber} onChange={(e)=> setAccountNumber(e.target.value)} required={true} maxLen={30} />
                 <InputBox type='number' label={DISPLAY.TEXT.TOTAL_INCOME} value={totalIncome} onChange={(e)=> setTotalIncome(e.target.value)} required={true} min={1} />
                 <InputBox type='number' label={DISPLAY.TEXT.TOTAL_EXPENSE} value={totalExpense} onChange={(e)=> setTotalExpense(e.target.value)} required={true} min={1} />
                 <ActionButton name={DISPLAY.BUTTONS.SAVE} onClick={updateAccountData} disabled={isLoading} isLoading={isLoading} actionType='primary' customStyle={{marginBottom: theme.marginS}} />
