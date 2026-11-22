@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Flex, Text, Grid, Image, Box, Spacer } from '@chakra-ui/react';
 import { theme } from '../../themes/theme';
 import BANKS from '../../assets/banks.json';
@@ -7,9 +7,11 @@ import useLanguage from '../../hooks/useLanguage';
 import { MdCreditCard, MdSwapHorizontalCircle } from "react-icons/md";
 import { TbMoneybag } from "react-icons/tb";
 import { GiMoneyStack } from 'react-icons/gi';
+import { RiEditCircleLine } from "react-icons/ri";
+import UpdateAccountPopup from '../popup/UpdateAccountPopup';
 
 
-export default function BankAccountCard({account, setShowManageAccountModal, showIncomeAndExpense=true, hideAccountBalanceInCard=false, creditCardButtonAction, showCreditCardSwitch=true}) {
+export default function BankAccountCard({account, setShowManageAccountModal, showIncomeAndExpense=true, hideAccountBalanceInCard=false, creditCardButtonAction, showCreditCardSwitch=true, accountData, setAccountData}) {
     if(!account) return null;
     const {DISPLAY} = useLanguage();
     
@@ -18,6 +20,9 @@ export default function BankAccountCard({account, setShowManageAccountModal, sho
     const maskedAccountNo = `**** **** **** ${account.accountNo.slice(-4)}`;
     const formattedBalance = `${country.currency.symbol} ${(account.totalIncome - account.totalExpense).toLocaleString(country.locale)}`;
     const textColor = getContrastColor(bank.color);
+
+    {/* @NonProduction */}
+    const [showUpdateAccountPopup, setShowUpdateAccountPopup] = useState(false);
 
     return (
         <div>
@@ -46,6 +51,12 @@ export default function BankAccountCard({account, setShowManageAccountModal, sho
                         {account.accountAlias}
                     </Text>
                     <Spacer/>
+
+                    {/* @NonProduction */}
+                    <Box onClick={()=> setShowUpdateAccountPopup(true) } backgroundColor={theme.bg} borderRadius='25px' padding='6px 10px' gap='5px' cursor='pointer' _hover={{backgroundColor: theme.cardBg}}>
+                        <RiEditCircleLine style={{fontSize:'22px', color:theme.text}} />
+                    </Box>
+
                     {showCreditCardSwitch && 
                         <Box onClick={creditCardButtonAction} backgroundColor={theme.bg} borderRadius='25px' padding='6px 10px' gap='5px' cursor='pointer' _hover={{backgroundColor: theme.cardBg}}>
                             <MdCreditCard style={{fontSize:'22px', color:theme.text}} />
@@ -88,6 +99,10 @@ export default function BankAccountCard({account, setShowManageAccountModal, sho
                     </Flex>
                 </Grid>
             }
+
+            {/* @NonProduction */}
+            <UpdateAccountPopup showUpdateAccountPopup={showUpdateAccountPopup} setShowUpdateAccountPopup={setShowUpdateAccountPopup} account={account} accountData={accountData} setAccountData={setAccountData} />
+
         </div>
     );
 }

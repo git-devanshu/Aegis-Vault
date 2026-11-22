@@ -104,19 +104,30 @@ const deleteBankAccount = async(req, res) =>{
 
 
 /*
-* POST /api/al/
-* 
+* PUT /api/al/update-account
+* This api is for internal purpose only, remove from production once use is done
 */
-// const  = async(req, res) =>{
-//     const {RESPONSES} = getLanguageConstants(req.lang);
-//     try{
+const updateBankAccountDetails = async(req, res) =>{
+    const {RESPONSES} = getLanguageConstants(req.lang);
+    try{
+        const {accountData, accountIndex, nonce} = req.body;
 
-//     }
-//     catch(error){
-//         console.log('Server error: ', error);
-//         res.status(500).json({ message : RESPONSES.COMMON.SERVER_ERROR });
-//     }
-// }
+        /* @NonProduction */
+        if(!accountData?.length || !nonce?.length){
+            return res.status(400).json({ message : RESPONSES.COMMON.UNEXPECTED_ERROR });
+        }
+
+        const updatedAccount = await BankAccounts.findOneAndUpdate({userId: req.id, accountIndex}, {accountData, nonce});
+        if(!updatedAccount){
+            return res.status(404).json({ message : RESPONSES.ACCOUNTS_LAYER.ACCOUNT_NOT_FOUND });
+        }
+        res.status(200).json({ message: RESPONSES.COMMON.SUCCESS });
+    }
+    catch(error){
+        console.log('Server error: ', error);
+        res.status(500).json({ message : RESPONSES.COMMON.SERVER_ERROR });
+    }
+}
 
 
 /*
@@ -139,5 +150,6 @@ const deleteBankAccount = async(req, res) =>{
 module.exports = {
     fetchUserBankAccounts,
     addBankAccount,
-    deleteBankAccount
+    deleteBankAccount,
+    updateBankAccountDetails
 };

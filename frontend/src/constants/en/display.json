@@ -527,7 +527,8 @@
         "BILL_PAYMENT_NOTE": "Paying the bill for this card will add these spendings in expenses under the following selected income.",
         "EXPENSE_GROUPS": "Expense Groups",
         "ADD_GROUP_TO_START": "Add an expense group to start entering expenses.",
-        "ADD_NEW_ROW": "add new row"
+        "ADD_NEW_ROW": "add new row",
+        "UPDATE_ACCOUNT": "Update Account"
     },
 
     "BUTTONS": {

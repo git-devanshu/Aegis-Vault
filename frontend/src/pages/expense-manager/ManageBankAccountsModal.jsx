@@ -93,7 +93,7 @@ export default function ManageBankAccountsModal({ accountData, onBack, setSelect
                     )
                 })}
 
-                <ActionButton name={DISPLAY.BUTTONS.ADD_NEW_ACCOUNT} onClick={()=> setShowAddAccountModal(true)} actionType='primary' customStyle={{marginTop: theme.spacing}} />
+                <ActionButton name={DISPLAY.BUTTONS.ADD_NEW_ACCOUNT} onClick={()=> setShowAddAccountModal(true)} customStyle={{marginTop: theme.spacing}} />
             </div>
 
             {/* Add New Bank Account Modal */}

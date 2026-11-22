@@ -28,26 +28,25 @@ export default function PayCreditCardBillPopup({showPayBillPopup, setShowPayBill
         });
         try{
             const encryptedExpenses = await Promise.all(
-    spendingData
-        .filter(spending => spending.paymentDue)
-        .map(async(spending) => {
-            const expensePayload = {
-                spentAt: spending.spentAt,
-                amount: spending.amount,
-                spentDate: spending.spentDate
-            };
+                spendingData.filter(spending => spending.paymentDue)
+                    .map(async(spending) => {
+                        const expensePayload = {
+                            spentAt: spending.spentAt,
+                            amount: spending.amount,
+                            spentDate: spending.spentDate
+                        };
 
-            const {encryptedData: expenseData, nonce} = await encryptData(JSON.stringify(expensePayload), masterKey);
+                        const {encryptedData: expenseData, nonce} = await encryptData(JSON.stringify(expensePayload), masterKey);
 
-            return {
-                accountIndex: selectedAccount.accountIndex,
-                trackerIndex: selectedTrackerIndex,
-                categoryIndex: spending.categoryIndex,
-                expenseData,
-                nonce
-            };
-        })
-);
+                        return {
+                            accountIndex: selectedAccount.accountIndex,
+                            trackerIndex: selectedTrackerIndex,
+                            categoryIndex: spending.categoryIndex,
+                            expenseData,
+                            nonce
+                        };
+                    })
+            );
 
             const updatedAccount = {
                 countryCode: selectedAccount.countryCode,
