@@ -20,12 +20,19 @@ export default function UpdateAccountPopup({showUpdateAccountPopup, setShowUpdat
     const {masterKey} = useAppContext();
 
     const bank = BANKS.banks[account.bankId];
-    const country = BANKS.country[account.countryCode];
 
-    const [accountNumber, setAccountNumber] = useState(account.accountNo);
-    const [totalIncome, setTotalIncome] = useState(account.totalIncome);
-    const [totalExpense, setTotalExpense] = useState(account.totalExpense);
+    const [accountNumber, setAccountNumber] = useState('');
+    const [totalIncome, setTotalIncome] = useState(0);
+    const [totalExpense, setTotalExpense] = useState(0);
     const [isLoading, setIsLoading] = useState(false);
+
+    useEffect(() => {
+        if(account){
+            setAccountNumber(account.accountNo);
+            setTotalIncome(account.totalIncome);
+            setTotalExpense(account.totalExpense);
+        }
+    }, [account]);
 
     {/* @NonProduction */}
     const updateAccountData = async(e) =>{
